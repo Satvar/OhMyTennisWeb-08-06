@@ -1,0 +1,339 @@
+<div class="content">
+  <div class="container-fluid"><br><br>
+        <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-aqua white_text"><i class="fas fa-user-friends" aria-hidden="true"></i></span>
+        
+                    <div class="info-box-content">
+                      <span class="info-box-text">Nombre d'entra�neurs</span>
+                      <span class="info-box-number">{{coachcount}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-red white_text"><i class="fas fa-users" aria-hidden="true"></i></span>
+        
+                    <div class="info-box-content">
+                      <span class="info-box-text">Nombre de prospects</span>
+                      <span class="info-box-number">{{usercount}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+
+
+
+                <!-- /.col -->
+        
+                <!-- fix for small devices only -->
+                <div class="clearfix visible-sm-block"></div>
+        
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-green white_text"><i class="fas fa-table-tennis" aria-hidden="true"></i></span>
+        
+                    <div class="info-box-content">
+                      <span class="info-box-text">nombre de tribunaux</span>
+                      <span class="info-box-number">{{courtcount}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-yellow white_text"><i class="fas fa-eur" aria-hidden="true"></i></span>
+        
+                    <div class="info-box-content">
+                      <span class="info-box-text">revenu total</span>
+                      <span class="info-box-number">320 �</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form_devarea">
+                        <h4>COACH PAYMENT STATUS</h4>
+                          <div class="box-body">
+                       <!-- <div class="row">
+                            <div class="float-left col-md-6"></div>
+                             <div class="float-right col-md-6">
+                            <div class="col-md-4">
+                                <label for="" class="control-label"><b>Status</b></label>
+                                <select [(ngModel)]="status" (change)="filtersearch($event)" class="form-control ">
+                                    <option selected value="">Sélectionner</option>
+                                    <option value="1">Location 1</option>
+                                    <option value="2">Location 2</option>
+                                    <option value="3">Location 3</option>
+                                    <option value="4">Location 4</option>
+                                    <option value="5">Location 5</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="control-label"><b>Pincode</b></label>
+                                <select [(ngModel)]="status" (change)="filtersearch($event)" class="form-control ">
+                                    <option selected value="">Sélectionner</option>
+                                    <option value="1">Pincode 1</option>
+                                    <option value="2">Pincode 2</option>
+                                    <option value="3">Pincode 3</option>
+                                    <option value="4">Pincode 4</option>
+                                    <option value="5">Pincode 5</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="control-label"><b>Coach</b></label>
+                                <select [(ngModel)]="status" (change)="filtersearch($event)" class="form-control ">
+                                    <option selected value="">Sélectionner</option>
+                                    <option value="1">Coach 1</option>
+                                    <option value="2">Coach 2</option>
+                                    <option value="3">Coach 3</option>
+                                    <option value="4">Coach 4</option>
+                                    <option value="5">Coach 5</option>
+                                </select>
+                            </div>
+                            </div>
+                        </div>-->
+                        <br>
+                                <table class="coach_listable table table-striped table-bordered table-sm row-border hover" id="datatable">
+                                        <thead>
+                                          <tr>
+                                            <th>Sl.no</th>
+                                            <th>Coach Name</th>
+                                            <th>Location</th>
+                                            <th>Type of Service</th>
+                                            <th>Payment Status</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                         <tr class="btn_blocksec" *ngFor="let group of datanew; let i=index">
+                                                <td>{{i +1}}</td>
+                                               <td>{{group.name}}</td>
+                                               <td>{{group.location}}</td>
+                                               <td>{{group.servicetype}}</td>
+                                            
+                                               <td *ngIf="group.paymentstatus=='B'; else falseprint"><input class="btn btn-block btn-sm btn-success" type="button" value="Success"></td>
+                                                 <ng-template #falseprint><td *ngIf="group.paymentstatus=='A'; else second"><input class="btn btn-block btn-sm btn-primary" type="button" value="Approved"></td></ng-template>
+                                                 <ng-template #second><td *ngIf="group.paymentstatus=='C'; else third"><input class="btn btn-block btn-sm btn-danger" type="button" value="Cancel"></td></ng-template>
+                                                 <ng-template #third><td *ngIf="group.paymentstatus=='R'"><input class="btn btn-block btn-sm btn-info" type="button" value="Reserved"></td></ng-template>
+                                        
+                                           </tr>
+                                        </tbody>
+                                      </table>
+                              <div class="row book_course_label d-none">
+                                  <div class="col-md-4">
+                                      <label for="filter" class="control-label"><b>Filtre</b></label>
+                                      <input (keyup)="filtersearch($event)" [(ngModel)]="filter" placeholder="filter" class="form-control" /> </div>
+      
+                                  <div class="col-md-4">
+                                      <label for="" class="control-label"><b>Cours</b></label>
+                                      <select [(ngModel)]="course" (change)="filtersearch($event)" class="form-control ">
+                                          <option selected value="">Sélectionner</option>
+                                          <option value="CoursIndividuel">Cours Individuel</option>
+                                          <option value="CoursCollectifOndemand">Cours Collectif Ondemand</option>
+                                          <option value="CoursCollectifClub">Cours Collectif Club</option>
+                                      </select>
+                                  </div>
+      
+                                 
+      
+                              </div>
+      
+                          <!--    <div class="book_coursetab" style="overflow-x: auto;">
+                                  <table class="table book_coursetable coach_listtable">
+                                      <thead>
+                                          <tr>
+                                              <th class="text-center">Sl.no</th>
+                                              <th>Coach Name</th>
+                                              <th>Location</th>
+                                              <th>Type of Service</th>
+                                              <th>Payment Status</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr role="row" class="odd">
+                                              <td class="">1</td>
+                                              <td>Mark</td>
+                                              <td class="">Location 1</td>
+                                              <td class="sorting_1">Individual</td>
+                                              <td><span class="label label-success">Success</span></td>
+                                              <td class="d-none"><a href="#" class="view_Section"><i class="ion ion-eye view_icon"></i></a></td>
+                                            </tr><tr role="row" class="even">
+                                              <td class="">2</td>
+                                              <td>John</td>
+                                              <td class="">Location 2</td>
+                                              <td class="sorting_1">Individual</td>
+                                              <td><span class="label label-danger">Reject</span></td>
+                                              <td class="d-none"><a href="#" class="view_Section"><i class="ion ion-eye view_icon"></i></a></td>
+                                            </tr><tr role="row" class="odd">
+                                              <td class="">3</td>
+                                              <td>Sara</td>
+                                              <td class="">Location 3</td>
+                                              <td class="sorting_1">Individual</td>
+                                              <td><span class="label label-warning">Re-schedule</span></td>
+                                              <td class="d-none"><a href="#" class="view_Section"><i class="ion ion-eye view_icon"></i></a></td>
+                                            </tr><tr role="row" class="even">
+                                              <td class="">4</td>
+                                              <td>Mark</td>
+                                              <td class="">Location 4</td>
+                                              <td class="sorting_1">Individual</td>
+                                              <td><span class="label label-danger">Reject</span></td>
+                                              <td class="d-none"><a href="#" class="view_Section"><i class="ion ion-eye view_icon"></i></a></td>
+                                            </tr><tr role="row" class="odd">
+                                              <td class="">5</td>
+                                              <td>Stephy</td>
+                                              <td class="">Location 5</td>
+                                              <td class="sorting_1">Individual</td>
+                                              <td><span class="label label-success">Success</span></td>
+                                              <td class="d-none"><a href="#" class="view_Section"><i class="ion ion-eye view_icon"></i></a></td>
+                                            </tr><tr role="row" class="even">
+                                              <td class="">6</td>
+                                              <td>Mariya</td>
+                                              <td class="">Location 6</td>
+                                              <td class="sorting_1">Individual</td>
+                                              <td><span class="label label-danger">Reject</span></td>
+                                              <td class="d-none"><a href="#" class="view_Section"><i class="ion ion-eye view_icon"></i></a></td>
+                                            </tr><tr role="row" class="odd">
+                                              <td class="">7</td>
+                                              <td>Buela</td>
+                                              <td class="">Location 7</td>
+                                              <td class="sorting_1">Individual</td>
+                                              <td><span class="label label-warning">Re-schedule</span></td>
+                                              <td class="d-none"><a href="#" class="view_Section"><i class="ion ion-eye view_icon"></i></a></td>
+                                            </tr><tr role="row" class="even">
+                                              <td class="">8</td>
+                                              <td>Kennedy</td>
+                                              <td class="">Location 8</td>
+                                              <td class="sorting_1">Individual</td>
+                                              <td><span class="label label-success">Success</span></td>
+                                              <td class="d-none"><a href="#" class="view_Section"><i class="ion ion-eye view_icon"></i></a></td>
+                                            </tr><tr role="row" class="odd">
+                                              <td class="">9</td>
+                                              <td>Srijith</td>
+                                              <td class="">Location 9</td>
+                                              <td class="sorting_1">Individual</td>
+                                              <td><span class="label label-warning">Re-schedule</span></td>
+                                              <td class="d-none"><a href="#" class="view_Section"><i class="ion ion-eye view_icon"></i></a></td>
+                                            </tr>
+                                       
+                                      </tbody>
+                                  </table>
+                                
+                              </div>-->
+                          </div>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+              </div>
+          </div>
+      
+          <div id="myModal_edit_course" class="modal fade" role="dialog" [ngStyle]="{'display' : dialogStatus ? 'block':'none', 'opacity':1}">
+              <div class="modal-dialog">
+      
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" (click)="modalclose()" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Formulaire d'approbation des utilisateurs</h4>
+                      </div>
+                      <div class="modal-body">
+                          <br>
+                          <div *ngIf="alertMsg.show" class="alert {{alertMsg.type}} alert-dismissible text-center">
+                              <button type="button" (click)="_closeAlertMessage($event)" class="close"><span>&times;</span></button> {{alertMsg.msg}}
+                          </div>
+                          <div class="form-group bmd-form-grou bmd-form-group is-filled">
+                              <div class="row">
+                                  <div class="col-md-4">
+                                      <label>Nom</label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input id="userName" class="form-control" type="text" value="prabhakaran" disabled>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="form-group bmd-form-grou bmd-form-group is-filled">
+                              <div class="row">
+                                  <div class="col-md-4">
+                                      <label>Cours</label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input id="userCourseType" class="form-control" type="text" value="Individuel" disabled>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="form-group bmd-form-group">
+                              <div class="row">
+                                  <div class="col-md-4">
+                                      <label>Date</label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input id="userDate" type="text" class="form-control" disabled>
+                                  </div>
+                              </div>
+                          </div>
+                          <div *ngIf="course =='CoursCollectifClub'" class="form-group bmd-form-group">
+                              <div class="row">
+                                  <div class="col-md-4">
+                                      <label>Course Name</label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input id="Remarks" [(ngModel)]="Remarks" name="Remarks" readonly type="text" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                          <div *ngIf="course =='CoursCollectifClub'" class="form-group bmd-form-group">
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                          <label>Prix (€)</label>
+                                      </div>
+                                      <div class="col-md-8">
+                                          <input id="discount" [(ngModel)]="discount" name="discount" type="text" class="form-control">
+                                      </div>
+                                  </div>
+                              </div>
+                          <div align="center" *ngIf="course == 'CoursCollectifOndemand' && booked_users.length>1" >
+                              <table width="100%"  class="available_table">
+                                  <tbody>
+                                      <tr>
+                                          <th colspan="2">Booked Users</th>
+                                      </tr>
+                                      <tr *ngFor="let user of booked_users">
+                                          <td>{{user.firstName}} {{user.lastName}}</td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="modal-footer">
+                          <div class="text-center">
+                              <div class="row">
+      
+                                  <div class="col-md-12">
+                                      <div class="form_buttons" style="text-align: center; padding: 0px 20px;">
+                                          <button *ngIf="book_status=='R'" id="approveBtn" class="btn btn-success des_save_btn" (click)="approvedData()">Demande
+                                              acceptée</button>
+                                          <!-- <a data-toggle="modal"  data-target="#myModal_save_course"  class="btn btn-success des_save_btn">Enregistrer</a> -->
+                                          <button *ngIf="book_status=='R'" type="button" class="btn btn-danger" (click)="cancelreq()" data-dismiss="modal">Annuler</button>
+                                          <button *ngIf="book_status=='B'" type="button" class="btn btn-danger" (click)="reschedule()" data-dismiss="modal">Replanifier</button>
+                                          <button type="button" class="btn btn-default"  data-dismiss="modal">Proche</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+      
+              </div>
+    </div>
+  </div>

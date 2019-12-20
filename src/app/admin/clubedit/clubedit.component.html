@@ -1,0 +1,160 @@
+<div class="content">
+    <div class="container-fluid"><br><br>         
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form_devarea admin_profform">
+                    
+                    <div class="box-body">
+                    <br> 
+                    <form #user="ngForm" (ngSubmit)="onSubmit(res)">
+                        <h4>CLUB EDIT FORM</h4>  
+                        <br>
+                        <div *ngIf="alertMsg.show" class="alert {{alertMsg.type}} alert-dismissible text-center">
+                            <button type="button" (click)="_closeAlertMessage($event)" class="close"><span>&times;</span></button> {{alertMsg.msg}}
+                        </div> 
+                        <div class="form-group bmd-form-group">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3">
+                                        <label>Name of Court <span class="red">*</span></label>
+                                    </div>
+                                    <div class="col-xs-12 col-md-9">
+                                        <input type="text" [(ngModel)]="res.court_name" #court_name="ngModel"
+                                            [ngClass]="{'alert_field': (court_name.errors && (court_name.touched || court_name.dirty))}"
+                                            name="court_name" class="form-control" placeholder="Prénom"
+                                            required>
+                                        <ng-container
+                                            *ngIf="court_name.errors && (court_name.touched || court_name.dirty)">
+                                            <span class="alert_text" *ngIf="court_name.errors.required">Indiquez
+                                                votre
+                                                Prénom.</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group bmd-form-group">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3">
+                                        <label>Contact Name<span class="red">*</span></label>
+                                    </div>
+                                    <div class="col-xs-12 col-md-9">
+                                        <input type="text" [(ngModel)]="res.incharge_name" #incharge_name="ngModel"
+                                            [ngClass]="{'alert_field': (incharge_name.errors && (incharge_name.touched || incharge_name.dirty))}"
+                                            name="incharge_name" class="form-control" placeholder=""
+                                            required>
+                                        <ng-container
+                                            *ngIf="incharge_name.errors && (incharge_name.touched || incharge_name.dirty)">
+                                            <span class="alert_text" *ngIf="incharge_name.errors.required">Indiquez
+                                                votre Nom.</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group bmd-form-group">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3">
+                                        <label>E-mail <span class="red">*</span></label>
+                                    </div>
+                                    <div class="col-xs-12 col-md-9">
+                                        <input type="text" class="form-control" id="court_email"
+                                            [(ngModel)]="res.court_email" name="court_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="tenniscourt@court.com"
+                                            readonly required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group bmd-form-group">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3">
+                                        <label>Téléphone <span class="red">*</span></label>
+                                    </div>
+                                    <div class="col-xs-12 col-md-9">
+                                        <input type="text" class="form-control" [(ngModel)]="res.court_phone"
+                                            pattern="^[1-9]\d{9}$" #court_phone="ngModel"
+                                            [ngClass]="{'alert_field': (court_phone.errors && (court_phone.touched || court_phone.dirty))}"
+                                            name="court_phone" placeholder="Téléphone" required>
+                                        <ng-container *ngIf="court_phone.errors && (court_phone.touched || court_phone.dirty)">
+                                            <span class="alert_text" *ngIf="court_phone.errors.required">Indiquez
+                                                votre Téléphone.</span>
+                                            <span class="alert_text" *ngIf="court_phone.errors.pattern">Indiquez
+                                                votre Téléphone.</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group bmd-form-group">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3">
+                                        <label>Postal Code <span class="red">*</span></label>
+                                    </div>
+                                    <div class="col-xs-12 col-md-9">
+                                        <input type="text" class="form-control" [(ngModel)]="res.court_postal_code"
+                                            pattern="^[1-9]\d{6}$" #court_postal_code="ngModel"
+                                            [ngClass]="{'alert_field': (court_postal_code.errors && (court_postal_code.touched || court_postal_code.dirty))}"
+                                            name="court_postal_code" placeholder="Code Postal" required>
+                                        <ng-container *ngIf="court_postal_code.errors && (court_postal_code.touched || court_postal_code.dirty)">
+                                            <span class="alert_text" *ngIf="court_postal_code.errors.required">Indiquez
+                                                votre code postal.</span>
+                                            <span class="alert_text" *ngIf="court_postal_code.errors.pattern">Indiquez
+                                                votre code postal.</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group bmd-form-group">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3">
+                                        <label>Address <span class="red">*</span></label>
+                                    </div>
+                                    <div class="col-xs-12 col-md-9">
+                                        <textarea class="form-control" id="court_address" style="height:110px;"
+                                         required [(ngModel)]="res.court_address" name="res.court_address"
+                                            #court_address="ngModel"
+                                            [ngClass]="{'alert_field': (court_address.errors && (court_address.touched || court_address.dirty))}">
+                        </textarea>
+                                        <ng-container
+                                            *ngIf="court_address.errors && (court_address.touched || court_address.dirty)">
+                                            <span class="alert_text" *ngIf="court_address.errors.required">Indiquez
+                                                votre Address.</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="form-group bmd-form-group">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3">
+                                        <label>Code postal <span class="red">*</span></label>
+                                    </div>
+                                    <div class="col-xs-12 col-md-9">
+                                        <input type="text" [(ngModel)]="res.postalCode"
+                                            #postalCode="ngModel"
+                                            [ngClass]="{'alert_field': (postalCode.errors && (postalCode.touched || postalCode.dirty))}"
+                                            name="postalCode" class="form-control"
+                                            placeholder="La Possession - 97419" readonly required>
+                                        <ng-container
+                                            *ngIf="postalCode.errors && (postalCode.touched || postalCode.dirty)">
+                                            <span class="alert_text"
+                                                *ngIf="postalCode.errors.required">Indiquez
+                                                votre
+                                                Ville.</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>-->
+                           
+                            <div class="col-md-12 text-center">
+                                <!-- <button type="submit" [disabled]="!user.valid || submit_disabled" disabled
+                                    id="submit" readonly class="btn btn-primary">SAUVEGARDER</button> -->
+                                    <button type="submit"
+                                    id="submit" class="btn btn-primary">SAUVEGARDER</button>
+
+                                    <!-- <a (click)="makeEnable()"
+                                    style="margin-left:20px; color: #ffffff;"
+                                    class="btn btn-info"><i class="fa fa-edit"></i>MODIFIER</a> -->
+                            </div>
+                       <br><br>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

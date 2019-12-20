@@ -1,0 +1,209 @@
+<app-header></app-header>
+<app-top-menu></app-top-menu>
+<!-- Banner starts -->
+<div class="banner">
+    <slideshow [height]="height" [autoPlay]="true" [autoPlayInterval]="3333" [lazyLoad]="true" [showArrows]="true"
+        [minHeight]="'525px'" [autoPlay]="true" [imageUrls]="bannerImageSources" [lazyLoad]="imageSources?.length > 1"
+        [autoPlayWaitForLazyLoad]="true">
+    </slideshow>
+    <!-- Search area starts -->
+    <div class="search_area">
+        <div class="banner_container">
+            <h3>Réservez un cours avec un coach</h3>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-lg-4">
+                    <div class="form-group">
+                        <div class="addon-lg">
+                            <input class="form-control" id="" maxlength="6" placeholder="code postal"
+                                [(ngModel)]="Ville" type="text">
+                            <label><img src="./assets/images/ville_icon.png"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-lg-4">
+                    <div class="form-group">
+                        <div class="addon-lg">
+                            <input type="text" style="text-align:left!important;" [min]="min" class="form-control" id=""
+                                placeholder="date" [(ngModel)]="Date" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1">
+                            <owl-date-time #dt1 [pickerType]="'calendar'"></owl-date-time>
+                            <label><img src="./assets/images/date_icon.png">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-lg-4 text-left">
+                    <button (click)="handleClick($event)" class="btn black_btn">Recherche</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Search area ends -->
+</div>
+<!-- Banner area ends -->
+
+
+<!-- about section starts -->
+<div class="about_sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <img src="./assets/images/gallery_3.png" class="img-responsive abt_img">
+                <div class="form_bg">
+                    <h1 class="des_about_heading">Oh My Concept</h1>
+                    <p class="des_about_para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation</p>
+                    <div><a href="#" class="btn btn-primary des_abt_btn">découvrir</a></div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!-- about section ends -->
+
+<div class="my_coach">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h1 class="coach_heading">Oh My Coachs</h1>
+                <div class="center">
+                    <ul id="myTabs" class="nav nav-pills">
+                        <ng-container>
+                            <li style="width: 50% !important;float: left!important;"
+                                *ngFor="let t of myCoaches; let i = index; let first = first;"
+                                [ngClass]="(t.class)? 'active':''" class=""><a (click)="changeMyCoachTab($event, i)"
+                                    title="t.title" href="javascript:;">{{t.title}}</a></li>
+                        </ng-container>
+                        <!-- <li class="active"><a (click)="changeTabs($event)" href="javascript:;" >Tous Les Coachs</a></li>
+                        <li><a (click)="changeTabs($event)" href="javascript:;" >Réserver un cours</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="Commentary">
+                    <div class="col-lg-11" style="position: relative; top: 30px;">
+                    </div>
+                    <div id="myCarousel01" class="carousel slide" data-ride="carousel" data-interval="0">
+                        <div class="carousel-inner">
+                            <div class="item carousel-item active">
+                                <div class="row">
+                                    <ngx-slick-carousel class="tab-pane fade in active" #slickModal="slick-carousel"
+                                        [config]="slides.config">
+                                        <div ngxSlickItem *ngFor="let s of slides.data"
+                                            class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="thumb-wrapper" (click)="gotoCouch(s)">
+                                                <div class="img-box">
+                                                    <img src="{{s.img || 'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'}}"
+                                                        #img
+                                                        (error)="img.src = 'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'"
+                                                        class="" alt="">
+                                                </div>
+                                                <div class="thumb-content">
+                                                    <p>{{s.name}}</p>
+                                                    <div class="star-rating">
+                                                        <ul class="list-inline">
+                                                            <li class="list-inline-item"><i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="list-inline-item"><i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="list-inline-item"><i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="list-inline-item"><i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="list-inline-item"><i class="fa fa-star-o"></i>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- <p>{{s.comment}}</p> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ngx-slick-carousel>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- my events -->
+<div class="des_events" *ngIf="isHidden">
+    <div class="container">
+        <div class="row" >
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h1 class="des_event_heading">Oh My Events</h1>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-4 col-sm-4 col-xs-12" *ngFor="let res of response">
+                    <div class="des_events_bg">
+                <img src="{{res.Photo}}" class="img-responsive center-block" style="height: 250px;">
+                <div class=" ">
+                    <p class="des_date_sec"><span>{{res.Date}}</span>{{res.Month_Year}} </p>
+                    <p class="des_event_sub_title">{{res.Eventname}}</p>
+                    <p class="des_event_para max-lines">{{res.Description}} </p>
+                </div>
+                <!-- <div class="text-center">
+                    <a class="btn btn-primary des_event_btn" (click)="gotoCoach(res)" style="margin-top: 15px;">Reserve
+                        maintenant</a>
+                </div> -->
+                
+                </div>
+            </div>
+            <div class="text-center">
+                    <a (click)="goToStage()" class="btn btn-primary des_event_btn">Tous les stages</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- my events -->
+
+    <!-- middle sec starts-->
+    <div class="middle_sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <img src="./assets/images/slides_3.png" class="img-responsive">
+                    <div class="middle_sec_contents">
+                        <img src="./assets/images/tennis-ball.png" class="ball_img">
+                        <h2>Oh My Club House</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua...</p>
+                        <a href="#" class="btn btn-primary middle_sec_btn">DECOUVRIR</a>
+                    </div>
+
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <img src="./assets/images/team.png" class="img-responsive">
+                    <div class="middle_sec_contents">
+                        <img src="./assets/images/tennis-ball.png" class="ball_img">
+                        <h2>Oh My Concept</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua...</p>
+                        <a href="#" class="btn btn-primary middle_sec_btn">DECOUVRIR</a>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- middle sec ends-->
+    <div class="conseils_banner">
+        <div class="conseils_banner_contents">
+            <h1 class="conseils_banner_heading">Oh My Conseils</h1>
+            <p class="conseils_banner_para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor
+                incididunt ut labore et dolore magna aliqua. </p>
+            <a href="#" class="btn btn-primary conseils_banner_btn">EN SAVOIR PLUS </a>
+        </div>
+    </div>
+    <app-footer></app-footer>
