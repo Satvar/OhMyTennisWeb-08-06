@@ -87,6 +87,7 @@ import { UserAnimationDetailComponent } from "./user-animation-detail/user-anima
 import { AdminloginComponent } from "./admin/adminlogin/adminlogin.component";
 import { AdminforgotpasswordComponent } from "./admin/adminforgotpassword/adminforgotpassword.component";
 import { ResetpasswordComponent } from "./admin/resetpassword/resetpassword.component";
+import { ConceptComponent } from "./pages/concepts/concept/concept.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -188,6 +189,10 @@ const routes: Routes = [
       import("./model/admin/admin.module").then(mod => mod.AdminModule)
   },
   {
+    path: CONST.PATH.CONCEPTS.CONCEPT.SELF,
+    component: ConceptComponent
+  },
+  {
     path: "**",
     component: HomeComponent
   }
@@ -229,7 +234,8 @@ export function getAuthServiceConfigs() {
     UserStageDetailComponent,
     UserTeambuildingDetailComponent,
     UserAnimationDetailComponent,
-    OhMyCoachDetailComponent
+    OhMyCoachDetailComponent,
+    ConceptComponent
   ],
   imports: [
     BrowserModule,

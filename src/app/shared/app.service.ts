@@ -35,8 +35,8 @@ import { CONST } from "../shared/app.constant";
 @Injectable()
 export class AppService {
   //api = 'http://172.107.175.10:3004'
-  //api = "http://192.168.1.32:3004";
-  api = "http://3.133.106.166:5000";
+  api = "http://192.168.1.32:3004";
+  //api = "http://3.133.106.166:5000";
 
   // tslint:disable-next-line:variable-name
   _headers: HttpHeaders;

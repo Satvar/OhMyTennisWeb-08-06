@@ -21,6 +21,13 @@ export const CONST = Object.freeze({
     USER_MODULE: "user",
     FORGET_PASSWORD: "forgetpassword",
     SET_NEW_PASSWORD: "setnewpassword",
+    CONCEPTS: {
+      SELF: "concept",
+      CONCEPT: {
+        SELF: "concept/concept",
+        TITLE: "Concept"
+      }
+    },
     ADMINS: {
       SELF: "admin",
       FORGOT: {

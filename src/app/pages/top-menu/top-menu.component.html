@@ -1,126 +1,213 @@
 <!-- Menuarea starts -->
 <div class="menuarea">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2 col-lg-2 logo">
-                <a class="sidebar-icon" href="javascript:;"><img alt="" src="./assets/images/sidebar_menu.png"></a>
-                <a href="javascript:;" (click)="_gotoPath('/')" class="logo_icon"><img alt=""
-                        src="./assets/images/logo.png"></a>
-            </div>
-            <div class="col-md-10 col-lg-10 right_menu">
-                <nav class="navbar navbar-inverse">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav">
-                            <li><a href="concept.html">Oh My Concept</a>
-                                <ul class="first_submenu">
-                                    <li><a href="concept_présentation.html">Présentation générale</a>
-                                    </li>
-                                    <li><a href="concept_informations.html">Reglementation</a>
-                                    </li>
-                                    <li><a href="concept_engagements.html">Nos engagements</a>
-                                    </li>
-                                    <li><a href="concept_lacharte.html">Charte educateur</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="conseils.html">Oh My Conseils</a>
-                                <ul class="first_submenu">
-                                    <li><a>Jouer</a>
-                                        <ul class="second_submenu">
-                                            <li><a href="conseils_jour_premièrepartie.html">Premiere partie</a></li>
-                                            <li><a href="conseils_jour_premiercours.html">Premier cours</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a>Matcher</a>
-                                        <ul class="second_submenu">
-                                            <li><a href="conseils_matcher_premiermatch.html">Premiere match</a></li>
-                                            <li><a href="conseils_matcher_premiertournoi_officiel.html">Premier
-                                                    tournoi</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a>Conseils</a>
-                                        <ul class="second_submenu">
-                                            <li><a href="conseils_consiele_diététique.html">Diététique</a></li>
-                                            <li><a href="conseils_consiele_formephysique.html">Forme physique</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a>Materiel</a>
-                                        <ul class="second_submenu">
-                                            <li><a href="conseils_matriel_choisir.html">Choisir</a></li>
-                                            <li><a href="#">Tester</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript:;" routerLink="{{'/'}}">Oh My Coachs</a></li>
-                            <li><a href="#">Oh My Event</a>
-                                <ul class="first_submenu">
-                                    <li><a href="javascript:;" routerLink="{{'/' + this._const('PATH.STAGE')}}">Stage</a></li>
-                                    <li><a href="javascript:;" routerLink="{{'/' + this._const('PATH.TOUNAMENT')}}">Tournament</a></li>
-                                    <li><a href="javascript:;" routerLink="{{'/' + this._const('PATH.TEAMBUILDING')}}">Team Building</a></li>
-                                    <li><a href="javascript:;" routerLink="{{'/' + this._const('PATH.ANIMATION')}}">Animation</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Oh My Tennis</a>
-                                <ul class="first_submenu">
-                                    <li><a href="#">Comprendre</a>
-                                        <ul class="second_submenu">
-                                            <li><a href="#">Historique du tennis</a>
-                                                <!--<ul class="third_submenu">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 col-lg-2 logo">
+        <a class="sidebar-icon" href="javascript:;"
+          ><img alt="" src="./assets/images/sidebar_menu.png"
+        /></a>
+        <a href="javascript:;" (click)="_gotoPath('/')" class="logo_icon"
+          ><img alt="" src="./assets/images/logo.png"
+        /></a>
+      </div>
+      <div class="col-md-10 col-lg-10 right_menu">
+        <nav class="navbar navbar-inverse">
+          <div class="navbar-header">
+            <button
+              type="button"
+              class="navbar-toggle"
+              data-toggle="collapse"
+              data-target="#myNavbar"
+            >
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li>
+                <a
+                  href="javascript:;"
+                  routerLink="{{
+                    '/' + this._const('PATH.CONCEPTS.CONCEPT.SELF')
+                  }}"
+                  >Oh My Concept</a
+                >
+                <ul class="first_submenu">
+                  <li>
+                    <a href="concept_présentation.html"
+                      >Présentation générale</a
+                    >
+                  </li>
+                  <li>
+                    <a href="concept_informations.html">Reglementation</a>
+                  </li>
+                  <li>
+                    <a href="concept_engagements.html">Nos engagements</a>
+                  </li>
+                  <li><a href="concept_lacharte.html">Charte educateur</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="conseils.html">Oh My Conseils</a>
+                <ul class="first_submenu">
+                  <li>
+                    <a>Jouer</a>
+                    <ul class="second_submenu">
+                      <li>
+                        <a href="conseils_jour_premièrepartie.html"
+                          >Premiere partie</a
+                        >
+                      </li>
+                      <li>
+                        <a href="conseils_jour_premiercours.html"
+                          >Premier cours</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>Matcher</a>
+                    <ul class="second_submenu">
+                      <li>
+                        <a href="conseils_matcher_premiermatch.html"
+                          >Premiere match</a
+                        >
+                      </li>
+                      <li>
+                        <a href="conseils_matcher_premiertournoi_officiel.html"
+                          >Premier tournoi</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>Conseils</a>
+                    <ul class="second_submenu">
+                      <li>
+                        <a href="conseils_consiele_diététique.html"
+                          >Diététique</a
+                        >
+                      </li>
+                      <li>
+                        <a href="conseils_consiele_formephysique.html"
+                          >Forme physique</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a>Materiel</a>
+                    <ul class="second_submenu">
+                      <li>
+                        <a href="conseils_matriel_choisir.html">Choisir</a>
+                      </li>
+                      <li><a href="#">Tester</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="javascript:;" routerLink="{{ '/' }}">Oh My Coachs</a>
+              </li>
+              <li>
+                <a href="#">Oh My Event</a>
+                <ul class="first_submenu">
+                  <li>
+                    <a
+                      href="javascript:;"
+                      routerLink="{{ '/' + this._const('PATH.STAGE') }}"
+                      >Stage</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="javascript:;"
+                      routerLink="{{ '/' + this._const('PATH.TOUNAMENT') }}"
+                      >Tournament</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="javascript:;"
+                      routerLink="{{ '/' + this._const('PATH.TEAMBUILDING') }}"
+                      >Team Building</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="javascript:;"
+                      routerLink="{{ '/' + this._const('PATH.ANIMATION') }}"
+                      >Animation</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">Oh My Tennis</a>
+                <ul class="first_submenu">
+                  <li>
+                    <a href="#">Comprendre</a>
+                    <ul class="second_submenu">
+                      <li>
+                        <a href="#">Historique du tennis</a>
+                        <!--<ul class="third_submenu">
                                               <li><a href="#">1880 - 1930</a></li>
                                               <li><a href="#">1930 - 1950</a></li>
                                               <li><a href="#">1950 - 1973</a></li>
                                               <li><a href="#">1973 - auj</a></li>
                                           </ul>-->
-                                            </li>
-                                            <li><a href="lexique.html">Lexique du tennis</a></li>
-                                            <li><a href="#">Régles du tennis</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Apprendre</a>
-                                        <ul class="second_submenu">
-                                            <li><a href="#">Technique</a></li>
-                                            <li><a href="#">Tactique</a></li>
-                                            <li><a href="#">Physique</a></li>
-                                            <li><a href="#">Mental</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Pratiquer</a>
-                                        <ul class="second_submenu">
-                                            <li><a href="#">Vente de matériel</a></li>
-                                            <li><a href="#">Guide terrains</a></li>
-                                            <li><a href="#">Recherche partenaire</a></li>
-                                            <li><a href="#">Tournois amicaux</a></li>
-                                            <li><a href="#">Tournois officiels</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Circuit ATP</a>
-                                        <ul class="second_submenu">
-                                            <li><a href="#">Pronostics</a></li>
-                                            <li><a href="#">Billeterie</a></li>
-                                            <li><a href="#">Actualité</a></li>
-                                            <li><a href="#">Livescore</a></li>
-                                            <li><a href="#">Classement ATP</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-
-                            </li>
-                            <li><a href="#">Oh My Club House</a></li>
-                            <li class="nav-item-img">
-                                <a class="nav-link" (click)="_gotoPath('/')" href="javascript:;">
-                                    <img alt="" src="./assets/images/Logo1.png"></a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
+                      </li>
+                      <li><a href="lexique.html">Lexique du tennis</a></li>
+                      <li><a href="#">Régles du tennis</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Apprendre</a>
+                    <ul class="second_submenu">
+                      <li><a href="#">Technique</a></li>
+                      <li><a href="#">Tactique</a></li>
+                      <li><a href="#">Physique</a></li>
+                      <li><a href="#">Mental</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Pratiquer</a>
+                    <ul class="second_submenu">
+                      <li><a href="#">Vente de matériel</a></li>
+                      <li><a href="#">Guide terrains</a></li>
+                      <li><a href="#">Recherche partenaire</a></li>
+                      <li><a href="#">Tournois amicaux</a></li>
+                      <li><a href="#">Tournois officiels</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Circuit ATP</a>
+                    <ul class="second_submenu">
+                      <li><a href="#">Pronostics</a></li>
+                      <li><a href="#">Billeterie</a></li>
+                      <li><a href="#">Actualité</a></li>
+                      <li><a href="#">Livescore</a></li>
+                      <li><a href="#">Classement ATP</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">Oh My Club House</a></li>
+              <li class="nav-item-img">
+                <a
+                  class="nav-link"
+                  (click)="_gotoPath('/')"
+                  href="javascript:;"
+                >
+                  <img alt="" src="./assets/images/Logo1.png"
+                /></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
     </div>
+  </div>
 </div>

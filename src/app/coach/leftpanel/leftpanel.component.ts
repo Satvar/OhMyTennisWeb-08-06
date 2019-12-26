@@ -120,11 +120,13 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
                     }
                   }
                 });
-
-              this.image = data.data.coach_list[0].Coach_Image;
-              if (this.image == null)
-                this.image =
-                  "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png";
+              if (data.data.coach_list) {
+                this.image = data.data.coach_list[0].Coach_Image;
+                if (this.image == null) {
+                  this.image =
+                    "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png";
+                }
+              }
               this.spinner.hide();
             } else {
               this.spinner.hide();
