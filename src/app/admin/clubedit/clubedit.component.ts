@@ -22,7 +22,8 @@ export class ClubeditComponent extends AdminComponent implements OnInit {
     court_email: "",
     court_phone: "",
     court_postal_code: "",
-    court_address: ""
+    court_address: "",
+    courtfile: "",
   }
 
   public team_error = false;
@@ -106,6 +107,9 @@ export class ClubeditComponent extends AdminComponent implements OnInit {
       this.spinner.hide()
     }
   }
+  changeListener($event): void {
+    this.readThis($event.target);
+  }
 
   readThis(inputValue: any): void {
     var file: File = inputValue.files[0];
@@ -119,7 +123,7 @@ export class ClubeditComponent extends AdminComponent implements OnInit {
   }
 
   propagateChange = (result, file, type) => {
-    //this.res.User_Image = result;
+    this.res.courtfile = result;
   };
 
 }

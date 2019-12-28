@@ -268,28 +268,34 @@ export class MyCalendarComponent extends CoachComponent
     this.appService.getAll("/getcalender/", coachid).subscribe(response => {
       if (response && response["data"]) {
         this.calender = (response as any).data.calender;
-        console.log("calender", this.calender);
+        //console.log("calender", this.calender);
       }
     });
-    console.log(moment("23-11-2019", "DD-MM-YYYY").isoWeek());
+    //console.log(moment("23-11-2019", "DD-MM-YYYY").isoWeek());
     let todayDate = moment(new Date(), "DD-MM-YYYY");
+    //let todayDate = moment("01-01-2020", "DD-MM-YYYY");
     let weekNumber = moment(todayDate).isoWeek();
+    //let weekNumber = 1;
+    //console.log("[mycalendar.component.ts]", weekNumber);
     for (let i = weekNumber; i <= 53; i++) {
       let startDate = moment()
         .day("Monday")
         .isoWeek(i);
+      //console.log("[mycalendar.component.ts]", startDate);
       let endDate = moment()
         .day("Sunday")
         .isoWeek(i);
+      //console.log("[mycalendar.component.ts]", endDate);
       this.weeklist.push({
         Semaine: i,
         Dates: `${moment(startDate).format("DD/MM/YYYY")} to ${moment(
           endDate
         ).format("DD/MM/YYYY")}`
       });
+      //console.log("[mycalendar.component.ts]", this.weeklist);
     }
 
-    console.log("weeklist", this.weeklist);
+    //console.log("weeklist", this.weeklist);
   }
 
   getWeek() {

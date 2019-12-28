@@ -42,7 +42,7 @@ import { AdminComponent } from "./admin.component";
 import { AdmindashboardComponent } from "../../admin/admindashboard/admindashboard.component";
 import { AdmincoachlistComponent } from "../../admin/admincoachlist/admincoachlist.component";
 import { AdminprospectlistComponent } from "../../admin/adminprospectlist/adminprospectlist.component";
-import { AdminclublistlistComponent } from "../../admin/adminclublistlist/adminclublistlist.component";
+import { AdminclublistComponent } from "../../admin/adminclublist/adminclublist.component";
 import { AdmincoacheditComponent } from "../../admin/admincoachedit/admincoachedit.component";
 import { AdminprospecteditComponent } from "../../admin/adminprospectedit/adminprospectedit.component";
 import { ProfileComponent } from "../../coach/profile/profile.component";
@@ -117,7 +117,7 @@ const routes: Routes = [
       },
       {
         path: CONST.PATH.ADMIN.CLUBLIST.SELF,
-        component: AdminclublistlistComponent,
+        component: AdminclublistComponent,
         data: {
           title: CONST.PATH.ADMIN.CLUBLIST.TITLE
         }
@@ -198,7 +198,7 @@ const routes: Routes = [
     AdmincoachlistComponent,
     ChangepasswordComponent,
     AdminprospectlistComponent,
-    AdminclublistlistComponent,
+    AdminclublistComponent,
     IndividualCourseComponent,
     TopNavBarComponent,
     AdmincoacheditComponent,

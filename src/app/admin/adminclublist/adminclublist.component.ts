@@ -17,24 +17,24 @@ import { FullCalendarComponent } from "@fullcalendar/angular";
 import dayGridView from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
-import { AdminComponent } from "./../../model/admin/admin.component";
+import { AdminComponent } from "../../model/admin/admin.component";
 //import { ModalDirective } from 'ngx-bootstrap/modal';
 
 declare var $;
 @Component({
-  selector: "app-adminclublistlist",
-  templateUrl: "./adminclublistlist.component.html",
-  styleUrls: ["./adminclublistlist.component.scss"]
+  selector: "app-adminclublist",
+  templateUrl: "./adminclublist.component.html",
+  styleUrls: ["./adminclublist.component.scss"]
 })
-export class AdminclublistlistComponent extends AdminComponent
-  implements OnInit {
+export class AdminclublistComponent extends AdminComponent implements OnInit {
   public res = {
     court_name: "",
     incharge_name: "",
     court_email: "",
     court_phone: "",
     court_postal_code: "",
-    court_address: ""
+    court_address: "",
+    courtfile: ""
   };
   title = "angulardatatables";
   dtOptions: DataTables.Settings = {};
@@ -71,29 +71,47 @@ export class AdminclublistlistComponent extends AdminComponent
       .create("/admin/createcourt", this.res)
       .subscribe(response => {
         if (response && response.isSuccess == true) {
-          console.log(response);
-          this.ngOnInit();
           this._showAlertMessage(
             "alert-success",
             "Court de tennis enregistré avec succès."
           );
+          $("#addcoach").hide();
+          window.location.reload();
         } else {
           this._showAlertMessage(
             "alert-danger",
             "Impossible de continuer. S'il vous plaît essayer après un certain temps"
           );
+          $("#addcoach").hide();
+          window.location.reload();
         }
         this.spinner.hide();
       });
   }
+
+  changeListener($event): void {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    var file: File = inputValue.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = _event => {
+      this.propagateChange(reader.result, file, file.type);
+    };
+    reader.onerror = function(error) {};
+  }
+
+  propagateChange = (result, file, type) => {
+    this.res.courtfile = result;
+  };
 
   getCourtData() {
     this.appService.getAll("/admin/getallcourts").subscribe(response => {
       if ((response as any).data.court_list.length > 0) {
         if (response && response["data"]) {
           let dat = (response as any).data.court_list;
-          //let dat = response['data'].court_list;
-          //console.log(dat);
           this.datas = dat.map(value => {
             return {
               court_id: value.court_id,
@@ -105,22 +123,6 @@ export class AdminclublistlistComponent extends AdminComponent
               status: value.court_status
             };
           });
-          //console.log(dat);
-          //this.datas=dat;
-          // for (let i = 0; i < dat.length; i++) {
-          //   // console.log(dat.length);
-          //   // console.log(dat[i].court_id);
-          //   var courtlist = JSON.stringify({'court_id': dat[i].court_id,'court_name': dat[i].court_name, 'court_email': dat[i].court_email, 'court_phone': dat[i].court_phone,'court_address': dat[i].court_address,'court_postal_code':dat[i].court_postal_code,'status':dat[i].court_status});
-          //   console.log(courtlist);
-          //   var courtdata = JSON.parse(courtlist);
-          //   this.datas.courtdata.push(courtdata);
-
-          // }
-          //this.datas=datass;
-          //console.log(this.datas.courtdata);
-          //  console.log(this.datas.courtdata);
-          // this.datacourtlist = this.datas;
-          //console.log(this.datacourtlist);
         }
       }
     });

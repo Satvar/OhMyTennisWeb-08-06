@@ -5,7 +5,7 @@
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
 					<div class="brand_logo_container">
-						<img src="../assets/admin/img/logo.png" class="brand_logo" alt="Logo">
+						<img src="../assets/admin/img/favicon.png" class="brand_logo" alt="Logo">
 					</div>
                 </div>
                
@@ -16,7 +16,7 @@
 					<form class="login_form" #newAdminForm="ngForm" (ngSubmit)="onSubmitAdmin(newAdminForm)" autocomplete="off">
 						<div class="input-group mb-3">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
+								<span class="input-group-text"><i class="fa fa-user"></i></span>
 							</div>
 							<input type="text" class="form-control input_user" required [(ngModel)]="newAdmin.admin_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #Email="ngModel" [ngClass]="{'alert_field': (Email.errors && (Email.touched || Email.dirty))}" name="admin_email" placeholder="E-mail">
                         </div>
@@ -28,7 +28,7 @@
                         </div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+								<span class="input-group-text"><i class="fa fa-key"></i></span>
 							</div>
 							<input type="password" required #Password="ngModel" [ngClass]="{'alert_field': (Password.errors && (Password.touched || Password.dirty))}" [(ngModel)]="newAdmin.password" name="password" class="form-control input_pass" placeholder="Mot de passe">
                         </div>

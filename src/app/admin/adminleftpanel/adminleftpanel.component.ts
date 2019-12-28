@@ -56,7 +56,7 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
       iclass: 'fa fa-users',
       style: false,
     }, {
-      title : 'PERSPECTIVES',
+      title : 'PROPSPECT',
       path: '/' + this._const('PATH.ADMIN.SELF') + '/' + this._const('PATH.ADMIN.PROSPECTUSLIST.SELF'),
       iclass: 'fa fa-users',
       style: false,
