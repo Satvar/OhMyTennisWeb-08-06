@@ -2286,12 +2286,12 @@ span.grey_mild {
 	position:absolute;
 }
 
-.des_overlay_content > div{
+/* .des_overlay_content > div{
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-}
+} */
 .des_related_coach h4 {
 	font-size:20px;
 	color:#080808;

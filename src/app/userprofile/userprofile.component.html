@@ -10,7 +10,7 @@
                                     class="close"><span>&times;</span></button> {{alertMsg.msg}}
                             </div>
                             <form #user="ngForm" (ngSubmit)="onSubmit(res)">
-                               
+
                                 <div class="col-xs-12 col-md-8">
                                     <div class="form-group bmd-form-group">
                                         <div class="row">
@@ -56,7 +56,7 @@
                                             </div>
                                             <div class="col-xs-12 col-md-8">
                                                 <input type="text" class="form-control" [(ngModel)]="res.mobile"
-                                                    pattern="^[1-9]\d{9}$" #mobile="ngModel"
+                                                    pattern="^[0-9]\d{9}$" #mobile="ngModel"
                                                     [ngClass]="{'alert_field': (mobile.errors && (mobile.touched || mobile.dirty))}"
                                                     name="mobile" placeholder="Téléphone" readonly required>
                                                 <ng-container *ngIf="mobile.errors && (mobile.touched || mobile.dirty)">
@@ -86,15 +86,13 @@
                                                 <label>Code postal <span class="red">*</span></label>
                                             </div>
                                             <div class="col-xs-12 col-md-8">
-                                                <input type="text" [(ngModel)]="res.postalCode"
-                                                    #postalCode="ngModel"
+                                                <input type="text" [(ngModel)]="res.postalCode" #postalCode="ngModel"
                                                     [ngClass]="{'alert_field': (postalCode.errors && (postalCode.touched || postalCode.dirty))}"
                                                     name="postalCode" class="form-control"
                                                     placeholder="La Possession - 97419" readonly required>
                                                 <ng-container
                                                     *ngIf="postalCode.errors && (postalCode.touched || postalCode.dirty)">
-                                                    <span class="alert_text"
-                                                        *ngIf="postalCode.errors.required">Indiquez
+                                                    <span class="alert_text" *ngIf="postalCode.errors.required">Indiquez
                                                         votre
                                                         Ville.</span>
                                                 </ng-container>
@@ -161,10 +159,10 @@
                                     </div>
                                     <div class="col-md-12 text-center">
                                         <button type="submit" [disabled]="!user.valid || submit_disabled" disabled
-                                            id="submit" readonly class="btn btn-primary">SAUVEGARDER</button>
-                                            
-                                            <a (click)="makeEnable()"
-                                            style="margin-left:20px; color: #ffffff;"
+                                            id="submit" readonly class="btn btn-primary"
+                                            style="margin-left: 99px;">SAUVEGARDER</button>
+
+                                        <a (click)="makeEnable()" style="margin-left:20px; color: #ffffff;"
                                             class="btn btn-info"><i class="fa fa-edit"></i> MODIFIER</a>
                                     </div>
                                 </div>
@@ -180,7 +178,7 @@
                                             <div class="card-body">
                                                 <h4 class="card-title">Photo de profil</h4>
                                                 <div class="upload-btn-wrapper">
-                                                    <button class="btn">Upload a file</button>
+                                                    <button class="btn">Importer l'image</button>
                                                     <input type="file" name="myfile"
                                                         (change)="changeListener($event)" />
                                                 </div>

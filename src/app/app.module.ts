@@ -88,6 +88,34 @@ import { AdminloginComponent } from "./admin/adminlogin/adminlogin.component";
 import { AdminforgotpasswordComponent } from "./admin/adminforgotpassword/adminforgotpassword.component";
 import { ResetpasswordComponent } from "./admin/resetpassword/resetpassword.component";
 import { ConceptComponent } from "./pages/concepts/concept/concept.component";
+import { PresentationComponent } from "./pages/concepts/presentation/presentation.component";
+import { EngagementsComponent } from "./pages/concepts/engagements/engagements.component";
+import { LacharteComponent } from "./pages/concepts/lacharte/lacharte.component";
+import { InformationsComponent } from "./pages/concepts/informations/informations.component";
+import { ConseilsComponent } from "./pages/conseils/conseils/conseils.component";
+import { PremierepartieComponent } from "./pages/conseils/premierepartie/premierepartie.component";
+import { PremiercoursComponent } from "./pages/conseils/premiercours/premiercours.component";
+import { PremiermatchComponent } from "./pages/conseils/premiermatch/premiermatch.component";
+import { PremiertournoiComponent } from "./pages/conseils/premiertournoi/premiertournoi.component";
+import { DietetiqueComponent } from "./pages/conseils/dietetique/dietetique.component";
+import { FormephysiqueComponent } from "./pages/conseils/formephysique/formephysique.component";
+import { ChoisirComponent } from "./pages/conseils/choisir/choisir.component";
+import { ClubhouseComponent } from "./pages/clubhouse/clubhouse/clubhouse.component";
+import { TennisComponent } from "./pages/tennis/tennis/tennis.component";
+import { HistoireComponent } from "./pages/histoire/histoire/histoire.component";
+import { LexiqueComponent } from "./pages/tennis/lexique/lexique.component";
+import { LexiqueatodComponent } from "./pages/tennis/lexiqueatod/lexiqueatod.component";
+import { LexiqueetomComponent } from "./pages/tennis/lexiqueetom/lexiqueetom.component";
+import { LexiquentoqComponent } from "./pages/tennis/lexiquentoq/lexiquentoq.component";
+import { LexiquertozComponent } from "./pages/tennis/lexiquertoz/lexiquertoz.component";
+import { ReglesComponent } from "./pages/tennis/regles/regles.component";
+
+import { DimensionsComponent } from "./pages/tennis/dimensions/dimensions.component";
+import { ElementsComponent } from "./pages/tennis/elements/elements.component";
+import { CompterComponent } from "./pages/tennis/compter/compter.component";
+import { PrincipleComponent } from "./pages/tennis/principle/principle.component";
+import { ClubhouselistComponent } from "./clubhouselist/clubhouselist.component";
+import { ClubhouseviewComponent } from "./clubhouseview/clubhouseview.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -193,6 +221,114 @@ const routes: Routes = [
     component: ConceptComponent
   },
   {
+    path: CONST.PATH.CONCEPTS.PRESENTATION.SELF,
+    component: PresentationComponent
+  },
+  {
+    path: CONST.PATH.CONCEPTS.ENGAGEMENTS.SELF,
+    component: EngagementsComponent
+  },
+  {
+    path: CONST.PATH.CONCEPTS.LACHARTE.SELF,
+    component: LacharteComponent
+  },
+  {
+    path: CONST.PATH.CONCEPTS.INFORMATIONS.SELF,
+    component: InformationsComponent
+  },
+  {
+    path: CONST.PATH.CONSEILS.CONSEILS.SELF,
+    component: ConseilsComponent
+  },
+  {
+    path: CONST.PATH.CONSEILS.PREMIEREPARTIE.SELF,
+    component: PremierepartieComponent
+  },
+  {
+    path: CONST.PATH.CONSEILS.PREMIERCOURS.SELF,
+    component: PremiercoursComponent
+  },
+  {
+    path: CONST.PATH.CONSEILS.PREMIERMATCH.SELF,
+    component: PremiermatchComponent
+  },
+  {
+    path: CONST.PATH.CONSEILS.PREMIERTOURNOI.SELF,
+    component: PremiertournoiComponent
+  },
+  {
+    path: CONST.PATH.CONSEILS.DIETETIQUE.SELF,
+    component: DietetiqueComponent
+  },
+  {
+    path: CONST.PATH.CONSEILS.FORMEPHYSIQUE.SELF,
+    component: FormephysiqueComponent
+  },
+  {
+    path: CONST.PATH.CONSEILS.CHOISIR.SELF,
+    component: ChoisirComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.TENNIS.SELF,
+    component: TennisComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.HISTOIRE.SELF,
+    component: HistoireComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.LEXIQUE.SELF,
+    component: LexiqueComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.LEXIQUEATOD.SELF,
+    component: LexiqueatodComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.LEXIQUEETOM.SELF,
+    component: LexiqueetomComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.LEXIQUENTOQ.SELF,
+    component: LexiquentoqComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.LEXIQUERTOZ.SELF,
+    component: LexiquertozComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.REGLES.SELF,
+    component: ReglesComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.DIMENSIONS.SELF,
+    component: DimensionsComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.ELEMENTS.SELF,
+    component: ElementsComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.COMPTER.SELF,
+    component: CompterComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.PRINCIPLE.SELF,
+    component: PrincipleComponent
+  },
+  {
+    path: CONST.PATH.CLUB_HOUSE_LIST,
+    component: ClubhouselistComponent
+  },
+  {
+    path: CONST.PATH.CLUB_HOUSE_VIEW,
+    component: ClubhouseviewComponent
+  },
+  {
+    path: CONST.PATH.CLUB_HOUSE,
+    component: ClubhouseComponent
+  },
+  {
     path: "**",
     component: HomeComponent
   }
@@ -235,7 +371,34 @@ export function getAuthServiceConfigs() {
     UserTeambuildingDetailComponent,
     UserAnimationDetailComponent,
     OhMyCoachDetailComponent,
-    ConceptComponent
+    ConceptComponent,
+    PresentationComponent,
+    EngagementsComponent,
+    LacharteComponent,
+    InformationsComponent,
+    ConseilsComponent,
+    PremierepartieComponent,
+    PremiercoursComponent,
+    PremiermatchComponent,
+    PremiertournoiComponent,
+    DietetiqueComponent,
+    FormephysiqueComponent,
+    ChoisirComponent,
+    ClubhouseComponent,
+    TennisComponent,
+    HistoireComponent,
+    LexiqueComponent,
+    LexiqueatodComponent,
+    LexiqueetomComponent,
+    LexiquentoqComponent,
+    LexiquertozComponent,
+    ReglesComponent,
+    DimensionsComponent,
+    ElementsComponent,
+    CompterComponent,
+    PrincipleComponent,
+    ClubhouselistComponent,
+    ClubhouseviewComponent
   ],
   imports: [
     BrowserModule,

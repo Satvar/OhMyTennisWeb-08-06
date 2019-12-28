@@ -21,11 +21,116 @@ export const CONST = Object.freeze({
     USER_MODULE: "user",
     FORGET_PASSWORD: "forgetpassword",
     SET_NEW_PASSWORD: "setnewpassword",
+    CLUB_HOUSE: "clubhouse",
+    CLUB_HOUSE_LIST: "clubhouselist",
+    CLUB_HOUSE_VIEW: "clubhouseview",
     CONCEPTS: {
       SELF: "concept",
       CONCEPT: {
         SELF: "concept/concept",
         TITLE: "Concept"
+      },
+      PRESENTATION: {
+        SELF: "concept/presentation",
+        TITLE: "Presentation"
+      },
+      INFORMATIONS: {
+        SELF: "concept/informations",
+        TITLE: "Informations"
+      },
+      ENGAGEMENTS: {
+        SELF: "concept/engagements",
+        TITLE: "Engagements"
+      },
+      LACHARTE: {
+        SELF: "concept/lacharte",
+        TITLE: "Lacharte"
+      }
+    },
+    CONSEILS: {
+      SELF: "conseils",
+      CONSEILS: {
+        SELF: "conseils/conseils",
+        TITLE: "Conseils"
+      },
+      PREMIEREPARTIE: {
+        SELF: "conseils/premierepartie",
+        TITLE: "Premierepartie"
+      },
+      PREMIERCOURS: {
+        SELF: "conseils/premiercours",
+        TITLE: "Premiercours"
+      },
+      PREMIERMATCH: {
+        SELF: "conseils/premiermatch",
+        TITLE: "Premiermatch"
+      },
+      PREMIERTOURNOI: {
+        SELF: "conseils/premiertournoi",
+        TITLE: "premiertournoi"
+      },
+      DIETETIQUE: {
+        SELF: "conseils/dietetique",
+        TITLE: "Diététique"
+      },
+      FORMEPHYSIQUE: {
+        SELF: "conseils/formephysique",
+        TITLE: "Formephysique"
+      },
+      CHOISIR: {
+        SELF: "conseils/choisir",
+        TITLE: "Choisir"
+      }
+    },
+    TENNIS: {
+      SELF: "tennis",
+      TENNIS: {
+        SELF: "tennis/tennis",
+        TITLE: "Tennis"
+      },
+      HISTOIRE: {
+        SELF: "tennis/histoire",
+        TITLE: "Tennis Comprendre Histoire"
+      },
+      LEXIQUE: {
+        SELF: "tennis/lexique",
+        TITLE: "Lexique"
+      },
+      LEXIQUEATOD: {
+        SELF: "tennis/lexiqueatod",
+        TITLE: "Lexique A to D"
+      },
+      LEXIQUEETOM: {
+        SELF: "tennis/lexiqueetom",
+        TITLE: "Lexique E to M"
+      },
+      LEXIQUENTOQ: {
+        SELF: "tennis/lexiquentoq",
+        TITLE: "Lexique N to Q"
+      },
+      LEXIQUERTOZ: {
+        SELF: "tennis/lexiquertoz",
+        TITLE: "Lexique R to Z"
+      },
+      REGLES: {
+        SELF: "tennis/regles",
+        TITLE: "Tennis Comprendre Regles"
+      },
+      DIMENSIONS: {
+        SELF: "tennis/dimensions",
+        TITLE: "Regles dimensions"
+      },
+      COMPTER: {
+        SELF: "tennis/compter",
+        TITLE: "Regles compter"
+      },
+      ELEMENTS: {
+        SELF: "tennis/elements",
+        TITLE: "Regles elements"
+      },
+      PRINCIPLE: {
+        SELF: "tennis/principle",
+        TITLE: "Regles principle"
       }
     },
     ADMINS: {

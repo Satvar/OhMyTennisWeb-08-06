@@ -13,8 +13,9 @@
                             <button type="button" (click)="_closeAlertMessage($event)"
                                 class="close"><span>&times;</span></button> {{alertMsg.msg}}
                         </div>
-                        <div class="col-xs-12"><a style="float:right;margin-bottom:20px; color: #ffffff;" *ngIf="(activeTabIndex === 0)"
-                                (click)="makeEnable()" class="btn btn-info"><i class="fa fa-edit"></i> MODIFIER</a>
+                        <div class="col-xs-12"><a style="float:right;margin-bottom:20px; color: #ffffff;"
+                                *ngIf="(activeTabIndex === 0)" (click)="makeEnable()" class="btn btn-info"><i
+                                    class="fa fa-edit"></i> MODIFIER</a>
                         </div>
                         <div class="clearfix"></div>
                         <div [ngClass]="(activeTabIndex === 0) ? 'active': null" class="tab-pane tab1">
@@ -85,7 +86,7 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control"
-                                                                    [(ngModel)]="res.Coach_Phone" pattern="^[1-9]\d{9}$"
+                                                                    [(ngModel)]="res.Coach_Phone" pattern="^[0-9]\d{9}$"
                                                                     #Coach_Phone="ngModel"
                                                                     [ngClass]="{'alert_field': (Coach_Phone.errors && (Coach_Phone.touched || Coach_Phone.dirty))}"
                                                                     name="Coach_Phone" placeholder="Téléphone" readonly
@@ -252,7 +253,7 @@
                                                             <div class="card-body">
                                                                 <h4 class="card-title">Photo de profil</h4>
                                                                 <div class="upload-btn-wrapper">
-                                                                    <button class="btn">Upload a file</button>
+                                                                    <button class="btn">Importer l'image</button>
                                                                     <input type="file" name="myfile"
                                                                         (change)="changeListener($event)" />
                                                                 </div>
@@ -334,6 +335,10 @@
                                                                             id="Animations" type="checkbox" readonly
                                                                             class="service" name="service"
                                                                             value="Animations" /> Animations</span>
+                                                                    <span class="chech_box_services"><input
+                                                                            id="Tournament" type="checkbox" readonly
+                                                                            class="service" name="service"
+                                                                            value="Tournament" /> Tournament</span>
                                                                     <!-- <ng-container *ngIf="Coach_Description.errors && (Coach_Description.touched || Coach_Description.dirty)">
                                                                         <span class="alert_text" *ngIf="Coach_Description.errors.required">Choisissez
                                                                             votre préstation
