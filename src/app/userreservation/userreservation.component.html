@@ -28,12 +28,12 @@
                                 <label for="" class="control-label"><b>Status</b></label>
                                 <select [(ngModel)]="status" (change)="filtersearch($event)" class="form-control ">
                                     <option selected value="">Sélectionner</option>
-                                    <option value="A">Approved</option>
-                                    <option value="R">Reserved</option>
-                                    <option value="B">Booked</option>
-                                    <option value="S">Replanifier</option>
-                                    <option value="C">Cancelled</option>
-                                    <option value="UC">Closed</option>
+                                    <option value="A">Approuvé</option>
+                                    <option value="R">Demande de réservation</option>
+                                    <option value="B">Réservé</option>
+                                    <option value="S">Reprogrammer</option>
+                                    <option value="C">Annulé</option>
+                                    <option value="UC">Utilisatrice Annulé</option>
 
                                 </select>
                             </div>
@@ -62,12 +62,12 @@
                                         <td> {{rowData[3]}}</td>
                                         <!-- <td>{{rowData[4]}} </td> -->
                                         <td>
-                                            <span *ngIf="rowData[6] == 'B'" style="color: #3cd376;">Booked</span>
-                                            <span *ngIf="rowData[6] == 'A'" style="color: #dbb126;">Approved</span>
-                                            <span *ngIf="rowData[6] == 'R'" style="color: #b86735;">Reserved</span>
-                                            <span *ngIf="rowData[6] == 'S'" style="color:darkblue;">Replanifier</span>
-                                            <span *ngIf="rowData[6] == 'C'" style="color: #f00612;">Cancelled</span>
-                                            <span *ngIf="rowData[6] == 'UC'" style="color: #111110;">Closed</span>
+                                            <span *ngIf="rowData[6] == 'B'" style="color: #3cd376;">Réservé</span>
+                                            <span *ngIf="rowData[6] == 'A'" style="color: #dbb126;">Approuvé</span>
+                                            <span *ngIf="rowData[6] == 'R'" style="color: #b86735;">Demande de réservation</span>
+                                            <span *ngIf="rowData[6] == 'S'" style="color:darkblue;">Reprogrammer</span>
+                                            <span *ngIf="rowData[6] == 'C'" style="color: #f00612;">Annulé</span>
+                                            <span *ngIf="rowData[6] == 'UC'" style="color: #111110;">Utilisatrice Annulé</span>
 
                                         </td>
                                         <td><a data-toggle="modal" style="cursor: pointer;"
@@ -265,7 +265,7 @@
                                                             class="form-group bmd-form-grou bmd-form-group is-filled">
                                                             <div class="row">
                                                                 <div class="col-md-5">
-                                                                    <label style="text-align: initial;"><strong>Pincode
+                                                                    <label style="text-align: initial;"><strong>Code postal
                                                                             :</strong></label>
                                                                 </div>
                                                                 <div class="col-md-7">

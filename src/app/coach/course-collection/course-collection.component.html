@@ -105,7 +105,7 @@
                                 <div class="form-group bmd-form-group">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Pincode <span class="red"> *</span></label>
+                                            <label>Code postal <span class="red"> *</span></label>
                                         </div>
                                         <div class="col-md-8">
                                             <input type="number" class="form-control" [(ngModel)]="res.Postalcode"
@@ -114,7 +114,7 @@
                                                 placeholder="">
                                             <ng-container *ngIf="Pincode.errors && (Pincode.touched || Pincode.dirty)">
                                                 <span class="alert_text" *ngIf="Pincode.errors.required">Indiquez votre
-                                                    Pincode.</span>
+                                                    code postal.</span>
                                             </ng-container>
                                         </div>
                                     </div>
@@ -160,7 +160,7 @@
                                 <div class="form-group bmd-form-group">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Prix <span class="red"> *</span></label>
+                                            <label>Prix <span class="red"> *</span><br/>(Indiquer le prix en euros)</label>
                                         </div>
                                         <div class="col-md-8">
 
@@ -267,13 +267,15 @@
                                 <div class="form-group bmd-form-group">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Special Prix <span class="red"> *</span></label>
+                                            <label>Prix exceptionel
+                                             <span class="red"> *</span>
+                                            <br/>(Indiquer le prix en euros)</label>
                                         </div>
                                         <div class="col-md-8">
 
                                             <div class="row">
                                                 <div class="col-md-6" style="margin-bottom:15px;">
-                                                    <label class="d-block">Dim. Prix</label>
+                                                    <label class="d-block">Dimanche</label>
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Sun"
                                                         name="res.Price_Sun" pattern="^[0-9]*$" #Price_Sun="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Sun.errors && (Price_Sun.touched || Price_Sun.dirty))}"
@@ -289,7 +291,7 @@
                                                 </div>
 
                                                 <div class="col-md-6" style="margin-bottom:15px;">
-                                                    <label class="d-block">Lun. Prix</label>
+                                                    <label class="d-block">Lundi</label>
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Mon"
                                                         name="res.Price_Mon" pattern="^[0-9]*$" #Price_Mon="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Mon.errors && (Price_Mon.touched || Price_Mon.dirty))}"
@@ -308,7 +310,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-6" style="margin-bottom:5px;">
-                                                    <label class="d-block">Mar. Prix</label>
+                                                    <label class="d-block">Mardi</label>
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Tue"
                                                         name="res.Price_Tue" pattern="^[0-9]*$" #Price_Tue="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Tue.errors && (Price_Tue.touched || Price_Tue.dirty))}"
@@ -323,7 +325,7 @@
                                                     </ng-container>
                                                 </div>
                                                 <div class="col-md-6" style="margin-bottom:5px;">
-                                                    <label class="d-block">Mer. Prix</label>
+                                                    <label class="d-block">Mercredi</label>
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Wed"
                                                         name="res.Price_Wed" pattern="^[0-9]*$" #Price_Wed="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Wed.errors && (Price_Wed.touched || Price_Wed.dirty))}"
@@ -341,7 +343,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6" style="margin-bottom:5px;">
-                                                    <label class="d-block">Jeu. Prix</label>
+                                                    <label class="d-block">Jeudi</label>
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Thr"
                                                         name="res.Price_Thr" pattern="^[0-9]*$" #Price_Thr="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Thr.errors && (Price_Thr.touched || Price_Thr.dirty))}"
@@ -356,7 +358,7 @@
                                                     </ng-container>
                                                 </div>
                                                 <div class="col-md-6" style="margin-bottom:5px;">
-                                                    <label class="d-block">Ven. Prix</label>
+                                                    <label class="d-block">Vendredi</label>
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Fri"
                                                         name="res.Price_Fri" pattern="^[0-9]*$" #Price_Fri="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Fri.errors && (Price_Fri.touched || Price_Fri.dirty))}"
@@ -372,7 +374,7 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <label class="d-block">Sam. Prix</label>
+                                            <label class="d-block">Samedi</label>
                                             <div class="row" style="margin-bottom:5px;">
                                                 <div class="col-md-12">
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Sat"

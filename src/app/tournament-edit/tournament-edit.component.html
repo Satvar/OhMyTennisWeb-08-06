@@ -80,7 +80,7 @@
                                 <div class="form-group bmd-form-group">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Pincode <span class="red"> *</span></label>
+                                            <label>Code postal <span class="red"> *</span></label>
                                         </div>
                                         <div class="col-md-8">
                                             <input type="number" class="form-control" [(ngModel)]="res.Postalcode"
@@ -89,7 +89,7 @@
                                                 placeholder="">
                                             <ng-container *ngIf="Pincode.errors && (Pincode.touched || Pincode.dirty)">
                                                 <span class="alert_text" *ngIf="Pincode.errors.required">Indiquez votre
-                                                    Pincode.</span>
+                                                    Code postal.</span>
                                             </ng-container>
                                         </div>
                                     </div>
