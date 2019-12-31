@@ -24,6 +24,10 @@ export const CONST = Object.freeze({
     CLUB_HOUSE: "clubhouse",
     CLUB_HOUSE_LIST: "clubhouselist",
     CLUB_HOUSE_VIEW: "clubhouseview",
+    PETTICES_ANNOUNCES: "petticesannounces",
+    PARRAINER_CLUBHOUSE: "parrainerclubhouse",
+    QUIZ_JEUXCONCOUR: "quizjeuxconcour",
+    QUIZ: "quizintro",
     CONCEPTS: {
       SELF: "concept",
       CONCEPT: {

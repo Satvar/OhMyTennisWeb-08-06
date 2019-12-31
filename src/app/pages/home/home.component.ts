@@ -1,13 +1,19 @@
-import { Component, OnInit, AfterViewChecked, EventEmitter, Output } from '@angular/core';
-import { Location } from '@angular/common';
-import { BrowserModule, Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { AppService } from '../../shared/app.service';
-import { AppComponent } from '../../app.component';
-import * as moment from 'moment';
+import {
+  Component,
+  OnInit,
+  AfterViewChecked,
+  EventEmitter,
+  Output
+} from "@angular/core";
+import { Location } from "@angular/common";
+import { BrowserModule, Title, Meta } from "@angular/platform-browser";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { AppService } from "../../shared/app.service";
+import { AppComponent } from "../../app.component";
+import * as moment from "moment";
 /* [ Spinner ] */
-import { NgxSpinnerService } from 'ngx-spinner';
-import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from "ngx-spinner";
+import { NgbDateStruct, NgbCalendar } from "@ng-bootstrap/ng-bootstrap";
 export interface IImage {
   url: string | null;
   href?: string;
@@ -20,12 +26,11 @@ export interface IImage {
 }
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent extends AppComponent implements OnInit {
-
   public min = new Date(Date.now() - 24 * 60 * 60 * 1000);
   public search = {
     course: "",
@@ -33,24 +38,26 @@ export class HomeComponent extends AppComponent implements OnInit {
     session: "",
     ville: "",
     rayon: ""
-  }
+  };
   isHidden: boolean = true;
 
-  public response = [{
-    Date: "",
-    Month_Year: "",
-    Location: "",
-    Postalcode: "",
-    Coach_Id: "",
-    Description: "",
-    Price: "",
-    from_date: "",
-    to_date: "",
-    Eventname: "",
-    Eventdetails: "",
-    Mode_of_transport: "",
-    Photo: ""
-  }]
+  public response = [
+    {
+      Date: "",
+      Month_Year: "",
+      Location: "",
+      Postalcode: "",
+      Coach_Id: "",
+      Description: "",
+      Price: "",
+      from_date: "",
+      to_date: "",
+      Eventname: "",
+      Eventdetails: "",
+      Mode_of_transport: "",
+      Photo: ""
+    }
+  ];
 
   public date: any = "";
   public respon: any;
@@ -64,8 +71,8 @@ export class HomeComponent extends AppComponent implements OnInit {
   public slides: any;
   public amt = 0;
   public banner: any;
-  public Ville: any = '';
-  public Date: any = '';
+  public Ville: any = "";
+  public Date: any = "";
   model: NgbDateStruct;
   today = this.calendar.getToday();
   constructor(
@@ -76,45 +83,43 @@ export class HomeComponent extends AppComponent implements OnInit {
     location: Location,
     spinner: NgxSpinnerService
   ) {
-    super(
-      activatedRoute,
-      router,
-      appService,
-      location,
-      spinner
-    );
+    super(activatedRoute, router, appService, location, spinner);
     this.slidecnt = 4;
   }
 
   ngOnInit() {
-
-    const bookid: string = this.activatedRoute.snapshot.queryParamMap.get('bookid');
+    const bookid: string = this.activatedRoute.snapshot.queryParamMap.get(
+      "bookid"
+    );
     if (bookid) {
-      this.appService.getAll('/coach/BookingDetail?booking_Id=' + bookid, this.newUser)
+      this.appService
+        .getAll("/coach/BookingDetail?booking_Id=" + bookid, this.newUser)
         .subscribe(response => {
           var res: any = response;
           console.log(res);
-          if (res.data.availabilty[0].status == 'A') {
+          if (res.data.availabilty[0].status == "A") {
             this.amt = res.data.availabilty[0].amount;
-            this.pay(this.appService, res.data.availabilty[0].amount, res.data.availabilty[0].email, bookid);
-          }
-          else {
-            alert('Paiement déjà effectué');
+            this.pay(
+              this.appService,
+              res.data.availabilty[0].amount,
+              res.data.availabilty[0].email,
+              bookid
+            );
+          } else {
+            alert("Paiement déjà effectué");
           }
         });
     }
     this.newUser = {
-      email: '',
-      password: ''
+      email: "",
+      password: ""
     };
 
     if (window.innerWidth > 1024) {
       this.slidecnt = 4;
-    }
-    else if (window.innerWidth > 768) {
+    } else if (window.innerWidth > 768) {
       this.slidecnt = 3;
-    }
-    else {
+    } else {
       this.slidecnt = 2;
     }
 
@@ -123,37 +128,34 @@ export class HomeComponent extends AppComponent implements OnInit {
     this.searchEvent();
     this.myCoaches = [
       {
-        title: 'Tous Les Coachs',
-        class: 'active'
-      }, {
-        title: 'Réserver un cours',
-        class: ''
+        title: "Tous Les Coachs",
+        class: "active"
+      },
+      {
+        title: "Réserver un cours",
+        class: ""
       }
     ];
 
-    var pcode=localStorage.getItem("onmytennis")
-    var postalCode= JSON.parse(JSON.parse(pcode));
-    if(postalCode)
-    this.Ville=postalCode.postalCode;
+    var pcode = localStorage.getItem("onmytennis");
+    var postalCode = JSON.parse(JSON.parse(pcode));
+    if (postalCode) this.Ville = postalCode.postalCode;
   }
-
 
   changeMyCoachTab(e, i) {
     if (e) {
-      this.myCoaches.forEach((c) => {
-        c.class = '';
+      this.myCoaches.forEach(c => {
+        c.class = "";
       });
-      this.myCoaches[i].class = 'active';
+      this.myCoaches[i].class = "active";
     }
   }
 
   /* [ Banner Image ] */
   bannerImage() {
-
-
     this.bannerImageSources.push(
-      { url: './assets/images/slide2_bg.jpg' },
-      { url: './assets/images/banner.png' }
+      { url: "./assets/images/slide2_bg.jpg" },
+      { url: "./assets/images/banner.png" }
     );
   }
 
@@ -170,44 +172,42 @@ export class HomeComponent extends AppComponent implements OnInit {
       }
     };
     var Data: any;
-    this.appService.getAll('/coach/getallcoaches')
-    .subscribe(response => {
+    this.appService.getAll("/coach/getallcoaches").subscribe(response => {
       Data = response;
-     
-      Data.data.coach_list.forEach(element => {
-        this.slides.data.push({
-          img: element.Coach_Image,
-          name: element.Coach_Fname + ' '+element.Coach_Lname,
-          comment: element.Coach_Description
-        });
 
-      }, error => {
-      });
-  });
-}
+      Data.data.coach_list.forEach(
+        element => {
+          this.slides.data.push({
+            img: element.Coach_Image,
+            name: element.Coach_Fname + " " + element.Coach_Lname,
+            comment: element.Coach_Description
+          });
+        },
+        error => {}
+      );
+    });
+  }
   formatDate(date) {
     var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
       year = d.getFullYear();
 
-    if (month.length < 2)
-      month = '0' + month;
-    if (day.length < 2)
-      day = '0' + day;
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
 
-    return [year, month, day].join('-');
+    return [year, month, day].join("-");
   }
 
   handleClick(event: Event) {
     sessionStorage.setItem("Ville", this.Ville ? this.Ville : "");
     sessionStorage.setItem("Date", this.Date ? this.formatDate(this.Date) : "");
-    this.router.navigate(['/ohmycoach'])
+    this.router.navigate(["/ohmycoach"]);
   }
 
   gotoCouch(couch: any) {
-    localStorage.setItem("sendCoachDetails", couch.name)
-    this.router.navigate(['/ohmycoachdetail'])
+    localStorage.setItem("sendCoachDetails", couch.name);
+    this.router.navigate(["/ohmycoachdetail"]);
   }
 
   private mdlSampleIsOpen: boolean = false;
@@ -225,61 +225,65 @@ export class HomeComponent extends AppComponent implements OnInit {
     var data: any;
     this.closeModal();
     var handler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_ppbf90Eyy5PuXBdNQNLpxVuz00e719Y31R',
-      locale: 'fr',
-      token: function (token: any) {
+      key: "pk_test_ppbf90Eyy5PuXBdNQNLpxVuz00e719Y31R",
+      locale: "fr",
+      token: function(token: any) {
         if (token) {
           var coachemail = {
-            "status": "B",
-            "booking_id": bookid,
-            "amount": amount,
-            "token":JSON.stringify(token)
-          }
-      
-          appService.create('/coach/setpayment', coachemail)
+            status: "B",
+            booking_id: bookid,
+            amount: amount,
+            token: JSON.stringify(token)
+          };
+          console.log("[home.component.ts]", coachemail);
+
+          appService
+            .create("/coach/setpayment", coachemail)
             .subscribe(response => {
-              console.log("response",response);
+              console.log("response", response);
             });
           data = token;
         }
-        alert('Paiement réussi');
+        alert("Paiement réussi");
       }
     });
     this.setstatus(data);
 
     handler.open({
-      name: 'Oh My Tennis',
-      description: 'RESERVER UN COURS',
+      name: "Oh My Tennis",
+      description: "RESERVER UN COURS",
       email: email,
-      amount: amount*100,
+      amount: amount * 100,
       currency: "EUR"
     });
   }
 
   setstatus(data) {
     if (data) {
-      const bookid: string = this.activatedRoute.snapshot.queryParamMap.get('bookid');
+      const bookid: string = this.activatedRoute.snapshot.queryParamMap.get(
+        "bookid"
+      );
 
       var details = {
         status: "B",
         booking_id: bookid,
         amount: this.amt
-      }
+      };
 
-      this.appService.create('/coach/setpayment', details).subscribe(async (val) => {
-        if (val.isSuccess == true) {
-          this._showAlertMessage('alert-success', 'Payment Successfully');
-        } else {
-          this._showAlertMessage('alert-danger', 'Payment Failed');
-        }
-      })
-
+      this.appService
+        .create("/coach/setpayment", details)
+        .subscribe(async val => {
+          if (val.isSuccess == true) {
+            this._showAlertMessage("alert-success", "Payment Successfully");
+          } else {
+            this._showAlertMessage("alert-danger", "Payment Failed");
+          }
+        });
     }
   }
 
   loadStripe() {
-
-    if (!window.document.getElementById('stripe-script')) {
+    if (!window.document.getElementById("stripe-script")) {
       var s = window.document.createElement("script");
       s.id = "stripe-script";
       s.type = "text/javascript";
@@ -288,55 +292,51 @@ export class HomeComponent extends AppComponent implements OnInit {
     }
   }
 
-  goToStage()
-  {
-// this.router.navigate();
-this.router.navigate(['/stage'])
+  goToStage() {
+    // this.router.navigate();
+    this.router.navigate(["/stage"]);
   }
 
   searchEvent() {
     this.spinner.show();
     if (this.Date !== "") {
       var data1 = {
-        "P_course": "Stage",
-        "P_date": moment(this.Date).format('YYYY-MM-DD'),
-        "P_postalcode": this.Ville,
-      }
-    }
-    else {
+        P_course: "Stage",
+        P_date: moment(this.Date).format("YYYY-MM-DD"),
+        P_postalcode: this.Ville
+      };
+    } else {
       var data1 = {
-        "P_course": "Stage",
-        "P_date": "",
-        "P_postalcode": this.Ville,
-      }
+        P_course: "Stage",
+        P_date: "",
+        P_postalcode: this.Ville
+      };
     }
 
-    this.appService.getAll('/coachdetail/geteventtop3', data1).subscribe((data1) => {
-      
-      if ((data1 as any).isSuccess == true) {
-        this.response = (data1 as any).data.event_list;
-        
-        for (var i = 0; i < this.response.length; i++) {
-          var split = this.formatDateTop(this.response[i].from_date).split('-');
-          this.response[i].Date = split[0];
-          this.response[i].Month_Year = split[1];
-        }
-        this.spinner.hide();
-        
+    this.appService
+      .getAll("/coachdetail/geteventtop3", data1)
+      .subscribe(data1 => {
+        if ((data1 as any).isSuccess == true) {
+          this.response = (data1 as any).data.event_list;
 
-        var resLength = this.response.length;
+          for (var i = 0; i < this.response.length; i++) {
+            var split = this.formatDateTop(this.response[i].from_date).split(
+              "-"
+            );
+            this.response[i].Date = split[0];
+            this.response[i].Month_Year = split[1];
+          }
+          this.spinner.hide();
 
-        if(resLength < 1 || resLength == undefined || resLength == 0)
-        {
-          this.isHidden = true;
+          var resLength = this.response.length;
+
+          if (resLength < 1 || resLength == undefined || resLength == 0) {
+            this.isHidden = true;
+          }
+        } else {
+          this.spinner.hide();
         }
-        
-      }
-      else {
-        this.spinner.hide();
-      }
-    })
-    
+      });
   }
 
   formatDateTop(date) {
@@ -358,9 +358,7 @@ this.router.navigate(['/stage'])
 
     var day = date.getDate();
     var monthIndex = date.getMonth();
-    var trans = monthNames[monthIndex]
-    return day + '-' + trans;
+    var trans = monthNames[monthIndex];
+    return day + "-" + trans;
   }
-
-
 }

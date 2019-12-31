@@ -116,6 +116,10 @@ import { CompterComponent } from "./pages/tennis/compter/compter.component";
 import { PrincipleComponent } from "./pages/tennis/principle/principle.component";
 import { ClubhouselistComponent } from "./clubhouselist/clubhouselist.component";
 import { ClubhouseviewComponent } from "./clubhouseview/clubhouseview.component";
+import { PetticesComponent } from "./pages/clubhouse/pettices/pettices.component";
+import { ParrainerComponent } from "./pages/clubhouse/parrainer/parrainer.component";
+import { JeuxconcourComponent } from "./pages/clubhouse/jeuxconcour/jeuxconcour.component";
+import { QuizComponent } from "./pages/clubhouse/quiz/quiz.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -325,8 +329,24 @@ const routes: Routes = [
     component: ClubhouseviewComponent
   },
   {
+    path: CONST.PATH.PETTICES_ANNOUNCES,
+    component: PetticesComponent
+  },
+  {
+    path: CONST.PATH.PARRAINER_CLUBHOUSE,
+    component: ParrainerComponent
+  },
+  {
     path: CONST.PATH.CLUB_HOUSE,
     component: ClubhouseComponent
+  },
+  {
+    path: CONST.PATH.QUIZ_JEUXCONCOUR,
+    component: JeuxconcourComponent
+  },
+  {
+    path: CONST.PATH.QUIZ,
+    component: QuizComponent
   },
   {
     path: "**",
@@ -398,7 +418,11 @@ export function getAuthServiceConfigs() {
     CompterComponent,
     PrincipleComponent,
     ClubhouselistComponent,
-    ClubhouseviewComponent
+    ClubhouseviewComponent,
+    PetticesComponent,
+    ParrainerComponent,
+    JeuxconcourComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,

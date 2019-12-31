@@ -273,26 +273,45 @@ export class MyCalendarComponent extends CoachComponent
     });
     //console.log(moment("23-11-2019", "DD-MM-YYYY").isoWeek());
     let todayDate = moment(new Date(), "DD-MM-YYYY");
-    //let todayDate = moment("01-01-2020", "DD-MM-YYYY");
+    //let todayDate = moment("01-01-2019", "DD-MM-YYYY");
     let weekNumber = moment(todayDate).isoWeek();
-    //let weekNumber = 1;
-    //console.log("[mycalendar.component.ts]", weekNumber);
-    for (let i = weekNumber; i <= 53; i++) {
+    //let weekNumber = 53;
+    // console.log("[mycalendar.component.ts]", weekNumber);
+
+    // console.log(
+    //   moment()
+    //     .startOf("week")
+    //     .format("YYYY-MM-DD")
+    // );
+    // console.log(
+    //   moment()
+    //     .endOf("week")
+    //     .format("YYYY-MM-DD")
+    // );
+    // let startDate = moment()
+    //   .day("Monday")
+    //   .isoWeek(1);
+    // console.log("[mycalendar.component.ts, startDate]", startDate);
+    // let endDate = moment()
+    //   .day("Sunday")
+    //   .isoWeek(1);
+    // console.log("[mycalendar.component.ts, endDate]", endDate);
+    for (let i = weekNumber; i < 54; i++) {
       let startDate = moment()
         .day("Monday")
         .isoWeek(i);
-      //console.log("[mycalendar.component.ts]", startDate);
+      //console.log("[mycalendar.component.ts, startDate]", startDate);
       let endDate = moment()
         .day("Sunday")
         .isoWeek(i);
-      //console.log("[mycalendar.component.ts]", endDate);
+      //console.log("[mycalendar.component.ts, endDate]", endDate);
       this.weeklist.push({
         Semaine: i,
         Dates: `${moment(startDate).format("DD/MM/YYYY")} to ${moment(
           endDate
         ).format("DD/MM/YYYY")}`
       });
-      //console.log("[mycalendar.component.ts]", this.weeklist);
+      console.log("[mycalendar.component.ts]", this.weeklist);
     }
 
     //console.log("weeklist", this.weeklist);

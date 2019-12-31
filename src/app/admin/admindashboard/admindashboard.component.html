@@ -126,10 +126,13 @@
                                                    <ng-template #falseprint><td *ngIf="group.paymentstatus=='A'; else second"><input class="btn btn-block btn-sm btn-primary" type="button" value="Approved"></td></ng-template>
                                                    <ng-template #second><td *ngIf="group.paymentstatus=='C'; else third"><input class="btn btn-block btn-sm btn-danger" type="button" value="Cancel"></td></ng-template>
                                                     <ng-template #third>
-                                                        <td *ngIf="group.paymentstatus=='R'; else fourth"><input class="btn btn-block btn-sm btn-danger" type="button"
-                                                                value="Cancel"></td>
+                                                        <td *ngIf="group.paymentstatus=='R'; else fourth"><input class="btn btn-block btn-sm btn-info" type="button"
+                                                                value="Reserved"></td>
                                                     </ng-template>
-                                                   <ng-template #fourth><td *ngIf="group.paymentstatus=='UC'"><input class="btn btn-block btn-sm btn-info" type="button" value="Reserved"></td></ng-template>
+                                                    <ng-template #fourth>
+                                                        <td *ngIf="group.paymentstatus=='UC'"><input class="btn btn-block btn-sm btn-info" type="button"
+                                                                value="User Cancel"></td>
+                                                    </ng-template>
                                           
                                              </tr>
                                           </tbody>

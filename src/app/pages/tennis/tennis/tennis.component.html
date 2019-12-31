@@ -86,10 +86,42 @@
                 >Lexique du tennis<span><i class="fa fa-angle-right"></i></span
               ></a>
               <ul class="black_sidesubmenu">
-                <li><a href="lexique_atod.html">LETTRE A - D</a></li>
-                <li><a href="lexique_etom.html">LETTRE E - M</a></li>
-                <li><a href="lexique_ntoq.html">LETTRE N - Q</a></li>
-                <li><a href="lexique_rtoz.html">LETTRE R - Z</a></li>
+                <li>
+                  <a
+                    href="javascript:;"
+                    routerLink="{{
+                      '/' + this._const('PATH.TENNIS.LEXIQUEATOD.SELF')
+                    }}"
+                    >LETTRE A - D</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="javascript:;"
+                    routerLink="{{
+                      '/' + this._const('PATH.TENNIS.LEXIQUEETOM.SELF')
+                    }}"
+                    >LETTRE E - M</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="javascript:;"
+                    routerLink="{{
+                      '/' + this._const('PATH.TENNIS.LEXIQUENTOQ.SELF')
+                    }}"
+                    >LETTRE N - Q</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="javascript:;"
+                    routerLink="{{
+                      '/' + this._const('PATH.TENNIS.LEXIQUERTOZ.SELF')
+                    }}"
+                    >LETTRE R - Z</a
+                  >
+                </li>
               </ul>
             </li>
             <li>
@@ -261,14 +293,4 @@
 
 <!-- section1 ends -->
 
-<a
-  id="back-to-top"
-  href="#"
-  class="btn btn-primary btn-lg back-to-top"
-  role="button"
-  title="Click to return on the top page"
-  data-toggle="tooltip"
-  data-placement="left"
-  ><span class="fa fa-angle-up"></span
-></a>
 <app-footer></app-footer>
