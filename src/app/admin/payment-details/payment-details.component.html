@@ -1,0 +1,65 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group bmd-form-group">
+          <div class="card card-profile">
+            <div class="card-avatar" style="margin:9px auto 0">
+              <a href="#pablo">
+                <img class="img" [src]="res.Coach_Image" />
+              </a>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">
+                {{ this.res.Coach_Fname }} {{ this.res.Coach_Lname }}
+              </h4>
+              <div class="upload-btn-wrapper">
+                <h4 class="card-title">Address</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-md-12">
+        <div class="form_devarea">
+          <h4>PAYMENTS</h4>
+          <div class="box-body">
+            <table
+              class="coach_listable table table-striped table-bordered table-sm row-border hover"
+              id="datatable"
+            >
+              <thead>
+                <tr>
+                  <th>Sl.no</th>
+                  <th>Coach Name</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="btn_blocksec"
+                  *ngFor="let group of datanew; let i = index"
+                >
+                  <td>{{ i + 1 }}</td>
+                  <td>
+                    {{ group.name }}
+                  </td>
+                  <td>
+                    <button
+                      id="approveBtn"
+                      class="btn btn-block btn-success"
+                      (click)="getCoachIndividualData(group.slno)"
+                    >
+                      View
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

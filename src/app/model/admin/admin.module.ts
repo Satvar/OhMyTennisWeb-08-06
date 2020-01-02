@@ -74,6 +74,8 @@ import { TournamentComponent } from "src/app/tournament/tournament.component";
 
 import { DataTablesModule } from "angular-datatables";
 import { from } from "rxjs";
+import { PaymentsComponent } from "src/app/admin/payments/payments.component";
+import { PaymentdetailsComponent } from "src/app/admin/payment-details/payment-details.component";
 const routes: Routes = [
   {
     path: "",
@@ -177,6 +179,20 @@ const routes: Routes = [
         data: {
           title: CONST.PATH.ADMIN.ADMINCREATE.TITLE
         }
+      },
+      {
+        path: CONST.PATH.ADMIN.PAYMENTS.SELF,
+        component: PaymentsComponent,
+        data: {
+          title: CONST.PATH.ADMIN.PAYMENTS.TITLE
+        }
+      },
+      {
+        path: CONST.PATH.ADMIN.PAYMENTSDETAILS.SELF,
+        component: PaymentdetailsComponent,
+        data: {
+          title: CONST.PATH.ADMIN.PAYMENTSDETAILS.TITLE
+        }
       }
     ]
   }
@@ -206,7 +222,9 @@ const routes: Routes = [
     ClubeditComponent,
     AdminserviceComponent,
     AdminlistComponent,
-    AdminsaverecordComponent
+    AdminsaverecordComponent,
+    PaymentsComponent,
+    PaymentdetailsComponent
   ],
   imports: [
     CommonModule,

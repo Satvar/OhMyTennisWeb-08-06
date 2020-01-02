@@ -1,5 +1,15 @@
 <div class="content cours_individualsec">
     <div class="container-fluid">
+        <div class="btn btn-defauly" style="float: left;">
+            <input type="checkbox" style="background-color:#539654;margin-top: 15px;" onclick="return false;" value="green">
+            <span style="margin-top: 15px;">Disponible</span>
+            <input type="checkbox" style="background-color:#e75b00;margin-top: 15px;margin-left: 10px" onclick="return false;"
+                value="green">
+            <span style="margin-top: 15px;">Demande de réservation</span>
+            <input type="checkbox" style="background-color:#e06363;margin-top: 15px;margin-left: 10px" onclick="return false;"
+                value="green">
+            <span style="margin-top: 15px;">Réservé</span>
+        </div>
         <a id="avBtn" class="btn btn-defauly" (click)="clearcheck()" style="background-color:#e75b00;color:#fff;margin-top: 15px;
             float: right;" data-toggle="modal" data-target="#available">Ajouter la disponibilité</a>
         <div class="row">

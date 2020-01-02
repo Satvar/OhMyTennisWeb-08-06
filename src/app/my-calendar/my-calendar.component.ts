@@ -268,55 +268,53 @@ export class MyCalendarComponent extends CoachComponent
     this.appService.getAll("/getcalender/", coachid).subscribe(response => {
       if (response && response["data"]) {
         this.calender = (response as any).data.calender;
-        //console.log("calender", this.calender);
+        console.log("calender", this.calender);
       }
     });
-    //console.log(moment("23-11-2019", "DD-MM-YYYY").isoWeek());
-    let todayDate = moment(new Date(), "DD-MM-YYYY");
-    //let todayDate = moment("01-01-2019", "DD-MM-YYYY");
-    let weekNumber = moment(todayDate).isoWeek();
-    //let weekNumber = 53;
-    // console.log("[mycalendar.component.ts]", weekNumber);
 
-    // console.log(
-    //   moment()
-    //     .startOf("week")
-    //     .format("YYYY-MM-DD")
-    // );
-    // console.log(
-    //   moment()
-    //     .endOf("week")
-    //     .format("YYYY-MM-DD")
-    // );
-    // let startDate = moment()
-    //   .day("Monday")
-    //   .isoWeek(1);
-    // console.log("[mycalendar.component.ts, startDate]", startDate);
-    // let endDate = moment()
-    //   .day("Sunday")
-    //   .isoWeek(1);
-    // console.log("[mycalendar.component.ts, endDate]", endDate);
-    for (let i = weekNumber; i < 54; i++) {
+    let curentyear = moment().year();
+    let todayDate = moment(new Date(), "DD-MM-YYYY");
+    let weekNumber = moment(todayDate).isoWeek();
+    let weeknumbers = this.getWeekNumber(new Date());
+    let weekcount = this.weeksInYear(curentyear);
+
+    for (let i = weeknumbers[1]; i <= weekcount; i++) {
       let startDate = moment()
         .day("Monday")
-        .isoWeek(i);
-      //console.log("[mycalendar.component.ts, startDate]", startDate);
-      let endDate = moment()
-        .day("Sunday")
-        .isoWeek(i);
-      //console.log("[mycalendar.component.ts, endDate]", endDate);
+        .week(i);
+
+      let endDate = moment(startDate, "DD-MM-YYYY").add(6, "days");
       this.weeklist.push({
         Semaine: i,
         Dates: `${moment(startDate).format("DD/MM/YYYY")} to ${moment(
           endDate
         ).format("DD/MM/YYYY")}`
       });
-      console.log("[mycalendar.component.ts]", this.weeklist);
     }
 
-    //console.log("weeklist", this.weeklist);
+    console.log("weeklist", this.weeklist);
   }
 
+  getWeekNumber(d) {
+    var yearStart: any;
+    // Copy date so don't modify original
+    d = new Date(+d);
+    d.setHours(0, 0, 0);
+    // Set to nearest Thursday: current date + 4 - current day number
+    // Make Sunday's day number 7
+    d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+    // Get first day of year
+    yearStart = new Date(d.getFullYear(), 0, 1);
+    // Calculate full weeks to nearest Thursday
+    var weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+    // Return array of year and week number
+    return [d.getFullYear(), weekNo];
+  }
+  weeksInYear(year) {
+    var d = new Date(year, 11, 31);
+    var week = this.getWeekNumber(d)[1];
+    return week == 1 ? this.getWeekNumber(d.setDate(24))[1] : week;
+  }
   getWeek() {
     let Lundi: any;
     let Mardi: any;
@@ -727,8 +725,8 @@ export class MyCalendarComponent extends CoachComponent
         Difference_In_Days = 7;
         j = 1;
 
-        var startD = this.startDate_db.setDate(this.startDate_db.getDate() + 1);
-        var endD = this.endDate_db.setDate(this.endDate_db.getDate() + 1);
+        var startD = this.startDate_db.setDate(this.startDate_db.getDate());
+        var endD = this.endDate_db.setDate(this.endDate_db.getDate());
         for (var i = j; i <= 7; i++) {
           // Date of Each Day
           if (Date !== undefined) {
@@ -930,10 +928,8 @@ export class MyCalendarComponent extends CoachComponent
         }
       } else {
         if (dayofdate == 0) {
-          var startD = this.startDate_db.setDate(
-            this.startDate_db.getDate() + 1
-          );
-          var endD = this.endDate_db.setDate(this.endDate_db.getDate() + 1);
+          var startD = this.startDate_db.setDate(this.startDate_db.getDate());
+          var endD = this.endDate_db.setDate(this.endDate_db.getDate());
 
           for (var i = 7; i <= 7; i++) {
             // Date of Each Day
@@ -1136,10 +1132,8 @@ export class MyCalendarComponent extends CoachComponent
         } else {
           j = dayofdate;
 
-          var startD = this.startDate_db.setDate(
-            this.startDate_db.getDate() + 1
-          );
-          var endD = this.endDate_db.setDate(this.endDate_db.getDate() + 1);
+          var startD = this.startDate_db.setDate(this.startDate_db.getDate());
+          var endD = this.endDate_db.setDate(this.endDate_db.getDate());
           for (var i = j; i <= 7; i++) {
             // Date of Each Day
             if (Date !== undefined) {

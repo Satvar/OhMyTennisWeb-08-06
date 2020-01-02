@@ -314,6 +314,14 @@ export const CONST = Object.freeze({
       SINOUT: {
         SELF: "déconnexion",
         TITLE: "déconnexion"
+      },
+      PAYMENTS: {
+        SELF: "payments",
+        TITLE: "payments"
+      },
+      PAYMENTSDETAILS: {
+        SELF: "paymentdetails",
+        TITLE: "payment details"
       }
     }
   }

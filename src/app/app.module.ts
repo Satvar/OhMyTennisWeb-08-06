@@ -344,6 +344,7 @@ const routes: Routes = [
     path: CONST.PATH.QUIZ_JEUXCONCOUR,
     component: JeuxconcourComponent
   },
+
   {
     path: CONST.PATH.QUIZ,
     component: QuizComponent
