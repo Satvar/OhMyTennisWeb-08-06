@@ -64,6 +64,8 @@ export class PaidComponent extends AdminComponent implements OnInit {
               console.log(service_list);
               let dat = (data as any).data.payment;
               this.data = dat.map(value => {
+                //console.log("value.BookedCourse", value.BookedCourse);
+
                 return {
                   slno: value.UserID,
                   name: value.UserFirstname + " " + value.UserLastname,

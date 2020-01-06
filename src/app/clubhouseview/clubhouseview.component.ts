@@ -4,7 +4,7 @@ import { AppService } from "../shared/app.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { AppComponent } from "../app.component";
 import { Location } from "@angular/common";
-import * as moment from "moment";
+import * as L from 'leaflet';
 declare var ol: any;
 @Component({
   selector: "app-clubhouseview",
@@ -33,51 +33,39 @@ export class ClubhouseviewComponent extends AppComponent implements OnInit {
     super(activatedRoute, router, appService, location, spinner);
   }
   map: any;
+  mapvalues:any;
   ngOnInit() {
     this.spinner.show();
     var club = JSON.parse(localStorage.getItem("Club"));
     var court_id = {
       court_id: club.court_id
     };
-    console.log(court_id);
+
     this.appService
       .create("/admin/getclubbyid", court_id)
       .subscribe((data: any) => {
-        //console.log(data)
+
         if (data.isSuccess == true) {
           this.res = data.data.club_list[0];
-
-          // console.log(this.res['coordonnees_gps']);
-          // this.map = new ol.Map({
-          //   target: 'map',
-          //   layers: [
-          //     new ol.layer.Tile({
-          //       source: new ol.source.OSM()
-          //     })
-          //   ],
-          //   view: new ol.View({
-          //     center: ol.proj.fromLonLat([48.6753515056, 2.04828313772]),
-          //     zoom: 8
-          //   })
-          // });
-
-          //     map = new OpenLayers.Map("mapdiv");
-          // map.addLayer(new OpenLayers.Layer.OSM());
-
-          // var lonLat = new OpenLayers.LonLat( -0.1279688 ,51.5077286 )
-          //       .transform(
-          //         new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-          //         map.getProjectionObject() // to Spherical Mercator Projection
-          //       );
-
-          // var zoom=16;
-
-          // var markers = new OpenLayers.Layer.Markers( "Markers" );
-          // map.addLayer(markers);
-
-          // markers.addMarker(new OpenLayers.Marker(lonLat));
-
-          // map.setCenter (lonLat, zoom);
+          this.mapvalues = eval('['+this.res['coordonnees_gps']+']');
+         
+    
+          this.map = L.map('map', {
+            center: this.mapvalues,
+            zoom: 16
+          });
+      
+          const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 25,
+            
+          });
+      
+          tiles.addTo(this.map);
+      
+          L.marker(this.mapvalues).addTo(this.map)
+          .bindPopup(this.res.court_name+'<br> '+this.res.court_address+'')
+          .openPopup();
+        
           this.spinner.hide();
         } else {
           this.spinner.hide();

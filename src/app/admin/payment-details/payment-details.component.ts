@@ -5,6 +5,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { AdminComponent } from "src/app/model/admin/admin.component";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from "@angular/common";
+// import * as Stripe from "stripe";
+// const stripe = new Stripe("pk_test_ppbf90Eyy5PuXBdNQNLpxVuz00e719Y31R");
 
 @Component({
   selector: "app-paymentdetails",
@@ -135,4 +137,60 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
       queryParams: {}
     });
   }
+
+  connect() {
+    this.setConnect(this.appService);
+  }
+
+  setConnect(appService) {
+    var data = this.response;
+    console.log("[payment-details.component.ts]--connect");
+    (<any>window).Stripe.bankAccount.createToken(
+      {
+        country: "US",
+        currency: "USD",
+        routing_number: "111000025",
+        account_number: "000123456789",
+        account_holder_name: "Jane Austen",
+        account_holder_type: "individual"
+      },
+      function(status, response) {
+        console.log(
+          "[payment-details.component.ts]--stripeResponseHandler",
+          status,
+          response
+        );
+
+        var res = {
+          status: status,
+          response: response
+        };
+        appService
+          .create("/admin/createcustomerac", res)
+          .subscribe(response => {
+            console.log(response);
+          });
+      }
+    );
+  }
+  // stripeResponseHandler(status, response) {
+  //   console.log(
+  //     "[payment-details.component.ts]--stripeResponseHandler",
+  //     status,
+  //     response
+  //   );
+  //   if (response.error) {
+
+  //   } else {
+  //     var token = response.id;
+  // this.appService.getAll("/course/getcourse").subscribe(response => {
+  //   console.log("1");
+  // });
+
+  //     console.log(
+  //       "[payment-details.component.ts]--stripeResponseHandler",
+  //       token
+  //     );
+  //   }
+  // }
 }

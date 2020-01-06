@@ -29,6 +29,7 @@
                       <th>Branch Code</th>
                       <th>Bank Account Number</th>
                       <th>Bank City</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -42,6 +43,14 @@
                       </td>
                       <td>
                         {{ this.res.Coach_Bank_City }}
+                      </td>
+                      <td>
+                        <button
+                          class="btn btn-block btn-success"
+                          (click)="connect()"
+                        >
+                          Connect
+                        </button>
                       </td>
                     </tr>
                   </tbody>
