@@ -322,6 +322,10 @@ export const CONST = Object.freeze({
       PAYMENTSDETAILS: {
         SELF: "paymentdetails",
         TITLE: "payment details"
+      },
+      PAID: {
+        SELF: "paiddetails",
+        TITLE: "paid details"
       }
     }
   }

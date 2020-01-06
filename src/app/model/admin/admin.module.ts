@@ -76,6 +76,7 @@ import { DataTablesModule } from "angular-datatables";
 import { from } from "rxjs";
 import { PaymentsComponent } from "src/app/admin/payments/payments.component";
 import { PaymentdetailsComponent } from "src/app/admin/payment-details/payment-details.component";
+import { PaidComponent } from "src/app/admin/paid-details/paid-details.component";
 const routes: Routes = [
   {
     path: "",
@@ -193,6 +194,13 @@ const routes: Routes = [
         data: {
           title: CONST.PATH.ADMIN.PAYMENTSDETAILS.TITLE
         }
+      },
+      {
+        path: CONST.PATH.ADMIN.PAID.SELF,
+        component: PaidComponent,
+        data: {
+          title: CONST.PATH.ADMIN.PAID.TITLE
+        }
       }
     ]
   }
@@ -224,7 +232,8 @@ const routes: Routes = [
     AdminlistComponent,
     AdminsaverecordComponent,
     PaymentsComponent,
-    PaymentdetailsComponent
+    PaymentdetailsComponent,
+    PaidComponent
   ],
   imports: [
     CommonModule,

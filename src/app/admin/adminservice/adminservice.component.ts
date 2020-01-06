@@ -27,37 +27,37 @@ import { AdminComponent } from "./../../model/admin/admin.component";
 })
 export class AdminserviceComponent extends AppComponent implements OnInit {
   public res = {
-    commission_type: "COURS INDIVIDUEL",
+    commission_type: "CoursIndividuel",
     commission_percent: "",
     sub_min_amount: "",
     sub_max_amount: "",
     sub_max_percent: ""
   };
   public res1 = {
-    commission_type: "COLLECTIVE ON DEMAND",
+    commission_type: "CoursCollectifOndemand",
     commission_percent: "",
     sub_min_amount: "",
     sub_max_amount: "",
     sub_max_percent: ""
   };
   public res2 = {
-    commission_type: "COURS COLLECTIF CLUB",
+    commission_type: "CoursCollectifClub",
     commission_percent: ""
   };
   public res3 = {
-    commission_type: "STAGE",
+    commission_type: "Stage",
     commission_percent: ""
   };
   public res4 = {
-    commission_type: "TEAM BUILDING",
+    commission_type: "TeamBuilding",
     commission_percent: ""
   };
   public res5 = {
-    commission_type: "ANIMATIONS",
+    commission_type: "Animation",
     commission_percent: ""
   };
   public res6 = {
-    commission_type: "TOURNOI",
+    commission_type: "Tournoi",
     commission_percent: ""
   };
 

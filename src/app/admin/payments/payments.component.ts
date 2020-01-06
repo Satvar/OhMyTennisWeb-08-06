@@ -41,9 +41,7 @@ export class PaymentsComponent extends AdminComponent implements OnInit {
   }
 
   getallcoaches() {
-    console.log("[payments.componets.ts--getallcoaches--]");
     this.appService.getAll("/admin/getallcoach").subscribe(response => {
-      console.log("response", response);
       if ((response as any).data.coach_list.length > 0) {
         if (response && response["data"]) {
           let dat = (response as any).data.coach_list;
@@ -60,25 +58,10 @@ export class PaymentsComponent extends AdminComponent implements OnInit {
   }
 
   getCoachIndividualData(id) {
-    // let coachID = CryptoJS.AES.encrypt(id, "").toString();
-    // console.log("[payments.component.ts--getCoachIndividualData--] ", coachID);
     if (id) {
       this.router.navigate(["/admin/paymentdetails"], {
         queryParams: { Coach_id: id }
       });
     }
-    console.log("[payments.component.ts--] ", id);
   }
-
-  // getallcounts() {
-  //   this.appService.getAll("/admin/getallcount").subscribe(response => {
-  //     if (response && response["data"]) {
-  //       var data = response["data"];
-  //       //console.log(data);
-  //       this.courtcount = data.courtcount;
-  //       this.coachcount = data.coachcount;
-  //       this.usercount = data.userscount;
-  //     }
-  //   });
-  // }
 }

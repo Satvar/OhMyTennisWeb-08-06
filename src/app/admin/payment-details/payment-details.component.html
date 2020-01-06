@@ -4,6 +4,11 @@
       <div class="col-md-12">
         <div class="form-group bmd-form-group">
           <div class="card card-profile">
+            <div class="pull-right">
+              <button style="cursor: pointer;" (click)="goBack()">
+                Back
+              </button>
+            </div>
             <div class="card-avatar" style="margin:9px auto 0">
               <a href="#pablo">
                 <img class="img" [src]="res.Coach_Image" />
@@ -13,8 +18,34 @@
               <h4 class="card-title">
                 {{ this.res.Coach_Fname }} {{ this.res.Coach_Lname }}
               </h4>
-              <div class="upload-btn-wrapper">
-                <h4 class="card-title">Address</h4>
+              <!-- <div class="upload-btn-wrapper">
+                <h4 class="card-title">Bank Details</h4>
+              </div> -->
+              <div class="box-body">
+                <table class="table table-bordered table-sm row-border">
+                  <thead>
+                    <tr>
+                      <th>Bank Name</th>
+                      <th>Branch Code</th>
+                      <th>Bank Account Number</th>
+                      <th>Bank City</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ this.res.Coach_Bank_Name }}</td>
+                      <td>
+                        {{ this.res.Branch_Code }}
+                      </td>
+                      <td>
+                        {{ this.res.Coach_Bank_ACCNum }}
+                      </td>
+                      <td>
+                        {{ this.res.Coach_Bank_City }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -32,7 +63,7 @@
               <thead>
                 <tr>
                   <th>Sl.no</th>
-                  <th>Coach Name</th>
+                  <th>Service Name</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -43,13 +74,15 @@
                 >
                   <td>{{ i + 1 }}</td>
                   <td>
-                    {{ group.name }}
+                    {{ group.service }}
                   </td>
                   <td>
                     <button
                       id="approveBtn"
                       class="btn btn-block btn-success"
-                      (click)="getCoachIndividualData(group.slno)"
+                      (click)="
+                        paidDetails(group.id, group.coachID, group.shortName)
+                      "
                     >
                       View
                     </button>
