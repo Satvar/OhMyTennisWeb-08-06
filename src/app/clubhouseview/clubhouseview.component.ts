@@ -4,7 +4,7 @@ import { AppService } from "../shared/app.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { AppComponent } from "../app.component";
 import { Location } from "@angular/common";
-import * as L from 'leaflet';
+import * as L from "leaflet";
 declare var ol: any;
 @Component({
   selector: "app-clubhouseview",
@@ -33,7 +33,7 @@ export class ClubhouseviewComponent extends AppComponent implements OnInit {
     super(activatedRoute, router, appService, location, spinner);
   }
   map: any;
-  mapvalues:any;
+  mapvalues: any;
   ngOnInit() {
     this.spinner.show();
     var club = JSON.parse(localStorage.getItem("Club"));
@@ -44,28 +44,33 @@ export class ClubhouseviewComponent extends AppComponent implements OnInit {
     this.appService
       .create("/admin/getclubbyid", court_id)
       .subscribe((data: any) => {
-
         if (data.isSuccess == true) {
-          this.res = data.data.club_list[0];
-          this.mapvalues = eval('['+this.res['coordonnees_gps']+']');
-         
-    
-          this.map = L.map('map', {
-            center: this.mapvalues,
-            zoom: 16
-          });
-      
-          const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 25,
-            
-          });
-      
-          tiles.addTo(this.map);
-      
-          L.marker(this.mapvalues).addTo(this.map)
-          .bindPopup(this.res.court_name+'<br> '+this.res.court_address+'')
-          .openPopup();
-        
+          console.log(data.data.club_list[0]);
+          if (data.data.club_list[0]) {
+            this.res = data.data.club_list[0];
+            this.mapvalues = eval("[" + this.res["coordonnees_gps"] + "]");
+
+            this.map = L.map("map", {
+              center: this.mapvalues,
+              zoom: 16
+            });
+
+            const tiles = L.tileLayer(
+              "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+              {
+                maxZoom: 25
+              }
+            );
+
+            tiles.addTo(this.map);
+
+            L.marker(this.mapvalues)
+              .addTo(this.map)
+              .bindPopup(
+                this.res.court_name + "<br> " + this.res.court_address + ""
+              )
+              .openPopup();
+          }
           this.spinner.hide();
         } else {
           this.spinner.hide();

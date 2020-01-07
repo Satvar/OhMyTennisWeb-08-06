@@ -1,14 +1,19 @@
 <div class="content cours_individualsec">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12">  
                 <div class="form_devarea">
-                    <form #club="ngForm" (ngSubmit)="onSubmit(res)">
+                    <form #club="ngForm" (ngSubmit)="onSubmit(res)">              
+                        <div style="text-align:right; margin-bottom: 10px;">
+                            <a data-toggle="modal" id="enableBtn" data-target="#myModal_edit_course"
+                            class="btn btn-info des_save_btn course_edit_btn ng-binding">Modifier</a>                     
+                        </div>
                         <div class="form_section">
                             <div *ngIf="alertMsg.show" class="alert {{alertMsg.type}} alert-dismissible text-center">
                                 <button type="button" (click)="_closeAlertMessage($event)"
                                     class="close"><span>&times;</span></button> {{alertMsg.msg}}
                             </div>
+                         
                             <div class="form-group bmd-form-group">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -78,6 +83,7 @@
                                         </div>
                                     </div> -->
                             <div class="form-group bmd-form-group">
+                          
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label>Emplacement <span class="red"> *</span></label>
@@ -257,7 +263,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="overflow: scroll;margin-bottom: 15px;">
+                            <div style="overflow: scroll;margin-bottom: 5px;">
                                 <table class="table mytable">
                                     <thead>
                                         <tr>
@@ -282,11 +288,11 @@
                                                     name="Weekday-{{idx}}" class="form-control">
                                             </td>
                                             <td align="left">
-                                                <input type="text" [(ngModel)]="availablity[idx].StartTime"
+                                                <input type="time" [(ngModel)]="availablity[idx].StartTime"
                                                     name="StartTime-{{idx}}" class="form-control">
                                             </td>
                                             <td align="left">
-                                                <input type="text" [(ngModel)]="availablity[idx].EndTime"
+                                                <input type="time" [(ngModel)]="availablity[idx].EndTime"
                                                     name="EndTime-{{idx}}" class="form-control">
                                             </td>
                                             <td align="left">
@@ -310,8 +316,6 @@
                             </div>
                             <div class="text-center">
                                 <div class="form_buttons">
-                                    <a data-toggle="modal" id="enableBtn" data-target="#myModal_edit_course"
-                                        class="btn btn-info des_save_btn course_edit_btn ng-binding">Modifier</a>
                                     <button data-toggle="modal" [disabled]="!club.valid " type="submit" id="Enregistrer"
                                         style="display: none;" class="btn btn-success des_save_btn">Enregistrer</button>
                                     <a id="cancel" (click)="ngOnInit()" class="btn btn-default des_cancel_btn"

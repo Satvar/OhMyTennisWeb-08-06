@@ -10,6 +10,8 @@
             <img src="{{image}}" alt="{{this.username}}" class="user_smicon">
             <span>{{this.username}}</span>
             </div>
+            
+            {{ this.url }}
               <ul class="nav mynav">
                     <li *ngFor="let l of leftPanel(); let i = index" class="nav-item" [ngClass]="(l.path ===this.router.url) ? 'active': null">
                             <a (click)="navActiveIndex = i;" routerLink="{{l.path}}" class="nav-link" href="javascript:;">

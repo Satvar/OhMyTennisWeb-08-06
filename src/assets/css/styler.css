@@ -180,7 +180,9 @@ ul.list-group  li a:hover, ul li a:focus {
 .menu-hide {
     display: none;
 }
-
+.des_overlay_content{
+  top:40px;
+}
 }
 .menu-hide .panel-default>.panel-heading {
     color: #fff;
@@ -544,3 +546,363 @@ font-family: 'MontserratMedium';
 	line-height:30px;
 }
 /* pratique license css */
+
+
+/* entire container, keeps perspective */
+.flipover_div .card-container {
+  -webkit-perspective: 800px;
+-moz-perspective: 800px;
+ -o-perspective: 800px;
+    perspective: 800px;
+    margin-bottom: 30px;
+}
+/* flip the pane when hovered */
+.flipover_div .card-container:not(.manual-flip):hover .card,
+.flipover_div .card-container.hover.manual-flip .card{
+-webkit-transform: rotateY( 180deg );
+-moz-transform: rotateY( 180deg );
+-o-transform: rotateY( 180deg );
+transform: rotateY( 180deg );
+}
+
+
+.flipover_div .card-container.static:hover .card,
+.flipover_div .card-container.static.hover .card {
+-webkit-transform: none;
+-moz-transform: none;
+-o-transform: none;
+transform: none;
+}
+/* flip speed goes here */
+.flipover_div .card {
+ -webkit-transition: -webkit-transform .5s;
+-moz-transition: -moz-transform .5s;
+ -o-transition: -o-transform .5s;
+    transition: transform .5s;
+-webkit-transform-style: preserve-3d;
+-moz-transform-style: preserve-3d;
+ -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+position: relative;
+}
+.font-weight-bold {
+font-weight: 700 !important;
+}
+/* hide back of pane during swap */
+.flipover_div .front, .flipover_div .back {
+-webkit-backface-visibility: hidden;
+-moz-backface-visibility: hidden;
+ -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+position: absolute;
+top: 0;
+left: 0;
+background-color: #FFF;
+box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
+}
+
+/* front pane, placed above back */
+.flipover_div .front {
+z-index: 2;
+}
+
+/* back, initially hidden pane */
+.flipover_div .back {
+    -webkit-transform: rotateY( 180deg );
+-moz-transform: rotateY( 180deg );
+ -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+    z-index: 3;
+}
+
+.flipover_div .back .btn-simple{
+position: absolute;
+left: 0;
+bottom: 4px;
+}
+/*        Style       */
+img {
+max-width: 100%;
+}
+
+.flipover_div .card{
+background: none repeat scroll 0 0 #FFFFFF;
+border-radius: 4px;
+color: #444444;
+}
+.flipover_div .card-container, .flipover_div .front, .flipover_div .back {
+width: 100%;
+height: 310px;
+border-radius: 4px;
+-webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
+-moz-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
+box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
+}
+.flipover_div .card .cover{
+height: 105px;
+overflow: hidden;
+border-radius: 4px 4px 0 0;
+}
+.flipover_div .card .cover img{
+width: 100%;
+}
+.flipover_div .card .user{
+border-radius: 50%;
+display: block;
+height: 120px;
+margin: -55px auto 0;
+overflow: hidden;
+width: 120px;
+}
+.flipover_div .card .user img{
+background: none repeat scroll 0 0 #FFFFFF;
+border: 4px solid #FFFFFF;
+width: 100%;
+}
+
+.flipover_div .card .content{
+background-color: rgba(0, 0, 0, 0);
+box-shadow: none;
+padding: 10px 20px 10px;
+}
+.flipover_div .card .content .main {
+min-height: 0px;
+}
+.flipover_div .back .card-body {
+    padding: 10px 20px 0px;
+    flex: 1;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+}
+.flipover_div #myCarousel01 {
+    padding: 0px 15px;
+    margin:0px auto 0px;
+}
+.flipover_div .back .card-body h4{
+    margin-bottom: 17px;
+}
+.flipover_div .slick-slide img {
+    height: unset;
+}
+.flipover_div .slick-slide {
+    margin:0px 1px 20px;
+    padding: 0px 8px;
+}
+.flipover_div .back .card-body p{
+    font-size: 14px;
+}
+.flipover_div .card .back .content .main {
+height: 215px;
+}
+.flipover_div .card .name {
+font-size: 16px;
+line-height: 28px;
+margin: 0px 0 0;
+text-align: center;
+font-weight: 600;
+text-transform: uppercase;
+}
+.flipover_div .card h5{
+margin: 5px 0;
+font-weight: 400;
+line-height: 20px;
+}
+.flipover_div .card .profession{
+color: #999999;
+text-align: center;
+margin-bottom: 20px;
+}
+.flipover_div .card .footer {
+border-top: 1px solid #EEEEEE;
+color: #999999;
+margin: 30px 0 0;
+padding: 10px 0 0;
+text-align: center;
+}
+.flipover_div .card .footer .social-links{
+font-size: 18px;
+}
+.flipover_div .card .footer .social-links a{
+margin: 0 7px;
+}
+.flipover_div .card .footer .btn-simple{
+margin-top: -6px;
+}
+.flipover_div .card .header {
+padding: 15px 20px;
+height: 90px;
+}
+.flipover_div .card .motto{
+    font-family: 'Arima Madurai', cursive;
+border-bottom: 1px solid #EEEEEE;
+color: #999999;
+font-size: 14px;
+font-weight: 400;
+padding-bottom: 10px;
+text-align: center;
+}
+.flipover_div .card-wrapper .avatar img {
+width: 100%;
+max-width: 100%;
+height: auto;
+background: none repeat scroll 0 0 #fff;
+border: 5px solid #fff;
+}
+.flipover_div .card .stats-container{
+width: 100%;
+margin-top: 50px;
+}
+.flipover_div .card .stats{
+display: block;
+float: left;
+width: 33.333333%;
+text-align: center;
+}
+
+.flipover_div .card .stats:first-child{
+border-right: 1px solid #EEEEEE;
+}
+.flipover_div .card .stats:last-child{
+border-left: 1px solid #EEEEEE;
+}
+.flipover_div .card .stats h4{
+    font-family: 'Arima Madurai', cursive;
+font-weight: 300;
+margin-bottom: 5px;
+}
+.flipover_div .card .stats p{
+color: #777777;
+}
+/*      Just for presentation        */
+
+.flipover_div .title{
+color: #506A85;
+text-align: center;
+font-weight: 300;
+font-size: 44px;
+margin-bottom: 90px;
+line-height: 90%;
+}
+.flipover_div .title small{
+font-size: 17px;
+color: #999;
+text-transform: uppercase;
+margin: 0;
+}
+.flipover_div .white-board{
+background-color: #FFFFFF;
+min-height: 200px;
+padding: 60px 60px 20px;
+}
+.flipover_div .ct-heart{
+color: #F74933;
+}
+
+
+.flipover_div .des_abt_btn  {
+    border-radius: 30px;
+    position: absolute;
+    bottom: 18px;
+    left: 0;
+    right: 0;
+    outline: none;
+    box-shadow: none;
+    max-width: 110px;
+    padding: 8px 10px !important;
+    margin: 8px auto 0px;
+}
+.flipover_div pre.prettyprint{
+background-color: #ffffff;
+border: 1px solid #999;
+margin-top: 20px;
+padding: 20px;
+text-align: left;
+}
+
+.flipover_div .front .avatar {
+display: block;
+width: 110px;
+background-color: #fff !important;
+overflow: hidden;
+margin: -60px auto 0px;
+background-color: #fff !important;
+overflow: hidden;
+}
+.flipover_div .card-wrapper {
+position: relative;
+width: 100%;
+margin: 0;
+-webkit-perspective: 800px;
+perspective: 800px;
+}
+.flipover_div .rounded-circle {
+border-radius: 50% !important;
+}
+.flipover_div hr {
+margin-top: 1rem;
+margin-bottom: 1rem;
+border: 0;
+border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.flipover_div ul li {
+margin:5px 3px;
+display:inline-block;
+}
+.flipover_div .wp-icon {
+width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    text-align: center;
+    /* line-height: 50px; */
+    vertical-align: middle;
+    background: #fff;
+    margin-right: 5px;
+    font-size: 23px !important;
+    line-height: 37px !important;
+}
+
+.flipover_div .fa-facebook-f {
+color: #3B5998;
+}
+.star-rating  {
+    text-align:center;
+}
+.flipover_div .star-rating ul li {
+    float: none;
+    display:inline-block;
+}
+.flipover_div .fa-linkedin {
+    color: #0077B5;
+}
+
+.flipover_div .fa-twitter {
+    color: #1DA1F2;
+}
+.flipover_div .fa-instagram {
+    color: #d6249f;
+}
+.text-center {
+text-align: center;
+}
+/*       Fix bug for IE      */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+.flipover_div .front, .flipover_div .back{
+    -ms-backface-visibility: visible;
+    backface-visibility: visible;
+}
+
+.flipover_div .back {
+    visibility: hidden;
+    -ms-transition: all 0.2s cubic-bezier(.92,.01,.83,.67);
+}
+.flipover_div .front{
+    z-index: 4;
+}
+.flipover_div .card-container:not(.manual-flip):hover .back,
+.flipover_div .card-container.manual-flip.hover .back{
+    z-index: 5;
+    visibility: visible;
+}
+}

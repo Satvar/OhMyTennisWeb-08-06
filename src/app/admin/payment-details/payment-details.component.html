@@ -9,6 +9,19 @@
                 Back
               </button>
             </div>
+            <div
+              *ngIf="alertMsg.show"
+              class="alert {{ alertMsg.type }} alert-dismissible text-center"
+            >
+              <button
+                type="button"
+                (click)="_closeAlertMessage($event)"
+                class="close"
+              >
+                <span>&times;</span>
+              </button>
+              {{ alertMsg.msg }}
+            </div>
             <div class="card-avatar" style="margin:9px auto 0">
               <a href="#pablo">
                 <img class="img" [src]="res.Coach_Image" />

@@ -124,12 +124,13 @@ ul li {
     margin-bottom: 25px;
 }
 .search_btn {
-	padding-right: 10px;
 	color:#ffffff;
 	background: #e75b00;
 	border:none;
 	height: 57px;
 	font-size:12px;
+	padding-right: 39px;
+	padding-left: 10px;
 	text-indent:10px;
 	text-transform: uppercase;	
 }
@@ -196,10 +197,15 @@ ul li {
 	}
 	.search_btn {	
 		font-size:14px;
+		max-width: 170px;
 	}
 	.header_top .search_div a {
 		right: 14px;
 		font-size: 24px;
+		top:-4px
+	}
+	.header_top .search_div a .fa{
+		font-size: 18px !important;
 	}
 }
 /** Header ends here **/
@@ -390,7 +396,11 @@ ul li {
 		max-width: 100%;
 	}
 	.menuarea {
-		padding: 20px 0px;
+		padding: 12px 0px;
+	}
+	.logo_icon {
+		display: block;
+		margin-top: 7px;
 	}
 }
 /** Menuarea ends here **/
@@ -636,7 +646,7 @@ ul li {
     visibility: hidden;
 }
 .client_logo{
-	padding:40px 0px;
+	padding:40px 0px 0px;
 }
 .title_reg {
     font-size: 26px;
@@ -956,8 +966,9 @@ ul li {
 .des_event_sub_title{
 	color:#e75b00;
 	font-family:'Comfortaa';
-	font-size:20px;
+	font-size:19px;
 	font-weight:bold;
+	text-transform: uppercase;
 	width:85%;
 	padding-top:15px;
 	margin-bottom:0px;
@@ -1873,6 +1884,13 @@ section p{font-family:'Lato', sans-serif;}
 	.my_coach {
 		margin: 40px 0px;
 	}
+	
+	.footer_input {
+		margin-bottom: 15px;
+	}
+	.ohevents_img {
+		height: 150px;
+	}
 	.section3.des_related_coach h4 {
 		font-size: 18px;
 		margin-bottom:10px;
@@ -1928,6 +1946,17 @@ section p{font-family:'Lato', sans-serif;}
 		text-align:right !important;
 		padding: 0px !important;
 	}
+	.label1.civilite_label {
+		line-height: 20px !important;
+		margin-top: 32px;
+	}
+	.reg_form .radio {
+		margin-top: 27px;
+		margin-left: 0px;
+	}
+	.ohevents_img {
+		height: 200px;
+	}
 	.my_coach .nav-pills > li{
 		width:25%!important;
 		text-align: center;
@@ -1963,11 +1992,24 @@ section p{font-family:'Lato', sans-serif;}
 	.des_event_sub_title {
 		font-size: 11px;
 		width: 100%;
+		min-height: 60px;
+    	max-height: 60px;
 	}
 }
 @media (min-width:992px) {
 	.form_bg {
 		top: 20%;
+	}	
+	.middle_sec_contents{
+		padding:30px 0px 0px;
+	}
+	.footer_input {
+		max-width: 120px;
+		display: inline-block;
+		margin: 0px 5px;
+	}
+	.footer_input.email_input {
+		max-width: 220px;
 	}
 	.des_about_heading , .coach_heading , .des_event_heading{
 		font-size: 39px;
@@ -1981,9 +2023,16 @@ section p{font-family:'Lato', sans-serif;}
 }
 @media (min-width:1200px) {
 	.des_event_sub_title {
-		font-size: 18px;
+		font-size: 17px;
 		width: 95%;
 		margin-bottom: 2px;
+	}	
+	.footer_input.email_input {
+		max-width: 250px;
+	}
+	.footer_input {
+	margin: 0px 8px;
+	max-width: 180px;
 	}
 }
 	
@@ -2214,7 +2263,7 @@ span.input-group-addon {
 }
 
 
-</** Section 3**/
+/** Section 3**/
 .section3.des_related_coach {
 	padding:30px 0px;	
 	background:#fefefe;

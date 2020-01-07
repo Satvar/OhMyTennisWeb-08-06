@@ -5,6 +5,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { AdminComponent } from "src/app/model/admin/admin.component";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from "@angular/common";
+import { from } from "rxjs";
 // import * as Stripe from "stripe";
 // const stripe = new Stripe("pk_test_ppbf90Eyy5PuXBdNQNLpxVuz00e719Y31R");
 
@@ -143,15 +144,23 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
   }
 
   setConnect(appService) {
-    var data = this.response;
-    console.log("[payment-details.component.ts]--connect");
+    var that = this;
+    this.spinner.show();
+    var data = {
+      email: this.response.Coach_Email,
+      name: this.response.Coach_Fname + " " + this.response.Coach_Lname,
+      phone: this.response.Coach_Phone
+    };
+    //console.log(data);
+    //console.log("[payment-details.component.ts]--connect");
     (<any>window).Stripe.bankAccount.createToken(
       {
         country: "US",
         currency: "USD",
-        routing_number: "111000025",
-        account_number: "000123456789",
-        account_holder_name: "Jane Austen",
+        routing_number: this.response.Branch_Code,
+        account_number: this.response.Coach_Bank_ACCNum,
+        account_holder_name:
+          this.response.Coach_Fname + " " + this.response.Coach_Lname,
         account_holder_type: "individual"
       },
       function(status, response) {
@@ -163,34 +172,22 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
 
         var res = {
           status: status,
-          response: response
+          response: response,
+          data
         };
         appService
           .create("/admin/createcustomerac", res)
-          .subscribe(response => {
-            console.log(response);
+          .subscribe(createResponse => {
+            that.spinner.hide();
+            if (createResponse && createResponse.isSuccess == true) {
+              that._showAlertMessage("alert-success", createResponse.message);
+              window.scrollTo(0, 0);
+            } else {
+              that._showAlertMessage("alert-danger", createResponse.message);
+              window.scrollTo(0, 0);
+            }
           });
       }
     );
   }
-  // stripeResponseHandler(status, response) {
-  //   console.log(
-  //     "[payment-details.component.ts]--stripeResponseHandler",
-  //     status,
-  //     response
-  //   );
-  //   if (response.error) {
-
-  //   } else {
-  //     var token = response.id;
-  // this.appService.getAll("/course/getcourse").subscribe(response => {
-  //   console.log("1");
-  // });
-
-  //     console.log(
-  //       "[payment-details.component.ts]--stripeResponseHandler",
-  //       token
-  //     );
-  //   }
-  // }
 }

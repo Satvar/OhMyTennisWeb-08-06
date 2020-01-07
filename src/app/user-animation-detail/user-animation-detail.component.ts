@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { UserComponent } from '../model/user/user.component';
 import * as moment from 'moment';
 import * as $ from 'jquery'
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-user-animation-detail',
@@ -16,6 +17,10 @@ export class UserAnimationDetailComponent extends UserComponent implements OnIni
 
   public str : any = null;
   public min = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  map: any;
+  mapvalues:any;
+  lat:any;
+  lang:any;
   public coach_detail = {
     Coach_Fname: "",
     Coach_ID: "",
@@ -107,8 +112,14 @@ export class UserAnimationDetailComponent extends UserComponent implements OnIni
     }
     this.appService.create('/coachdetail/getcoachbyevent', coachevent).subscribe(async (response) => {
       if (response && response['data']) {
+        console.log(response['data'])
         if (response.isSuccess == true) {
+          if(response.data.coach_list[0]){
           this.coach_detail = response.data.coach_list[0];
+          this.mapvalues = eval('['+this.coach_detail['coordonnees_gps']+']');
+        this.lat = this.mapvalues[0].toFixed(3);
+        this.lang = this.mapvalues[1].toFixed(3);
+
           var temp = new Array();
           temp = this.coach_detail.Coach_payment_type.split(",");
           //console.log(temp[0]);
@@ -126,6 +137,30 @@ export class UserAnimationDetailComponent extends UserComponent implements OnIni
                 }
               }
             });
+
+            this.map = L.map('map', {
+              center: this.mapvalues,
+              zoom: 16
+            });
+     
+            const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              maxZoom: 25,
+              
+            });
+        
+            tiles.addTo(this.map);
+            var greenIcon = L.icon({
+              iconUrl: '../assets/images/marker-icon.png'
+          });
+        
+            L.marker(this.mapvalues, {icon: greenIcon}).addTo(this.map)
+            .openPopup();
+
+            this.spinner.hide();
+          }
+          else {
+            this.spinner.hide();
+          }
         }
         else {
           this.spinner.hide();

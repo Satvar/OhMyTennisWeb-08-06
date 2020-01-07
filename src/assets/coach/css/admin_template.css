@@ -774,7 +774,7 @@ body.admin_tempstyle {
   vertical-align: middle;
 }
 .myaccount_page .card-stats .card-header.card-header-icon i {
-  font-size: 36px;
+  font-size: 26px;
   line-height: 56px;
   width: 56px;
   height: 56px;
@@ -906,6 +906,7 @@ input[type="radio"] {
 label {
   font-size: 14px;
   color: #393939;
+  margin-bottom: 10px;
   font-weight: 400;
   margin-left: 5px;
 }
@@ -1919,6 +1920,7 @@ label {
   display: block; /* or inline-block */
   text-overflow: ellipsis;
   word-wrap: break-word;
+  margin-top: 4px;
   overflow: hidden;
   max-height: 3.6em;
   min-height: 3.6em;
