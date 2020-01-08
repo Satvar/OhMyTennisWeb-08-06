@@ -582,6 +582,8 @@ export class CoachDetailComponent implements OnInit {
       this.Clubcourse = rowData.Course;
       this.booking.amount = rowData.Price.toString();
       this.booking.session = this.session;
+
+      console.log("coursecollectifclub", this.coach_detail)
       this.booking.coach_Email = this.coach_detail.Coach_Email;
       this.booking.coach_Name = this.coach_detail.Coach_Fname + " " + this.coach_detail.Coach_Lname;
       this.booking.Coach_ID = coachid.Id;

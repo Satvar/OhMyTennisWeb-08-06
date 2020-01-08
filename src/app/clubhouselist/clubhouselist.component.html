@@ -36,20 +36,20 @@
     <!-- Search area ends -->
 </div>
 
-<div class="col-sm-12">
+<div class="col-sm-12 cloubhouse">
     <div class="des_events des_events_rev">
         <div class="container">
             <div class="column" *ngFor="let res of response">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="padding: 0px 10px;">
                     <div class="des_events_bg des_events_bg_rev">
-                        <img src="{{res.courtfile}}" class="img-responsive center-block" style="height: 250px;">
-                        <div class="">
+                        <img src="{{res.courtfile}}" class="img-responsive center-block">
+                        <div class="club_contdiv">
                            
                             <p class="des_event_sub_title">{{res.court_name}}</p>
                            <p class="des_event_para max-lines">{{res.court_address}} </p>
                         </div>
                         <div class="text-center">
-                            <a (click)="getClub(res)" class="btn btn-primary des_event_btn" style="margin-top: 15px;">VUE</a>
+                            <a (click)="getClub(res)" class="btn btn-primary des_event_btn" style="margin-top: 5px;">VUE</a>
                         </div>
                     </div>
                 </div>

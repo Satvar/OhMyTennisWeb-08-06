@@ -718,6 +718,7 @@ border-top: 1px solid #EEEEEE;
 color: #999999;
 margin: 30px 0 0;
 padding: 10px 0 0;
+display: none;
 text-align: center;
 }
 .flipover_div .card .footer .social-links{

@@ -36,7 +36,7 @@
       z-index: 1;
     }
     .serviceBox .service-icon i{ transition: all 0.3s ease 0s; }
-    .serviceBox:hover .service-icon i{ transform: rotateX(360deg); }
+    // .serviceBox:hover .service-icon i{ transform: rotateX(360deg); }
     .serviceBox .service-icon:before{
       content: "";
       background: #f5f5f5;

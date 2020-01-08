@@ -953,7 +953,43 @@ ul li {
 	padding:45px 0px;
 	margin:40px 0px;
 }
+.cloubhouse .des_events_bg {
+	padding: 0px 0px 20px;
+}
+.lg-block {
+	display: none;
+}
+.cloubhouse .des_events_bg >img {
+	max-height: 210px !important;
+	min-height: 150px;
+	width: 100%;
+}
+.cloubhouse .des_event_btn {
+	padding: 6px 30px;
+	font-size: 14px;
+	margin-top: 0px;
+}
+.cloubhouse .club_contdiv {
+	padding: 0px 15px;
+}
+.cloubhouse .des_events_bg_rev {
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+	border: 0;
+	font-weight: 400;
+	background: #fff;
+}
 
+
+@media (min-width:768px) {
+	.cloubhouse .des_events_bg_rev {
+		min-height: 365px;
+		max-height: 365px;
+	}	
+	.cloubhouse .des_events_bg >img {
+		max-height: 180px !important;
+		min-height: 180px;
+	}
+}
 .des_events_rev{
 	background-color:#fff!important;
 }
@@ -1780,6 +1816,10 @@ section p{font-family:'Lato', sans-serif;}
 .float-left {
 	float:left;
 }
+#datatable thead {
+	background: #262626;
+    color: #fff;
+}
 .float-right {
 	float:right;
 }
@@ -1861,7 +1901,7 @@ section p{font-family:'Lato', sans-serif;}
 .orange_text {
 	color:#e75b00 !important;
 }
-
+des_contents_cdetail margimn
 .btn.orange_borderbtn:hover {
 	color:#ffffff;
 }
@@ -1871,6 +1911,15 @@ section p{font-family:'Lato', sans-serif;}
 	font-weight:bold;
 	display: inline-block;
 	line-height:21px;
+}
+.clearfix {
+	display: block;
+}
+.ngx-pagination a, .ngx-pagination button {
+
+	margin: 0px 3px; 
+	padding: 4px 8px;
+	
 }
 @media (min-width:1900px) {
 	#coachImage{
@@ -2018,7 +2067,7 @@ section p{font-family:'Lato', sans-serif;}
 		font-size: 17px;
 	}
 	.sort_section {
-	margin-top:0px;
+		margin-top:0px;
 	}
 }
 @media (min-width:1200px) {
@@ -2026,7 +2075,20 @@ section p{font-family:'Lato', sans-serif;}
 		font-size: 17px;
 		width: 95%;
 		margin-bottom: 2px;
+	}		
+	.flipover_div .slick-slider .slick-track, .slick-slider .slick-list {
+		padding: 0px 7px;
+	}
+	.lg-block {
+		display: block;
 	}	
+		
+	.sm-block {
+		display: none;
+	}
+	.cloubhouse .des_event_sub_title {
+		font-size: 15px;
+	}
 	.footer_input.email_input {
 		max-width: 250px;
 	}

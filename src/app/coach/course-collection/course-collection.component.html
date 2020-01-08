@@ -88,7 +88,15 @@
                                             <label>Emplacement <span class="red"> *</span></label>
                                         </div>
                                         <div class="col-md-8">
-                                            <textarea class="form-control" [(ngModel)]="res.Location"
+                                            
+                                            <input type="text" class="form-control" [(ngModel)]="res.Location"
+                                                name="res.Location" readyonly required #Place="ngModel"
+                                                [ngClass]="{'alert_field': (Place.errors && (Place.touched || Place.dirty))}"
+                                                placeholder="">
+                                            <ng-container *ngIf="Place.errors && (Place.touched || Place.dirty)">
+                                                <span class="alert_text" *ngIf="Place.errors.required">Indiquez votre
+                                                    Emplacement.</span>
+                                            <!-- <textarea class="form-control" [(ngModel)]="res.Location"
                                                 name="res.Location" #Location="ngModel"
                                                 [ngClass]="{'alert_field': (Location.errors && (Location.touched || Location.dirty))}"
                                                 id="exampleFormControlTextarea2" rows="5" readonly required
@@ -96,7 +104,7 @@
                                             <ng-container
                                                 *ngIf="Location.errors && (Location.touched || Location.dirty)">
                                                 <span class="alert_text" *ngIf="Location.errors.required">Indiquez votre
-                                                    Emplacement.</span>
+                                                    Emplacement.</span> -->
                                             </ng-container>
                                         </div>
                                     </div>
