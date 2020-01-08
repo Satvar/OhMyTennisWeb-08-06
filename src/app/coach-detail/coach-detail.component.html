@@ -503,8 +503,9 @@
             </div>
 
             <br>
-            <div class="col-md-12 col-sm-12 col-xs-12" align="left;">
-                <h4 class="des_contents_cdetail_title">Expérience de Lena</h4>
+            <div class="col-md-12 col-sm-12 col-xs-12" align="left" style="padding-left: 0px;">
+                <h4 class="des_contents_cdetail_title" style="text-align: left;">Entraîneur associé
+                </h4>
                 <p class="des_contents_cdetail">{{coach_detail.Coach_Experience}}</p>
 
             </div>
@@ -559,7 +560,7 @@
     </div>
 </div>
 <div class="clearfix"></div>
-<div class="tab-content">
+<div class="tab-content flipover_div container">
     <div class="tab-pane fade in active" id="Commentary">
         <div class="col-lg-11" style="position: relative; top: 30px;">
         </div>
@@ -570,33 +571,71 @@
                         <ngx-slick-carousel class="tab-pane fade in active" #slickModal="slick-carousel"
                             [config]="slides.config">
                             <div ngxSlickItem *ngFor="let s of slides.data" class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="thumb-wrapper" align="center">
-                                    <div class="img-box" style="margin: 20px;">
-                                        <img src="{{s.img || 'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'}}"
-                                            #img
-                                            (error)="img.src = 'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'"
-                                            class="" alt="">
-                                    </div>
-                                    <div class="thumb-content">
-                                        <a href="#" (onclick)="gotoCouch(s)">{{s.name}}</a>
-                                        <div class="star-rating">
-                                            <ul class="list-inline">
-                                                <li class="list-inline-item"><i class="fa fa-star"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fa fa-star"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fa fa-star"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fa fa-star"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fa fa-star-o"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <p class="max-lines">{{s.comment}}</p>
-                                    </div>
-                                </div>
-                            </div>
+                                <div class="card-wrapper card-container">
+                                    <div class="card">
+                                        <div class="front">
+                                            <div class="card-up">
+                                                <img class="card-img-top" src="../assets/images/tennis_coachbg.jpg" alt="Team member card image">
+                                            </div>                                                            
+                                            <div class="avatar mx-auto white">
+                                            
+                                                <img class="rounded-circle" src="{{s.img || 'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'}}"
+                                                #img
+                                                (error)="img.src = 'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'"
+                                                class="rounded-circle" alt="">
+                                            </div>
+                                            <div class="content">
+                                                <div class="main">
+                                                    <h3 class="name">{{s.name}}</h3>
+                                                    <div class="star-rating">
+                                                        <ul class="list-inline">
+                                                            <li class="list-inline-item"><i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="list-inline-item"><i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="list-inline-item"><i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="list-inline-item"><i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class="list-inline-item"><i class="fa fa-star-o"></i>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                 </div>
+                                                </div>
+                                            </div> <div class="back text-center">
+                                                <div class="card-body">            
+                                                    <!-- Content -->
+                                                    <h4 class="font-weight-bold mb-0">About me</h4>
+                                                    <hr>
+                                                    <p>
+                                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat tenetur odio suscipit non commodi vel
+                                                      eius veniam maxime? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                      </p><hr>
+                                                      <!-- Social Icons -->
+                                                      <ul class="text-center">
+                                                        <li><a href="#"><i class="fa wp-icon fa-facebook-f fa-lg"></i></a></li>
+                                                        <li><a href="#"><i class="fa wp-icon fa-twitter fa-lg"></i></a></li>
+                                                        <li><a href="#"><i class="fa wp-icon fa-instagram fa-lg"></i></a></li>
+                                                        </ul>
+                                                      <!-- Triggering button -->
+                                                     <!--     <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to rotate back</a> -->
+                                                    <a style="border-radius:30px;" class="btn btn-primary des_abt_btn" (click)="gotoCouch(s)">Voir plus</a>
+                                                  </div>
+                                                </div>
+                                                <div class="footer">
+                                                    <div class="social-links text-center">
+                                                        <a href="http://deepak646.blogspot.in/" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
+                                                        <a href="http://deepak646.blogspot.in/" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
+                                                        <a href="http://deepak646.blogspot.in/" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end back panel -->
+
+                                        </div> <!-- end card -->
+                           
+                        </div>
+                              
                         </ngx-slick-carousel>
                     </div>
                 </div>

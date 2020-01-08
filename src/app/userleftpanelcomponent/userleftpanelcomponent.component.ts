@@ -32,7 +32,7 @@ export class UserleftpanelcomponentComponent extends UserComponent implements On
   }
 
   public username: any;
-  public image = 'https://www.w3schools.com/howto/img_avatar.png';
+  public image = "https://www.w3schools.com/howto/img_avatar.png";
 
   capitalizeFLetter(name) { 
     return name[0].toUpperCase() +  
@@ -50,6 +50,11 @@ export class UserleftpanelcomponentComponent extends UserComponent implements On
         this.appService.create("/user/getuserbyid", useremail).subscribe((data: any) => {
           if (data.isSuccess == true) {
             this.image = data.data.User_list[0].User_Image;
+            if(this.image==null) {
+             
+              this.image="https://www.w3schools.com/howto/img_avatar.png"
+            }
+            
             this.spinner.hide();
           }
           else {

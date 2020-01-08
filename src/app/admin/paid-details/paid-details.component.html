@@ -31,15 +31,13 @@
                   *ngFor="let group of datanew; let i = index"
                 >
                   <td>{{ i + 1 }}</td>
-                  <td>
-                    {{ group.name }}
-                  </td>
+                  <td>{{ group.name }}</td>
                   <td>€ {{ group.amount }}</td>
-                  <td>€ {{ group.amount }}</td>
-                  <td>€ {{ group.amount }}</td>
+                  <td>€ {{ group.comission_amount_display }}</td>
+                  <td>€ {{ group.net_amount }}</td>
                   <td>
                     <button id="approveBtn" class="btn btn-block btn-success">
-                      Transfer
+                      Pay
                     </button>
                   </td>
                 </tr>

@@ -6,7 +6,8 @@ import { AppComponent } from '../app.component';
 import { Location } from '@angular/common';
 import { UserComponent } from '../model/user/user.component';
 import * as moment from 'moment';
-import * as $ from 'jquery'
+import * as $ from 'jquery';
+import * as L from 'leaflet';
 @Component({
   selector: 'app-user-tournament-detail',
   templateUrl: './user-tournament-detail.component.html',
@@ -15,6 +16,10 @@ import * as $ from 'jquery'
 export class UserTournamentDetailComponent extends UserComponent implements OnInit {
 
   public min = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  map: any;
+  mapvalues:any;
+  lat:any;
+  lang:any;
   public str : any = null;
   public coach_detail = {
     Coach_Fname: "",
@@ -95,9 +100,15 @@ export class UserTournamentDetailComponent extends UserComponent implements OnIn
       "P_CoachId": event.Coach_Id
     }
     this.appService.create('/coachdetail/getcoachbyevent', coachevent).subscribe(async (response) => {
+      console.log(response['data'])
       if (response && response['data']) {
         if (response.isSuccess == true) {
+          if(response.data.coach_list[0]){
           this.coach_detail = response.data.coach_list[0];
+          console.log(this.coach_detail)
+          this.mapvalues = eval('['+this.coach_detail['coordonnees_gps']+']');
+          this.lat = this.mapvalues[0].toFixed(3);
+          this.lang = this.mapvalues[1].toFixed(3);
           var temp = new Array();
           temp = this.coach_detail.Coach_payment_type.split(",");
           //console.log(temp[0]);
@@ -115,6 +126,30 @@ export class UserTournamentDetailComponent extends UserComponent implements OnIn
                 }
               }
             });
+
+            this.map = L.map('map', {
+              center: this.mapvalues,
+              zoom: 16
+            });
+     
+            const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              maxZoom: 25,
+              
+            });
+        
+            tiles.addTo(this.map);
+            var greenIcon = L.icon({
+              iconUrl: '../assets/images/marker-icon.png'
+            });
+        
+            L.marker(this.mapvalues, {icon: greenIcon}).addTo(this.map)
+            .openPopup();
+            this.spinner.hide();
+
+          }else{
+            this.spinner.hide();
+
+          }
         }
         else {
           this.spinner.hide();

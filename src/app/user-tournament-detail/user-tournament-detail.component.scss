@@ -213,3 +213,36 @@
    .form-group {
     margin-bottom: 16px!important;
   }
+
+  .des_coach_abt .map-container {
+    position: relative;
+    top: unset;
+    left: unset;
+    height: 250px;
+    right: unset;
+    bottom: unset;
+    margin: 15px 0px 15px;
+  }
+    .map-container {
+      position: absolute;
+      top: 0;
+      left: -16px;
+      right: -18px;
+      bottom: -30px;
+      margin: 30px;
+      top: 114px;
+  }
+    .map-frame {
+    border: 2px solid #d8d0d0;
+    height: 100%;
+    }
+    
+    #map {
+    height: 100%;
+    }
+  
+    @media (min-width:992px) {
+      .des_map {
+        position: relative;
+      }
+    }
