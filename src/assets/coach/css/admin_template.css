@@ -1762,9 +1762,9 @@ label {
   border-radius: 0.25rem;
 }
 .admin_tempstyle .card-profile .card-avatar {
-  max-width: 175px;
+  max-width: 165px;
   max-height: 180px;
-  height: 180px;
+  height: 165px;
 }
 
 .admin_tempstyle .card-profile .card-avatar {
@@ -1804,9 +1804,9 @@ label {
 }
 .admin_tempstyle .card-profile .card-avatar img {
   width: 100%;
-  max-width: 175px;
+  max-width: 165px;
   max-height: 180px;
-  height: 180px;
+  height: 165px;
 }
 .form-group label span.red {
   color: red;

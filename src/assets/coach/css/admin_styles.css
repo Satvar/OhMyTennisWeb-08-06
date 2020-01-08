@@ -453,6 +453,15 @@ span {
   border-bottom-color: #eeeeee;
   background-color: #fafafa;
 }
+.admin_tempstyle table .btn.btn-success {
+  margin-right: 0px;
+}
+.admin_tempstyle .form_devarea .card-body {
+  margin-top: 10px;
+}
+.admin_tempstyle.super_admintop table.dataTable tbody th, table.dataTable tbody td {
+  text-align: center;
+}
 .admin_tempstyle.super_admintop .dropdown-menu li > a {
   font-size: 14px !important;
 }
@@ -467,4 +476,31 @@ span {
 .admin_tempstyle.super_admintop .clublist_content .box-body .fa {
   font-size: 28px !important;
   color: green;
+}
+.info-box-icon .fa {
+  font-size: 32px !important;
+  display: block;
+  margin-top: 30px;
+}
+.coach_listable.table>tbody>tr>td, .coach_listable.table>tbody>tr>th, .coach_listable.table>tfoot>tr>td, .coach_listable.table>tfoot>tr>th, .coach_listable.table>thead>tr>td, .coach_listable.table>thead>tr>th {
+  vertical-align: middle;
+}
+.payment_table {
+  font-size: 14px;
+}
+.payment_table.table>thead>tr>th {
+  border-top: 2px solid #ddd!important;
+}
+.card.card-profile {
+  font-size: 14px;
+
+}
+.admin_tempstyle .table > thead:first-child > tr:first-child > th , .admin_tempstyle .table > thead:first-child > tr > td {
+  text-align: center;
+}
+.admin_tempstyle .payment_page .card-profile .card-avatar img {
+  width: 100%;
+  max-width: 160px;
+  max-height: 180px;
+  height: 160px ;
 }

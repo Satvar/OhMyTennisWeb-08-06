@@ -68,7 +68,7 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
         style: false
       },
       {
-        title: "PROPSPECT",
+        title: "PERSPECTIVE",
         path:
           "/" +
           this._const("PATH.ADMIN.SELF") +
@@ -88,7 +88,7 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
         style: false
       },
       {
-        title: "PAYMENTS",
+        title: "PAIEMENTS",
         path:
           "/" +
           this._const("PATH.ADMIN.SELF") +

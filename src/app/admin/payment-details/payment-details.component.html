@@ -1,12 +1,12 @@
-<div class="content">
+<div class="content payment_page">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
         <div class="form-group bmd-form-group">
           <div class="card card-profile">
-            <div class="pull-right">
-              <button style="cursor: pointer;" (click)="goBack()">
-                Back
+            <div class="pull-right" style="text-align: left; padding: 22px 20px 0px;">
+              <button class="btn orange_btn" style="cursor: pointer;" (click)="goBack()">
+                Retour
               </button>
             </div>
             <div
@@ -28,25 +28,25 @@
               </a>
             </div>
             <div class="card-body">
-              <h4 class="card-title">
+              <h4 class="card-title" style="margin-top: 15px;">
                 {{ this.res.Coach_Fname }} {{ this.res.Coach_Lname }}
               </h4>
               <!-- <div class="upload-btn-wrapper">
                 <h4 class="card-title">Bank Details</h4>
               </div> -->
               <div class="box-body">
-                <table class="table table-bordered table-sm row-border">
-                  <thead>
+                <table class="payment_table table table-bordered table-sm row-border">
+                  <thead style="background-color: #262626; color: #ffffff;">
                     <tr>
-                      <th>Bank Name</th>
-                      <th>Branch Code</th>
-                      <th>Bank Account Number</th>
-                      <th>Bank City</th>
-                      <th></th>
+                      <th>Nom de banque</th>
+                      <th>Code de succursale</th>
+                      <th>Numéro de compte bancaire</th>
+                      <th>Ville de la banque</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr class="btn_blocksec">
                       <td>{{ this.res.Coach_Bank_Name }}</td>
                       <td>
                         {{ this.res.Branch_Code }}
@@ -59,10 +59,10 @@
                       </td>
                       <td>
                         <button
-                          class="btn btn-block btn-success"
+                          class="btn btn-block btn-success btn-md" style="max-width: 120px;"
                           (click)="connect()"
                         >
-                          Connect
+                        Relier
                         </button>
                       </td>
                     </tr>
@@ -75,9 +75,9 @@
       </div>
       <div class="clearfix"></div>
       <div class="col-md-12">
-        <div class="form_devarea">
-          <h4>PAYMENTS</h4>
-          <div class="box-body">
+        <div class="form_devarea" style="margin-top: 20px;">
+          <div class="~box-body">
+            <h4>PAIEMENTS</h4>
             <table
               class="coach_listable table table-striped table-bordered table-sm row-border hover"
               id="datatable"
@@ -85,7 +85,7 @@
               <thead>
                 <tr>
                   <th>Sl.no</th>
-                  <th>Service Name</th>
+                  <th>Nom du service</th>
                   <th>Action</th>
                 </tr>
               </thead>
