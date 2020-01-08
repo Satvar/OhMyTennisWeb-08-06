@@ -8,7 +8,8 @@ import dayGridView from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import * as moment from 'moment';
-import * as $ from 'jquery'
+import * as $ from 'jquery';
+import * as L from 'leaflet';
 @Component({
   selector: 'app-coach-detail',
   templateUrl: './coach-detail.component.html',
@@ -18,6 +19,10 @@ import * as $ from 'jquery'
 export class CoachDetailComponent implements OnInit {
 
   public selectedCity: any = null;
+  map: any;
+  mapvalues:any;
+  lat:any;
+  lang:any;
   public alertMsg: any = {
     type: '',
     msg: '',
@@ -179,13 +184,15 @@ export class CoachDetailComponent implements OnInit {
 
     // Getting Max_Price of selected course for Summary
     var coach = JSON.parse(localStorage.getItem("Coach"));
+    console.log(coach)
     var Coach_ID = {
-      "coachId": coach.Id,
+      "coachId": coach.Coach_ID,
       "Coach_ID": coach.Id
     }
     var course = localStorage.getItem('Course');
 
     this.appService.getAll('/coach/CoachCalendarAvaiabilityForUser', Coach_ID).subscribe((response) => {
+      
       if ((response as any).data.coach_list.length > 0) {
         if (response && response['data']) {
           var dat = (response as any).data.coach_list;
@@ -204,12 +211,15 @@ export class CoachDetailComponent implements OnInit {
       }
       // this.spinner.hide();
     })
-
+    console.log(Coach_ID," ", course)
     if (course == 'CoursIndividuel') {
       this.appService.getAll('/course/getindividualcourse', Coach_ID).subscribe((response) => {
+        console.log(response)
         if ((response as any).data.course.length > 0) {
           if (response && response['data']) {
+            
             var dat = (response as any).data.course[0];
+            
             this.price = dat.Price_min;
             this.Indiv_1hr = dat.Price_min;
             this.Indiv_10hr = dat.Price_max;
@@ -217,6 +227,10 @@ export class CoachDetailComponent implements OnInit {
             this.Description = dat.Description;
             this.pincode = dat.Postalcode;
             this.location = dat.Location;
+            this.mapvalues = eval('['+dat.coordonnees_gps+']');
+        this.lat = this.mapvalues[0].toFixed(3);
+        this.lang = this.mapvalues[1].toFixed(3);
+
             this.appService.getAll('/city/' + dat.Postalcode)
               .subscribe((response) => {
                 // tslint:disable-next-line:no-string-literal
@@ -225,6 +239,28 @@ export class CoachDetailComponent implements OnInit {
                   this.selectedCity = (response as any).data.city_list;
                 }
               });
+
+              this.map = L.map('map', {
+                center: this.mapvalues,
+                zoom: 16
+              });
+       
+              const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 25,
+                
+              });
+          
+              tiles.addTo(this.map);
+              var greenIcon = L.icon({
+                iconUrl: '../assets/images/marker-icon.png'
+            });
+          
+              L.marker(this.mapvalues, {icon: greenIcon}).addTo(this.map)
+              .openPopup();
+  
+              this.spinner.hide();
+
+
           }
         }
         this.couchdetail();
@@ -233,6 +269,7 @@ export class CoachDetailComponent implements OnInit {
     } else if (course == 'CoursCollectifOndemand') {
 
       this.appService.getAll('/course/getcousecollectivedemanad', Coach_ID).subscribe((response) => {
+        console.log(response)
         if ((response as any).data.course.length > 0) {
           if (response && response['data']) {
             var dat = (response as any).data.course[0];
@@ -245,6 +282,10 @@ export class CoachDetailComponent implements OnInit {
             this.course_demand.Price_6pl_1hr = dat.Price_6pl_1hr;
             this.pincode = dat.Postalcode;
             this.location = dat.Location;
+            this.mapvalues = eval('['+dat.coordonnees_gps+']');
+            this.lat = this.mapvalues[0].toFixed(3);
+            this.lang = this.mapvalues[1].toFixed(3);
+
             this.appService.getAll('/city/' + dat.Postalcode)
               .subscribe((response) => {
                 // tslint:disable-next-line:no-string-literal
@@ -253,6 +294,25 @@ export class CoachDetailComponent implements OnInit {
                   this.selectedCity = (response as any).data.city_list;
                 }
               });
+              this.map = L.map('map', {
+                center: this.mapvalues,
+                zoom: 16
+              });
+       
+              const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 25,
+                
+              });
+          
+              tiles.addTo(this.map);
+              var greenIcon = L.icon({
+                iconUrl: '../assets/images/marker-icon.png'
+              });
+          
+              L.marker(this.mapvalues, {icon: greenIcon}).addTo(this.map)
+              .openPopup();
+  
+              this.spinner.hide();
           }
         }
         this.couchdetail();
@@ -269,6 +329,9 @@ export class CoachDetailComponent implements OnInit {
             this.pincode = dat.Postalcode;
             this.location = dat.Place;
             this.Description = dat.Description;
+            this.mapvalues = eval('['+dat.coordonnees_gps+']');
+            this.lat = this.mapvalues[0].toFixed(3);
+            this.lang = this.mapvalues[1].toFixed(3);
             this.appService.getAll('/city/' + dat.Postalcode)
               .subscribe((response) => {
                 // tslint:disable-next-line:no-string-literal
@@ -278,6 +341,26 @@ export class CoachDetailComponent implements OnInit {
                   console.log(this.selectedCity);
                 }
               });
+
+              this.map = L.map('map', {
+                center: this.mapvalues,
+                zoom: 16
+              });
+       
+              const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 25,
+                
+              });
+          
+              tiles.addTo(this.map);
+              var greenIcon = L.icon({
+                iconUrl: '../assets/images/marker-icon.png'
+            });
+          
+              L.marker(this.mapvalues, {icon: greenIcon}).addTo(this.map)
+              .openPopup();
+  
+              this.spinner.hide();
           }
         }
       })

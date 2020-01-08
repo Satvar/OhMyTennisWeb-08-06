@@ -63,8 +63,11 @@ export class ClubhouseviewComponent extends AppComponent implements OnInit {
             );
 
             tiles.addTo(this.map);
+            var greenIcon = L.icon({
+              iconUrl: "../assets/images/marker-icon.png"
+            });
 
-            L.marker(this.mapvalues)
+            L.marker(this.mapvalues, { icon: greenIcon })
               .addTo(this.map)
               .bindPopup(
                 this.res.court_name + "<br> " + this.res.court_address + ""

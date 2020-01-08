@@ -228,7 +228,7 @@ export class StageEditComponent extends CoachComponent implements OnInit {
         //console.log('api',res)
 
         this.appService
-          .create("/course/setstagecourse", res)
+          .create("/course/setstagecourseupdate", res)
           .subscribe(response => {
             this.spinner.hide();
             if (response && response.isSuccess == true) {

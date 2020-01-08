@@ -151,7 +151,7 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
       name: this.response.Coach_Fname + " " + this.response.Coach_Lname,
       phone: this.response.Coach_Phone
     };
-    //console.log(data);
+    console.log(data);
     //console.log("[payment-details.component.ts]--connect");
     (<any>window).Stripe.bankAccount.createToken(
       {
@@ -189,5 +189,6 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
           });
       }
     );
+    that.spinner.hide();
   }
 }
