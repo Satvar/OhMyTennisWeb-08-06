@@ -75,6 +75,7 @@ import {
   FacebookLoginProvider
 } from "angular-6-social-login";
 import { TopMenuComponent } from "./pages/top-menu/top-menu.component";
+import { FooterFirstComponent } from "./pages/footer-first/footer-first.component";
 import { UsernotificationComponent } from "./usernotification/usernotification.component";
 import { UserStageComponent } from "./user-stage/user-stage.component";
 import { UserTeambuildingComponent } from "./user-teambuilding/user-teambuilding.component";
@@ -120,6 +121,7 @@ import { PetticesComponent } from "./pages/clubhouse/pettices/pettices.component
 import { ParrainerComponent } from "./pages/clubhouse/parrainer/parrainer.component";
 import { JeuxconcourComponent } from "./pages/clubhouse/jeuxconcour/jeuxconcour.component";
 import { QuizComponent } from "./pages/clubhouse/quiz/quiz.component";
+import { CharteComponent } from "./pages/concepts/charte/charte.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -239,6 +241,10 @@ const routes: Routes = [
   {
     path: CONST.PATH.CONCEPTS.INFORMATIONS.SELF,
     component: InformationsComponent
+  },
+  {
+    path: CONST.PATH.CONCEPTS.CHARTE.SELF,
+    component: CharteComponent
   },
   {
     path: CONST.PATH.CONSEILS.CONSEILS.SELF,
@@ -380,6 +386,7 @@ export function getAuthServiceConfigs() {
     OhMyCoachComponent,
     CoachDetailComponent,
     TopMenuComponent,
+    FooterFirstComponent,
     AdminloginComponent,
     AdminforgotpasswordComponent,
     ResetpasswordComponent,
@@ -423,7 +430,8 @@ export function getAuthServiceConfigs() {
     PetticesComponent,
     ParrainerComponent,
     JeuxconcourComponent,
-    QuizComponent
+    QuizComponent,
+    CharteComponent
   ],
   imports: [
     BrowserModule,

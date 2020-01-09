@@ -49,6 +49,10 @@ export const CONST = Object.freeze({
       LACHARTE: {
         SELF: "concept/lacharte",
         TITLE: "Lacharte"
+      },
+      CHARTE: {
+        SELF: "concept/charte",
+        TITLE: "Charte qualité"
       }
     },
     CONSEILS: {

@@ -1,48 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { AppService } from '../../shared/app.service';
-import { CoachComponent } from 'src/app/model/coach/coach.component';
-import { Location } from '@angular/common';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import * as $ from 'jquery';
-
+import { Component, OnInit } from "@angular/core";
+import { AppService } from "../../shared/app.service";
+import { CoachComponent } from "src/app/model/coach/coach.component";
+import { Location } from "@angular/common";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
+import * as $ from "jquery";
 
 @Component({
-  selector: 'app-course-collection',
-  templateUrl: './course-collection.component.html',
-  styleUrls: ['./course-collection.component.scss']
+  selector: "app-course-collection",
+  templateUrl: "./course-collection.component.html",
+  styleUrls: ["./course-collection.component.scss"]
 })
-export class CourseCollectionComponent extends CoachComponent implements OnInit {
-
+export class CourseCollectionComponent extends CoachComponent
+  implements OnInit {
   public trans_error: Boolean = false;
   public plan_error: Boolean = false;
   public res = {
-    "Coach_ID": "",
-    "Description": "",
-    "Mode_of_transport": "",
-    "Plan": "",
-    "Price_2pl_1hr": "",
-    "Price_2pl_10hr": "",
-    "Price_3pl_1hr": "",
-    "Price_3pl_10hr": "",
-    "Price_4pl_1hr": "",
-    "Price_4pl_10hr": "",
-    "Price_6pl_1hr": "",
-    "Price_5pl_1hr": "",
-    "Price_6pl_10hr": "",
-    "Min_People": " ",
-    "Max_People": " ",
-    "Location": "",
-    "id": "",
-    "Price_Mon": "0",
-    "Price_Tue": "0",
-    "Price_Wed": "0",
-    "Price_Thr": "0",
-    "Price_Fri": "0",
-    "Price_Sat": "0",
-    "Price_Sun": "0",
-    "Postalcode": ""
-  }
+    Coach_ID: "",
+    Description: "",
+    Mode_of_transport: "",
+    Plan: "",
+    Price_2pl_1hr: "",
+    Price_2pl_10hr: "",
+    Price_3pl_1hr: "",
+    Price_3pl_10hr: "",
+    Price_4pl_1hr: "",
+    Price_4pl_10hr: "",
+    Price_6pl_1hr: "",
+    Price_5pl_1hr: "",
+    Price_6pl_10hr: "",
+    Min_People: " ",
+    Max_People: " ",
+    Location: "",
+    id: "",
+    Price_Mon: "0",
+    Price_Tue: "0",
+    Price_Wed: "0",
+    Price_Thr: "0",
+    Price_Fri: "0",
+    Price_Sat: "0",
+    Price_Sun: "0",
+    Postalcode: ""
+  };
 
   constructor(
     activatedRoute: ActivatedRoute,
@@ -51,45 +50,44 @@ export class CourseCollectionComponent extends CoachComponent implements OnInit 
     location: Location,
     spinner: NgxSpinnerService
   ) {
-    super(
-      activatedRoute,
-      router,
-      appService,
-      location,
-      spinner
-    );
+    super(activatedRoute, router, appService, location, spinner);
   }
 
-  // Initial load 
+  // Initial load
   ngOnInit() {
-    $('#trans_error').hide();
-    $('#plan_error').hide();
+    $("#trans_error").hide();
+    $("#plan_error").hide();
     var titile = document.getElementsByClassName("brand");
-    if (titile)
-      titile[0].innerHTML = 'COURS COLLECTIF ONDEMAND';
+    if (titile) titile[0].innerHTML = "COURS COLLECTIF ONDEMAND";
     this.getDemandCourse();
 
-    let formInputItem = document.querySelectorAll(".form_devarea")[0].querySelectorAll("input");
-    formInputItem.forEach(function (inputElement) {
+    let formInputItem = document
+      .querySelectorAll(".form_devarea")[0]
+      .querySelectorAll("input");
+    formInputItem.forEach(function(inputElement) {
       inputElement.setAttribute("disabled", "true");
     });
 
-    let textare1 = document.getElementById("exampleFormControlTextarea1") as HTMLTextAreaElement;
+    let textare1 = document.getElementById(
+      "exampleFormControlTextarea1"
+    ) as HTMLTextAreaElement;
     textare1.setAttribute("disabled", "true");
 
-    let textare2 = document.getElementById("exampleFormControlTextarea2") as HTMLTextAreaElement;
-    textare2.setAttribute("disabled", "true");
+    let textare2 = document.getElementById(
+      "exampleFormControlTextarea2"
+    ) as HTMLTextAreaElement;
+    //textare2.setAttribute("disabled", "true");
 
     let elebebtn = document.querySelector("#enableBtn") as HTMLElement;
-    elebebtn.style.display = 'inline';
+    elebebtn.style.display = "inline";
 
     elebebtn.setAttribute("data-toggle", "modal");
 
     let icancel = document.querySelector("#cancel") as HTMLElement;
-    icancel.style.display = 'none';
+    icancel.style.display = "none";
 
     let Enregistrer = document.querySelector("#Enregistrer") as HTMLElement;
-    Enregistrer.style.display = 'none';
+    Enregistrer.style.display = "none";
     window.scrollTo(0, 0);
   }
 
@@ -100,16 +98,21 @@ export class CourseCollectionComponent extends CoachComponent implements OnInit 
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
     var coach1 = JSON.parse(coach);
     var coachid = {
-      "Coach_ID": coach1.id
-    }
-    this.appService.getAll('/course/getcousecollectivedemanad', coachid)
-      .subscribe((response) => {
+      Coach_ID: coach1.id
+    };
+    this.appService
+      .getAll("/course/getcousecollectivedemanad", coachid)
+      .subscribe(response => {
         if ((response as any).data.course.length > 0) {
-          if (response && response['data']) {
+          if (response && response["data"]) {
             this.res = (response as any).data.course[0];
-            selectedTransport = (response as any).data.course[0].Mode_of_transport.split(",");
-            let formInputItem = document.querySelectorAll(".form_devarea")[0].querySelectorAll("input");
-            formInputItem.forEach(function (inputElement) {
+            selectedTransport = (response as any).data.course[0].Mode_of_transport.split(
+              ","
+            );
+            let formInputItem = document
+              .querySelectorAll(".form_devarea")[0]
+              .querySelectorAll("input");
+            formInputItem.forEach(function(inputElement) {
               let mode = inputElement as HTMLInputElement;
               if (mode.type == "checkbox") {
                 let modechild = mode.nextSibling as HTMLElement;
@@ -118,8 +121,7 @@ export class CourseCollectionComponent extends CoachComponent implements OnInit 
                   for (var i = 0; i < selectedTransport.length; i++) {
                     if (Mode_of_Transport == selectedTransport[i]) {
                       mode.checked = true;
-                    }
-                    else {
+                    } else {
                       if (Mode_of_Transport == selectedTransport[i]) {
                         mode.checked = true;
                       }
@@ -131,9 +133,15 @@ export class CourseCollectionComponent extends CoachComponent implements OnInit 
               if (mode.type == "radio") {
                 if (selectedPlan.length > 0) {
                   for (var i = 0; i < selectedPlan.length; i++) {
-                    if (mode.id == "inlineradio3" && selectedPlan[i] == "Commission") {
+                    if (
+                      mode.id == "inlineradio3" &&
+                      selectedPlan[i] == "Commission"
+                    ) {
                       mode.checked = true;
-                    } else if (mode.id == "inlineradio4" && selectedPlan[i] == "Abonnement") {
+                    } else if (
+                      mode.id == "inlineradio4" &&
+                      selectedPlan[i] == "Abonnement"
+                    ) {
                       mode.checked = true;
                     }
                   }
@@ -153,8 +161,8 @@ export class CourseCollectionComponent extends CoachComponent implements OnInit 
   }
 
   onSubmit(res) {
-    $('#trans_error').hide();
-    $('#plan_error').hide();
+    $("#trans_error").hide();
+    $("#plan_error").hide();
     this.trans_error = false;
     this.plan_error = false;
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
@@ -164,16 +172,17 @@ export class CourseCollectionComponent extends CoachComponent implements OnInit 
     let enableBtn = document.querySelector("#enableBtn") as HTMLElement;
     if (enableBtn.hasAttribute("disabled") == false) {
       let jsonData = res;
-      let formInputItem = document.querySelectorAll(".form_devarea")[0].querySelectorAll("input");
-      formInputItem.forEach(function (inputElement) {
+      let formInputItem = document
+        .querySelectorAll(".form_devarea")[0]
+        .querySelectorAll("input");
+      formInputItem.forEach(function(inputElement) {
         let mode = inputElement as HTMLInputElement;
         if (mode.type == "checkbox") {
           if (mode.checked == true) {
             let modechild = mode.nextSibling as HTMLElement;
             if (transport !== "") {
               transport = transport + "," + modechild.nodeValue.trim();
-            }
-            else {
+            } else {
               transport = modechild.nodeValue.trim();
             }
           }
@@ -196,60 +205,58 @@ export class CourseCollectionComponent extends CoachComponent implements OnInit 
 
       if (res.Mode_of_transport == "") {
         this.trans_error = true;
-        $('#trans_error').show();
-      }
-      else if (res.Plan == "") {
-        $('#plan_error').show();
+        $("#trans_error").show();
+      } else if (res.Plan == "") {
+        $("#plan_error").show();
         this.plan_error = true;
       }
 
       if (this.trans_error == false && this.plan_error == false) {
-        this.appService.create('/course/setcousecollectivedemanad', res)
-          .subscribe((response) => {
+        this.appService
+          .create("/course/setcousecollectivedemanad", res)
+          .subscribe(response => {
             if (response && response.isSuccess == true) {
-              this._showAlertMessage('alert-success', 'Mis à jour avec succés');
+              this._showAlertMessage("alert-success", "Mis à jour avec succés");
               this.ngOnInit();
               window.scrollTo(0, 0);
+            } else {
+              this._showAlertMessage("alert-danger", "Échec de la mise à jour");
             }
-            else {
-              this._showAlertMessage('alert-danger', 'Échec de la mise à jour');
-            }
-          })
-      }
-      else {
-        this.spinner.hide()
+          });
+      } else {
+        this.spinner.hide();
       }
     }
   }
 
   enableForm() {
+    $("#availabilityDiv :input").prop("readonly", false);
+    $("#availabilityDiv :input").prop("required", true);
 
-    $(".form-group :input").prop("readonly", false);
-    $(".form-group :input").prop("required", true);
-
-    let itransport = document.querySelectorAll(".form-check-input");
-    itransport.forEach(function (checkItem) {
+    let itransport = document.querySelectorAll(".form-group");
+    itransport.forEach(function(checkItem) {
       checkItem.removeAttribute("disabled");
-    })
+    });
 
-    let formInputItem = document.querySelectorAll(".form_devarea")[0].querySelectorAll("input");
-    formInputItem.forEach(function (inputElement) {
+    let formInputItem = document
+      .querySelectorAll(".form_devarea")[0]
+      .querySelectorAll("input");
+    formInputItem.forEach(function(inputElement) {
       inputElement.removeAttribute("disabled");
     });
 
-    let textarea = document.getElementById("exampleFormControlTextarea1") as HTMLTextAreaElement;
+    let textarea = document.getElementById(
+      "exampleFormControlTextarea1"
+    ) as HTMLTextAreaElement;
     textarea.removeAttribute("disabled");
 
-    let textarea2 = document.getElementById("exampleFormControlTextarea2") as HTMLTextAreaElement;
-    textarea2.removeAttribute("disabled");
-
     let elebebtn = document.querySelector("#enableBtn") as HTMLElement;
-    elebebtn.style.display = 'none';
+    elebebtn.style.display = "none";
 
     let icancel = document.querySelector("#cancel") as HTMLElement;
-    icancel.style.display = 'inline';
+    icancel.style.display = "inline";
 
     let Enregistrer = document.querySelector("#Enregistrer") as HTMLElement;
-    Enregistrer.style.display = 'inline';
+    Enregistrer.style.display = "inline";
   }
 }

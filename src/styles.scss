@@ -57,3 +57,22 @@ ngb-datepicker-navigation-select > .custom-select {
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;
 }
+
+.tab-content.flipover_div {
+  margin-top: 30px;
+}
+
+.flipover_div .card-container,
+.flipover_div .front,
+.flipover_div .back {
+  box-shadow: none;
+  border: 1px solid #e8e5e5;
+}
+
+.about_sec .form_bg {
+  padding: 40px 50px;
+}
+
+.des_about_para {
+  text-align: justify;
+}

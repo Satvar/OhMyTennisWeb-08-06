@@ -315,7 +315,7 @@
                                         class="btn btn-success des_save_btn" (click)="approvedData()">Demande
                                         acceptée</button>
                                     <!-- <a data-toggle="modal"  data-target="#myModal_save_course"  class="btn btn-success des_save_btn">Enregistrer</a> -->
-                                    <button *ngIf="book_status=='R'" type="button" class="btn btn-danger"
+                                    <button *ngIf="book_status=='R' || book_status=='A'" type="button" class="btn btn-danger"
                                         (click)="cancelreq()" data-dismiss="modal">Annuler</button>
                                     <button *ngIf="book_status=='B'" type="button" class="btn btn-danger"
                                         (click)="reschedule()" data-dismiss="modal">Replanifier</button>

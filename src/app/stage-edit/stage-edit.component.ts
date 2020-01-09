@@ -13,6 +13,7 @@ import { AngularEditorConfig } from "@kolkov/angular-editor";
 })
 export class StageEditComponent extends CoachComponent implements OnInit {
   public res = {
+    id: "",
     Coach_Id: "",
     Postalcode: "",
     Eventname: "",
@@ -91,6 +92,7 @@ export class StageEditComponent extends CoachComponent implements OnInit {
       coachId: params.coach_id,
       id: params.stage_id
     };
+    //console.log("[stage-edit.component.ts]", parameters);
     this.getStageCourse(parameters);
     $("#trans_error").hide();
     $("#plan_error").hide();
@@ -215,7 +217,7 @@ export class StageEditComponent extends CoachComponent implements OnInit {
         jsonData.Price = 0;
       }
       res = jsonData;
-
+      //console.log("[stage-edit.component.ts]", res);
       if (res.Mode_of_transport == "") {
         this.trans_error = true;
         $("#trans_error").show();
@@ -225,7 +227,7 @@ export class StageEditComponent extends CoachComponent implements OnInit {
       }
 
       if (this.trans_error == false && this.plan_error == false) {
-        //console.log('api',res)
+        //console.log("api", res);
 
         this.appService
           .create("/course/setstagecourseupdate", res)
@@ -270,7 +272,7 @@ export class StageEditComponent extends CoachComponent implements OnInit {
   }
 
   getStageCourse(parameters) {
-    console.log(parameters);
+    //console.log(parameters);
     this.spinner.show();
     var selectedPlan: any;
     var selectedTransport: any;
@@ -290,11 +292,11 @@ export class StageEditComponent extends CoachComponent implements OnInit {
               this.res.from_date = this.formatDate(
                 new Date((response as any).data.course[0].from_date)
               );
-              console.log(this.res.from_date);
+              //console.log(this.res.from_date);
               this.res.to_date = this.formatDate(
                 new Date((response as any).data.course[0].to_date)
               );
-              console.log(this.res.to_date);
+              //console.log(this.res.to_date);
               selectedTransport = (response as any).data.course[0].Mode_of_transport.split(
                 ","
               );
