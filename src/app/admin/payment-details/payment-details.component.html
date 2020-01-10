@@ -4,8 +4,15 @@
       <div class="col-md-12">
         <div class="form-group bmd-form-group">
           <div class="card card-profile">
-            <div class="pull-right" style="text-align: left; padding: 22px 20px 0px;">
-              <button class="btn orange_btn" style="cursor: pointer;" (click)="goBack()">
+            <div
+              class="pull-right"
+              style="text-align: left; padding: 22px 20px 0px;"
+            >
+              <button
+                class="btn orange_btn"
+                style="cursor: pointer;"
+                (click)="goBack()"
+              >
                 Retour
               </button>
             </div>
@@ -35,7 +42,9 @@
                 <h4 class="card-title">Bank Details</h4>
               </div> -->
               <div class="box-body">
-                <table class="payment_table table table-bordered table-sm row-border">
+                <table
+                  class="payment_table table table-bordered table-sm row-border"
+                >
                   <thead style="background-color: #262626; color: #ffffff;">
                     <tr>
                       <th>Nom de banque</th>
@@ -57,14 +66,27 @@
                       <td>
                         {{ this.res.Coach_Bank_City }}
                       </td>
-                      <td>
+                      <td
+                        *ngIf="paymentstripe == 'notverified'; else falseprint"
+                      >
                         <button
-                          class="btn btn-block btn-success btn-md" style="max-width: 120px;"
+                          class="btn btn-block btn-success btn-md"
+                          style="max-width: 120px;"
                           (click)="connect()"
                         >
-                        Relier
+                          Relier
                         </button>
                       </td>
+                      <ng-template #falseprint>
+                        <td *ngIf="paymentstripe == 'verified'">
+                          <button
+                            class="btn btn-block btn-info btn-md"
+                            style="max-width: 120px;"
+                          >
+                            vérifié
+                          </button>
+                        </td>
+                      </ng-template>
                     </tr>
                   </tbody>
                 </table>

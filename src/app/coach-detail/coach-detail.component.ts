@@ -1,36 +1,34 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AppService } from '../shared/app.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Location } from '@angular/common';
-import { FullCalendarComponent } from '@fullcalendar/angular';
-import dayGridView from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import * as moment from 'moment';
-import * as $ from 'jquery';
-import * as L from 'leaflet';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { AppService } from "../shared/app.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
+import { Location } from "@angular/common";
+import { FullCalendarComponent } from "@fullcalendar/angular";
+import dayGridView from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import * as moment from "moment";
+import * as $ from "jquery";
+import * as L from "leaflet";
 @Component({
-  selector: 'app-coach-detail',
-  templateUrl: './coach-detail.component.html',
-  styleUrls: ['./coach-detail.component.scss']
+  selector: "app-coach-detail",
+  templateUrl: "./coach-detail.component.html",
+  styleUrls: ["./coach-detail.component.scss"]
 })
-
 export class CoachDetailComponent implements OnInit {
-
   public selectedCity: any = null;
   map: any;
-  mapvalues:any;
-  lat:any;
-  lang:any;
+  mapvalues: any;
+  lat: any;
+  lang: any;
   public alertMsg: any = {
-    type: '',
-    msg: '',
+    type: "",
+    msg: "",
     show: false
   };
   public min = new Date();
   public calender = [];
-  calendarPlugins = [dayGridView, interactionPlugin]
+  calendarPlugins = [dayGridView, interactionPlugin];
   public UserAviablility: any = [];
   calendarOptions = {
     format: "DD-MM-YYYY",
@@ -42,26 +40,26 @@ export class CoachDetailComponent implements OnInit {
     description: "",
     session: "",
     availability: ""
-  }
+  };
 
   public booking = {
-    "Coach_ID": "",
-    "user_Id": "",
-    "payment_Id": 0,
-    "status": "",
-    "bookingDate": "",
-    "bookingCourse": "",
-    "amount": "",
-    "coach_Email": "",
-    "user_Email": "",
-    "coach_Name": "",
-    "user_Name": "",
-    "paymentStatus": "",
-    "session": [],
-    "bookingDateRange": ""
-  }
+    Coach_ID: "",
+    user_Id: "",
+    payment_Id: 0,
+    status: "",
+    bookingDate: "",
+    bookingCourse: "",
+    amount: "",
+    coach_Email: "",
+    user_Email: "",
+    coach_Name: "",
+    user_Name: "",
+    paymentStatus: "",
+    session: [],
+    bookingDateRange: ""
+  };
 
-  public course = localStorage.getItem('Course');
+  public course = localStorage.getItem("Course");
 
   public coach_detail = {
     Coach_Fname: "",
@@ -84,29 +82,30 @@ export class CoachDetailComponent implements OnInit {
     Coach_Bank_City: "",
     Coach_payment_type: "",
     Coach_transport: "",
-    Coach_Image: "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png",
+    Coach_Image:
+      "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png",
     Coach_Resume: "",
     ResumeName: ""
-  }
+  };
 
   public course_demand = {
-    "Price_2pl_1hr": "",
-    "Price_3pl_1hr": "",
-    "Price_4pl_1hr": "",
-    "Price_5pl_1hr": "",
-    "Price_6pl_1hr": "",
-    "person": ""
-  }
+    Price_2pl_1hr: "",
+    Price_3pl_1hr: "",
+    Price_4pl_1hr: "",
+    Price_5pl_1hr: "",
+    Price_6pl_1hr: "",
+    person: ""
+  };
 
   public book_coach = {
-    "P_CoachId": "",
-    "P_CourseId": "",
-    "P_Date": "",
-    "P_Hour": "",
-    "P_UserId": "",
-    "P_Amount": "",
-    "P_Remarks": ""
-  }
+    P_CoachId: "",
+    P_CourseId: "",
+    P_Date: "",
+    P_Hour: "",
+    P_UserId: "",
+    P_Amount: "",
+    P_Remarks: ""
+  };
 
   public moment_date: any;
   public temps: string = "";
@@ -138,12 +137,10 @@ export class CoachDetailComponent implements OnInit {
   public IsChecked = true;
   public showclub = false;
   public Timeslotdata = {
-    "Start_Date": "",
-    "Coach_ID": "",
-    "Course": ""
-  }
-
-
+    Start_Date: "",
+    Coach_ID: "",
+    Course: ""
+  };
 
   constructor(
     public sanitizer: DomSanitizer,
@@ -153,7 +150,6 @@ export class CoachDetailComponent implements OnInit {
     public Location: Location,
     public spinner: NgxSpinnerService
   ) {
-
     this.slidecnt = 4;
   }
 
@@ -161,360 +157,393 @@ export class CoachDetailComponent implements OnInit {
     var datas = this.UserAviablility;
   }
 
-  @ViewChild('calendar', { static: false }) calendarComponent: FullCalendarComponent;
-
+  @ViewChild("calendar", { static: false })
+  calendarComponent: FullCalendarComponent;
 
   ngOnInit() {
-
-    this.spinner.show()
+    this.spinner.show();
     this.price = 0;
     if (window.innerWidth > 1024) {
       this.slidecnt = 4;
-    }
-    else if (window.innerWidth > 768) {
+    } else if (window.innerWidth > 768) {
       this.slidecnt = 3;
-    }
-    else {
+    } else {
       this.slidecnt = 2;
     }
     this.coachSlider();
     var titile = document.getElementsByClassName("brand");
-    if (titile.length > 0)
-      titile[0].innerHTML = 'MON CALENDRIER';
+    if (titile.length > 0) titile[0].innerHTML = "MON CALENDRIER";
 
     // Getting Max_Price of selected course for Summary
     var coach = JSON.parse(localStorage.getItem("Coach"));
-    console.log(coach)
+    //console.log(coach);
     var Coach_ID = {
-      "coachId": coach.Coach_ID,
-      "Coach_ID": coach.Id
-    }
-    var course = localStorage.getItem('Course');
+      coachId: coach.Coach_ID,
+      Coach_ID: coach.Id
+    };
+    var course = localStorage.getItem("Course");
 
-    this.appService.getAll('/coach/CoachCalendarAvaiabilityForUser', Coach_ID).subscribe((response) => {
-      
-      if ((response as any).data.coach_list.length > 0) {
-        if (response && response['data']) {
-          var dat = (response as any).data.coach_list;
-
-          for (let i = 0; i < dat.length; i++) {
-            $('td[data-date="' + dat[i].Date.split("T")[0] + '"]').css('background-color', '#90ee90');
-            $('td[data-date="' + dat[i].Date.split("T")[0] + '"]').css('border-color', '#fff');
-          }
-          $(".fc-button").on('click', function (event) {
+    this.appService
+      .getAll("/coach/CoachCalendarAvaiabilityForUser", Coach_ID)
+      .subscribe(response => {
+        //console.log("coach-details.component.ts", response);
+        if ((response as any).data.coach_list.length > 0) {
+          if (response && response["data"]) {
+            var dat = (response as any).data.coach_list;
+            //console.log("coach-details.component.ts", dat);
             for (let i = 0; i < dat.length; i++) {
-              $('td[data-date="' + dat[i].Date.split("T")[0] + '"]').css('background-color', '#90ee90');
-              $('td[data-date="' + dat[i].Date.split("T")[0] + '"]').css('border-color', '#fff');
+              $('td[data-date="' + dat[i].Date.split("T")[0] + '"]').css(
+                "background-color",
+                "#90ee90"
+              );
+              $('td[data-date="' + dat[i].Date.split("T")[0] + '"]').css(
+                "border-color",
+                "#fff"
+              );
             }
-          });
-        }
-      }
-      // this.spinner.hide();
-    })
-    console.log(Coach_ID," ", course)
-    if (course == 'CoursIndividuel') {
-      this.appService.getAll('/course/getindividualcourse', Coach_ID).subscribe((response) => {
-        console.log(response)
-        if ((response as any).data.course.length > 0) {
-          if (response && response['data']) {
-            
-            var dat = (response as any).data.course[0];
-            
-            this.price = dat.Price_min;
-            this.Indiv_1hr = dat.Price_min;
-            this.Indiv_10hr = dat.Price_max;
-            this.Video = dat.Video;
-            this.Description = dat.Description;
-            this.pincode = dat.Postalcode;
-            this.location = dat.Location;
-            this.mapvalues = eval('['+dat.coordonnees_gps+']');
-        this.lat = this.mapvalues[0].toFixed(3);
-        this.lang = this.mapvalues[1].toFixed(3);
-
-            this.appService.getAll('/city/' + dat.Postalcode)
-              .subscribe((response) => {
-                // tslint:disable-next-line:no-string-literal
-                if (response && response['data']) {
-                  // tslint:disable-next-line:no-string-literal
-                  this.selectedCity = (response as any).data.city_list;
-                }
-              });
-
-              this.map = L.map('map', {
-                center: this.mapvalues,
-                zoom: 16
-              });
-       
-              const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 25,
-                
-              });
-          
-              tiles.addTo(this.map);
-              var greenIcon = L.icon({
-                iconUrl: '../assets/images/marker-icon.png'
+            $(".fc-button").on("click", function(event) {
+              for (let i = 0; i < dat.length; i++) {
+                $('td[data-date="' + dat[i].Date.split("T")[0] + '"]').css(
+                  "background-color",
+                  "#90ee90"
+                );
+                $('td[data-date="' + dat[i].Date.split("T")[0] + '"]').css(
+                  "border-color",
+                  "#fff"
+                );
+              }
             });
-          
-              L.marker(this.mapvalues, {icon: greenIcon}).addTo(this.map)
-              .openPopup();
-  
-              this.spinner.hide();
-
-
           }
         }
-        this.couchdetail();
         // this.spinner.hide();
-      })
-    } else if (course == 'CoursCollectifOndemand') {
+      });
+    console.log(Coach_ID, " ", course);
+    if (course == "CoursIndividuel") {
+      this.appService
+        .getAll("/course/getindividualcourse", Coach_ID)
+        .subscribe(response => {
+          if ((response as any).data.course.length > 0) {
+            if (response && response["data"]) {
+              var dat = (response as any).data.course[0];
 
-      this.appService.getAll('/course/getcousecollectivedemanad', Coach_ID).subscribe((response) => {
-        console.log(response)
-        if ((response as any).data.course.length > 0) {
-          if (response && response['data']) {
-            var dat = (response as any).data.course[0];
-            this.Description = dat.Description;
-            this.course_demand.person = dat.Max_People;
-            this.course_demand.Price_2pl_1hr = dat.Price_2pl_1hr;
-            this.course_demand.Price_3pl_1hr = dat.Price_3pl_1hr;
-            this.course_demand.Price_4pl_1hr = dat.Price_4pl_1hr;
-            this.course_demand.Price_5pl_1hr = dat.Price_5pl_1hr;
-            this.course_demand.Price_6pl_1hr = dat.Price_6pl_1hr;
-            this.pincode = dat.Postalcode;
-            this.location = dat.Location;
-            this.mapvalues = eval('['+dat.coordonnees_gps+']');
-            this.lat = this.mapvalues[0].toFixed(3);
-            this.lang = this.mapvalues[1].toFixed(3);
+              this.price = dat.Price_min;
+              this.Indiv_1hr = dat.Price_min;
+              this.Indiv_10hr = dat.Price_max;
+              this.Video = dat.Video;
+              this.Description = dat.Description;
+              this.pincode = dat.Postalcode;
+              this.location = dat.Location;
+              this.mapvalues = eval("[" + dat.coordonnees_gps + "]");
+              this.lat = this.mapvalues[0].toFixed(3);
+              this.lang = this.mapvalues[1].toFixed(3);
 
-            this.appService.getAll('/city/' + dat.Postalcode)
-              .subscribe((response) => {
-                // tslint:disable-next-line:no-string-literal
-                if (response && response['data']) {
+              this.appService
+                .getAll("/city/" + dat.Postalcode)
+                .subscribe(response => {
                   // tslint:disable-next-line:no-string-literal
-                  this.selectedCity = (response as any).data.city_list;
-                }
-              });
-              this.map = L.map('map', {
+                  if (response && response["data"]) {
+                    // tslint:disable-next-line:no-string-literal
+                    this.selectedCity = (response as any).data.city_list;
+                  }
+                });
+
+              this.map = L.map("map", {
                 center: this.mapvalues,
                 zoom: 16
               });
-       
-              const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 25,
-                
-              });
-          
+
+              const tiles = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                  maxZoom: 25
+                }
+              );
+
               tiles.addTo(this.map);
               var greenIcon = L.icon({
-                iconUrl: '../assets/images/marker-icon.png'
-              });
-          
-              L.marker(this.mapvalues, {icon: greenIcon}).addTo(this.map)
-              .openPopup();
-  
-              this.spinner.hide();
-          }
-        }
-        this.couchdetail();
-      })
-    }
-    else if (course == 'CoursCollectifClub') {
-      this.appService.getAll('/course/getcousecollectiveclub', Coach_ID).subscribe((response) => {
-        if ((response as any).data.course.length > 0) {
-          if (response && response['data']) {
-            this.availablity = (response as any).data.availablity;
-            var dat = (response as any).data.course[0];
-            this.price = dat.Price;
-            this.Video = dat.Video;
-            this.pincode = dat.Postalcode;
-            this.location = dat.Place;
-            this.Description = dat.Description;
-            this.mapvalues = eval('['+dat.coordonnees_gps+']');
-            this.lat = this.mapvalues[0].toFixed(3);
-            this.lang = this.mapvalues[1].toFixed(3);
-            this.appService.getAll('/city/' + dat.Postalcode)
-              .subscribe((response) => {
-                // tslint:disable-next-line:no-string-literal
-                if (response && response['data']) {
-                  // tslint:disable-next-line:no-string-literal
-                  this.selectedCity = (response as any).data.city_list;
-                  console.log(this.selectedCity);
-                }
+                iconUrl: "../assets/images/marker-icon.png"
               });
 
-              this.map = L.map('map', {
+              L.marker(this.mapvalues, { icon: greenIcon })
+                .addTo(this.map)
+                .openPopup();
+
+              this.spinner.hide();
+            }
+          }
+          this.couchdetail();
+          // this.spinner.hide();
+        });
+    } else if (course == "CoursCollectifOndemand") {
+      this.appService
+        .getAll("/course/getcousecollectivedemanad", Coach_ID)
+        .subscribe(response => {
+          console.log(response);
+          if ((response as any).data.course.length > 0) {
+            if (response && response["data"]) {
+              var dat = (response as any).data.course[0];
+              this.Description = dat.Description;
+              this.course_demand.person = dat.Max_People;
+              this.course_demand.Price_2pl_1hr = dat.Price_2pl_1hr;
+              this.course_demand.Price_3pl_1hr = dat.Price_3pl_1hr;
+              this.course_demand.Price_4pl_1hr = dat.Price_4pl_1hr;
+              this.course_demand.Price_5pl_1hr = dat.Price_5pl_1hr;
+              this.course_demand.Price_6pl_1hr = dat.Price_6pl_1hr;
+              this.pincode = dat.Postalcode;
+              this.location = dat.Location;
+              this.mapvalues = eval("[" + dat.coordonnees_gps + "]");
+              this.lat = this.mapvalues[0].toFixed(3);
+              this.lang = this.mapvalues[1].toFixed(3);
+
+              this.appService
+                .getAll("/city/" + dat.Postalcode)
+                .subscribe(response => {
+                  // tslint:disable-next-line:no-string-literal
+                  if (response && response["data"]) {
+                    // tslint:disable-next-line:no-string-literal
+                    this.selectedCity = (response as any).data.city_list;
+                  }
+                });
+              this.map = L.map("map", {
                 center: this.mapvalues,
                 zoom: 16
               });
-       
-              const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 25,
-                
-              });
-          
+
+              const tiles = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                  maxZoom: 25
+                }
+              );
+
               tiles.addTo(this.map);
               var greenIcon = L.icon({
-                iconUrl: '../assets/images/marker-icon.png'
-            });
-          
-              L.marker(this.mapvalues, {icon: greenIcon}).addTo(this.map)
-              .openPopup();
-  
+                iconUrl: "../assets/images/marker-icon.png"
+              });
+
+              L.marker(this.mapvalues, { icon: greenIcon })
+                .addTo(this.map)
+                .openPopup();
+
               this.spinner.hide();
+            }
           }
-        }
-      })
+          this.couchdetail();
+        });
+    } else if (course == "CoursCollectifClub") {
+      this.appService
+        .getAll("/course/getcousecollectiveclub", Coach_ID)
+        .subscribe(response => {
+          if ((response as any).data.course.length > 0) {
+            if (response && response["data"]) {
+              this.availablity = (response as any).data.availablity;
+              var dat = (response as any).data.course[0];
+              this.price = dat.Price;
+              this.Video = dat.Video;
+              this.pincode = dat.Postalcode;
+              this.location = dat.Place;
+              this.Description = dat.Description;
+              this.mapvalues = eval("[" + dat.coordonnees_gps + "]");
+              this.lat = this.mapvalues[0].toFixed(3);
+              this.lang = this.mapvalues[1].toFixed(3);
+              this.appService
+                .getAll("/city/" + dat.Postalcode)
+                .subscribe(response => {
+                  // tslint:disable-next-line:no-string-literal
+                  if (response && response["data"]) {
+                    // tslint:disable-next-line:no-string-literal
+                    this.selectedCity = (response as any).data.city_list;
+                    console.log(this.selectedCity);
+                  }
+                });
+
+              this.map = L.map("map", {
+                center: this.mapvalues,
+                zoom: 16
+              });
+
+              const tiles = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                  maxZoom: 25
+                }
+              );
+
+              tiles.addTo(this.map);
+              var greenIcon = L.icon({
+                iconUrl: "../assets/images/marker-icon.png"
+              });
+
+              L.marker(this.mapvalues, { icon: greenIcon })
+                .addTo(this.map)
+                .openPopup();
+
+              this.spinner.hide();
+            }
+          }
+        });
       this.couchdetail();
     }
   }
 
-  handleDateClick(arg) { // handler method
+  handleDateClick(arg) {
+    // handler method
     this.spinner.show();
     $(".day-highlight").removeClass("day-highlight");
     $(arg.dayEl).addClass("day-highlight");
-    var course = localStorage.getItem('Course');
+    var course = localStorage.getItem("Course");
     var coach = JSON.parse(localStorage.getItem("Coach"));
     var detail = {
-      "Start_Date": arg.dateStr,
-      "Coach_ID": coach.Id,
-      "Course": course
-    }
+      Start_Date: arg.dateStr,
+      Coach_ID: coach.Id,
+      Course: course
+    };
     this.bookingDate = arg.dateStr;
     this.Timeslotdata = {
-      "Start_Date": arg.dateStr,
-      "Coach_ID": coach.Id,
-      "Course": course
+      Start_Date: arg.dateStr,
+      Coach_ID: coach.Id,
+      Course: course
     };
     if (course != "CoursCollectifClub") {
-      this.appService.getAll('/coach/getTimeslot', detail).subscribe((data) => {
+      this.appService.getAll("/coach/getTimeslot", detail).subscribe(data => {
         this.timeslot = (data as any).data.availabilty;
         this.spinner.hide();
-      })
+      });
     } else {
-      this.showclub = true
+      this.showclub = true;
       this.spinner.hide();
     }
   }
 
   handleClick(event: Event) {
-    this.router.navigate(['/ohmycoach'])
+    this.router.navigate(["/ohmycoach"]);
   }
 
   reserve() {
-    
     this.price = 0;
-    $('#available').show();
+    $("#available").show();
     if (this.is10Hr == true) {
       this.price = this.Indiv_10hr;
-    }
-    else {
-      this.price = (this.Indiv_1hr * (this.bookArray.length));
+    } else {
+      this.price = this.Indiv_1hr * this.bookArray.length;
     }
     this.booking.amount = this.price;
     // $('#amount').html('Totale: €' + ' ' + this.price);
   }
 
   addTimeslot(rowData, id) {
-    var course = localStorage.getItem('Course');
+    var course = localStorage.getItem("Course");
 
     //Single Select
-    if(document.getElementById('reserve')!= null)
-    document.getElementById('reserve').removeAttribute('disabled');
-    if (course == 'CoursCollectifOndemand') {
-      let formInputItem = document.querySelectorAll(".timeslotselect")[0].querySelectorAll("input");
-      formInputItem.forEach(function (inputElement) {
+    if (document.getElementById("reserve") != null)
+      document.getElementById("reserve").removeAttribute("disabled");
+    if (course == "CoursCollectifOndemand") {
+      let formInputItem = document
+        .querySelectorAll(".timeslotselect")[0]
+        .querySelectorAll("input");
+      formInputItem.forEach(function(inputElement) {
         // this.IsChecked = true;
         let mode = inputElement as HTMLInputElement;
         if (mode.type == "checkbox") {
           if (mode.checked == true && mode.id != "check_" + id) {
             mode.checked = false;
-          }
-          else if (mode.checked == false && mode.id == "check_" + id) {
+          } else if (mode.checked == false && mode.id == "check_" + id) {
             // this.IsChecked = false;
-            document.getElementById('reserve').setAttribute('disabled', 'true');
+            document.getElementById("reserve").setAttribute("disabled", "true");
           }
         }
-      })
+      });
     }
-    var coachid = JSON.parse(localStorage.getItem('Coach'));
+    var coachid = JSON.parse(localStorage.getItem("Coach"));
     var user = JSON.parse(localStorage.getItem("onmytennis"));
     var user1 = JSON.parse(user);
 
-    if (course == 'CoursIndividuel') {
-      let formInputItem = document.getElementById("check_" + id) as HTMLInputElement;
+    if (course == "CoursIndividuel") {
+      let formInputItem = document.getElementById(
+        "check_" + id
+      ) as HTMLInputElement;
       this.IsChecked = true;
       if (formInputItem.checked == true && formInputItem.id != "check_" + id) {
         formInputItem.checked = false;
-        document.getElementById('reserve').setAttribute('disabled', 'false');
-      }
-      else if (formInputItem.checked == false && formInputItem.id == "check_" + id) {
+        document.getElementById("reserve").setAttribute("disabled", "false");
+      } else if (
+        formInputItem.checked == false &&
+        formInputItem.id == "check_" + id
+      ) {
         this.IsChecked = false;
-       
       }
 
-      if ((this.bookArray.length == 1 && this.IsChecked == true) || (this.bookArray.length == 2 && this.IsChecked == false)) {
-        $('#10hrposter').show();
+      if (
+        (this.bookArray.length == 1 && this.IsChecked == true) ||
+        (this.bookArray.length == 2 && this.IsChecked == false)
+      ) {
+        $("#10hrposter").show();
       }
       if (this.bookArray.length == 9 && this.is10Hr == true) {
-        let formInputItem = document.querySelectorAll(".timeslotselect")[0].querySelectorAll("input");
-        formInputItem.forEach(function (inputElement) {
+        let formInputItem = document
+          .querySelectorAll(".timeslotselect")[0]
+          .querySelectorAll("input");
+        formInputItem.forEach(function(inputElement) {
           let mode = inputElement as HTMLInputElement;
           if (mode.type == "checkbox") {
             if (mode.checked == false) {
               mode.disabled = true;
             }
           }
-        })
-      }
-      else {
-        let formInputItem = document.querySelectorAll(".timeslotselect")[0].querySelectorAll("input");
-        formInputItem.forEach(function (inputElement) {
+        });
+      } else {
+        let formInputItem = document
+          .querySelectorAll(".timeslotselect")[0]
+          .querySelectorAll("input");
+        formInputItem.forEach(function(inputElement) {
           let mode = inputElement as HTMLInputElement;
           if (mode.type == "checkbox") {
             if (mode.checked == false) {
               mode.disabled = false;
             }
           }
-        })
+        });
       }
       var userId = user1.id;
       if (this.is10Hr == false) {
-        var index = this.session.indexOf(rowData.description + ',' + this.bookingDate);
+        var index = this.session.indexOf(
+          rowData.description + "," + this.bookingDate
+        );
         if (index > -1) {
           this.session.splice(index, 1);
           this.Amt = this.Amt - parseInt(this.price, 10);
-        }
-        else {
-          this.session.push(rowData.description + ',' + this.bookingDate);
+        } else {
+          this.session.push(rowData.description + "," + this.bookingDate);
           this.Amt = this.Amt + parseInt(this.price, 10);
         }
       } else {
-        var index = this.session.indexOf(rowData.description + ',' + this.bookingDate);
+        var index = this.session.indexOf(
+          rowData.description + "," + this.bookingDate
+        );
         if (index > -1) {
           this.session.splice(index, 1);
           this.Amt = this.price;
         } else {
-          this.session.push(rowData.description + ',' + this.bookingDate);
+          this.session.push(rowData.description + "," + this.bookingDate);
           this.Amt = this.price;
         }
       }
       this.booking.amount = this.Amt.toString();
       this.booking.session = this.session;
       this.booking.Coach_ID = coachid.Id;
-      this.booking.bookingCourse = localStorage.getItem('Course');
+      this.booking.bookingCourse = localStorage.getItem("Course");
       this.booking.user_Id = userId;
       this.temps = "";
       for (var i = 0; i < this.session.length; i++) {
         if (this.temps != "")
-          this.temps = this.temps + "," + this.session[i].split(',')[0];
-        else
-          this.temps = this.session[i].split(',')[0];
+          this.temps = this.temps + "," + this.session[i].split(",")[0];
+        else this.temps = this.session[i].split(",")[0];
       }
 
-      this.moment_date = moment(this.bookingDate).format('DD-MM-YYYY');
+      this.moment_date = moment(this.bookingDate).format("DD-MM-YYYY");
       this.bookArray = [];
       for (var i = 0; i < this.session.length; i++) {
-        var ses = this.session[i].split(',');
+        var ses = this.session[i].split(",");
         this.book_coach.P_UserId = this.booking.user_Id;
         this.book_coach.P_CoachId = this.booking.Coach_ID;
         this.book_coach.P_Amount = this.booking.amount;
@@ -524,39 +553,41 @@ export class CoachDetailComponent implements OnInit {
         this.book_coach.P_Date = ses[1];
         this.bookArray.push(this.book_coach);
         this.book_coach = {
-          "P_CoachId": "",
-          "P_CourseId": "",
-          "P_Date": "",
-          "P_Hour": "",
-          "P_UserId": "",
-          "P_Amount": "",
-          "P_Remarks": ""
-        }
+          P_CoachId: "",
+          P_CourseId: "",
+          P_Date: "",
+          P_Hour: "",
+          P_UserId: "",
+          P_Amount: "",
+          P_Remarks: ""
+        };
       }
-    } else if (course == 'CoursCollectifOndemand' && this.IsChecked == true) {
+    } else if (course == "CoursCollectifOndemand" && this.IsChecked == true) {
       this.slot = rowData.description;
       var userId = user1.id;
       this.booking.amount = "";
       this.booking.session = rowData.description;
       this.booking.Coach_ID = coachid.Id;
-      this.booking.bookingCourse = localStorage.getItem('Course');
+      this.booking.bookingCourse = localStorage.getItem("Course");
       this.temps = rowData.description;
       this.booking.user_Name = user1.firstName + " " + user1.lastName;
-      this.moment_date = moment(this.bookingDate).format('DD-MM-YYYY');
+      this.moment_date = moment(this.bookingDate).format("DD-MM-YYYY");
       this.booking.user_Id = userId;
       this.Amt = this.Amt - parseInt(this.price, 10);
       var data = {
         Coach_ID: coachid.Id,
         slot: rowData.description,
         date: this.bookingDate
-      }
-      this.appService.getAll('/coach/getdemandavailability', data).subscribe((data) => {
-        if ((data as any).data.availabilty.length > 0) {
-          this.book_person = (data as any).data.availabilty.length;
-          this.booked_user = (data as any).data.availabilty;
-        }
-        this.step_2 = true;
-      })
+      };
+      this.appService
+        .getAll("/coach/getdemandavailability", data)
+        .subscribe(data => {
+          if ((data as any).data.availabilty.length > 0) {
+            this.book_person = (data as any).data.availabilty.length;
+            this.booked_user = (data as any).data.availabilty;
+          }
+          this.step_2 = true;
+        });
 
       this.bookArray = [];
       this.book_coach.P_UserId = this.booking.user_Id;
@@ -567,35 +598,42 @@ export class CoachDetailComponent implements OnInit {
       this.book_coach.P_Date = this.bookingDate;
       this.bookArray.push(this.book_coach);
       this.book_coach = {
-        "P_CoachId": "",
-        "P_CourseId": "",
-        "P_Date": "",
-        "P_Hour": "",
-        "P_UserId": "",
-        "P_Amount": "",
-        "P_Remarks": ""
-      }
-    } else if (course == 'CoursCollectifClub') {
+        P_CoachId: "",
+        P_CourseId: "",
+        P_Date: "",
+        P_Hour: "",
+        P_UserId: "",
+        P_Amount: "",
+        P_Remarks: ""
+      };
+    } else if (course == "CoursCollectifClub") {
       var userId = user1.id;
-      var time = rowData.StartTime.replace(':00', 'h') + "-" + rowData.EndTime.replace(':00', 'h')
+      var time =
+        rowData.StartTime.replace(":00", "h") +
+        "-" +
+        rowData.EndTime.replace(":00", "h");
       this.Amt = this.Amt + parseInt(rowData.Price, 10);
       this.Clubcourse = rowData.Course;
       this.booking.amount = rowData.Price.toString();
       this.booking.session = this.session;
 
-      console.log("coursecollectifclub", this.coach_detail)
+      console.log("coursecollectifclub", this.coach_detail);
       this.booking.coach_Email = this.coach_detail.Coach_Email;
-      this.booking.coach_Name = this.coach_detail.Coach_Fname + " " + this.coach_detail.Coach_Lname;
+      this.booking.coach_Name =
+        this.coach_detail.Coach_Fname + " " + this.coach_detail.Coach_Lname;
       this.booking.Coach_ID = coachid.Id;
       this.booking.user_Name = user1.firstName + " " + user1.lastName;
       this.temps = time;
-      this.booking.bookingCourse = localStorage.getItem('Course');
-      this.booking.bookingDate = this.formatDate(new Date);
-      var date = new Date;
+      this.booking.bookingCourse = localStorage.getItem("Course");
+      this.booking.bookingDate = this.formatDate(new Date());
+      var date = new Date();
       date.setFullYear(date.getFullYear() + 1);
       date.setMonth(5);
-      date.setDate(30)
-      this.booking.bookingDateRange = moment(new Date).format('DD-MM-YYYY') + "  à " + moment(date).format('DD-MM-YYYY');
+      date.setDate(30);
+      this.booking.bookingDateRange =
+        moment(new Date()).format("DD-MM-YYYY") +
+        "  à " +
+        moment(date).format("DD-MM-YYYY");
       this.booking.user_Id = userId;
 
       this.bookArray = [];
@@ -604,18 +642,18 @@ export class CoachDetailComponent implements OnInit {
       this.book_coach.P_Amount = this.booking.amount;
       this.book_coach.P_CourseId = this.booking.bookingCourse;
       this.book_coach.P_Hour = time;
-      this.book_coach.P_Date = moment(new Date).format('YYYY-MM-DD');
+      this.book_coach.P_Date = moment(new Date()).format("YYYY-MM-DD");
       this.book_coach.P_Remarks = rowData.Course;
       this.bookArray.push(this.book_coach);
       this.book_coach = {
-        "P_CoachId": "",
-        "P_CourseId": "",
-        "P_Date": "",
-        "P_Hour": "",
-        "P_UserId": "",
-        "P_Amount": "",
-        "P_Remarks": ""
-      }
+        P_CoachId: "",
+        P_CourseId: "",
+        P_Date: "",
+        P_Hour: "",
+        P_UserId: "",
+        P_Amount: "",
+        P_Remarks: ""
+      };
     }
     console.log(this.bookArray);
   }
@@ -623,50 +661,52 @@ export class CoachDetailComponent implements OnInit {
   closemodal() {
     this.spinner.show();
     this.revokeChanges();
-    $('#available').hide();
-    $('.modal-backdrop').hide();
-    $('body').removeClass("modal-open");
-    this.appService.getAll('/coach/getTimeslot', this.Timeslotdata).subscribe((data) => {
-      this.timeslot = (data as any).data.availabilty[0];
-      this.spinner.hide();
-    })
+    $("#available").hide();
+    $(".modal-backdrop").hide();
+    $("body").removeClass("modal-open");
+    this.appService
+      .getAll("/coach/getTimeslot", this.Timeslotdata)
+      .subscribe(data => {
+        this.timeslot = (data as any).data.availabilty[0];
+        this.spinner.hide();
+      });
   }
 
   closeclub() {
     this.spinner.show();
     this.revokeChanges();
-    $('#clubmodal').hide();
-    $('.modal-backdrop').hide();
-    $('body').removeClass("modal-open");
-    this.spinner.hide()
+    $("#clubmodal").hide();
+    $(".modal-backdrop").hide();
+    $("body").removeClass("modal-open");
+    this.spinner.hide();
   }
 
   revokeChanges() {
     this.booking = {
-      "Coach_ID": "",
-      "user_Id": "",
-      "payment_Id": 0,
-      "status": "",
-      "bookingDate": "",
-      "bookingCourse": "",
-      "amount": "",
-      "coach_Email": "",
-      "user_Email": "",
-      "coach_Name": "",
-      "user_Name": "",
-      "paymentStatus": "",
-      "session": [],
-      "bookingDateRange": ""
-    }
+      Coach_ID: "",
+      user_Id: "",
+      payment_Id: 0,
+      status: "",
+      bookingDate: "",
+      bookingCourse: "",
+      amount: "",
+      coach_Email: "",
+      user_Email: "",
+      coach_Name: "",
+      user_Name: "",
+      paymentStatus: "",
+      session: [],
+      bookingDateRange: ""
+    };
     this.book_coach = {
-      "P_CoachId": "",
-      "P_CourseId": "",
-      "P_Date": "",
-      "P_Hour": "",
-      "P_UserId": "",
-      "P_Amount": "",
-      "P_Remarks": ""
-    }
+      P_CoachId: "",
+      P_CourseId: "",
+      P_Date: "",
+      P_Hour: "",
+      P_UserId: "",
+      P_Amount: "",
+      P_Remarks: ""
+    };
     this.Amt = 0;
     this.bookArray = [];
     this.session = [];
@@ -676,58 +716,60 @@ export class CoachDetailComponent implements OnInit {
 
   formatDate(date) {
     var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
       year = d.getFullYear();
 
-    if (month.length < 2)
-      month = '0' + month;
-    if (day.length < 2)
-      day = '0' + day;
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
 
-    return [year, month, day].join('-');
+    return [year, month, day].join("-");
   }
 
   bookCoach() {
     var req = {
       bookArray: this.bookArray
-    }
-    this.spinner.show()
-    this.appService.create('/coach/setreservation', req).subscribe((response) => {
+    };
+    this.spinner.show();
+    this.appService.create("/coach/setreservation", req).subscribe(response => {
       if (response && response.isSuccess == true) {
         $(".btnbookingCoursIndividual").hide();
-        this._showAlertMessage('alert-success', 'Cours réservé avec succès');
+        this._showAlertMessage("alert-success", "Cours réservé avec succès");
+      } else {
+        this._showAlertMessage(
+          "alert-danger",
+          "La réservation du cours a échoué"
+        );
       }
-      else {
-        this._showAlertMessage('alert-danger', 'La réservation du cours a échoué');
-      }
-      this.spinner.hide()
-    })
+      this.spinner.hide();
+    });
   }
 
   couchdetail() {
     this.spinner.show();
     var coach = JSON.parse(localStorage.getItem("Coach"));
     var coachemail = {
-      "Coach_Email": coach.Coach_Email
-    }
+      Coach_Email: coach.Coach_Email
+    };
 
-    this.appService.create('/coach/getcoachbyid', coachemail).subscribe(async (response) => {
-      if (response && response['data']) {
-        this.coach_detail = response.data.coach_list[0];
-        var temp = new Array();
-        temp = this.coach_detail.Coach_payment_type.split(",");
-        //console.log(temp[0]);
-        this.str = temp.join(', ');
-        this.spinner.hide();
-      }
-    });
+    this.appService
+      .create("/coach/getcoachbyid", coachemail)
+      .subscribe(async response => {
+        if (response && response["data"]) {
+          this.coach_detail = response.data.coach_list[0];
+          var temp = new Array();
+          temp = this.coach_detail.Coach_payment_type.split(",");
+          //console.log(temp[0]);
+          this.str = temp.join(", ");
+          this.spinner.hide();
+        }
+      });
   }
 
   download() {
     if (this.coach_detail.Coach_Resume) {
       var blob = this.dataURLtoBlob(this.coach_detail.Coach_Resume);
-      var link = document.createElement('a');
+      var link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
       link.download = this.coach_detail.ResumeName;
       link.click();
@@ -735,7 +777,7 @@ export class CoachDetailComponent implements OnInit {
   }
 
   dataURLtoBlob(dataurl) {
-    var arr = dataurl.split(',');
+    var arr = dataurl.split(",");
     var mime = arr[0].match(/:(.*?);/)[1];
     var bstr = window.atob(arr[1]);
     var n = bstr.length;
@@ -761,29 +803,28 @@ export class CoachDetailComponent implements OnInit {
       }
     };
     var Data: any;
-    this.appService.getAll('/coach/getallcoaches')
-      .subscribe(response => {
-        Data = response;
-        Data.data.coach_list.forEach(element => {
-          this.slides.data.push({
-            img: element.Coach_Image,
-            name: element.Coach_Fname + ' ' + element.Coach_Lname,
-            comment: element.Coach_Description
-          });
+    this.appService.getAll("/coach/getallcoaches").subscribe(response => {
+      Data = response;
+      Data.data.coach_list.forEach(element => {
+        this.slides.data.push({
+          img: element.Coach_Image,
+          name: element.Coach_Fname + " " + element.Coach_Lname,
+          comment: element.Coach_Description
         });
       });
+    });
   }
 
   enable10h() {
     // this.price = this.Indiv_10hr;
     this.is10Hr = true;
-    $('#10hrposter').hide();
+    $("#10hrposter").hide();
   }
 
   hide10h() {
     // this.price = this.Indiv_1hr;
     this.is10Hr = false;
-    $('#10hrposter').hide();
+    $("#10hrposter").hide();
   }
 
   openURL() {
@@ -791,21 +832,20 @@ export class CoachDetailComponent implements OnInit {
   }
 
   _showAlertMessage(c: string, t: string): void {
-    $('.alert-dismissible').show();
+    $(".alert-dismissible").show();
     this.alertMsg.type = c;
     this.alertMsg.msg = t;
     this.alertMsg.show = true;
 
-    setTimeout(function () {
-      $('.alert-dismissible').hide();
-    }, 3000)
+    setTimeout(function() {
+      $(".alert-dismissible").hide();
+    }, 3000);
   }
-
 
   _closeAlertMessage(e) {
     if (e) {
-      this.alertMsg.type = '';
-      this.alertMsg.msg = '';
+      this.alertMsg.type = "";
+      this.alertMsg.msg = "";
       this.alertMsg.show = false;
     }
   }

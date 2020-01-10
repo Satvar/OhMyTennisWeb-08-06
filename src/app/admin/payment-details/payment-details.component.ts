@@ -40,6 +40,7 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
   public data: any = [];
   public Fdata: any = [];
   public datanew = [];
+  paymentstripe: any;
   //public image: Blob;
 
   title = "angulardatatables";
@@ -72,7 +73,27 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(image);
   }
 
+  stripepaymentstatus() {
+    const id = this.activatedRoute.snapshot.queryParamMap.get("Coach_id");
+    var Coach_id = {
+      Coach_id: id
+    };
+    this.appService
+      .create("/admin/checkcustomeraccount", Coach_id)
+      .subscribe(response => {
+        //console.log("stripe----", response);
+        if ((response as any).data.length > 0) {
+          if (response && response["data"]) {
+            this.paymentstripe = "verified";
+          }
+        } else {
+          this.paymentstripe = "notverified";
+        }
+      });
+  }
+
   getIndividualCoaches() {
+    this.stripepaymentstatus();
     var selectedServicesList = [];
     var myFile;
     const id = this.activatedRoute.snapshot.queryParamMap.get("Coach_id");
@@ -147,11 +168,12 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
     var that = this;
     this.spinner.show();
     var data = {
+      coach_id: this.response.Coach_ID,
       email: this.response.Coach_Email,
       name: this.response.Coach_Fname + " " + this.response.Coach_Lname,
       phone: this.response.Coach_Phone
     };
-    console.log(data);
+    //console.log(data);
     //console.log("[payment-details.component.ts]--connect");
     (<any>window).Stripe.bankAccount.createToken(
       {
@@ -164,11 +186,11 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
         account_holder_type: "individual"
       },
       function(status, response) {
-        console.log(
-          "[payment-details.component.ts]--stripeResponseHandler",
-          status,
-          response
-        );
+        // console.log(
+        //   "[payment-details.component.ts]--stripeResponseHandler",
+        //   status,
+        //   response
+        // );
 
         var res = {
           status: status,
@@ -178,13 +200,16 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
         appService
           .create("/admin/createcustomerac", res)
           .subscribe(createResponse => {
+            //console.log("pament.details", createResponse);
             that.spinner.hide();
             if (createResponse && createResponse.isSuccess == true) {
               that._showAlertMessage("alert-success", createResponse.message);
               window.scrollTo(0, 0);
+              that.paymentstripe = "verified";
             } else {
               that._showAlertMessage("alert-danger", createResponse.message);
               window.scrollTo(0, 0);
+              that.paymentstripe = "notverified";
             }
           });
       }

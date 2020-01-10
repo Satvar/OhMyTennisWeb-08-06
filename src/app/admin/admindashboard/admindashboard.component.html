@@ -130,8 +130,12 @@
                                                                 value="Reserved"></td>
                                                     </ng-template>
                                                     <ng-template #fourth>
-                                                        <td *ngIf="group.paymentstatus=='UC'"><input class="btn btn-block btn-sm btn-info" type="button"
+                                                        <td *ngIf="group.paymentstatus=='UC'; else fifth"><input class="btn btn-block btn-sm btn-info" type="button"
                                                                 value="User Cancel"></td>
+                                                    </ng-template>
+                                                    <ng-template #fifth>
+                                                        <td *ngIf="group.paymentstatus=='S'"><input class="btn btn-block btn-sm btn-primary" type="button" value="Status">
+                                                        </td>
                                                     </ng-template>
                                           
                                              </tr>

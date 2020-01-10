@@ -122,6 +122,12 @@ import { ParrainerComponent } from "./pages/clubhouse/parrainer/parrainer.compon
 import { JeuxconcourComponent } from "./pages/clubhouse/jeuxconcour/jeuxconcour.component";
 import { QuizComponent } from "./pages/clubhouse/quiz/quiz.component";
 import { CharteComponent } from "./pages/concepts/charte/charte.component";
+import { HistoireFirstComponent } from "./pages/histoire/histoire-first/histoire-first.component";
+import { HistoireFourComponent } from "./pages/histoire/histoire-four/histoire-four.component";
+import { HistoireThirdComponent } from "./pages/histoire/histoire-third/histoire-third.component";
+import { HistoireSecondComponent } from "./pages/histoire/histoire-second/histoire-second.component";
+import { ConseilsMatrielTesterComponent } from "./pages/conseils/conseils-matriel-tester/conseils-matriel-tester.component";
+import { OffreDeServiceCoachTennisComponent } from "./pages/offre-de-service-coach-tennis/offre-de-service-coach-tennis.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -279,12 +285,32 @@ const routes: Routes = [
     component: ChoisirComponent
   },
   {
+    path: CONST.PATH.CONSEILS.TESTER.SELF,
+    component: ConseilsMatrielTesterComponent
+  },
+  {
     path: CONST.PATH.TENNIS.TENNIS.SELF,
     component: TennisComponent
   },
   {
     path: CONST.PATH.TENNIS.HISTOIRE.SELF,
     component: HistoireComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.HISTOIREFIRST.SELF,
+    component: HistoireFirstComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.HISTOIRE1SECOND.SELF,
+    component: HistoireSecondComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.HISTOIRETHIRD.SELF,
+    component: HistoireThirdComponent
+  },
+  {
+    path: CONST.PATH.TENNIS.HISTOIREFOUR.SELF,
+    component: HistoireFourComponent
   },
   {
     path: CONST.PATH.TENNIS.LEXIQUE.SELF,
@@ -356,6 +382,10 @@ const routes: Routes = [
     component: QuizComponent
   },
   {
+    path: CONST.PATH.OFFREDESERVICE,
+    component: OffreDeServiceCoachTennisComponent
+  },
+  {
     path: "**",
     component: HomeComponent
   }
@@ -412,9 +442,14 @@ export function getAuthServiceConfigs() {
     DietetiqueComponent,
     FormephysiqueComponent,
     ChoisirComponent,
+    ConseilsMatrielTesterComponent,
     ClubhouseComponent,
     TennisComponent,
     HistoireComponent,
+    HistoireFirstComponent,
+    HistoireSecondComponent,
+    HistoireThirdComponent,
+    HistoireFourComponent,
     LexiqueComponent,
     LexiqueatodComponent,
     LexiqueetomComponent,
@@ -431,7 +466,8 @@ export function getAuthServiceConfigs() {
     ParrainerComponent,
     JeuxconcourComponent,
     QuizComponent,
-    CharteComponent
+    CharteComponent,
+    OffreDeServiceCoachTennisComponent
   ],
   imports: [
     BrowserModule,
