@@ -21,6 +21,8 @@ export class CoachDetailComponent implements OnInit {
   mapvalues: any;
   lat: any;
   lang: any;
+  curentlat: any;
+  curentlang: any;
   public alertMsg: any = {
     type: "",
     msg: "",
@@ -161,6 +163,8 @@ export class CoachDetailComponent implements OnInit {
   calendarComponent: FullCalendarComponent;
 
   ngOnInit() {
+    this.getcurrentcordinates();
+
     this.spinner.show();
     this.price = 0;
     if (window.innerWidth > 1024) {
@@ -176,21 +180,20 @@ export class CoachDetailComponent implements OnInit {
 
     // Getting Max_Price of selected course for Summary
     var coach = JSON.parse(localStorage.getItem("Coach"));
-    //console.log(coach);
+    //console.log(coach)
     var Coach_ID = {
-      coachId: coach.Coach_ID,
+      coachId: coach.Id,
       Coach_ID: coach.Id
     };
     var course = localStorage.getItem("Course");
-
+    //console.log(Coach_ID)
     this.appService
       .getAll("/coach/CoachCalendarAvaiabilityForUser", Coach_ID)
       .subscribe(response => {
-        //console.log("coach-details.component.ts", response);
         if ((response as any).data.coach_list.length > 0) {
           if (response && response["data"]) {
             var dat = (response as any).data.coach_list;
-            //console.log("coach-details.component.ts", dat);
+
             for (let i = 0; i < dat.length; i++) {
               $('td[data-date="' + dat[i].Date.split("T")[0] + '"]').css(
                 "background-color",
@@ -217,7 +220,7 @@ export class CoachDetailComponent implements OnInit {
         }
         // this.spinner.hide();
       });
-    console.log(Coach_ID, " ", course);
+
     if (course == "CoursIndividuel") {
       this.appService
         .getAll("/course/getindividualcourse", Coach_ID)
@@ -225,7 +228,6 @@ export class CoachDetailComponent implements OnInit {
           if ((response as any).data.course.length > 0) {
             if (response && response["data"]) {
               var dat = (response as any).data.course[0];
-
               this.price = dat.Price_min;
               this.Indiv_1hr = dat.Price_min;
               this.Indiv_10hr = dat.Price_max;
@@ -236,7 +238,7 @@ export class CoachDetailComponent implements OnInit {
               this.mapvalues = eval("[" + dat.coordonnees_gps + "]");
               this.lat = this.mapvalues[0].toFixed(3);
               this.lang = this.mapvalues[1].toFixed(3);
-
+              this.mapintigration(this.mapvalues);
               this.appService
                 .getAll("/city/" + dat.Postalcode)
                 .subscribe(response => {
@@ -246,29 +248,6 @@ export class CoachDetailComponent implements OnInit {
                     this.selectedCity = (response as any).data.city_list;
                   }
                 });
-
-              this.map = L.map("map", {
-                center: this.mapvalues,
-                zoom: 16
-              });
-
-              const tiles = L.tileLayer(
-                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {
-                  maxZoom: 25
-                }
-              );
-
-              tiles.addTo(this.map);
-              var greenIcon = L.icon({
-                iconUrl: "../assets/images/marker-icon.png"
-              });
-
-              L.marker(this.mapvalues, { icon: greenIcon })
-                .addTo(this.map)
-                .openPopup();
-
-              this.spinner.hide();
             }
           }
           this.couchdetail();
@@ -278,7 +257,6 @@ export class CoachDetailComponent implements OnInit {
       this.appService
         .getAll("/course/getcousecollectivedemanad", Coach_ID)
         .subscribe(response => {
-          console.log(response);
           if ((response as any).data.course.length > 0) {
             if (response && response["data"]) {
               var dat = (response as any).data.course[0];
@@ -294,7 +272,7 @@ export class CoachDetailComponent implements OnInit {
               this.mapvalues = eval("[" + dat.coordonnees_gps + "]");
               this.lat = this.mapvalues[0].toFixed(3);
               this.lang = this.mapvalues[1].toFixed(3);
-
+              this.mapintigration(this.mapvalues);
               this.appService
                 .getAll("/city/" + dat.Postalcode)
                 .subscribe(response => {
@@ -304,28 +282,6 @@ export class CoachDetailComponent implements OnInit {
                     this.selectedCity = (response as any).data.city_list;
                   }
                 });
-              this.map = L.map("map", {
-                center: this.mapvalues,
-                zoom: 16
-              });
-
-              const tiles = L.tileLayer(
-                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {
-                  maxZoom: 25
-                }
-              );
-
-              tiles.addTo(this.map);
-              var greenIcon = L.icon({
-                iconUrl: "../assets/images/marker-icon.png"
-              });
-
-              L.marker(this.mapvalues, { icon: greenIcon })
-                .addTo(this.map)
-                .openPopup();
-
-              this.spinner.hide();
             }
           }
           this.couchdetail();
@@ -346,6 +302,7 @@ export class CoachDetailComponent implements OnInit {
               this.mapvalues = eval("[" + dat.coordonnees_gps + "]");
               this.lat = this.mapvalues[0].toFixed(3);
               this.lang = this.mapvalues[1].toFixed(3);
+              this.mapintigration(this.mapvalues);
               this.appService
                 .getAll("/city/" + dat.Postalcode)
                 .subscribe(response => {
@@ -356,35 +313,52 @@ export class CoachDetailComponent implements OnInit {
                     console.log(this.selectedCity);
                   }
                 });
-
-              this.map = L.map("map", {
-                center: this.mapvalues,
-                zoom: 16
-              });
-
-              const tiles = L.tileLayer(
-                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {
-                  maxZoom: 25
-                }
-              );
-
-              tiles.addTo(this.map);
-              var greenIcon = L.icon({
-                iconUrl: "../assets/images/marker-icon.png"
-              });
-
-              L.marker(this.mapvalues, { icon: greenIcon })
-                .addTo(this.map)
-                .openPopup();
-
-              this.spinner.hide();
             }
           }
         });
       this.couchdetail();
     }
   }
+
+  mapintigration(mappoint) {
+    this.map = L.map("map", {
+      center: mappoint,
+      zoom: 16
+    });
+
+    const tiles = L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+        maxZoom: 25
+      }
+    );
+
+    tiles.addTo(this.map);
+    var greenIcon = L.icon({
+      iconUrl: "../assets/images/marker-icon.png"
+    });
+
+    L.marker(mappoint, { icon: greenIcon })
+      .addTo(this.map)
+      .openPopup();
+  }
+
+  async getcurrentcordinates() {
+    const resp = await fetch("https://ipapi.co/json/");
+    const data = await resp.json();
+    this.curentlat = data.latitude.toFixed(3);
+    this.curentlang = data.longitude.toFixed(3);
+    console.log(this.curentlat, " ", this.curentlang);
+  }
+
+  // async getcurrentcordinates() {
+  //   try {
+  //     const response = await axios.get('/user?ID=12345');
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   handleDateClick(arg) {
     // handler method
@@ -616,8 +590,6 @@ export class CoachDetailComponent implements OnInit {
       this.Clubcourse = rowData.Course;
       this.booking.amount = rowData.Price.toString();
       this.booking.session = this.session;
-
-      console.log("coursecollectifclub", this.coach_detail);
       this.booking.coach_Email = this.coach_detail.Coach_Email;
       this.booking.coach_Name =
         this.coach_detail.Coach_Fname + " " + this.coach_detail.Coach_Lname;
