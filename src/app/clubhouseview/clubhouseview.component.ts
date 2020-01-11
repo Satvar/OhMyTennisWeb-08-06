@@ -34,7 +34,12 @@ export class ClubhouseviewComponent extends AppComponent implements OnInit {
   }
   map: any;
   mapvalues: any;
+  lat: any;
+  lang: any;
+  curentlat: any;
+  curentlang: any;
   ngOnInit() {
+    this.getcurrentcordinates();
     this.spinner.show();
     var club = JSON.parse(localStorage.getItem("Club"));
     var court_id = {
@@ -49,7 +54,8 @@ export class ClubhouseviewComponent extends AppComponent implements OnInit {
           if (data.data.club_list[0]) {
             this.res = data.data.club_list[0];
             this.mapvalues = eval("[" + this.res["coordonnees_gps"] + "]");
-
+            this.lat = this.mapvalues[0].toFixed(3);
+            this.lang = this.mapvalues[1].toFixed(3);
             this.map = L.map("map", {
               center: this.mapvalues,
               zoom: 16
@@ -82,4 +88,12 @@ export class ClubhouseviewComponent extends AppComponent implements OnInit {
   }
 
   getCourt() {}
+
+  async getcurrentcordinates() {
+    const resp = await fetch("https://ipapi.co/json/");
+    const data = await resp.json();
+    this.curentlat = data.latitude.toFixed(3);
+    this.curentlang = data.longitude.toFixed(3);
+    console.log(this.curentlat, " ", this.curentlang);
+  }
 }

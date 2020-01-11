@@ -111,33 +111,37 @@
               <div class="clearfix"></div>
             </div>
           </div>
-          
         </div>
-        <div class="col-xs-12 col-md-4 match_height" style="padding-right: 0px;">
+        <div
+          class="col-xs-12 col-md-4 match_height"
+          style="padding-right: 0px;"
+        >
           <div class="list_right">
             <h5>Court Image</h5>
-            <a href="#"><img src="{{ res.courtfile }}" height="220" /></a>
+            <a href="#"><img src="{{ res.courtfile }}" height="220"/></a>
           </div>
-          
+
           <div class="list_right">
-            <img src="" width="100%"
-              height="220"/> 
-          
-            
+            <img src="" width="100%" height="220" />
           </div>
           <div class="clearfix"></div>
           <div class="map-container">
-            
             <div class="map-frame">
-             
-          <h5 style="z-index: 401; position: absolute;right: 0px;">Map Location</h5>
-              <div id="map"></div>
+              <h5 style="z-index: 401; position: absolute;right: 0px;">
+                Map Location
+              </h5>
+              <a
+                href="https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route={{
+                  curentlat
+                }}%2C{{ curentlang }}%3B{{ lat }}%2C{{ lang }}"
+                target="_blank"
+                ><div id="map"></div
+              ></a>
             </div>
           </div>
         </div>
-        
+
         <div class="clearfix"></div>
-        
       </div>
     </div>
   </div>
