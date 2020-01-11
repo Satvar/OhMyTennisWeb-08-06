@@ -414,7 +414,7 @@
                                                 <div class="row">
                                                     <div class="form-group">
                                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                                            <label class="label1">Transport <span
+                                                            <label class="label1">Mode de transport <span
                                                                     class="mandatory">*</span></label>
                                                         </div>
                                                         <div class="col-md-8 col-sm-8 col-xs-12">
@@ -506,7 +506,7 @@
                                                             <label>Nom de la banque <span class="red">*</span></label>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" placeholder="IOB"
+                                                            <input type="text" class="form-control" placeholder="IBAN"
                                                                 [(ngModel)]="res.Coach_Bank_Name"
                                                                 #Coach_Bank_Name="ngModel"
                                                                 [ngClass]="{'alert_field': (Coach_Bank_Name.errors && (Coach_Bank_Name.touched || Coach_Bank_Name.dirty))}"
@@ -526,7 +526,7 @@
                                                             <label>Numéro de compte <span class="red">*</span></label>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" placeholder="IOB"
+                                                            <input type="text" class="form-control" placeholder="Numéro de compte"
                                                                 [(ngModel)]="res.Coach_Bank_ACCNum"
                                                                 #Coach_Bank_ACCNum="ngModel"
                                                                 [ngClass]="{'alert_field': (Coach_Bank_ACCNum.errors && (Coach_Bank_ACCNum.touched || Coach_Bank_ACCNum.dirty))}"
@@ -546,7 +546,7 @@
                                                             <label>Code banque <span class="red">*</span></label>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" placeholder="IOB"
+                                                            <input type="text" class="form-control" placeholder="Code banque"
                                                                 [(ngModel)]="res.Branch_Code" #Branch_Code="ngModel"
                                                                 [ngClass]="{'alert_field': (Branch_Code.errors && (Branch_Code.touched || Branch_Code.dirty))}"
                                                                 name="Branch_Code" readonly required>
@@ -565,7 +565,7 @@
                                                             <label>Ville de la banque <span class="red">*</span></label>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" placeholder="Paris"
+                                                            <input type="text" class="form-control" placeholder="Ville de la banque"
                                                                 [(ngModel)]="res.Coach_Bank_City"
                                                                 #Coach_Bank_City="ngModel"
                                                                 [ngClass]="{'alert_field': (Coach_Bank_City.errors && (Coach_Bank_City.touched || Coach_Bank_City.dirty))}"

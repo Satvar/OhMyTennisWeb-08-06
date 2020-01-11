@@ -200,6 +200,7 @@ export class HomeComponent extends AppComponent implements OnInit {
   }
 
   handleClick(event: Event) {
+    event.preventDefault();
     sessionStorage.setItem("Ville", this.Ville ? this.Ville : "");
     sessionStorage.setItem("Date", this.Date ? this.formatDate(this.Date) : "");
     this.router.navigate(["/ohmycoach"]);

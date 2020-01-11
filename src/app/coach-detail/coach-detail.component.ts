@@ -155,8 +155,10 @@ export class CoachDetailComponent implements OnInit {
     this.slidecnt = 4;
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     var datas = this.UserAviablility;
+    var today = document.getElementsByClassName("fc-today-button");
+    if (today) today[0].innerHTML = "Aujourd'hui";
   }
 
   @ViewChild("calendar", { static: false })

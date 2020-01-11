@@ -42,11 +42,11 @@ export class DashboardComponent extends CoachComponent implements OnInit {
       Coach_ID: coach1.id
     };
     this.spinner.show();
-    console.log("dashboard.components.ts", coachid);
+    //console.log("dashboard.components.ts", coachid);
     this.appService.create("/getallcourscount", coachid).subscribe(response => {
       if (response && response["data"]) {
         var data = response["data"];
-        console.log(data);
+        //console.log(data);
         this.CoursIndividuel = data.CoursIndividuel;
         this.CoursCollectifOndemand = data.CoursCollectifOndemand;
         this.CoursCollectifClub = data.CoursCollectifClub;

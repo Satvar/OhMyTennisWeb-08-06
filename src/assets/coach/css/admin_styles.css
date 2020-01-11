@@ -40,6 +40,12 @@
 #available .radio input:checked ~ .checkround {
   background-color: #fff;
 }
+.clubedit_page .box-body .form-control {
+  max-width: 460px;
+}
+.admin_tempstyle.super_admintop .form_devarea {
+  margin-top: 10px;
+}
 
 .modal-body .cours_individualsec .checkround,
 #available .checkround {
@@ -459,7 +465,8 @@ span {
 .admin_tempstyle .form_devarea .card-body {
   margin-top: 10px;
 }
-.admin_tempstyle.super_admintop table.dataTable tbody th, table.dataTable tbody td {
+.admin_tempstyle.super_admintop table.dataTable tbody th,
+table.dataTable tbody td {
   text-align: center;
 }
 .admin_tempstyle.super_admintop .dropdown-menu li > a {
@@ -482,25 +489,30 @@ span {
   display: block;
   margin-top: 30px;
 }
-.coach_listable.table>tbody>tr>td, .coach_listable.table>tbody>tr>th, .coach_listable.table>tfoot>tr>td, .coach_listable.table>tfoot>tr>th, .coach_listable.table>thead>tr>td, .coach_listable.table>thead>tr>th {
+.coach_listable.table > tbody > tr > td,
+.coach_listable.table > tbody > tr > th,
+.coach_listable.table > tfoot > tr > td,
+.coach_listable.table > tfoot > tr > th,
+.coach_listable.table > thead > tr > td,
+.coach_listable.table > thead > tr > th {
   vertical-align: middle;
 }
 .payment_table {
   font-size: 14px;
 }
-.payment_table.table>thead>tr>th {
-  border-top: 2px solid #ddd!important;
+.payment_table.table > thead > tr > th {
+  border-top: 2px solid #ddd !important;
 }
 .card.card-profile {
   font-size: 14px;
-
 }
-.admin_tempstyle .table > thead:first-child > tr:first-child > th , .admin_tempstyle .table > thead:first-child > tr > td {
+.admin_tempstyle .table > thead:first-child > tr:first-child > th,
+.admin_tempstyle .table > thead:first-child > tr > td {
   text-align: center;
 }
 .admin_tempstyle .payment_page .card-profile .card-avatar img {
   width: 100%;
   max-width: 160px;
   max-height: 180px;
-  height: 160px ;
+  height: 160px;
 }

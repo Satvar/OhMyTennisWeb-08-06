@@ -27,7 +27,7 @@
                                                 <div class="col-md-6"><input type="text" [(ngModel)]="res.Min_People"
                                                         name="res.Min_People" #Min_People="ngModel" pattern="^[2-6]{1}$"
                                                         [ngClass]="{'alert_field': (Min_People.errors && (Min_People.touched || Min_People.dirty))}"
-                                                        class="form-control" readonly required placeholder="Minimum">
+                                                        class="form-control" required placeholder="Minimum">
                                                     <ng-container
                                                         *ngIf="Min_People.errors && (Min_People.touched || Min_People.dirty)">
                                                         <span class="alert_text"
@@ -42,7 +42,7 @@
                                                 <div class="col-md-6"><input type="text" [(ngModel)]="res.Max_People"
                                                         name="res.Max_People" #Max_People="ngModel" pattern="^[2-6]{1}$"
                                                         [ngClass]="{'alert_field': (Max_People.errors && (Max_People.touched || Max_People.dirty))}"
-                                                        class="form-control" readonly required placeholder="Maximum">
+                                                        class="form-control" required placeholder="Maximum">
                                                     <ng-container
                                                         *ngIf="Max_People.errors && (Max_People.touched || Max_People.dirty) ">
                                                         <span class="alert_text"
@@ -78,7 +78,7 @@
                                             <textarea class="form-control" [(ngModel)]="res.Description"
                                                 name="res.Description" #Description="ngModel"
                                                 [ngClass]="{'alert_field': (Description.errors && (Description.touched || Description.dirty))}"
-                                                id="exampleFormControlTextarea1" rows="5" readonly required
+                                                id="exampleFormControlTextarea1" rows="5" required
                                                 placeholder=""></textarea>
                                             <ng-container
                                                 *ngIf="Description.errors && (Description.touched || Description.dirty)">
@@ -97,7 +97,7 @@
                                         <div class="col-md-8">
                                             
                                             <input type="text" class="form-control" [(ngModel)]="res.Location"
-                                                name="res.Location" readyonly required #Place="ngModel"
+                                                name="res.Location" required #Place="ngModel"
                                                 [ngClass]="{'alert_field': (Place.errors && (Place.touched || Place.dirty))}"
                                                 placeholder="">
                                             <ng-container *ngIf="Place.errors && (Place.touched || Place.dirty)">
@@ -124,7 +124,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <input type="number" class="form-control" [(ngModel)]="res.Postalcode"
-                                                name="res.Postalcode" readyonly required #Pincode="ngModel"
+                                                name="res.Postalcode" required #Pincode="ngModel"
                                                 [ngClass]="{'alert_field': (Pincode.errors && (Pincode.touched || Pincode.dirty))}"
                                                 placeholder="">
                                             <ng-container *ngIf="Pincode.errors && (Pincode.touched || Pincode.dirty)">
@@ -186,7 +186,7 @@
                                                         [(ngModel)]="res.Price_2pl_1hr" name="res.Price_2pl_1hr"
                                                         pattern="^[0-9]*$" #Price_2pl_1hr="ngModel"
                                                         [ngClass]="{'alert_field': (Price_2pl_1hr.errors && (Price_2pl_1hr.touched || Price_2pl_1hr.dirty))}"
-                                                        id="Price_2pl_1hr" readonly required placeholder="Pour heure">
+                                                        id="Price_2pl_1hr" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_2pl_1hr.errors && (Price_2pl_1hr.touched || Price_2pl_1hr.dirty)">
                                                         <span class="alert_text"
@@ -204,7 +204,7 @@
                                                         [(ngModel)]="res.Price_3pl_1hr" name="res.Price_3pl_1hr"
                                                         pattern="^[0-9]*$" #Price_3pl_1hr="ngModel"
                                                         [ngClass]="{'alert_field': (Price_3pl_1hr.errors && (Price_3pl_1hr.touched || Price_3pl_1hr.dirty))}"
-                                                        id="Price_3pl_1hr" readonly required placeholder="Pour heure">
+                                                        id="Price_3pl_1hr" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_3pl_1hr.errors && (Price_3pl_1hr.touched || Price_3pl_1hr.dirty)">
                                                         <span class="alert_text"
@@ -225,7 +225,7 @@
                                                         [(ngModel)]="res.Price_4pl_1hr" name="res.Price_4pl_1hr"
                                                         pattern="^[0-9]*$" #Price_4pl_1hr="ngModel"
                                                         [ngClass]="{'alert_field': (Price_4pl_1hr.errors && (Price_4pl_1hr.touched || Price_4pl_1hr.dirty))}"
-                                                        id="Price_4pl_1hr" readonly required placeholder="Pour heure">
+                                                        id="Price_4pl_1hr" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_4pl_1hr.errors && (Price_4pl_1hr.touched || Price_4pl_1hr.dirty)">
                                                         <span class="alert_text"
@@ -242,7 +242,7 @@
                                                         [(ngModel)]="res.Price_5pl_1hr" name="res.Price_5pl_1hr"
                                                         pattern="^[0-9]*$" #Price_5pl_1hr="ngModel"
                                                         [ngClass]="{'alert_field': (Price_5pl_1hr.errors && (Price_5pl_1hr.touched || Price_5pl_1hr.dirty))}"
-                                                        id="Price_5pl_1hr" readonly required placeholder="Pour heure">
+                                                        id="Price_5pl_1hr" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_5pl_1hr.errors && (Price_5pl_1hr.touched || Price_5pl_1hr.dirty)">
                                                         <span class="alert_text"
@@ -262,7 +262,7 @@
                                                         [(ngModel)]="res.Price_6pl_1hr" name="res.Price_6pl_1hr"
                                                         pattern="^[0-9]*$" #Price_6pl_1hr="ngModel"
                                                         [ngClass]="{'alert_field': (Price_6pl_1hr.errors && (Price_6pl_1hr.touched || Price_6pl_1hr.dirty))}"
-                                                        id="Price_6pl_1hr" readonly required placeholder="Pour heure">
+                                                        id="Price_6pl_1hr" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_6pl_1hr.errors && (Price_6pl_1hr.touched || Price_6pl_1hr.dirty)">
                                                         <span class="alert_text"
@@ -294,7 +294,7 @@
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Sun"
                                                         name="res.Price_Sun" pattern="^[0-9]*$" #Price_Sun="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Sun.errors && (Price_Sun.touched || Price_Sun.dirty))}"
-                                                        id="Price_Sun" readonly required placeholder="Pour heure">
+                                                        id="Price_Sun" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_Sun.errors && (Price_Sun.touched || Price_Sun.dirty)">
                                                         <span class="alert_text"
@@ -310,7 +310,7 @@
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Mon"
                                                         name="res.Price_Mon" pattern="^[0-9]*$" #Price_Mon="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Mon.errors && (Price_Mon.touched || Price_Mon.dirty))}"
-                                                        id="Price_Mon" readonly required placeholder="Pour heure">
+                                                        id="Price_Mon" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_Mon.errors && (Price_Mon.touched || Price_Mon.dirty)">
                                                         <span class="alert_text"
@@ -329,7 +329,7 @@
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Tue"
                                                         name="res.Price_Tue" pattern="^[0-9]*$" #Price_Tue="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Tue.errors && (Price_Tue.touched || Price_Tue.dirty))}"
-                                                        id="Price_Tue" readonly required placeholder="Pour heure">
+                                                        id="Price_Tue" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_Tue.errors && (Price_Tue.touched || Price_Tue.dirty)">
                                                         <span class="alert_text"
@@ -344,7 +344,7 @@
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Wed"
                                                         name="res.Price_Wed" pattern="^[0-9]*$" #Price_Wed="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Wed.errors && (Price_Wed.touched || Price_Wed.dirty))}"
-                                                        id="Price_Wed" readonly required placeholder="Pour heure">
+                                                        id="Price_Wed" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_Wed.errors && (Price_Wed.touched || Price_Wed.dirty)">
                                                         <span class="alert_text"
@@ -362,7 +362,7 @@
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Thr"
                                                         name="res.Price_Thr" pattern="^[0-9]*$" #Price_Thr="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Thr.errors && (Price_Thr.touched || Price_Thr.dirty))}"
-                                                        id="Price_Thr" readonly required placeholder="Pour heure">
+                                                        id="Price_Thr" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_Thr.errors && (Price_Thr.touched || Price_Thr.dirty)">
                                                         <span class="alert_text"
@@ -377,7 +377,7 @@
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Fri"
                                                         name="res.Price_Fri" pattern="^[0-9]*$" #Price_Fri="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Fri.errors && (Price_Fri.touched || Price_Fri.dirty))}"
-                                                        id="Price_Fri" readonly required placeholder="Pour heure">
+                                                        id="Price_Fri" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_Fri.errors && (Price_Fri.touched || Price_Fri.dirty)">
                                                         <span class="alert_text"
@@ -395,7 +395,7 @@
                                                     <input type="text" class="form-control" [(ngModel)]="res.Price_Sat"
                                                         name="res.Price_Sat" pattern="^[0-9]*$" #Price_Sat="ngModel"
                                                         [ngClass]="{'alert_field': (Price_Sat.errors && (Price_Sat.touched || Price_Sat.dirty))}"
-                                                        id="Price_Sat" readonly required placeholder="Pour heure">
+                                                        id="Price_Sat" required placeholder="Pour heure">
                                                     <ng-container
                                                         *ngIf="Price_Sat.errors && (Price_Sat.touched || Price_Sat.dirty)">
                                                         <span class="alert_text"

@@ -41,11 +41,11 @@
                   <td>{{ group.email }}</td>
                   <td>{{ group.phone }}</td>
                   <td>
-                    <a (click)="getcoach(group.slno)"
+                    <a (click)="getcoach(group.email)"
                       ><i class="fa fa-edit color-green"></i
                     ></a>
                   </td>
-                  <td *ngIf="group.status == 'Yes'; else falseprint">
+                  <td *ngIf="group.status == 1; else falseprint">
                     <a (click)="changecoachstatus(group.slno)"
                       ><input
                         class="btn btn-success"

@@ -1,20 +1,19 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
-import { Location } from '@angular/common';
-import { BrowserModule, Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { AppService } from '../../shared/app.service';
-import { CoachComponent } from './../../model/coach/coach.component';
-import * as $ from 'jquery';
+import { Component, OnInit, AfterViewChecked } from "@angular/core";
+import { Location } from "@angular/common";
+import { BrowserModule, Title, Meta } from "@angular/platform-browser";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { AppService } from "../../shared/app.service";
+import { CoachComponent } from "./../../model/coach/coach.component";
+import * as $ from "jquery";
 /* [ Spinner ] */
-import { NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: "app-profile",
+  templateUrl: "./profile.component.html",
+  styleUrls: ["./profile.component.scss"]
 })
 export class ProfileComponent extends CoachComponent implements OnInit {
-
   public res = {
     Coach_Fname: "",
     Coach_Lname: "",
@@ -33,9 +32,10 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     Coach_Bank_ACCNum: "",
     Branch_Code: "",
     Coach_Bank_City: "",
-    Coach_Image: "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png",
+    Coach_Image:
+      "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png",
     Coach_Resume: ""
-  }
+  };
 
   public trans_error: Boolean = false;
   public cheque_error: Boolean = false;
@@ -51,26 +51,20 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     location: Location,
     spinner: NgxSpinnerService
   ) {
-    super(
-      activatedRoute,
-      router,
-      appService,
-      location,
-      spinner
-    );
+    super(activatedRoute, router, appService, location, spinner);
   }
 
   ngOnInit() {
-    $('#trans_error').hide();
-    $('#cheque_error').hide();
+    $("#trans_error").hide();
+    $("#cheque_error").hide();
     var titile = document.getElementsByClassName("brand");
-    if (titile)
-      titile[0].innerHTML = 'MON COMPTE';
+    if (titile) titile[0].innerHTML = "MON COMPTE";
     this.profileUpdate();
   }
 
   propagateChange = (result, file, type) => {
-    var docx = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+    var docx =
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
     var doc = "application/msword";
     if (type == "application/pdf" || type == docx || type == doc) {
       this.res.Coach_Resume = result;
@@ -88,22 +82,26 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     var file: File = inputValue.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = (_event) => {
+    reader.onload = _event => {
       this.propagateChange(reader.result, file, file.type);
     };
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
+    reader.onerror = function(error) {
+      console.log("Error: ", error);
     };
   }
 
   profileTabs() {
-    return [{
-      title: 'Informations personnelles'
-    }, {
-      title: 'Ensemble de compétences'
-    }, {
-      title: 'Détails de la transaction'
-    }];
+    return [
+      {
+        title: "Informations personnelles"
+      },
+      {
+        title: "Ensemble de compétences"
+      },
+      {
+        title: "Détails de la transaction"
+      }
+    ];
   }
 
   changeTabs(e, i) {
@@ -114,7 +112,7 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     $(".form-group :input").prop("readonly", false);
     $(".form-group :input").prop("required", true);
     $("#submit").prop("readonly", false);
-    this.submit_disabled = false
+    this.submit_disabled = false;
     $("#email").prop("disabled", true);
     $("#Coach_Resume").prop("disabled", false);
     $("#submit").prop("readonly", false);
@@ -123,29 +121,31 @@ export class ProfileComponent extends CoachComponent implements OnInit {
   }
 
   onSubmit(res) {
-    $('#trans_error').hide();
-    $('#cheque_error').hide();
+    $("#trans_error").hide();
+    $("#cheque_error").hide();
     this.trans_error = false;
     this.cheque_error = false;
     var service = "";
     var transport = "";
     var payment = "";
-    let formInputItem = document.querySelectorAll(".tab_accordian")[0].querySelectorAll("input");
-    formInputItem.forEach(function (inputElement) {
+    let formInputItem = document
+      .querySelectorAll(".tab_accordian")[0]
+      .querySelectorAll("input");
+    formInputItem.forEach(function(inputElement) {
       let mode = inputElement as HTMLInputElement;
       if (mode.type == "checkbox") {
         if (mode.checked == true) {
           let modechild = mode as HTMLElement;
-          if (modechild.getAttribute('name') == 'payment') {
-            payment = payment + "," + modechild.getAttribute('id');
-          } else if (modechild.getAttribute('name') == 'service') {
-            service = service + "," + modechild.getAttribute('id');
-          } else if (modechild.getAttribute('name') == 'transport') {
-            transport = transport + "," + modechild.getAttribute('id');
+          if (modechild.getAttribute("name") == "payment") {
+            payment = payment + "," + modechild.getAttribute("id");
+          } else if (modechild.getAttribute("name") == "service") {
+            service = service + "," + modechild.getAttribute("id");
+          } else if (modechild.getAttribute("name") == "transport") {
+            transport = transport + "," + modechild.getAttribute("id");
           }
         }
       }
-    })
+    });
     //transport
     if (transport[0] == ",") {
       res.Coach_transport = transport.substring(1);
@@ -170,35 +170,34 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     res.ResumeName = this.filename;
     if (res.Coach_transport == "") {
       this.trans_error = true;
-      $('#trans_error').show();
-    }
-    else if (res.Coach_payment_type == "") {
-      $('#cheque_error').show();
+      $("#trans_error").show();
+    } else if (res.Coach_payment_type == "") {
+      $("#cheque_error").show();
       this.cheque_error = true;
     }
 
-
     if (this.activeTabIndex == 1 && this.trans_error == false) {
       this.activeTabIndex = this.activeTabIndex + 1;
-    }
-    else if (this.activeTabIndex == 0) {
+    } else if (this.activeTabIndex == 0) {
       this.activeTabIndex = this.activeTabIndex + 1;
-    }
-    else if (this.activeTabIndex == 2 && this.cheque_error == false) {
-      this.appService.create('/coach/updateprofile', res).subscribe((response) => {
-        if (response && response.isSuccess == true) {
-          if (this.activeTabIndex < 2)
-            this.activeTabIndex = this.activeTabIndex + 1;
-          this._showAlertMessage('alert-success', 'Mis à jour avec succés');
-        }
-        else {
-          this._showAlertMessage('alert-danger', 'Échec de la mise à jour');
-        }
-      })
-    }
-    else {
-      this._showAlertMessage('alert-danger', 'champ obligatoire ne peut pas être vide');
-      this.spinner.hide()
+    } else if (this.activeTabIndex == 2 && this.cheque_error == false) {
+      this.appService
+        .create("/coach/updateprofile", res)
+        .subscribe(response => {
+          if (response && response.isSuccess == true) {
+            if (this.activeTabIndex < 2)
+              this.activeTabIndex = this.activeTabIndex + 1;
+            this._showAlertMessage("alert-success", "Mis à jour avec succés");
+          } else {
+            this._showAlertMessage("alert-danger", "Échec de la mise à jour");
+          }
+        });
+    } else {
+      this._showAlertMessage(
+        "alert-danger",
+        "champ obligatoire ne peut pas être vide"
+      );
+      this.spinner.hide();
     }
   }
 
@@ -210,58 +209,72 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
     var coach1 = JSON.parse(coach);
     var coachemail = {
-      "Coach_Email": coach1.email
-    }
+      Coach_Email: coach1.email
+    };
     this.spinner.show();
-    this.appService.create("/coach/getcoachbyid", coachemail).subscribe((data: any) => {
-      if (data.isSuccess == true) {
-        this.spinner.hide();
-      }
-      else {
-        this.spinner.hide();
-      }
-      // console.log(data);
-      this.response = data.data.coach_list[0];
-      this.res = data.data.coach_list[0];
-      console.log("res", this.res)
-      if (this.res.Coach_Image == null) {
-        this.res.Coach_Image = "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png"
-      }
-      this.filename = data.data.coach_list[0].ResumeName;
-      selectedServicesList = data.data.coach_list[0].Coach_Services.split(",");
-      selectedTransportList = data.data.coach_list[0].Coach_transport.split(",");
-      selectedPaymentList = data.data.coach_list[0].Coach_payment_type.split(",");
-      if (selectedServicesList.length > 0) {
-        for (var i = 0; i < selectedServicesList.length; i++) {
-          if (selectedServicesList[i] !== "") {
-            var element = <HTMLInputElement>document.getElementById(selectedServicesList[i]);
-            element.checked = true;
+    this.appService
+      .create("/coach/getcoachbyid", coachemail)
+      .subscribe((data: any) => {
+        if (data.isSuccess == true) {
+          this.spinner.hide();
+        } else {
+          this.spinner.hide();
+        }
+        // console.log(data);
+        this.response = data.data.coach_list[0];
+        this.res = data.data.coach_list[0];
+        //console.log("res", this.res)
+        if (this.res.Coach_Image == null) {
+          this.res.Coach_Image =
+            "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png";
+        }
+        this.filename = data.data.coach_list[0].ResumeName;
+        selectedServicesList = data.data.coach_list[0].Coach_Services.split(
+          ","
+        );
+        selectedTransportList = data.data.coach_list[0].Coach_transport.split(
+          ","
+        );
+        selectedPaymentList = data.data.coach_list[0].Coach_payment_type.split(
+          ","
+        );
+        if (selectedServicesList.length > 0) {
+          for (var i = 0; i < selectedServicesList.length; i++) {
+            if (selectedServicesList[i] !== "") {
+              var element = <HTMLInputElement>(
+                document.getElementById(selectedServicesList[i])
+              );
+              element.checked = true;
+            }
           }
         }
-      }
-      if (selectedTransportList.length > 0) {
-        for (var i = 0; i < selectedTransportList.length; i++) {
-          if (selectedTransportList[i] !== "") {
-            var ele = <HTMLInputElement>document.getElementById(selectedTransportList[i]);
-            ele.checked = true;
+        if (selectedTransportList.length > 0) {
+          for (var i = 0; i < selectedTransportList.length; i++) {
+            if (selectedTransportList[i] !== "") {
+              var ele = <HTMLInputElement>(
+                document.getElementById(selectedTransportList[i])
+              );
+              ele.checked = true;
+            }
           }
         }
-      }
-      if (selectedPaymentList.length > 0) {
-        for (var i = 0; i < selectedPaymentList.length; i++) {
-          if (selectedPaymentList[i] !== "") {
-            var elem = <HTMLInputElement>document.getElementById(selectedPaymentList[i]);
-            elem.checked = true;
+        if (selectedPaymentList.length > 0) {
+          for (var i = 0; i < selectedPaymentList.length; i++) {
+            if (selectedPaymentList[i] !== "") {
+              var elem = <HTMLInputElement>(
+                document.getElementById(selectedPaymentList[i])
+              );
+              elem.checked = true;
+            }
           }
         }
-      }
-    });
+      });
   }
 
   download() {
     if (this.res.Coach_Resume) {
       var blob = this.dataURLtoBlob(this.res.Coach_Resume);
-      var link = document.createElement('a');
+      var link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
       link.download = this.filename;
       link.click();
@@ -269,7 +282,7 @@ export class ProfileComponent extends CoachComponent implements OnInit {
   }
 
   dataURLtoBlob(dataurl) {
-    var arr = dataurl.split(',');
+    var arr = dataurl.split(",");
     var mime = arr[0].match(/:(.*?);/)[1];
     var bstr = window.atob(arr[1]);
     var n = bstr.length;
