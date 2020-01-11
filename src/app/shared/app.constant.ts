@@ -28,7 +28,7 @@ export const CONST = Object.freeze({
     PARRAINER_CLUBHOUSE: "parrainer-clubhouse",
     QUIZ_JEUXCONCOUR: "quiz-testintroduction",
     QUIZ: "quiz-jeuxconcour",
-    OFFREDESERVICE: "ohmycoach/offre-de-service-coach-tennis",
+    OFFREDESERVICE: "offre-de-service-coach-tennis",
     CONCEPTS: {
       SELF: "concept",
       CONCEPT: {

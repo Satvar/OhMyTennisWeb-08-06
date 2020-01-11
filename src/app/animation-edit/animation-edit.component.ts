@@ -86,7 +86,7 @@ export class AnimationEditComponent extends CoachComponent implements OnInit {
     const params = this.activatedRoute.snapshot.queryParamMap["params"];
     var parameters = {
       coachId: params.coach_id,
-      id: params.stage_id
+      id: params.animation_id
     };
     this.getAnimationCourse(parameters);
     $("#plan_error").hide();
@@ -164,6 +164,7 @@ export class AnimationEditComponent extends CoachComponent implements OnInit {
     this.appService
       .getAll("/course/getanimationcourse", parameters)
       .subscribe(response => {
+        console.log(response);
         if ((response as any).data.course.length > 0) {
           if (response && response["data"]) {
             this.res = (response as any).data.course[0];

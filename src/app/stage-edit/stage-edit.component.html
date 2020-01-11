@@ -6,13 +6,14 @@
                     <div class="text-right">
                         <div class="form_buttons">
                             <a data-toggle="modal" id="enableBtn" data-target="#myModal_edit_course"
-                                class="btn btn-info des_save_btn course_edit_btn ng-binding">CRÉER</a>
+                                class="btn btn-info des_save_btn course_edit_btn ng-binding">Modifier</a>
                         </div>
                     </div>
                     <div class="tab-content">
                         <div class="form_section" id="availabilityDiv">
                             <form #stage="ngForm" (ngSubmit)="onSubmit(res)">
-                                <input type="hidden" class="form-control" [(ngModel)]="res.id" name="res.id" readonly required>
+                                <input type="hidden" class="form-control" [(ngModel)]="res.id" name="res.id" readonly
+                                    required>
                                 <div *ngIf="alertMsg.show"
                                     class="alert {{alertMsg.type}} alert-dismissible text-center">
                                     <button type="button" (click)="_closeAlertMessage($event)"
@@ -62,7 +63,7 @@
                                             <input type="text" class="form-control" [(ngModel)]="res.Eventname"
                                                 name="res.Eventname" readonly required #Eventname="ngModel"
                                                 [ngClass]="{'alert_field': (Eventname.errors && (Eventname.touched || Eventname.dirty))}"
-                                                placeholder="">
+                                                placeholder="Nom de l'événement">
                                             <ng-container
                                                 *ngIf="Eventname.errors && (Eventname.touched || Eventname.dirty)">
                                                 <span class="alert_text" *ngIf="Eventname.errors.required">Indiquez
@@ -102,7 +103,7 @@
                                             <input type="text" class="form-control" [(ngModel)]="res.Location"
                                                 name="res.Location" readonly required #Place="ngModel"
                                                 [ngClass]="{'alert_field': (Place.errors && (Place.touched || Place.dirty))}"
-                                                placeholder="">
+                                                placeholder="Emplacement">
                                             <ng-container *ngIf="Place.errors && (Place.touched || Place.dirty)">
                                                 <span class="alert_text" *ngIf="Place.errors.required">Indiquez votre
                                                     Emplacement.</span>
@@ -120,7 +121,7 @@
                                             <input type="number" class="form-control" [(ngModel)]="res.Postalcode"
                                                 name="res.Postalcode" readonly required #Pincode="ngModel"
                                                 [ngClass]="{'alert_field': (Pincode.errors && (Pincode.touched || Pincode.dirty))}"
-                                                placeholder="">
+                                                placeholder="Code postal">
                                             <ng-container *ngIf="Pincode.errors && (Pincode.touched || Pincode.dirty)">
                                                 <span class="alert_text" *ngIf="Pincode.errors.required">Indiquez votre
                                                     Code postal.</span>
@@ -141,7 +142,7 @@
                                                         name="res.from_date" [owlDateTime]="fromdate"
                                                         [owlDateTimeTrigger]="fromdate"
                                                         [ngClass]="{'alert_field': (fromDate.errors && (fromDate.touched || fromDate.dirty))}"
-                                                        class="form-control" placeholder="20/11/2019" readonly required>
+                                                        class="form-control" placeholder="Date" readonly required>
                                                     <owl-date-time #fromdate [pickerType]="'calendar'"></owl-date-time>
                                                     <ng-container
                                                         *ngIf="fromDate.errors && (fromDate.touched || fromDate.dirty)">
@@ -175,11 +176,12 @@
                                 <div class="form-group bmd-form-group">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Prix<span class="red"> *</span><br />(Indiquer le prix en euros)</label>
+                                            <label>Prix<span class="red"> *</span><br />(Indiquer le prix en
+                                                euros)</label>
                                         </div>
                                         <div class="col-md-8">
                                             <input id="Prix" type="text" class="form-control" #Prix="ngModel"
-                                                [(ngModel)]="res.Price" name="res.Price" placeholder="200" readonly
+                                                [(ngModel)]="res.Price" name="res.Price" placeholder="Prix" readonly
                                                 name="technique">
                                         </div>
                                     </div>

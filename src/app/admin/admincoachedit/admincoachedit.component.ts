@@ -138,7 +138,7 @@ export class AdmincoacheditComponent extends AdminComponent implements OnInit {
         } else {
           this.spinner.hide();
         }
-        // console.log(data);
+        //console.log(data);
         this.response = data.data.coach_list[0];
         this.res = data.data.coach_list[0];
         if (this.res.Coach_Image == null) {

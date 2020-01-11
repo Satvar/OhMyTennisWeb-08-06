@@ -102,13 +102,14 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
     };
     this.spinner.show();
     this.appService
-      .create("/admin/getcoachbyid", Coach_id)
+      .create("/admin/get_payment_coach_by_id", Coach_id)
       .subscribe((data: any) => {
         if (data.isSuccess == true) {
           this.spinner.hide();
         } else {
           this.spinner.hide();
         }
+        console.log(data.data.coach_list);
         this.response = data.data.coach_list[0];
         this.res = data.data.coach_list[0];
         if (this.res.Coach_Image == null) {
@@ -121,7 +122,7 @@ export class PaymentdetailsComponent extends AdminComponent implements OnInit {
         selectedServicesList = data.data.coach_list[0].Coach_Services.split(
           ","
         );
-
+        console.log(this.res);
         this.appService.getAll("/course/getcourse").subscribe(response => {
           if ((response as any).data.course.length > 0) {
             if (response && response["data"]) {

@@ -1,80 +1,76 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CoachComponent } from '../model/coach/coach.component';
-import { AppService } from '../shared/app.service';
-import { Location } from '@angular/common';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import * as $ from 'jquery';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { CoachComponent } from "../model/coach/coach.component";
+import { AppService } from "../shared/app.service";
+import { Location } from "@angular/common";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
+import * as $ from "jquery";
+import { AngularEditorConfig } from "@kolkov/angular-editor";
 @Component({
-  selector: 'app-team-building',
-  templateUrl: './team-building.component.html',
-  styleUrls: ['./team-building.component.scss']
+  selector: "app-team-building",
+  templateUrl: "./team-building.component.html",
+  styleUrls: ["./team-building.component.scss"]
 })
 export class TeamBuildingComponent extends CoachComponent implements OnInit {
-
   editorConfig: AngularEditorConfig = {
     editable: true,
-      spellcheck: true,
-      height: 'auto',
-      minHeight: '300px',
-      maxHeight: 'auto',
-      width: 'auto',
-      minWidth: '0',
-      translate: 'yes',
-      enableToolbar: true,
-      showToolbar: true,
-      placeholder: 'Enter text here...',
-      defaultParagraphSeparator: '',
-      defaultFontName: '',
-      defaultFontSize: '',
-      fonts: [
-        {class: 'arial', name: 'Arial'},
-        {class: 'times-new-roman', name: 'Times New Roman'},
-        {class: 'calibri', name: 'Calibri'},
-        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-      ],
-      customClasses: [
+    spellcheck: true,
+    height: "auto",
+    minHeight: "300px",
+    maxHeight: "auto",
+    width: "auto",
+    minWidth: "0",
+    translate: "yes",
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: "Enter text here...",
+    defaultParagraphSeparator: "",
+    defaultFontName: "",
+    defaultFontSize: "",
+    fonts: [
+      { class: "arial", name: "Arial" },
+      { class: "times-new-roman", name: "Times New Roman" },
+      { class: "calibri", name: "Calibri" },
+      { class: "comic-sans-ms", name: "Comic Sans MS" }
+    ],
+    customClasses: [
       {
-        name: 'quote',
-        class: 'quote',
+        name: "quote",
+        class: "quote"
       },
       {
-        name: 'redText',
-        class: 'redText'
+        name: "redText",
+        class: "redText"
       },
       {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
+        name: "titleText",
+        class: "titleText",
+        tag: "h1"
+      }
     ],
     sanitize: true,
-    toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
-    ]
-};
+    toolbarPosition: "top",
+    toolbarHiddenButtons: [["bold", "italic"], ["fontSize"]]
+  };
   public res = {
-    "Coach_Id": "",
-    "Mode_of_transport": "",
-    "Plan": "",
-    "Description": "",
-    "Photo": "",
-    "Eventdetails": "",
-    "filename": "",
-    "Price": "0"
-  }
+    Coach_Id: "",
+    Mode_of_transport: "",
+    Plan: "",
+    Description: "",
+    Photo: "",
+    Eventdetails: "",
+    filename: "",
+    Price: "0"
+  };
 
   public trans_error: Boolean = false;
   public plan_error: Boolean = false;
-  name = 'ng2-ckeditor';
+  name = "ng2-ckeditor";
   ckeConfig: any;
   mycontent: string;
-  log: string = '';
+  log: string = "";
   @ViewChild("myckeditor", { static: false }) ckeditor: any;
-  public editorValue: string = '';
+  public editorValue: string = "";
 
   constructor(
     activatedRoute: ActivatedRoute,
@@ -83,46 +79,43 @@ export class TeamBuildingComponent extends CoachComponent implements OnInit {
     location: Location,
     spinner: NgxSpinnerService
   ) {
-    super(
-      activatedRoute,
-      router,
-      appService,
-      location,
-      spinner
-    );
+    super(activatedRoute, router, appService, location, spinner);
   }
 
   ngOnInit() {
     this.getTeamBuilding();
-    $('#trans_error').hide();
-    $('#plan_error').hide();
+    $("#trans_error").hide();
+    $("#plan_error").hide();
     var titile = document.getElementsByClassName("brand");
-    if (titile)
-      titile[0].innerHTML = 'Team building';
+    if (titile) titile[0].innerHTML = "Team building";
     this.ckeConfig = {
       allowedContent: false,
-      extraPlugins: 'divarea',
+      extraPlugins: "divarea",
       language: "fr",
       defaultLanguage: "fr"
     };
-    let formInputItem = document.querySelectorAll(".form_devarea")[0].querySelectorAll("input");
-    formInputItem.forEach(function (inputElement) {
+    let formInputItem = document
+      .querySelectorAll(".form_devarea")[0]
+      .querySelectorAll("input");
+    formInputItem.forEach(function(inputElement) {
       inputElement.setAttribute("disabled", "true");
     });
 
-    let textare1 = document.getElementById("exampleFormControlTextarea1") as HTMLTextAreaElement;
+    let textare1 = document.getElementById(
+      "exampleFormControlTextarea1"
+    ) as HTMLTextAreaElement;
     textare1.setAttribute("disabled", "true");
 
     let elebebtn = document.querySelector("#enableBtn") as HTMLElement;
-    elebebtn.style.display = 'inline';
+    elebebtn.style.display = "inline";
 
     elebebtn.setAttribute("data-toggle", "modal");
 
     let icancel = document.querySelector("#cancel") as HTMLElement;
-    icancel.style.display = 'none';
+    icancel.style.display = "none";
 
     let Enregistrer = document.querySelector("#Enregistrer") as HTMLElement;
-    Enregistrer.style.display = 'none';
+    Enregistrer.style.display = "none";
     window.scrollTo(0, 0);
   }
   enableForm() {
@@ -130,32 +123,36 @@ export class TeamBuildingComponent extends CoachComponent implements OnInit {
     $("#availabilityDiv :input").prop("required", true);
 
     let itransport = document.querySelectorAll(".form-group");
-    itransport.forEach(function (checkItem) {
+    itransport.forEach(function(checkItem) {
       checkItem.removeAttribute("disabled");
-    })
+    });
 
-    let formInputItem = document.querySelectorAll(".form_devarea")[0].querySelectorAll("input");
-    formInputItem.forEach(function (inputElement) {
+    let formInputItem = document
+      .querySelectorAll(".form_devarea")[0]
+      .querySelectorAll("input");
+    formInputItem.forEach(function(inputElement) {
       inputElement.removeAttribute("disabled");
     });
 
-    let textarea = document.getElementById("exampleFormControlTextarea1") as HTMLTextAreaElement;
+    let textarea = document.getElementById(
+      "exampleFormControlTextarea1"
+    ) as HTMLTextAreaElement;
     textarea.removeAttribute("disabled");
 
     let elebebtn = document.querySelector("#enableBtn") as HTMLElement;
-    elebebtn.style.display = 'none';
+    elebebtn.style.display = "none";
 
     let icancel = document.querySelector("#cancel") as HTMLElement;
-    icancel.style.display = 'inline';
+    icancel.style.display = "inline";
 
     let Enregistrer = document.querySelector("#Enregistrer") as HTMLElement;
-    Enregistrer.style.display = 'inline';
+    Enregistrer.style.display = "inline";
   }
 
   onSubmit(res) {
-    this.spinner.show()
-    $('#trans_error').hide();
-    $('#plan_error').hide();
+    this.spinner.show();
+    $("#trans_error").hide();
+    $("#plan_error").hide();
     this.trans_error = false;
     this.plan_error = false;
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
@@ -165,16 +162,17 @@ export class TeamBuildingComponent extends CoachComponent implements OnInit {
     let enableBtn = document.querySelector("#enableBtn") as HTMLElement;
     if (enableBtn.hasAttribute("disabled") == false) {
       let jsonData = res;
-      let formInputItem = document.querySelectorAll(".form_devarea")[0].querySelectorAll("input");
-      formInputItem.forEach(function (inputElement) {
+      let formInputItem = document
+        .querySelectorAll(".form_devarea")[0]
+        .querySelectorAll("input");
+      formInputItem.forEach(function(inputElement) {
         let mode = inputElement as HTMLInputElement;
         if (mode.type == "checkbox") {
           if (mode.checked == true) {
             let modechild = mode.nextSibling as HTMLElement;
             if (transport !== "") {
               transport = transport + "," + modechild.nodeValue.trim();
-            }
-            else {
+            } else {
               transport = modechild.nodeValue.trim();
             }
           }
@@ -197,30 +195,28 @@ export class TeamBuildingComponent extends CoachComponent implements OnInit {
 
       if (res.Mode_of_transport == "") {
         this.trans_error = true;
-        $('#trans_error').show();
-      }
-      else if (res.Plan == "") {
-        $('#plan_error').show();
+        $("#trans_error").show();
+      } else if (res.Plan == "") {
+        $("#plan_error").show();
         this.plan_error = true;
       }
 
       if (this.trans_error == false && this.plan_error == false) {
-        this.appService.create('/course/setteambuildingcourse', res)
-          .subscribe((response) => {
+        this.appService
+          .create("/course/setteambuildingcourse", res)
+          .subscribe(response => {
             if (response && response.isSuccess == true) {
               this.spinner.hide();
               this.setform();
-              this._showAlertMessage('alert-success', 'Mis à jour avec succés');
+              this._showAlertMessage("alert-success", "Mis à jour avec succés");
               window.scrollTo(0, 0);
-            }
-            else {
+            } else {
               this.spinner.hide();
-              this._showAlertMessage('alert-danger', 'Échec de la mise à jour');
+              this._showAlertMessage("alert-danger", "Échec de la mise à jour");
             }
-          })
-      }
-      else {
-        this.spinner.hide()
+          });
+      } else {
+        this.spinner.hide();
       }
     }
   }
@@ -232,16 +228,21 @@ export class TeamBuildingComponent extends CoachComponent implements OnInit {
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
     var coach1 = JSON.parse(coach);
     var coachid = {
-      "coachId": coach1.id
-    }
-    this.appService.getAll('/course/getteambuildingcourse', coachid)
-      .subscribe((response) => {
+      coachId: coach1.id
+    };
+    this.appService
+      .getAll("/course/getteambuildingcourse", coachid)
+      .subscribe(response => {
         if ((response as any).data.course.length > 0) {
-          if (response && response['data']) {
+          if (response && response["data"]) {
             this.res = (response as any).data.course[0];
-            selectedTransport = (response as any).data.course[0].Mode_of_transport.split(",");
-            let formInputItem = document.querySelectorAll(".form_devarea")[0].querySelectorAll("input");
-            formInputItem.forEach(function (inputElement) {
+            selectedTransport = (response as any).data.course[0].Mode_of_transport.split(
+              ","
+            );
+            let formInputItem = document
+              .querySelectorAll(".form_devarea")[0]
+              .querySelectorAll("input");
+            formInputItem.forEach(function(inputElement) {
               let mode = inputElement as HTMLInputElement;
               if (mode.type == "checkbox") {
                 let modechild = mode.nextSibling as HTMLElement;
@@ -250,8 +251,7 @@ export class TeamBuildingComponent extends CoachComponent implements OnInit {
                   for (var i = 0; i < selectedTransport.length; i++) {
                     if (Mode_of_Transport == selectedTransport[i]) {
                       mode.checked = true;
-                    }
-                    else {
+                    } else {
                       if (Mode_of_Transport == selectedTransport[i]) {
                         mode.checked = true;
                       }
@@ -263,9 +263,15 @@ export class TeamBuildingComponent extends CoachComponent implements OnInit {
               if (mode.type == "radio") {
                 if (selectedPlan.length > 0) {
                   for (var i = 0; i < selectedPlan.length; i++) {
-                    if (mode.id == "inlineradio3" && selectedPlan[i] == "Commission") {
+                    if (
+                      mode.id == "inlineradio3" &&
+                      selectedPlan[i] == "Commission"
+                    ) {
                       mode.checked = true;
-                    } else if (mode.id == "inlineradio4" && selectedPlan[i] == "Abonnement") {
+                    } else if (
+                      mode.id == "inlineradio4" &&
+                      selectedPlan[i] == "Abonnement"
+                    ) {
                       mode.checked = true;
                     }
                   }
@@ -303,21 +309,21 @@ export class TeamBuildingComponent extends CoachComponent implements OnInit {
 
   readThis(inputValue: any): void {
     var file: File = inputValue.files[0];
-    $(".file-upload-wrapper").attr('data-text', file.name);
+    $(".file-upload-wrapper").attr("data-text", file.name);
     let reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = (_event) => {
+    reader.onload = _event => {
       this.propagateChange(reader.result, file, file.type);
     };
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
+    reader.onerror = function(error) {
+      console.log("Error: ", error);
     };
   }
 
   download() {
     if (this.res.Photo) {
       var blob = this.dataURLtoBlob(this.res.Photo);
-      var link = document.createElement('a');
+      var link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
       link.download = this.res.filename;
       link.click();
@@ -325,7 +331,7 @@ export class TeamBuildingComponent extends CoachComponent implements OnInit {
   }
 
   dataURLtoBlob(dataurl) {
-    var arr = dataurl.split(',');
+    var arr = dataurl.split(",");
     var mime = arr[0].match(/:(.*?);/)[1];
     var bstr = window.atob(arr[1]);
     var n = bstr.length;
@@ -339,28 +345,31 @@ export class TeamBuildingComponent extends CoachComponent implements OnInit {
     });
   }
 
-  setform(){
-    let formInputItem = document.querySelectorAll(".form_devarea")[0].querySelectorAll("input");
-    formInputItem.forEach(function (inputElement) {
+  setform() {
+    let formInputItem = document
+      .querySelectorAll(".form_devarea")[0]
+      .querySelectorAll("input");
+    formInputItem.forEach(function(inputElement) {
       inputElement.setAttribute("disabled", "true");
     });
 
-    let textare1 = document.getElementById("exampleFormControlTextarea1") as HTMLTextAreaElement;
+    let textare1 = document.getElementById(
+      "exampleFormControlTextarea1"
+    ) as HTMLTextAreaElement;
     textare1.setAttribute("disabled", "true");
 
     // let textare2 = document.getElementById("exampleFormControlTextarea2") as HTMLTextAreaElement;
     // textare2.setAttribute("disabled", "true");
 
     let elebebtn = document.querySelector("#enableBtn") as HTMLElement;
-    elebebtn.style.display = 'inline';
+    elebebtn.style.display = "inline";
 
     elebebtn.setAttribute("data-toggle", "modal");
 
     let icancel = document.querySelector("#cancel") as HTMLElement;
-    icancel.style.display = 'none';
+    icancel.style.display = "none";
 
     let Enregistrer = document.querySelector("#Enregistrer") as HTMLElement;
-    Enregistrer.style.display = 'none';
+    Enregistrer.style.display = "none";
   }
-
 }

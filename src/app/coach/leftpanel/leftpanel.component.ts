@@ -100,7 +100,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
                 });
 
               this.appService
-                .getAll("/course/getAnimationCourse", coachid)
+                .getAll("/course/getAnimationCourseLeft", coachid)
                 .subscribe(response => {
                   if ((response as any).data.course.length > 0) {
                     if (response && response["data"]) {
@@ -168,7 +168,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
     this.spinner.hide();
   }
 
-  editAnimation(id, coachId) {
+  editAnimation(event: Event, id, coachId) {
     event.preventDefault();
     this.spinner.show();
     this.router

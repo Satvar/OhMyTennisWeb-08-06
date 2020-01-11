@@ -76,7 +76,10 @@
             class="nav-item"
             [ngClass]="null"
           >
-            <a class="" (click)="editAnimation(ai.stage_id, ai.coach_id)">
+            <a
+              class=""
+              (click)="editAnimation($event, ai.stage_id, ai.coach_id)"
+            >
               <p
                 [ngClass]="ai.style ? 'nav-sub-title' : null"
                 [innerHTML]="ai.title"

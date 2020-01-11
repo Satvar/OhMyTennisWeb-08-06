@@ -3,6 +3,15 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form_devarea">
+                    <div class="text-right">
+                        <div class="form_buttons">
+                            <!-- <a data-toggle="modal" id="enableBtn" data-target="#myModal_edit_course"
+                                class="btn btn-info des_save_btn course_edit_btn ng-binding">MODIFIER</a> -->
+
+                                <a data-toggle="modal" id="enableBtn" data-target="#myModal_edit_course"
+                                    class="btn btn-info des_save_btn course_edit_btn ng-binding">Modifier</a>
+                        </div>
+                    </div>
                     <div class="tab-content">
                         <div class="form_section" id="availabilityDiv">
                             <div *ngIf="alertMsg.show" class="alert {{alertMsg.type}} alert-dismissible text-center">
@@ -233,8 +242,8 @@
                                 </div>
                                 <div class="text-center">
                                     <div class="form_buttons">
-                                        <a data-toggle="modal" id="enableBtn" data-target="#myModal_edit_course"
-                                            class="btn btn-info des_save_btn course_edit_btn ng-binding">Modifier</a>
+                                        <!-- <a data-toggle="modal" id="enableBtn" data-target="#myModal_edit_course"
+                                            class="btn btn-info des_save_btn course_edit_btn ng-binding">Modifier</a> -->
                                         <button data-toggle="modal" [disabled]="!individual.valid " type="submit"
                                             id="Enregistrer" style="display: none;"
                                             class="btn btn-success des_save_btn">Enregistrer</button>

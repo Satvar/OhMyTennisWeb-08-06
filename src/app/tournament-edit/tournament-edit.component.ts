@@ -53,6 +53,7 @@ export class TournamentEditComponent extends CoachComponent implements OnInit {
     toolbarHiddenButtons: [["bold", "italic"], ["fontSize"]]
   };
   public res = {
+    id: "",
     Coach_Id: "",
     Postalcode: "",
     Tournamentname: "",
@@ -167,6 +168,7 @@ export class TournamentEditComponent extends CoachComponent implements OnInit {
     this.appService
       .getAll("/course/gettournament", parameters)
       .subscribe(response => {
+        console.log(response);
         if (event instanceof NavigationEnd) {
           // trick the Router into believing it's last link wasn't previously loaded
           this.router.navigated = false;
@@ -183,6 +185,7 @@ export class TournamentEditComponent extends CoachComponent implements OnInit {
             this.res.to_date = this.formatDate(
               new Date((response as any).data.course[0].to_date)
             );
+
             //console.log(this.res.to_date);
             let formInputItem = document
               .querySelectorAll(".form_devarea")[0]
@@ -253,7 +256,7 @@ export class TournamentEditComponent extends CoachComponent implements OnInit {
         }
       });
       res = jsonData;
-      //console.log(res);
+      console.log(res);
       if (res.Plan == "") {
         $("#plan_error").show();
         this.plan_error = true;

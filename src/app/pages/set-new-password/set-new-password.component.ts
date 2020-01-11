@@ -5,13 +5,13 @@ import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { AppService } from "../../shared/app.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { CoachComponent } from "../../model/coach/coach.component";
-
+import { AppComponent } from "../../app.component";
 @Component({
-  selector: "app-forgot-password",
+  selector: "app-set-new-password",
   templateUrl: "./set-new-password.component.html",
   styleUrls: ["./set-new-password.component.scss"]
 })
-export class SetPasswordComponent extends CoachComponent implements OnInit {
+export class SetPasswordComponent extends AppComponent {
   public hash: string;
   public data = {
     email: "",
@@ -32,6 +32,7 @@ export class SetPasswordComponent extends CoachComponent implements OnInit {
 
   ngOnInit() {
     const hash = this.activatedRoute.snapshot.queryParamMap.get("hash");
+    console.log("[home.component.ts]", hash);
     if (hash) {
       var hashkey = hash.replace(/'/g, "").toString();
       this.data.hash = hashkey;

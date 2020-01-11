@@ -48,6 +48,7 @@ export class CoachRegisterComponent extends AppComponent implements OnInit {
       email: ["", [Validators.required, Validators.email]],
       roleId: 2,
       mobile: ["", [Validators.required, Validators.minLength(10)]],
+      termsCondition: ["", Validators.required],
       password: [
         "",
         [
