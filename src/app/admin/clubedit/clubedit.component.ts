@@ -126,4 +126,9 @@ export class ClubeditComponent extends AdminComponent implements OnInit {
     this.res.courtfile = result;
   };
 
+  goBack(){
+    this.router.navigate(["/admin/clublist"], {
+      queryParams: {}
+    });
+  }
 }

@@ -221,7 +221,8 @@ export class ReservationComponent extends CoachComponent implements OnInit {
         }
       });
   }
-  approveDialog(rowData, hour, dateselected) {
+  approveDialog(event: Event, rowData, hour, dateselected) {
+    event.preventDefault();
     //console.log("[reservation.components.ts]", rowData);
     $("#approveBtn").show();
     this.discount = 0;
@@ -242,6 +243,17 @@ export class ReservationComponent extends CoachComponent implements OnInit {
       rowData[11];
     (document.getElementById("userDate") as HTMLInputElement).value =
       rowData[3];
+    if (rowData[4]) {
+      (document.getElementById(
+        "divUserHours"
+      ) as HTMLInputElement).style.visibility = "";
+      (document.getElementById("userHours") as HTMLInputElement).value =
+        rowData[4];
+    } else {
+      (document.getElementById(
+        "divUserHours"
+      ) as HTMLInputElement).style.visibility = "hidden";
+    }
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
     var coach1 = JSON.parse(coach);
     if (this.course == "CoursCollectifOndemand") {

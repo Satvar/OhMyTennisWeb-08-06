@@ -152,4 +152,10 @@ export class AdminprospecteditComponent extends AdminComponent implements OnInit
   propagateChange = (result, file, type) => {
     this.res.User_Image = result;
   };
+
+  goBack(){
+    this.router.navigate(["/admin/prospectuslist"], {
+      queryParams: {}
+    });
+  }
 }

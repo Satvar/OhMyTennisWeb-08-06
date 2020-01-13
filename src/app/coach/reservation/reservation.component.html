@@ -55,7 +55,7 @@
                                         <th>Nom</th>
                                         <th>Cours</th>
                                         <th>Date</th>
-                                        <th>Heure</th>
+                                        <!-- <th>Heure</th> -->
                                         <th>Statut</th>
                                         <th>Action</th>
                                     </tr>
@@ -67,7 +67,7 @@
                                         <td align="left"> {{rowData[9]}} {{rowData[10]}} </td>
                                         <td align="left"> {{rowData[11]}} </td>
                                         <td> {{rowData[3]}}</td>
-                                        <td>{{rowData[4]}} </td>
+                                        <!-- <td>{{rowData[4]}} </td> -->
                                         <td>
                                             <span *ngIf="rowData[6] == 'B'" style="color: #3cd376;">Réservé</span>
                                             <span *ngIf="rowData[6] == 'A'" style="color: #dbb126;">Accepté</span>
@@ -79,7 +79,7 @@
                                         </td>
                                         <td><a data-toggle="modal" style="cursor: pointer;"
                                                 data-target="#myModal_edit_course" id="bookingDetailPage"
-                                                (click)="approveDialog(rowData,rowData[4],rowData[3])"><i
+                                                (click)="approveDialog($event,rowData,rowData[4],rowData[3])"><i
                                                     class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a></td>
                                     </tr>
                                 </tbody>
@@ -139,6 +139,16 @@
                             </div>
                             <div class="col-md-8">
                                 <input id="userDate" type="text" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divUserHours" class="form-group bmd-form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Heure</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="userHours" type="text" class="form-control" disabled>
                             </div>
                         </div>
                     </div>

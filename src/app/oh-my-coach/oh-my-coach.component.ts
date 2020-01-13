@@ -45,12 +45,24 @@ export class OhMyCoachComponent extends AppComponent implements OnInit {
   getcoach() {
     this.spinner.show();
     var date = sessionStorage.getItem('Date');
+    var postal = sessionStorage.getItem('Ville');
+
     const ville = {
       "ville": sessionStorage.getItem('Ville'),
       "date": sessionStorage.getItem('Date')
 
     }
-    this.search.ville = sessionStorage.getItem('Ville');
+    
+    if(postal == null){
+      var pcode = localStorage.getItem("onmytennis");
+      if(pcode){
+      var postalCode = JSON.parse(JSON.parse(pcode));
+      this.search.ville = postalCode.postalCode;
+      }
+    }else{
+      this.search.ville = sessionStorage.getItem('Ville');
+    }
+    //this.search.ville = sessionStorage.getItem('Ville');
     this.search.date = sessionStorage.getItem('Date')
     this.date = sessionStorage.getItem('Date');
     this.appService.getAll('/coach/getcoachbycity', this.search).subscribe((data) => {

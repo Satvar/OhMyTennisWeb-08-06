@@ -163,11 +163,19 @@
                                     <div class="col-md-4"></div>
                                     <div class="col-md-8 text-left">
                                         <button type="submit" [disabled]="!user.valid || submit_disabled" disabled
-                                            id="submit" readonly class="btn btn-primary" style="">SAUVEGARDER</button>
+                                            id="submit" readonly class="btn btn-primary">SAUVEGARDER</button>
 
                                             <a (click)="makeEnable()"
-                                            style="margin-left:20px; color: #ffffff;"
+                                            style="margin-left:4px; color: #ffffff;"
                                             class="btn btn-info"><i class="fa fa-edit"></i> MODIFIER</a>
+                                            
+                                                <button
+                                                class="btn btn-primary"
+                                                style="cursor: pointer;"
+                                                (click)="goBack()">
+                                                Retour
+                                                </button>
+                                            
                                     </div>
                                 </div>
 

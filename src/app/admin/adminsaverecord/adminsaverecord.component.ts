@@ -92,4 +92,10 @@ constructor(
       }
    
   }
+
+  goBack(){
+    this.router.navigate(["/admin/adminlist"], {
+      queryParams: {}
+    });
+  }
 }

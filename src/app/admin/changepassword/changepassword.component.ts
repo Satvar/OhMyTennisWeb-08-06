@@ -79,4 +79,10 @@ export class ChangepasswordComponent extends AdminComponent implements OnInit {
       }
   }
 
+  goBack(){
+    this.router.navigate(["/admin/dashboard"], {
+      queryParams: {}
+    });
+  }
+
 }

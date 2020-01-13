@@ -4,6 +4,14 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form_devarea admin_profform">
+          <div class="pull-right" style="text-align: left; padding: 22px 20px 0px;">
+            <button
+            class="btn orange_btn"
+            style="cursor: pointer;"
+            (click)="goBack()">
+            Retour
+            </button>
+        </div>
           <div class="box-body">
             <br />
             <form #user="ngForm" (ngSubmit)="onSubmit(res)">

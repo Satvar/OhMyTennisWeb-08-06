@@ -10,7 +10,10 @@
                         <div *ngIf="alertMsg.show" class="alert {{alertMsg.type}} alert-dismissible text-center">
                             <button type="button" (click)="_closeAlertMessage($event)" class="close"><span>&times;</span></button> {{alertMsg.msg}}
                         </div>
-                        <div class="col-xs-12"><a style="float:right;margin-bottom:20px; color: #ffffff;" (click)="makeEnable()" class="btn btn-info"><i class="fa fa-edit"></i> MODIFIER</a>
+                        <div class="col-xs-12">
+                           
+                            <a style="float:right;margin-bottom:20px;height: 40px; color: #ffffff;" (click)="goBack()" class="btn btn-primary"> Retour</a>
+                            <a style="float:right;margin-bottom:20px; color: #ffffff;" (click)="makeEnable()" class="btn btn-info"><i class="fa fa-edit"></i> MODIFIER</a>
                         </div>
                         <div class="clearfix"></div>
                         <div [ngClass]="(activeTabIndex === 0) ? 'active': null" class="tab-pane tab1">

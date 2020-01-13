@@ -7,6 +7,7 @@ export const CONST = Object.freeze({
     USER_REGISTER: "userregister",
     COACH_MODULE: "coach",
     OH_MY_COACH: "ohmycoach",
+    OH_MY_EVENT: "ohmyevent",
     OH_MY_COACH_DETAIL: "ohmycoachdetail",
     COACH_SLOT: "coachslot",
     STAGE: "stage",

@@ -492,7 +492,7 @@ export class MyCalendarComponent extends CoachComponent
       }
 
       if (this.availabilityObj.weekNumber == "default") {
-        alert("Please select week");
+        alert("Veuillez sélectionner la semaine");
         this.spinner.hide();
         return;
       }
@@ -700,7 +700,7 @@ export class MyCalendarComponent extends CoachComponent
         this.availabilityObj.StartDate == undefined ||
         this.availabilityObj.EndDate == undefined
       ) {
-        alert("Please select start date and end date");
+        alert("Veuillez sélectionner la date");
         this.spinner.hide();
         return;
       }

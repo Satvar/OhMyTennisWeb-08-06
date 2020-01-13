@@ -187,20 +187,17 @@
                 >
               </li>
               <li>
-                <a href="#">Oh My Event</a>
+                <a
+                  href="javascript:;"
+                  routerLink="{{ '/' + this._const('PATH.OH_MY_EVENT') }}"
+                  >Oh My Event</a
+                >
                 <ul class="first_submenu">
                   <li>
                     <a
                       href="javascript:;"
                       routerLink="{{ '/' + this._const('PATH.STAGE') }}"
                       >Stage</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="javascript:;"
-                      routerLink="{{ '/' + this._const('PATH.TOUNAMENT') }}"
-                      >Tournament</a
                     >
                   </li>
                   <li>
@@ -215,6 +212,13 @@
                       href="javascript:;"
                       routerLink="{{ '/' + this._const('PATH.ANIMATION') }}"
                       >Animation</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="javascript:;"
+                      routerLink="{{ '/' + this._const('PATH.TOUNAMENT') }}"
+                      >Tournament</a
                     >
                   </li>
                 </ul>
@@ -281,7 +285,13 @@
                       <li><a href="#">Vente de matériel</a></li>
                       <li><a href="#">Guide terrains</a></li>
                       <li><a href="#">Recherche partenaire</a></li>
-                      <li><a href="#">Tournois amicaux</a></li>
+                      <li>
+                        <a
+                          href="javascript:;"
+                          routerLink="{{ '/' + this._const('PATH.TOUNAMENT') }}"
+                          >Tournois amicaux</a
+                        >
+                      </li>
                       <li><a href="#">Tournois officiels</a></li>
                     </ul>
                   </li>

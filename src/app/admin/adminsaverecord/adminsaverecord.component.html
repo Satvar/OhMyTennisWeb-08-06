@@ -1,5 +1,6 @@
 <div class="content">
-        <div class="container-fluid"><br><br>   
+        <div class="container-fluid"><br><br> 
+  
             <div *ngIf="alertMsg.show" class="alert {{alertMsg.type}} alert-dismissible text-center">
                     <button type="button" (click)="_closeAlertMessage($event)"
                         class="close"><span>&times;</span></button> {{alertMsg.msg}}
@@ -7,7 +8,14 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form_devarea admin_profform">
-                        
+                        <div class="pull-right" style="text-align: left; padding: 22px 20px 0px;">
+                            <button
+                            class="btn orange_btn"
+                            style="cursor: pointer;"
+                            (click)="goBack()">
+                            Retour
+                            </button>
+                        </div>
                         <div class="box-body">
                         <br> 
                         <form #admin="ngForm" (ngSubmit)="onSubmit(res)">
@@ -17,7 +25,7 @@
                                         <div class="col-xs-12 col-md-3">
                                             <label>Prénom <span class="red">*</span></label>
                                         </div>
-                                        <div class="col-xs-12 col-md-9">
+                                        <div class="col-xs-12 col-md-6">
                                             <input type="text" [(ngModel)]="res.first_name" #firstName="ngModel"
                                                 [ngClass]="{'alert_field': (firstName.errors && (firstName.touched || firstName.dirty))}"
                                                 name="firstName" class="form-control" placeholder="Prénom"
@@ -36,7 +44,7 @@
                                         <div class="col-xs-12 col-md-3">
                                             <label>Nom <span class="red">*</span></label>
                                         </div>
-                                        <div class="col-xs-12 col-md-9">
+                                        <div class="col-xs-12 col-md-6">
                                             <input type="text" [(ngModel)]="res.last_name" #lastName="ngModel"
                                                 [ngClass]="{'alert_field': (lastName.errors && (lastName.touched || lastName.dirty))}"
                                                 name="lastName" class="form-control" placeholder="Nom"
@@ -54,7 +62,7 @@
                                         <div class="col-xs-12 col-md-3">
                                             <label>E-mail <span class="red">*</span></label>
                                         </div>
-                                        <div class="col-xs-12 col-md-9">
+                                        <div class="col-xs-12 col-md-6">
                                             <input type="text" class="form-control" id="email"
                                                 [(ngModel)]="res.admin_email" name="email" placeholder="admin@admin.com"
                                                 required>
@@ -66,9 +74,9 @@
                                         <div class="col-xs-12 col-md-3">
                                             <label>Téléphone <span class="red">*</span></label>
                                         </div>
-                                        <div class="col-xs-12 col-md-9">
+                                        <div class="col-xs-12 col-md-6">
                                             <input type="text" class="form-control" [(ngModel)]="res.mobile"
-                                                pattern="^[1-9]\d{9}$" #mobile="ngModel"
+                                                pattern="^[0-9]\d{9}$" #mobile="ngModel"
                                                 [ngClass]="{'alert_field': (mobile.errors && (mobile.touched || mobile.dirty))}"
                                                 name="mobile" placeholder="Téléphone" required>
                                             <ng-container *ngIf="mobile.errors && (mobile.touched || mobile.dirty)">
@@ -85,7 +93,7 @@
                                         <div class="col-xs-12 col-md-3">
                                             <label>Address <span class="red">*</span></label>
                                         </div>
-                                        <div class="col-xs-12 col-md-9">
+                                        <div class="col-xs-12 col-md-6">
                                             <textarea class="form-control" id="address" style="height:110px;"
                                                 required [(ngModel)]="res.address" name="res.address"
                                                 #address="ngModel"
@@ -104,7 +112,7 @@
                                         <div class="col-xs-12 col-md-3">
                                             <label>Admin role<span class="red">*</span></label>
                                         </div>
-                                        <div class="col-xs-12 col-md-9">
+                                        <div class="col-xs-12 col-md-6">
                                               <select class="form-control" id="role" name="role" [(ngModel)]="res.role" name="res.role"
                                               #role="ngModel" required>
                                                     <option>Select One Option</option>
@@ -125,7 +133,7 @@
                                     </div>
                                 </div>
                                
-                                <div class="col-md-12 text-center">
+                                <div class="col-md-10 text-center" style="margin-left: -80px;">
                                     <button type="submit"
                                         id="submit" class="btn btn-primary">SAUVEGARDER</button>
     

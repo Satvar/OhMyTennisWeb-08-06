@@ -128,6 +128,7 @@ import { HistoireThirdComponent } from "./pages/histoire/histoire-third/histoire
 import { HistoireSecondComponent } from "./pages/histoire/histoire-second/histoire-second.component";
 import { ConseilsMatrielTesterComponent } from "./pages/conseils/conseils-matriel-tester/conseils-matriel-tester.component";
 import { OffreDeServiceCoachTennisComponent } from "./pages/offre-de-service-coach-tennis/offre-de-service-coach-tennis.component";
+import { OhMyEventComponent } from "./oh-my-event/oh-my-event.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -164,6 +165,10 @@ const routes: Routes = [
   {
     path: CONST.PATH.OH_MY_COACH,
     component: OhMyCoachComponent
+  },
+  {
+    path: CONST.PATH.OH_MY_EVENT,
+    component: OhMyEventComponent
   },
   {
     path: CONST.PATH.OH_MY_COACH_DETAIL,
@@ -414,6 +419,7 @@ export function getAuthServiceConfigs() {
     ForgotPasswordComponent,
     SetPasswordComponent,
     OhMyCoachComponent,
+    OhMyEventComponent,
     CoachDetailComponent,
     TopMenuComponent,
     FooterFirstComponent,

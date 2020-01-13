@@ -285,4 +285,10 @@ export class AdmincoacheditComponent extends AdminComponent implements OnInit {
       type: mime
     });
   }
+
+  goBack(){
+    this.router.navigate(["/admin/coachlist"], {
+      queryParams: {}
+    });
+  }
 }
