@@ -281,7 +281,7 @@
                                                 <div class="form-group bmd-form-grou bmd-form-group is-filled">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <label><strong>Code postal:</strong></label>
+                                                            <label><strong>Code Postal:</strong></label>
                                                         </div>
                                                         <div class="col-md-8">
                                                             <input type="number" class="form-control"
@@ -289,7 +289,7 @@
                                                                 name="reserve.Postalcode" readyonly required
                                                                 #Pincode="ngModel"
                                                                 [ngClass]="{'alert_field': (Pincode.errors && (Pincode.touched || Pincode.dirty))}"
-                                                                placeholder="">
+                                                                placeholder="Code Postal">
                                                             <ng-container
                                                                 *ngIf="Pincode.errors && (Pincode.touched || Pincode.dirty)">
                                                                 <span class="alert_text"

@@ -83,13 +83,13 @@
                                     <div class="form-group bmd-form-group">
                                         <div class="row">
                                             <div class="col-xs-12 col-md-4">
-                                                <label>Code postal <span class="red">*</span></label>
+                                                <label>Code Postal <span class="red">*</span></label>
                                             </div>
                                             <div class="col-xs-12 col-md-8">
                                                 <input type="text" [(ngModel)]="res.postalCode" #postalCode="ngModel"
                                                     [ngClass]="{'alert_field': (postalCode.errors && (postalCode.touched || postalCode.dirty))}"
                                                     name="postalCode" class="form-control"
-                                                    placeholder="La Possession - 97419" readonly required>
+                                                    placeholder="Code Postal" readonly required>
                                                 <ng-container
                                                     *ngIf="postalCode.errors && (postalCode.touched || postalCode.dirty)">
                                                     <span class="alert_text" *ngIf="postalCode.errors.required">Indiquez

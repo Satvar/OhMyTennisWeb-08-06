@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AppService } from '../shared/app.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { AppComponent } from '../app.component';
-import { Location } from '@angular/common';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AppService } from "../shared/app.service";
+import { NgxSpinnerService } from "ngx-spinner";
+import { AppComponent } from "../app.component";
+import { Location } from "@angular/common";
 
 @Component({
-  selector: 'app-oh-my-coach',
-  templateUrl: './oh-my-coach.component.html',
-  styleUrls: ['./oh-my-coach.component.scss']
+  selector: "app-oh-my-coach",
+  templateUrl: "./oh-my-coach.component.html",
+  styleUrls: ["./oh-my-coach.component.scss"]
 })
 export class OhMyCoachComponent extends AppComponent implements OnInit {
   public min = new Date();
@@ -20,7 +20,7 @@ export class OhMyCoachComponent extends AppComponent implements OnInit {
     session: "",
     ville: "",
     rayon: ""
-  }
+  };
   public service: any;
   constructor(
     activatedRoute: ActivatedRoute,
@@ -29,13 +29,7 @@ export class OhMyCoachComponent extends AppComponent implements OnInit {
     location: Location,
     spinner: NgxSpinnerService
   ) {
-    super(
-      activatedRoute,
-      router,
-      appService,
-      location,
-      spinner
-    );
+    super(activatedRoute, router, appService, location, spinner);
   }
   ngOnInit() {
     this.getcoach();
@@ -44,60 +38,58 @@ export class OhMyCoachComponent extends AppComponent implements OnInit {
 
   getcoach() {
     this.spinner.show();
-    var date = sessionStorage.getItem('Date');
-    var postal = sessionStorage.getItem('Ville');
+    var date = sessionStorage.getItem("Date");
+    var postal = sessionStorage.getItem("Ville");
 
     const ville = {
-      "ville": sessionStorage.getItem('Ville'),
-      "date": sessionStorage.getItem('Date')
+      ville: sessionStorage.getItem("Ville"),
+      date: sessionStorage.getItem("Date")
+    };
 
-    }
-    
-    if(postal == null){
+    if (postal == null) {
       var pcode = localStorage.getItem("onmytennis");
-      if(pcode){
-      var postalCode = JSON.parse(JSON.parse(pcode));
-      this.search.ville = postalCode.postalCode;
+      if (pcode) {
+        var postalCode = JSON.parse(JSON.parse(pcode));
+        this.search.ville = postalCode.postalCode;
       }
-    }else{
-      this.search.ville = sessionStorage.getItem('Ville');
+    } else {
+      this.search.ville = sessionStorage.getItem("Ville");
     }
     //this.search.ville = sessionStorage.getItem('Ville');
-    this.search.date = sessionStorage.getItem('Date')
-    this.date = sessionStorage.getItem('Date');
-    this.appService.getAll('/coach/getcoachbycity', this.search).subscribe((data) => {
-      if (data && data['data']) {
-        this.respon = (data as any).data.coach_list;
-        //console.log(this.respon)
-        this.spinner.hide();
-      }
-    })
+    this.search.date = sessionStorage.getItem("Date");
+    this.date = sessionStorage.getItem("Date");
+    this.appService
+      .getAll("/coach/getcoachbycity", this.search)
+      .subscribe(data => {
+        if (data && data["data"]) {
+          this.respon = (data as any).data.coach_list;
+          //console.log(this.respon)
+          this.spinner.hide();
+        }
+      });
   }
   findCoach(search) {
     this.spinner.show();
     localStorage.setItem("Course", search.course);
-    if (this.date != '')
-      search.date = this.formatDate(this.date);
-    this.appService.getAll('/coach/findyourCoach', search).subscribe((data) => {
-      if (data && data['data']) {
+    if (this.date != "") search.date = this.formatDate(this.date);
+    this.appService.getAll("/coach/findyourCoach", search).subscribe(data => {
+      if (data && data["data"]) {
         this.respon = (data as any).data.coach_list;
         this.spinner.hide();
       }
-    })
+    });
   }
 
   formatDate(date) {
     var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
       year = d.getFullYear();
 
-    if (month.length < 2)
-      month = '0' + month;
-    if (day.length < 2)
-      day = '0' + day;
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
 
-    return [year, month, day].join('-');
+    return [year, month, day].join("-");
   }
 
   gotoCouch(ser, res) {
@@ -105,9 +97,13 @@ export class OhMyCoachComponent extends AppComponent implements OnInit {
       var data = JSON.stringify(res);
       localStorage.setItem("Coach", data);
       localStorage.setItem("Course", ser);
-      this.router.navigate(['/coachdetail'])
+      this.router.navigate(["/coachdetail"]);
     } else {
-      this.router.navigate(['/login'])
+      this.router.navigate(["/login"]);
     }
+  }
+
+  trackByFunction(index, res) {
+    return index;
   }
 }

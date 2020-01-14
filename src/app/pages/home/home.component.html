@@ -13,12 +13,12 @@
     [imageUrls]="bannerImageSources"
     [lazyLoad]="imageSources?.length > 1"
     [autoPlayWaitForLazyLoad]="true"
-  >  
+  >
   </slideshow>
   <!-- Search area starts -->
   <div class="search_area">
     <div class="banner_container">
-      <h3>Réservez un cours avec un coach</h3>
+      <h3>Réservez Un Cours Avec Un Coach</h3>
       <div class="row">
         <div class="col-xs-12 col-sm-4 col-lg-4">
           <div class="form-group">
@@ -27,7 +27,7 @@
                 class="form-control"
                 id=""
                 maxlength="6"
-                placeholder="code postal"
+                placeholder="Code Postal"
                 [(ngModel)]="Ville"
                 type="text"
               />
@@ -44,7 +44,7 @@
                 [min]="min"
                 class="form-control"
                 id=""
-                placeholder="date"
+                placeholder="Date"
                 [(ngModel)]="Date"
                 [owlDateTime]="dt1"
                 [owlDateTimeTrigger]="dt1"
@@ -73,7 +73,7 @@
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <img
-          src="./assets/images/gallery_3.png"
+          [src]="getTransForm('./assets/images/gallery_3.png')"
           class="img-responsive abt_img"
         />
         <div class="form_bg">
@@ -160,7 +160,11 @@
                             <div class="card-up">
                               <img
                                 class="card-img-top"
-                                src="../assets/images/tennis_coachbg.jpg"
+                                [src]="
+                                  getTransForm(
+                                    '../assets/images/tennis_coachbg.jpg'
+                                  )
+                                "
                                 alt="Team member card image"
                               />
                             </div>
@@ -293,7 +297,8 @@
       <div class="col-md-4 col-sm-4 col-xs-12" *ngFor="let res of response">
         <div class="des_events_bg">
           <img
-            src="{{ res.Photo }}"
+            [src]="getTransForm(res.Photo)"
+            alt="{{ res.Eventname }}"
             class="img-responsive center-block ohevents_img"
           />
           <div class=" ">
@@ -325,9 +330,15 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <img src="./assets/images/slides_3.png" class="img-responsive" />
+        <img
+          [src]="getTransForm('../assets/images/slides_3.png')"
+          class="img-responsive"
+        />
         <div class="middle_sec_contents">
-          <img src="./assets/images/tennis-ball.png" class="ball_img" />
+          <img
+            [src]="getTransForm('../assets/images/tennis-ball.png')"
+            class="ball_img"
+          />
           <h2>Oh My Club House</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

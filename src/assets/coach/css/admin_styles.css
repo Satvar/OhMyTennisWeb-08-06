@@ -315,7 +315,7 @@ label.radio {
 }
 
 .form_uploadfile .file-upload-wrapper:before {
-  content: "Upload";
+  content: "Télécharger";
   position: absolute;
   top: 0;
   right: 0;

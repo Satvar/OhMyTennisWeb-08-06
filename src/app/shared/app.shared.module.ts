@@ -1,9 +1,17 @@
-import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  NgModule,
+  NO_ERRORS_SCHEMA,
+  CUSTOM_ELEMENTS_SCHEMA
+} from "@angular/core";
 /* [ Custom Pipe ] */
-import { TruncatePipe, PhonePrefixPlusPipe } from './app.pipe';
+import {
+  TruncatePipe,
+  PhonePrefixPlusPipe,
+  SecureImagesPipe
+} from "./app.pipe";
 /* [ Shared Plugins ] */
-import { SlickCarouselModule } from 'ngx-slick-carousel';
-import {SlideshowModule} from 'ng-simple-slideshow';
+import { SlickCarouselModule } from "ngx-slick-carousel";
+import { SlideshowModule } from "ng-simple-slideshow";
 /* [ shared Module ] */
 import {
   DecimalNumberOnlyDirective,
@@ -12,12 +20,9 @@ import {
   NoWhitespaceDirective,
   IBMPhoneDirective,
   NumberZeroGreaterDirective
-} from './app.directive';
+} from "./app.directive";
 @NgModule({
-  imports: [
-    SlickCarouselModule,
-    SlideshowModule
-  ],
+  imports: [SlickCarouselModule, SlideshowModule],
   declarations: [
     DecimalNumberOnlyDirective,
     NumberOnlyDirective,
@@ -25,24 +30,25 @@ import {
     NoWhitespaceDirective,
     TruncatePipe,
     PhonePrefixPlusPipe,
+    SecureImagesPipe,
     IBMPhoneDirective,
     NumberZeroGreaterDirective
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [],
-  exports : [
+  exports: [
     DecimalNumberOnlyDirective,
     NumberOnlyDirective,
     CompareValidatorDirective,
     NoWhitespaceDirective,
     TruncatePipe,
     PhonePrefixPlusPipe,
+    SecureImagesPipe,
     IBMPhoneDirective,
     NumberZeroGreaterDirective,
     SlickCarouselModule,
     SlideshowModule
-  ],
+  ]
   // schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppSharedModule { }
+export class AppSharedModule {}

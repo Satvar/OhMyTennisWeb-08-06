@@ -14,6 +14,7 @@ import * as moment from "moment";
 /* [ Spinner ] */
 import { NgxSpinnerService } from "ngx-spinner";
 import { NgbDateStruct, NgbCalendar } from "@ng-bootstrap/ng-bootstrap";
+import { DomSanitizer } from "@angular/platform-browser";
 export interface IImage {
   url: string | null;
   href?: string;
@@ -81,7 +82,8 @@ export class HomeComponent extends AppComponent implements OnInit {
     router: Router,
     appService: AppService,
     location: Location,
-    spinner: NgxSpinnerService
+    spinner: NgxSpinnerService,
+    private sanitizer: DomSanitizer
   ) {
     super(activatedRoute, router, appService, location, spinner);
     this.slidecnt = 4;
@@ -140,6 +142,10 @@ export class HomeComponent extends AppComponent implements OnInit {
     var pcode = localStorage.getItem("onmytennis");
     var postalCode = JSON.parse(JSON.parse(pcode));
     if (postalCode) this.Ville = postalCode.postalCode;
+  }
+
+  getTransForm(image) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(image);
   }
 
   changeMyCoachTab(e, i) {

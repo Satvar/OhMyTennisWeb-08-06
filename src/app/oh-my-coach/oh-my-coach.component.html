@@ -64,9 +64,9 @@
                     class="form-control select_drop_custom1 cust_orangeselect coach_form_input_bg"
                   >
                     <option value="" disabled selected hidden
-                      >Sélectionnez votre cours</option
+                      >Sélectionnez Votre Cours</option
                     >
-                    <option value="Coursindividuel">Cours individuel</option>
+                    <option value="Coursindividuel">Cours Individuel</option>
                     <option value="CoursCollectifOndemand"
                       >Cours Collectif Ondemand</option
                     >
@@ -94,7 +94,7 @@
                           [owlDateTimeTrigger]="dt1"
                           placeholder="Date"
                           class="form-control datepicker_ch coach_datepicker"
-                          placeholder="date"
+                          placeholder="Date"
                         />
                         <owl-date-time
                           #dt1
@@ -131,14 +131,14 @@
                                         </select>
                                     </div> -->
                   <div class="col-md-6 no_paddleft">
-                    <label>Code postal</label>
+                    <label>Code Postal</label>
                     <input
                       type="type"
                       [(ngModel)]="search.ville"
                       name="search.ville"
                       class="form-control datepicker_ch coach_datepicker"
                       name="ville"
-                      placeholder="Code postal"
+                      placeholder="Code Postal"
                     />
                   </div>
                   <div class="col-md-6 no_paddleft">
@@ -150,7 +150,7 @@
                       name="state"
                     >
                       <option value="" disabled selected hidden
-                        >Sélectionnez le rayon</option
+                        >Sélectionnez Le Rayon</option
                       >
                       <option value="1">1 mile</option>
                       <option value="2">2 miles</option>
@@ -178,7 +178,7 @@
 </div>
 <div class="container">
   <div
-    *ngFor="let res of respon"
+    *ngFor="let res of respon; trackBy: trackByFunction"
     class="des_coach_reldetail col-lg-6 col-sm-12 col-xs-12"
   >
     <div class="des_coach_bg">

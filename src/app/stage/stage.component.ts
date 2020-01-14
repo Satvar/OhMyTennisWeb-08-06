@@ -42,7 +42,7 @@ export class StageComponent extends CoachComponent implements OnInit {
     translate: "yes",
     enableToolbar: true,
     showToolbar: true,
-    placeholder: "Enter text here...",
+    placeholder: "Entrez le texte ici...",
     defaultParagraphSeparator: "",
     defaultFontName: "",
     defaultFontSize: "",

@@ -82,7 +82,7 @@
                                                 [(ngModel)]="res.Description" name="res.Description"
                                                 #Description="ngModel"
                                                 [ngClass]="{'alert_field': (Description.errors && (Description.touched || Description.dirty))}"
-                                                id="exampleFormControlTextarea1" rows="5" placeholder=""></textarea>
+                                                id="exampleFormControlTextarea1" rows="5" placeholder="Description"></textarea>
                                             <ng-container
                                                 *ngIf="Description.errors && (Description.touched || Description.dirty)">
                                                 <span class="alert_text" *ngIf="Description.errors.required">Indiquez
@@ -113,13 +113,13 @@
                                 <div class="form-group bmd-form-group">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Code postal <span class="red"> *</span></label>
+                                            <label>Code Postal <span class="red"> *</span></label>
                                         </div>
                                         <div class="col-md-8">
                                             <input type="number" class="form-control" [(ngModel)]="res.Postalcode"
                                                 name="res.Postalcode" readonly required #Pincode="ngModel"
                                                 [ngClass]="{'alert_field': (Pincode.errors && (Pincode.touched || Pincode.dirty))}"
-                                                placeholder="Code postal">
+                                                placeholder="Code Postal">
                                             <ng-container *ngIf="Pincode.errors && (Pincode.touched || Pincode.dirty)">
                                                 <span class="alert_text" *ngIf="Pincode.errors.required">Indiquez votre
                                                     Code postal.</span>
@@ -155,7 +155,7 @@
                                                 <div class="col-md-6"><input id="todate" type="text" #toDate="ngModel"
                                                         [(ngModel)]="res.to_date" name="res.to_date"
                                                         [ngClass]="{'alert_field': (toDate.errors && (toDate.touched || toDate.dirty))}"
-                                                        class="form-control" placeholder="25/11/2019"
+                                                        class="form-control" placeholder="Date"
                                                         [owlDateTime]="todate" [owlDateTimeTrigger]="todate" readonly
                                                         required>
                                                     <owl-date-time #todate [pickerType]="'calendar'"></owl-date-time>
@@ -191,7 +191,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <form class="form_uploadfile">
-                                                <div class="file-upload-wrapper" data-text="Select your file!">
+                                                <div class="file-upload-wrapper" data-text="Sélectionnez votre dossier!">
                                                     <input name="file-upload-field form-control" type="file"
                                                         class="file-upload-field" (change)="changeListener($event)"
                                                         value="" required>

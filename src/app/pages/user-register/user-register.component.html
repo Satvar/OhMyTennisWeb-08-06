@@ -84,12 +84,12 @@
       </div>
       <div class="form-group">
         <div class="col-md-3 col-sm-3 col-xs-5 postal_text">
-          <label class="label1">Code postal <span style="color:red">*</span></label>
+          <label class="label1">Code Postal <span style="color:red">*</span></label>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-7 postal_width">
           <input type="number" minlength="5" onKeyPress="if(this.value.length>=5) return false;"
             formControlName="postalCode" (change)="searchCity($event)" name="postalCode"
-            class="form-control fields" placeholder="Code postal"
+            class="form-control fields" placeholder="Code Postal"
             [ngClass]="{ 'alert_field': rForm.postalCode.errors && (rForm.postalCode.touched || rForm.postalCode.dirty) }">
           <div *ngIf="rForm.postalCode.errors && (rForm.postalCode.touched || rForm.postalCode.dirty)" class="invalid-feedback">
             <div class="alert_text">S'il vous plaît entrer le code postal valide</div>
