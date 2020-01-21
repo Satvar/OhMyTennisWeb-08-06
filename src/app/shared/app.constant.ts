@@ -208,6 +208,10 @@ export const CONST = Object.freeze({
         SELF: "chnagepassword",
         TITLE: "changepassword"
       },
+      CMS: {
+        SELF: "cms",
+        TITLE: "Content Management System"
+      },
       SINOUT: {
         SELF: "déconnexion",
         TITLE: "déconnexion"
@@ -344,6 +348,14 @@ export const CONST = Object.freeze({
       PAYMENTS: {
         SELF: "payments",
         TITLE: "payments"
+      },
+      CMS: {
+        SELF: "cms",
+        TITLE: "Content Management System"
+      },
+      CMSFORM: {
+        SELF: "cmsform",
+        TITLE: "Add - Content Management System"
       },
       PAYMENTSDETAILS: {
         SELF: "paymentdetails",

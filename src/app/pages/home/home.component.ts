@@ -15,6 +15,7 @@ import * as moment from "moment";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NgbDateStruct, NgbCalendar } from "@ng-bootstrap/ng-bootstrap";
 import { DomSanitizer } from "@angular/platform-browser";
+
 export interface IImage {
   url: string | null;
   href?: string;
@@ -83,7 +84,9 @@ export class HomeComponent extends AppComponent implements OnInit {
     appService: AppService,
     location: Location,
     spinner: NgxSpinnerService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private titleService: Title,
+    private meta: Meta
   ) {
     super(activatedRoute, router, appService, location, spinner);
     this.slidecnt = 4;
@@ -138,7 +141,8 @@ export class HomeComponent extends AppComponent implements OnInit {
         class: ""
       }
     ];
-
+    this.titleService.setTitle("Oh My Tennis");
+    this.meta.updateTag({ name: "description", content: "desc" });
     var pcode = localStorage.getItem("onmytennis");
     var postalCode = JSON.parse(JSON.parse(pcode));
     if (postalCode) this.Ville = postalCode.postalCode;

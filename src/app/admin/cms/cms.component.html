@@ -1,0 +1,77 @@
+<div class="content clublist_content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form_devarea">
+          <h4>{{ this._const("PATH.ADMIN.CMS.TITLE") }}</h4>
+          <div class="~box-body">
+            <div class="text-right">
+              <a
+                id="avBtn"
+                href="javascript:;"
+                routerLink="{{
+                  '/' +
+                    this._const('PATH.ADMIN.SELF') +
+                    '/' +
+                    this._const('PATH.ADMIN.CMSFORM.SELF')
+                }}"
+                ><i class="fa fa-plus-circle color-green"></i
+              ></a>
+            </div>
+          </div>
+          <br />
+          <div class="book_coursetab" style="overflow-x: auto;">
+            <table class="table book_coursetable">
+              <thead>
+                <tr>
+                  <th>Sl.no</th>
+                  <th>Menu</th>
+                  <th>SEO Keyword</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="btn_blocksec"
+                  *ngFor="
+                    let group of datanew
+                      | paginate: { itemsPerPage: 10, currentPage: p };
+                    let i = index
+                  "
+                >
+                  <td>{{ i + 1 }}</td>
+                  <td>
+                    {{ group.title }}
+                  </td>
+                  <td>
+                    {{ group.seo_keyword }}
+                  </td>
+                  <td>
+                    <button
+                      id="approveBtn"
+                      class="btn btn-block btn-success"
+                      (click)="getCmsIndividualData(group.id)"
+                    >
+                      Vue
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls
+              (pageChange)="p = $event"
+              previousLabel="Précédent"
+              style="float: right; padding: 11px;"
+              nextLabel="Prochain"
+              directionLinks="true"
+              autoHide="true"
+              responsive="true"
+            >
+            </pagination-controls>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>

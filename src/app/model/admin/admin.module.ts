@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgxPaginationModule } from "ngx-pagination";
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -77,6 +78,9 @@ import { from } from "rxjs";
 import { PaymentsComponent } from "src/app/admin/payments/payments.component";
 import { PaymentdetailsComponent } from "src/app/admin/payment-details/payment-details.component";
 import { PaidComponent } from "src/app/admin/paid-details/paid-details.component";
+import { CmsComponent } from "src/app/admin/cms/cms.component";
+import { CmsformComponent } from "src/app/admin/cmsform/cmsform.component";
+import { CKEditorModule } from "ng2-ckeditor";
 const routes: Routes = [
   {
     path: "",
@@ -201,6 +205,20 @@ const routes: Routes = [
         data: {
           title: CONST.PATH.ADMIN.PAID.TITLE
         }
+      },
+      {
+        path: CONST.PATH.ADMIN.CMS.SELF,
+        component: CmsComponent,
+        data: {
+          title: CONST.PATH.ADMIN.CMS.TITLE
+        }
+      },
+      {
+        path: CONST.PATH.ADMIN.CMSFORM.SELF,
+        component: CmsformComponent,
+        data: {
+          title: CONST.PATH.ADMIN.CMSFORM.TITLE
+        }
       }
     ]
   }
@@ -233,10 +251,13 @@ const routes: Routes = [
     AdminsaverecordComponent,
     PaymentsComponent,
     PaymentdetailsComponent,
-    PaidComponent
+    PaidComponent,
+    CmsComponent,
+    CmsformComponent
   ],
   imports: [
     CommonModule,
+    NgxPaginationModule,
     FormsModule,
     FullCalendarModule,
     ReactiveFormsModule,
@@ -245,7 +266,8 @@ const routes: Routes = [
     AppSharedModule,
     RouterModule.forChild(routes),
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    CKEditorModule
   ],
   providers: [{ provide: OWL_DATE_TIME_LOCALE, useValue: "fr" }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

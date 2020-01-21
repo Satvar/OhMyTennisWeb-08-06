@@ -129,6 +129,7 @@ import { HistoireSecondComponent } from "./pages/histoire/histoire-second/histoi
 import { ConseilsMatrielTesterComponent } from "./pages/conseils/conseils-matriel-tester/conseils-matriel-tester.component";
 import { OffreDeServiceCoachTennisComponent } from "./pages/offre-de-service-coach-tennis/offre-de-service-coach-tennis.component";
 import { OhMyEventComponent } from "./oh-my-event/oh-my-event.component";
+import { CmsComponent } from "./pages/cms/cms.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -391,6 +392,10 @@ const routes: Routes = [
     component: OffreDeServiceCoachTennisComponent
   },
   {
+    path: CONST.PATH.USERS.CMS.SELF + "/:endpoint" + "/:cmsId",
+    component: CmsComponent
+  },
+  {
     path: "**",
     component: HomeComponent
   }
@@ -473,7 +478,8 @@ export function getAuthServiceConfigs() {
     JeuxconcourComponent,
     QuizComponent,
     CharteComponent,
-    OffreDeServiceCoachTennisComponent
+    OffreDeServiceCoachTennisComponent,
+    CmsComponent
   ],
   imports: [
     BrowserModule,

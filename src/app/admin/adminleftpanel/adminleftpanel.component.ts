@@ -74,7 +74,7 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
           this._const("PATH.ADMIN.SELF") +
           "/" +
           this._const("PATH.ADMIN.PROSPECTUSLIST.SELF"),
-        iclass: "fa fa-users",
+        iclass: "fa fa-file-pdf-o",
         style: false
       },
       {
@@ -94,7 +94,17 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
           this._const("PATH.ADMIN.SELF") +
           "/" +
           this._const("PATH.ADMIN.PAYMENTS.SELF"),
-        iclass: "fa fa-users",
+        iclass: "fa fa-money",
+        style: false
+      },
+      {
+        title: "CMS",
+        path:
+          "/" +
+          this._const("PATH.ADMIN.SELF") +
+          "/" +
+          this._const("PATH.ADMIN.CMS.SELF"),
+        iclass: "fa fa-grav",
         style: false
       }
     ];

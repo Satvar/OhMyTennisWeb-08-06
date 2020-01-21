@@ -13,6 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ["./top-menu.component.scss"]
 })
 export class TopMenuComponent extends AppComponent implements OnInit {
+  public response = [];
   constructor(
     activatedRoute: ActivatedRoute,
     router: Router,
@@ -23,5 +24,20 @@ export class TopMenuComponent extends AppComponent implements OnInit {
     super(activatedRoute, router, appService, location, spinner);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCmsMenu();
+  }
+
+  getCmsMenu() {
+    this.spinner.show();
+    this.appService.getAll("/admin/cms/getcmsmenu").subscribe(res => {
+      if (res["isSuccess"] == true) {
+        this.response = (res as any).data.cms_list;
+        console.log(this.response);
+        this.spinner.hide();
+      } else {
+        this.spinner.hide();
+      }
+    });
+  }
 }

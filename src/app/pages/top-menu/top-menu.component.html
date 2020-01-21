@@ -367,6 +367,27 @@
                   </li>
                 </ul>
               </li>
+
+              <li>
+                <a href="#">CMS</a>
+                <ul class="first_submenu clubhouse_menu">
+                  <li *ngFor="let group of response">
+                    <a
+                      href="javascript:;"
+                      routerLink="{{
+                        '/' +
+                          this._const('PATH.USERS.CMS.SELF') +
+                          '/' +
+                          group.endpoint +
+                          '/' +
+                          group.id
+                      }}"
+                      >{{ group.menu_name }}</a
+                    >
+                  </li>
+                </ul>
+              </li>
+
               <!-- <li>
                 <a
                   href="javascript:;"
