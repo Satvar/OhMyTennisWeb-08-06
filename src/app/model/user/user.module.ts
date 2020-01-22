@@ -52,7 +52,6 @@ import { UsersparringComponent } from "src/app/usersparring/usersparring.compone
 import { UserchangepasswordComponent } from "src/app/userchangepassword/userchangepassword.component";
 import { UsersignoutComponent } from "src/app/usersignout/usersignout.component";
 import { UsernotificationComponent } from "src/app/usernotification/usernotification.component";
-import { CmsComponent } from "../../pages/cms/cms.component";
 
 const routes: Routes = [
   {
@@ -145,8 +144,7 @@ const routes: Routes = [
     UsersparringComponent,
     UserchangepasswordComponent,
     UsersignoutComponent,
-    UsernotificationComponent,
-    CmsComponent
+    UsernotificationComponent
   ],
   imports: [
     NgxPaginationModule,

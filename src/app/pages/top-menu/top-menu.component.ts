@@ -40,4 +40,22 @@ export class TopMenuComponent extends AppComponent implements OnInit {
       }
     });
   }
+
+  goToCms(event: Event, endpoint, id) {
+    event.preventDefault();
+    if (true) {
+      this.router.navigate(
+        [this._const("PATH.USERS.CMS.SELF") + "/" + endpoint + "/" + id],
+        {
+          queryParams: {}
+        }
+      );
+    }
+    // setInterval(() => {
+    //   this.refreshCmsPage();
+    // }, 500);
+  }
+  refreshCmsPage() {
+    window.location.reload();
+  }
 }

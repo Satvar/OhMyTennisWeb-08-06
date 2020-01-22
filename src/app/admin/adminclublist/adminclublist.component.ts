@@ -138,7 +138,7 @@ export class AdminclublistComponent extends AdminComponent implements OnInit {
   }
 
   changecourtstatus(id) {
-    console.log(id);
+    //console.log(id);
     let court_id = {
       court_id: id
     };
@@ -153,7 +153,7 @@ export class AdminclublistComponent extends AdminComponent implements OnInit {
       });
   }
   changecourtstatus1(id) {
-    console.log(id);
+    //console.log(id);
     let court_id = {
       court_id: id
     };

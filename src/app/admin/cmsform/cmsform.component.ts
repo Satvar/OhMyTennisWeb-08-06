@@ -46,6 +46,7 @@ export class CmsformComponent extends AdminComponent implements OnInit {
     this.ckeConfig = {
       allowedContent: false,
       extraPlugins: "divarea",
+      // plugins: [Base64UploadAdapter ],
       forcePasteAsPlainText: true
       // toolbarGroups: [
       //   { name: "document", groups: ["mode", "document", "doctools"] },
