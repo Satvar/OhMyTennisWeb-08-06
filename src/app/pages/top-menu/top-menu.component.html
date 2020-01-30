@@ -365,6 +365,15 @@
                       >Club House List</a
                     >
                   </li>
+                  <li>
+                    <a
+                      href="javascript:;"
+                      routerLink="{{
+                        '/' + this._const('PATH.OH_MY_COACH_NEW')
+                      }}"
+                      >Oh My Coach New</a
+                    >
+                  </li>
                 </ul>
               </li>
 
@@ -372,10 +381,9 @@
                 <a href="#">CMS</a>
                 <ul class="first_submenu clubhouse_menu">
                   <li *ngFor="let group of response">
-                    <a
-                      (click)="goToCms($event, group.endpoint,group.id)"
-                      >{{ group.menu_name }}</a
-                    >
+                    <a (click)="goToCms($event, group.endpoint, group.id)">{{
+                      group.menu_name
+                    }}</a>
                   </li>
                 </ul>
               </li>

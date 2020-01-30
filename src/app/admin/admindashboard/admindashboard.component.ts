@@ -32,13 +32,19 @@ export class AdmindashboardComponent extends AdminComponent implements OnInit {
     super(activatedRoute, router, appService, location, spinner);
   }
   ngOnInit() {
-    this.getallbookings();
-    this.getallcounts();
-    setTimeout(function() {
-      $("#datatable").DataTable({
-        responsive: true
-      });
-    }, 310);
+    var admins = JSON.parse(localStorage.getItem("onmytennis"));
+    var admin = JSON.parse(admins);
+    if (admin) {
+      this.getallbookings();
+      this.getallcounts();
+      setTimeout(function() {
+        $("#datatable").DataTable({
+          responsive: true
+        });
+      }, 310);
+    } else {
+      this._gotoPath("/admin");
+    }
   }
 
   getallbookings() {

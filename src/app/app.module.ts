@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -130,6 +130,10 @@ import { ConseilsMatrielTesterComponent } from "./pages/conseils/conseils-matrie
 import { OffreDeServiceCoachTennisComponent } from "./pages/offre-de-service-coach-tennis/offre-de-service-coach-tennis.component";
 import { OhMyEventComponent } from "./oh-my-event/oh-my-event.component";
 import { CmsComponent } from "./pages/cms/cms.component";
+import { OhMyCoachNewComponent } from "./oh-my-coach-new/oh-my-coach-new.component";
+import { CguComponent } from "./cgu/cgu.component";
+import { CGVComponent } from "./cgv/cgv.component";
+import { MentionslegalesComponent } from "./mentionslegales/mentionslegales.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -166,6 +170,10 @@ const routes: Routes = [
   {
     path: CONST.PATH.OH_MY_COACH,
     component: OhMyCoachComponent
+  },
+  {
+    path: CONST.PATH.OH_MY_COACH_NEW,
+    component: OhMyCoachNewComponent
   },
   {
     path: CONST.PATH.OH_MY_EVENT,
@@ -392,6 +400,18 @@ const routes: Routes = [
     component: OffreDeServiceCoachTennisComponent
   },
   {
+    path: CONST.PATH.CGU,
+    component: CguComponent
+  },
+  {
+    path: CONST.PATH.CGV,
+    component: CGVComponent
+  },
+  {
+    path: CONST.PATH.MENTIONS_LEGALES,
+    component: MentionslegalesComponent
+  },
+  {
     path: CONST.PATH.USERS.CMS.SELF + "/:endpoint" + "/:cmsId",
     component: CmsComponent
   },
@@ -424,6 +444,7 @@ export function getAuthServiceConfigs() {
     ForgotPasswordComponent,
     SetPasswordComponent,
     OhMyCoachComponent,
+    OhMyCoachNewComponent,
     OhMyEventComponent,
     CoachDetailComponent,
     TopMenuComponent,
@@ -479,7 +500,10 @@ export function getAuthServiceConfigs() {
     QuizComponent,
     CharteComponent,
     OffreDeServiceCoachTennisComponent,
-    CmsComponent
+    CmsComponent,
+    CguComponent,
+    CGVComponent,
+    MentionslegalesComponent
   ],
   imports: [
     BrowserModule,
@@ -504,6 +528,7 @@ export function getAuthServiceConfigs() {
     { provide: AuthServiceConfig, useFactory: getAuthServiceConfigs }
   ],
   bootstrap: [AppComponent],
-  exports: [TopMenuComponent]
+  exports: [TopMenuComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

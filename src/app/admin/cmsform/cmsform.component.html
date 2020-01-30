@@ -11,6 +11,13 @@
               class="btn btn-info des_save_btn course_edit_btn ng-binding"
               >CRÉER</a
             >
+            <a
+              data-toggle="modal"
+              id="enableBtn1"
+              data-target="#myModal_edit_course"
+              class="btn btn-info des_save_btn course_edit_btn ng-binding"
+              >MODIFIER</a
+            >
           </div>
           <br />
         </div>
@@ -43,28 +50,30 @@
                     <div class="col-xs-12 col-md-8">
                       <input
                         type="text"
-                        [(ngModel)]="res.menuname"
-                        #menuname="ngModel"
+                        [(ngModel)]="res.menu_name"
+                        #menu_name="ngModel"
                         [ngClass]="{
                           alert_field:
-                            menuname.errors &&
-                            (menuname.touched || menuname.dirty)
+                            menu_name.errors &&
+                            (menu_name.touched || menu_name.dirty)
                         }"
-                        name="menuname"
+                        name="menu_name"
                         class="form-control"
                         placeholder="Nom du menu"
+                        (change)="uriChange($event)"
+                        tabindex="1"
                         readonly
                         required
                       />
                       <ng-container
                         *ngIf="
-                          menuname.errors &&
-                          (menuname.touched || menuname.dirty)
+                          menu_name.errors &&
+                          (menu_name.touched || menu_name.dirty)
                         "
                       >
                         <span
                           class="alert_text"
-                          *ngIf="menuname.errors.required"
+                          *ngIf="menu_name.errors.required"
                           >Indiquez votre nom du menu.</span
                         >
                       </ng-container>
@@ -79,13 +88,15 @@
                     <div class="col-xs-12 col-md-8">
                       <input
                         type="text"
-                        [(ngModel)]="res.menuurl"
-                        #menuurl="ngModel"
+                        [(ngModel)]="res.endpoint"
+                        #endpoint="ngModel"
                         [ngClass]="{
                           alert_field:
-                            menuurl.errors && (menuurl.touched || menuurl.dirty)
+                            endpoint.errors &&
+                            (endpoint.touched || endpoint.dirty)
                         }"
-                        name="menuurl"
+                        name="endpoint"
+                        id="endpoint"
                         class="form-control"
                         placeholder="URL"
                         readonly
@@ -93,10 +104,13 @@
                       />
                       <ng-container
                         *ngIf="
-                          menuurl.errors && (menuurl.touched || menuurl.dirty)
+                          endpoint.errors &&
+                          (endpoint.touched || endpoint.dirty)
                         "
                       >
-                        <span class="alert_text" *ngIf="menuurl.errors.required"
+                        <span
+                          class="alert_text"
+                          *ngIf="endpoint.errors.required"
                           >Indiquez votre menu URL.</span
                         >
                       </ng-container>
@@ -112,27 +126,28 @@
                       <input
                         type="text"
                         class="form-control"
-                        [(ngModel)]="res.seokeyword"
-                        #seokeyword="ngModel"
+                        [(ngModel)]="res.seo_keyword"
+                        #seo_keyword="ngModel"
                         [ngClass]="{
                           alert_field:
-                            seokeyword.errors &&
-                            (seokeyword.touched || seokeyword.dirty)
+                            seo_keyword.errors &&
+                            (seo_keyword.touched || seo_keyword.dirty)
                         }"
-                        name="seokeyword"
+                        name="seo_keyword"
                         placeholder="Mot-clé SEO"
+                        tabindex="2"
                         readonly
                         required
                       />
                       <ng-container
                         *ngIf="
-                          seokeyword.errors &&
-                          (seokeyword.touched || seokeyword.dirty)
+                          seo_keyword.errors &&
+                          (seo_keyword.touched || seo_keyword.dirty)
                         "
                       >
                         <span
                           class="alert_text"
-                          *ngIf="seokeyword.errors.required"
+                          *ngIf="seo_keyword.errors.required"
                           >Indiquez votre SEO keyword.</span
                         >
                       </ng-container>
@@ -197,10 +212,7 @@
                               
                             </a> -->
                           <div class="banner1">
-                            <img
-                              class="img gallery"
-                              src="{{ res.User_Image }}"
-                            />
+                            <img class="img gallery" src="{{ res.photo }}" />
                           </div>
                           <div class="upload-btn-wrapper">
                             <button class="btn">Importer l'image</button>
@@ -233,7 +245,7 @@
                     }"
                   >
                     <ckeditor
-                      [(ngModel)]="res.cmsdetails"
+                      [(ngModel)]="res.details"
                       #myckeditor="ngModel"
                       name="myckeditor"
                       required

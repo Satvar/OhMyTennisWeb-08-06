@@ -20,13 +20,14 @@ export class CmsformComponent extends AdminComponent implements OnInit {
   //  @ViewChild("myckeditor") ckeditor: any;
 
   public res = {
-    menuname: "",
-    menuurl: "",
-    seokeyword: "",
+    id: "",
+    menu_name: "",
+    endpoint: "",
+    seo_keyword: "",
     description: "",
-    User_Image: "",
-    cmsdetails: ""
-    /*User_Image:
+    photo: "",
+    details: ""
+    /*photo:
       "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png"*/
   };
 
@@ -43,38 +44,7 @@ export class CmsformComponent extends AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ckeConfig = {
-      allowedContent: false,
-      extraPlugins: "divarea",
-      // plugins: [Base64UploadAdapter ],
-      forcePasteAsPlainText: true
-      // toolbarGroups: [
-      //   { name: "document", groups: ["mode", "document", "doctools"] },
-      //   { name: "clipboard", groups: ["clipboard", "undo"] },
-      //   {
-      //     name: "editing",
-      //     groups: ["find", "selection", "spellchecker", "editing"]
-      //   },
-      //   { name: "forms", groups: ["forms"] },
-      //   "/",
-      //   { name: "basicstyles", groups: ["basicstyles", "cleanup"] },
-      //   {
-      //     name: "paragraph",
-      //     groups: ["list", "indent", "blocks", "align", "bidi", "paragraph"]
-      //   },
-      //   { name: "links", groups: ["links"] },
-      //   { name: "insert", groups: ["insert", "Imageupload"] },
-      //   "/",
-      //   { name: "styles", groups: ["styles"] },
-      //   { name: "colors", groups: ["colors"] },
-      //   { name: "tools", groups: ["tools"] },
-      //   { name: "others", groups: ["others"] },
-      //   { name: "about", groups: ["about"] }
-      // ]
-      // removeButtons:
-      //   "Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar"
-    };
-    //this.getUser();
+    this.getcms();
     var titile = document.getElementsByClassName("brand");
     if (titile) titile[0].innerHTML = "MON COMPTE";
 
@@ -92,6 +62,8 @@ export class CmsformComponent extends AdminComponent implements OnInit {
 
     let elebebtn = document.querySelector("#enableBtn") as HTMLElement;
     elebebtn.style.display = "inline";
+    let elebebtn1 = document.querySelector("#enableBtn1") as HTMLElement;
+    elebebtn1.style.display = "none";
 
     elebebtn.setAttribute("data-toggle", "modal");
 
@@ -103,9 +75,16 @@ export class CmsformComponent extends AdminComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
+  uriChange($event: any): void {
+    var text = this.res.menu_name.replace(/ +/g, " ").trim();
+    this.res.endpoint = text.replace(/\s/g, "-").toLowerCase();
+    //this.log += new Date() + "<br />";
+  }
+
   enableForm() {
     $("#availabilityDiv :input").prop("readonly", false);
     $("#availabilityDiv :input").prop("required", true);
+    $("#endpoint").prop("readonly", true);
 
     let itransport = document.querySelectorAll(".form-group");
     itransport.forEach(function(checkItem) {
@@ -145,7 +124,7 @@ export class CmsformComponent extends AdminComponent implements OnInit {
   }
 
   propagateChange = (result, file, type) => {
-    this.res.User_Image = result;
+    this.res.photo = result;
     //this.res.filename = file.name;
   };
 
@@ -164,11 +143,23 @@ export class CmsformComponent extends AdminComponent implements OnInit {
   }
 
   onSubmit(res) {
+    const id = this.activatedRoute.snapshot.queryParamMap.get("id");
+
+    if (id) {
+      this.res.id = id;
+    }
+
     this.spinner.show();
+
     this.appService.create("/admin/cms/add", res).subscribe(response => {
       if (response && response.isSuccess == true) {
         this._showAlertMessage("alert-success", "Mis à jour avec succés");
-        this.setform();
+
+        if (id) {
+          this.updateform();
+        } else {
+          this.setform();
+        }
         this.spinner.hide();
       } else {
         this._showAlertMessage("alert-danger", "Échec de la mise à jour");
@@ -213,6 +204,34 @@ export class CmsformComponent extends AdminComponent implements OnInit {
     Enregistrer.style.display = "none";
   }
 
+  updateform() {
+    let formInputItem = document
+      .querySelectorAll(".form_devarea")[0]
+      .querySelectorAll("input");
+    formInputItem.forEach(function(inputElement) {
+      inputElement.setAttribute("disabled", "true");
+    });
+
+    let textare1 = document.getElementById(
+      "exampleFormControlTextarea1"
+    ) as HTMLTextAreaElement;
+    textare1.setAttribute("disabled", "true");
+
+    // let textare2 = document.getElementById("exampleFormControlTextarea2") as HTMLTextAreaElement;
+    // textare2.setAttribute("disabled", "true");
+
+    let elebebtn = document.querySelector("#enableBtn") as HTMLElement;
+    elebebtn.style.display = "none";
+
+    elebebtn.setAttribute("data-toggle", "modal");
+
+    let icancel = document.querySelector("#cancel") as HTMLElement;
+    icancel.style.display = "none";
+
+    let Enregistrer = document.querySelector("#Enregistrer") as HTMLElement;
+    Enregistrer.style.display = "none";
+  }
+
   // changeListener($event): void {
   //   this.readThis($event.target);
   // }
@@ -226,4 +245,38 @@ export class CmsformComponent extends AdminComponent implements OnInit {
   //   };
   //   reader.onerror = function(error) {};
   // }
+
+  getcms() {
+    this.ckeConfig = {
+      allowedContent: false,
+      extraPlugins: "divarea",
+      filebrowserUploadUrl: "http://192.168.1.32:3004/admin/cmsfileupload",
+      forcePasteAsPlainText: true
+    };
+    const id = this.activatedRoute.snapshot.queryParamMap.get("id");
+
+    var cms_id = {
+      cms_id: id
+    };
+
+    this.spinner.show();
+    if (id != "") {
+      this.appService
+        .create("/admin/cms/getCmsValue", cms_id)
+        .subscribe((data: any) => {
+          if (data.isSuccess == true) {
+            this.spinner.hide();
+            this.res = data.data.cms_list[0];
+            let elebebtn = document.querySelector("#enableBtn") as HTMLElement;
+            elebebtn.style.display = "none";
+            let elebebtn1 = document.querySelector(
+              "#enableBtn1"
+            ) as HTMLElement;
+            elebebtn1.style.display = "inline";
+          } else {
+            this.spinner.hide();
+          }
+        });
+    }
+  }
 }

@@ -61,8 +61,28 @@ export class CmsComponent extends AdminComponent implements OnInit {
 
   getCmsIndividualData(id) {
     if (id) {
-      this.router.navigate(["/admin/cms/view"], {
+      this.router.navigate(["/admin/cmsform"], {
         queryParams: { id: id }
+      });
+    }
+  }
+
+  deleteCmsIndividualData(id) {
+    var cmsid = {
+      "cmsid":id
+    }
+    if (id) {
+      this.appService.create("/admin/cms/del", cmsid).subscribe(response => {
+        if (response && response.isSuccess == true) {
+
+          this._showAlertMessage("alert-success", "Mis à jour avec succés");
+          this.getAllCms();
+          this.spinner.hide();
+          
+        } else {
+          this._showAlertMessage("alert-danger", "Échec de la mise à jour");
+          this.spinner.hide();
+        }
       });
     }
   }

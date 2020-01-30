@@ -117,22 +117,62 @@
         </div>
       </div>
       <div class="col-md-3 col-sm-3 col-xs-12">
-        <p>Galerie photos</p>
-        <img
+        <p>Linked In</p>
+        <!-- <img
           src="./assets/images/gallery.png"
           class="img-responsive center-block"
-        />
+        /> -->
+        <div
+          class="LI-profile-badge"
+          data-version="v1"
+          data-size="medium"
+          data-locale="en_US"
+          data-type="vertical"
+          data-theme="light"
+          data-vanity="sathishkumar-n-b57804141"
+        >
+          <a
+            class="LI-simple-link"
+            href="https://in.linkedin.com/in/sathishkumar-n-b57804141?trk=profile-badge"
+            >Sathishkumar N</a
+          >
+        </div>
       </div>
       <div class="col-md-3 col-sm-3 col-xs-12">
         <p>Suivez-nous sur facebook</p>
-        <img src="./assets/images/fb.png" class="img-responsive center-block" />
+        <!-- <img src="./assets/images/fb.png" class="img-responsive center-block" /> -->
+        <iframe
+          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjulienmilgram&tabs=timeline&width=250&height=340&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+          width="250"
+          height="340"
+          style="border:none;overflow:hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+          allow="encrypted-media"
+        ></iframe>
       </div>
       <div class="col-md-3 col-sm-3 col-xs-12">
         <p>Les tweets</p>
-        <img
+        <!-- <img
           src="./assets/images/tweeter.png"
           class="img-responsive center-block"
-        />
+        /> -->
+        <!-- <a
+          class="twitter-timeline"
+          data-width="250"
+          data-height="340"
+          data-theme="light"
+          href="https://twitter.com/JulienMilgram?ref_src=twsrc%5Etfw"
+          >Tweets by Julien Milgram</a
+        > -->
+        <a
+          class="twitter-timeline"
+          data-width="250"
+          data-height="340"
+          href="https://twitter.com/JulienMilgram?ref_src=twsrc%5Etfw"
+          >Tweets by JulienMilgram</a
+        >
       </div>
       <div class="col-md-3 col-sm-3 col-xs-12">
         <p>Instagram</p>
@@ -140,15 +180,43 @@
           src="./assets/images/insta.png"
           class="img-responsive center-block"
         />
+        <!-- <iframe
+          src="https://www.instagram.com/p/B726N3IDtcu/"
+          width="250"
+          height="340"
+          style="border:none;overflow:hidden"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+          allow="encrypted-media"
+        ></iframe> -->
       </div>
 
       <div class="clearfix"></div>
       <div>
         <div class="link_lists" align="center">
           <ul class="menu_list_footer">
-            <li><a href="#">C.G.V </a></li>
-            <li><a href="#">C.G.U </a></li>
-            <li><a href="#">Mentions légales</a></li>
+            <li>
+              <a
+                href="javascript:;"
+                routerLink="{{ '/' + this._const('PATH.CGV') }}"
+                >C.G.V</a
+              >
+            </li>
+            <li>
+              <a
+                href="javascript:;"
+                routerLink="{{ '/' + this._const('PATH.CGU') }}"
+                >C.G.U</a
+              >
+            </li>
+            <li>
+              <a
+                href="javascript:;"
+                routerLink="{{ '/' + this._const('PATH.MENTIONS_LEGALES') }}"
+                >Mentions légales</a
+              >
+            </li>
             <li><a href="#">Recrutement</a></li>
             <li><a href="#">Newsletters</a></li>
             <li><a href="#">My tennis</a></li>

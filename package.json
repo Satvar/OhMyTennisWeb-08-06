@@ -62,6 +62,7 @@
     "slick-carousel": "^1.8.1",
     "tslib": "^1.10.0",
     "tui-calendar": "^1.12.5",
+    "underscore": "^1.9.2",
     "xunk-calendar": "^3.0.2",
     "zone.js": "~0.9.1"
   },
