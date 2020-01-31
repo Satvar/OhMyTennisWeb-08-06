@@ -34,6 +34,10 @@ export const CONST = Object.freeze({
     QUIZ_JEUXCONCOUR: "quiz-testintroduction",
     QUIZ: "quiz-jeuxconcour",
     OFFREDESERVICE: "offre-de-service-coach-tennis",
+    OH_MY_COACH_DETAIL_NEW: "coach-detail-new",
+    GUIDE_DES_TERRAINS_PRATIQUE: "guide-des-terrains-pratique",
+    SITE_MAP: "sitemap",
+    PRATIQUE_LICENSE: "pratique-license",
     CONCEPTS: {
       SELF: "concept",
       CONCEPT: {

@@ -134,6 +134,10 @@ import { OhMyCoachNewComponent } from "./oh-my-coach-new/oh-my-coach-new.compone
 import { CguComponent } from "./cgu/cgu.component";
 import { CGVComponent } from "./cgv/cgv.component";
 import { MentionslegalesComponent } from "./mentionslegales/mentionslegales.component";
+import { OhMyCoachDetailNewComponent } from "./oh-my-coach-detail-new/oh-my-coach-detail-new.component";
+import { GuideDesTerrainsPratiqueComponent } from "./guide-des-terrains-pratique/guide-des-terrains-pratique.component";
+import { SitemapComponent } from "./sitemap/sitemap.component";
+import { PratiqueLicenseComponent } from "./pratique-license/pratique-license.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -412,6 +416,22 @@ const routes: Routes = [
     component: MentionslegalesComponent
   },
   {
+    path: CONST.PATH.OH_MY_COACH_DETAIL_NEW,
+    component: OhMyCoachDetailNewComponent
+  },
+  {
+    path: CONST.PATH.GUIDE_DES_TERRAINS_PRATIQUE,
+    component: GuideDesTerrainsPratiqueComponent
+  },
+  {
+    path: CONST.PATH.SITE_MAP,
+    component: SitemapComponent
+  },
+  {
+    path: CONST.PATH.PRATIQUE_LICENSE,
+    component: PratiqueLicenseComponent
+  },
+  {
     path: CONST.PATH.USERS.CMS.SELF + "/:endpoint" + "/:cmsId",
     component: CmsComponent
   },
@@ -503,7 +523,11 @@ export function getAuthServiceConfigs() {
     CmsComponent,
     CguComponent,
     CGVComponent,
-    MentionslegalesComponent
+    MentionslegalesComponent,
+    OhMyCoachDetailNewComponent,
+    GuideDesTerrainsPratiqueComponent,
+    SitemapComponent,
+    PratiqueLicenseComponent
   ],
   imports: [
     BrowserModule,

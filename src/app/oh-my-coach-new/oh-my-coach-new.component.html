@@ -40,30 +40,63 @@
                   placeholder="Code Postal"
                   name="search.ville"
                   id="ville"
+                  pattern="^[0-9]{5}$"
                   maxlength="5"
+                  required
+                  className="form-control"
                 />
               </div>
             </div>
             <div class="cours">
-              <h3>Sélectionnez l'événement</h3>
+              <h3>Selectionnez votre cours</h3>
               <input
-                type="checkbox"
-                [(ngModel)]="search.individual"
+                type="radio"
+                [(ngModel)]="search.course"
+                id="stage"
+                value="Stage"
+                name="search.course"
+              />Stage<br />
+              <input
+                type="radio"
+                id="teambuilding"
+                value="TeamBuilding"
+                [(ngModel)]="search.course"
+                name="search.course"
+              />Team Building<br />
+              <input
+                type="radio"
+                id="animations"
+                value="Animations"
+                [(ngModel)]="search.course"
+                name="search.course"
+              />Animations<br />
+              <input
+                type="radio"
+                id="tournament"
+                value="Tournament"
+                [(ngModel)]="search.course"
+                name="search.course"
+              />Tournament<br />
+              <input
+                type="radio"
+                [(ngModel)]="search.course"
                 id="individual"
-                (change)="onFilterChange($event)"
-                name="search.individual"
+                value="CoursIndividuel"
+                name="search.course"
               />Course Individual<br />
               <input
-                type="checkbox"
+                type="radio"
                 id="ondemand"
-                [(ngModel)]="search.ondemand"
-                name="search.ondemand"
+                value="CoursCollectifOndemand"
+                [(ngModel)]="search.course"
+                name="search.course"
               />Collective on Demand<br />
               <input
-                type="checkbox"
+                type="radio"
                 id="collectifclub"
-                [(ngModel)]="search.collectifclub"
-                name="search.collectifclub"
+                value="CoursCollectifClub"
+                [(ngModel)]="search.course"
+                name="search.course"
               />Collective Club<br />
             </div>
             <div class="select_drop">
@@ -85,7 +118,10 @@
             </div>
           </form>
         </div>
-        <div class="col-md-8 col-sm-4 col-xs-12 px-30">
+        <div
+          class="col-md-8 col-sm-4 col-xs-12 px-30"
+          *ngIf="pager.totalPages > 0; else nocoachesdata"
+        >
           <div class="row" *ngFor="let res of pagedItems; let i = index">
             <div class="set">
               <div class="col-md-2 col-sm-4 col-xs-12 px-0">
@@ -107,7 +143,12 @@
                 </div>
               </div>
               <div class="col-md-3 col-sm-12 col-xs-12">
-                <a href="#" class="section1_btn">Voir le profil</a>
+                <button
+                  (click)="goToCouchDetail(res.Coach_ID)"
+                  class="section1_btn"
+                >
+                  Voir le profil
+                </button>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -115,7 +156,7 @@
           </div>
           <ul
             *ngIf="
-              pager.pages && pager.pages.length > 0 && pagedItems.length > 5
+              pager.pages && pager.pages.length > 0 && pager.totalPages > 4
             "
             class="pager"
           >
@@ -158,19 +199,19 @@
                     </ul> -->
         </div>
 
-        <!-- <ng-template #nocoachesdata>
+        <ng-template #nocoachesdata>
           <div class="col-md-8 col-sm-4 col-xs-12 px-30">
-            <div class="row">
-              <div class="set">
-                No Coaches data
-                <div class="clearfix"></div>
+            <div class="row_box">
+              <div class="set_data">
+                <div class="col-md-12 col-sm-4 col-xs-12 px-0">
+                  <h2>no data</h2>
+                </div>
               </div>
-              <div class="clearfix"></div>
             </div>
+            <div class="clearfix"></div>
           </div>
-        </ng-template> -->
+        </ng-template>
       </div>
-
       <div class="clearfix"></div>
     </div>
     <app-footer></app-footer>

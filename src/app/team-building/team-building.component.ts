@@ -158,6 +158,7 @@ export class TeamBuildingComponent extends CoachComponent implements OnInit {
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
     var coach1 = JSON.parse(coach);
     res.Coach_Id = coach1.id;
+    res.Postalcode = coach1.postalCode;
     var transport = "";
     let enableBtn = document.querySelector("#enableBtn") as HTMLElement;
     if (enableBtn.hasAttribute("disabled") == false) {

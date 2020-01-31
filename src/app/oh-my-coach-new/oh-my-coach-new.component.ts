@@ -18,11 +18,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
   public date: any = "";
   public respon: any;
   public search: any = {
-    individual: false,
-    ondemand: false,
-    collectifclub: false,
     date: "",
-    session: "",
     ville: "",
     rayon: "",
     course: ""
@@ -48,41 +44,38 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
     super(activatedRoute, router, appService, location, spinner);
   }
   ngOnInit() {
-    // let d = new Date();
-    // //let day = new Date(d);
-    // var nextDay = new Date(d);
-    // nextDay.setDate(d.getDate() + 1);
-    // let year = d.getFullYear();
-    // let month =
-    //   d.getMonth() + 1 < 10 ? "0" + d.getMonth() + 1 : d.getMonth() + 1;
-    // this.search.date = nextDay + "/" + month + "/" + year;
-    // console.log(this.search);
     this.getcoach();
-    //this.findCoach();
   }
 
   getcoach() {
     this.spinner.show();
-    var date = sessionStorage.getItem("Date");
-    var postal = sessionStorage.getItem("Ville");
+    //var date = sessionStorage.getItem("Date");
+    // this.search.ville = sessionStorage.getItem("postalCode");
 
-    const ville = {
-      ville: sessionStorage.getItem("Ville"),
-      date: sessionStorage.getItem("Date")
-    };
+    // const ville = {
+    //   ville: sessionStorage.getItem("Ville"),
+    //   date: sessionStorage.getItem("Date")
+    // };
 
-    if (postal == null) {
-      var pcode = localStorage.getItem("onmytennis");
-      if (pcode) {
-        var postalCode = JSON.parse(JSON.parse(pcode));
-        this.search.ville = postalCode.postalCode;
-      }
-    } else {
-      this.search.ville = sessionStorage.getItem("Ville");
+    // if (ville == null) {
+    //   var pcode = localStorage.getItem("onmytennis");
+    //   if (pcode) {
+    //     var postalCode = JSON.parse(JSON.parse(pcode));
+    //     this.search.ville = postalCode.postalCode;
+    //   }
+    // } else {
+    //   this.search.ville = sessionStorage.getItem("Ville");
+    // }
+    // //this.search.ville = sessionStorage.getItem('Ville');
+    // this.search.date = sessionStorage.getItem("Date");
+    // this.date = sessionStorage.getItem("Date");
+
+    var pcode = localStorage.getItem("onmytennis");
+    if (pcode) {
+      var postalCode = JSON.parse(JSON.parse(pcode));
+      this.search.ville = postalCode.postalCode;
+      //console.log(this.search.ville);
     }
-    //this.search.ville = sessionStorage.getItem('Ville');
-    this.search.date = sessionStorage.getItem("Date");
-    this.date = sessionStorage.getItem("Date");
     this.appService
       .getAll("/coach/searchByCoach", this.search)
       .subscribe(data => {
@@ -111,18 +104,6 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
     return str.replace(/,(\s+)?$/, "");
   }
 
-  // transform(image) {
-  //   //return this.sanitizer.bypassSecurityTrustResourceUrl(image);
-  //   var decodeData = window.btoa(image);
-  //   return decodeData;
-  // }
-
-  // cutString(s, n) {
-  //   // var cut = s.indexOf(" ", n);
-  //   // if (cut == -1) return s;
-  //   return s.substring(0, n);
-  // }
-
   onFilterChange(eve: any) {
     console.log(eve);
     this.search.individual = !this.search.individual;
@@ -130,17 +111,10 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
 
   searchByCoach(search) {
     //event.preventDefault();
+    console.log(search);
     this.spinner.show();
 
-    let getSearchObj = {
-      date: "",
-      course: "",
-      ville: "",
-      rayon: ""
-    };
-
     if (search.ville != "") {
-      getSearchObj.ville = search.ville;
       let selectorVilleID = document.querySelector("#ville") as HTMLElement;
       selectorVilleID.style.border = "";
     } else {
@@ -152,55 +126,32 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
 
       this.spinner.hide();
       window.scroll({
-        top: 600,
+        top: 400,
         left: 0,
         behavior: "smooth"
       });
       return;
     }
-    //localStorage.setItem("Course", search.course);
-    if (search.date != "" && search.date != null) {
-      getSearchObj.date = this.formatDate(search.date);
-    }
-    let getCourseData = "";
-    if (this.search.individual) {
-      getCourseData += "CoursIndividuel";
-    }
-    if (search.ondemand) {
-      getCourseData += "CoursCollectifOndemand";
-    }
-    if (search.collectifclub) {
-      getCourseData += "CoursCollectifClub";
-    }
-    if (getCourseData) {
-      getSearchObj.course = this.removeLastComma(getCourseData);
-    }
 
-    if (search.rayon) {
-      getSearchObj.rayon = search.rayon;
-    }
-    console.log(getSearchObj);
-    this.appService
-      .getAll("/coach/searchByCoach", getSearchObj)
-      .subscribe(data => {
-        if ((data as any).isSuccess == true) {
-          this.allItems = (data as any).data.coach_list;
-          this.spinner.hide();
-          if (this.allItems.length > 0) {
-            this.pager.totalPages = this.allItems.length;
-            this.setPage(1);
-          } else {
-            this.pager.totalPages = this.allItems.length;
-            this.pagedItems = [];
-            this.setPage(1);
-          }
-          window.scroll({
-            top: 400,
-            left: 0,
-            behavior: "smooth"
-          });
+    this.appService.getAll("/coach/searchByCoach", search).subscribe(data => {
+      if ((data as any).isSuccess == true) {
+        this.allItems = (data as any).data.coach_list;
+        this.spinner.hide();
+        if (this.allItems.length > 0) {
+          this.pager.totalPages = this.allItems.length;
+          this.setPage(1);
+        } else {
+          this.pager.totalPages = this.allItems.length;
+          this.pagedItems = [];
+          this.setPage(1);
         }
-      });
+        window.scroll({
+          top: 400,
+          left: 0,
+          behavior: "smooth"
+        });
+      }
+    });
   }
 
   getPager(totalItems: number, currentPage: number = 1, pageSize: number = 4) {
@@ -288,5 +239,11 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
     } else {
       this.router.navigate(["/login"]);
     }
+  }
+
+  goToCouchDetail(id) {
+    this.router.navigate(["coach-detail-new"], {
+      queryParams: { id }
+    });
   }
 }
