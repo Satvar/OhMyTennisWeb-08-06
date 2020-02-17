@@ -21,6 +21,14 @@
                                 <span class="alert_text" *ngIf="Email.errors.pattern">Indiquez votre e-mail.</span>
                             </ng-container>
                         </div>
+
+                        <div class="input-group">
+                            <input type="{{inputType}}" name="password" class="form-control input-lg" ng-model="password_field" placeholder="Enter Password" />
+                            <span class="input-group-addon">
+                             <span class="{{showHideClass}}" ng-click="showPassword()" style="cursor:pointer"></span>
+                            </span>
+                           </div>
+
                         <div class="">
                             <label style="font-family: Montserrat;">Mot de passe <span
                                     style="color:red">*</span></label>
