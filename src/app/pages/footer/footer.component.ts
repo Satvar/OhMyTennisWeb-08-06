@@ -6,6 +6,11 @@ import { AppService } from "../../shared/app.service";
 import { AppComponent } from "../../app.component";
 /* [ Spinner ] */
 import { NgxSpinnerService } from "ngx-spinner";
+
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/takeWhile";
+import "rxjs/add/observable/timer";
+
 const url = [
   "https://platform.twitter.com/widgets.js",
   "https://platform.linkedin.com/badges/js/profile.js"
@@ -18,7 +23,8 @@ const url = [
 })
 export class FooterComponent extends AppComponent implements OnInit {
   loadAPI: Promise<any>;
-
+  alive = true;
+  public treeData = [];
   public slides = [
     { img: "../../assets/images/partner_img1.png" },
     { img: "../../assets/images/partner_img2.png" },
@@ -48,6 +54,38 @@ export class FooterComponent extends AppComponent implements OnInit {
 
   ngOnInit() {
     this.loadScript();
+    if (this.alive) {
+      Observable.timer(0, 10000) // only fires when component is alive
+        .subscribe(() => {
+          this.getMenuTree();
+          this.spinner.hide();
+        });
+    }
+  }
+
+  getMenuTree() {
+    this.spinner.show();
+    this.appService.getAll("/admin/menu/bottomtree").subscribe(res => {
+      if (res["isSuccess"] == true) {
+        this.treeData = (res as any).data;
+        //console.log(this.treeData);
+        this.spinner.hide();
+      } else {
+        this.spinner.hide();
+      }
+    });
+  }
+
+  goToCms(event: Event, endpoint) {
+    event.preventDefault();
+    if (endpoint != "" && endpoint != null) {
+      this.router.navigate(
+        [this._const("PATH.USERS.CMS.SELF") + "/" + endpoint],
+        {
+          queryParams: {}
+        }
+      );
+    }
   }
 
   gotoTop() {

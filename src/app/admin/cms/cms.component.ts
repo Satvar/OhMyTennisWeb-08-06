@@ -33,11 +33,6 @@ export class CmsComponent extends AdminComponent implements OnInit {
   }
   ngOnInit() {
     this.getAllCms();
-    // setTimeout(function() {
-    //   $("#datatable").DataTable({
-    //     responsive: true
-    //   });
-    // }, 310);
   }
 
   getAllCms() {
@@ -47,10 +42,10 @@ export class CmsComponent extends AdminComponent implements OnInit {
           let dat = (response as any).data.cms_list;
           let data = dat.map(value => {
             return {
-              title: value.menu_name,
-              seo_keyword: value.seo_keyword,
-              photo: value.photo,
-              id: value.id
+              title: value.title,
+              position: value.position,
+              id: value.id,
+              menu: value.menuName
             };
           });
           this.datanew = data;
@@ -68,22 +63,26 @@ export class CmsComponent extends AdminComponent implements OnInit {
   }
 
   deleteCmsIndividualData(id) {
+    //event.preventdefault();
+    this.spinner.show();
     var cmsid = {
-      "cmsid":id
-    }
+      cmsid: id
+    };
     if (id) {
-      this.appService.create("/admin/cms/del", cmsid).subscribe(response => {
-        if (response && response.isSuccess == true) {
-
-          this._showAlertMessage("alert-success", "Mis à jour avec succés");
-          this.getAllCms();
-          this.spinner.hide();
-          
-        } else {
-          this._showAlertMessage("alert-danger", "Échec de la mise à jour");
-          this.spinner.hide();
-        }
-      });
+      setTimeout(() => {
+        this.appService.create("/admin/cms/del", cmsid).subscribe(response => {
+          if (response && response.isSuccess == true) {
+            this._showAlertMessage("alert-success", "Mis à jour avec succés");
+            this.router.navigate(["/admin/cms"], {
+              queryParams: {}
+            });
+            this.spinner.hide();
+          } else {
+            this._showAlertMessage("alert-danger", "Échec de la mise à jour");
+            this.spinner.hide();
+          }
+        });
+      }, 300);
     }
   }
 }

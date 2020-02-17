@@ -6,8 +6,8 @@
                     <div class="box-body">
                         <div class="row book_course_label">
                             <div class="col-md-4">
-                                <label for="filter" class="control-label"><b>Filtre</b></label>
-                                <input (keyup)="filtersearch($event)" [(ngModel)]="filter" placeholder="filter"
+                                <label for="filter" class="control-label"><b>Rechercher</b></label>
+                                <input (keyup)="filtersearch($event)" [(ngModel)]="filter" placeholder="Rechercher"
                                     class="form-control" /> </div>
 
                             <div class="col-md-4">
@@ -189,7 +189,7 @@
                         <table width="100%" class="available_table">
                             <tbody>
                                 <tr>
-                                    <th colspan="2">Booked Users</th>
+                                    <th colspan="2">Les utilisateurs - Demande de réservations</th>
                                 </tr>
                                 <tr *ngFor="let user of booked_users">
                                     <td>{{user.firstName}} {{user.lastName}}</td>

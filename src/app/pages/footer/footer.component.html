@@ -218,8 +218,12 @@
         </div>
         <div align="center">
           <p class="list_city_footer">
-            <a href="#">Cours de tennis Argenteuil</a>
-            <a href="#">Cours de tennis Aubervilliers</a>
+            <a
+              *ngFor="let tree of treeData"
+              (click)="goToCms($event, tree.path)"
+              >{{ tree.main_name }}</a
+            >
+            <!-- <a href="#">Cours de tennis Aubervilliers</a>
             <a href="#">Cours de tennis Aulnay sous bois </a>
             <a href="#">Cours de tennis Bagneux </a>
             <a href="#">Cours de tennis Bagnolet </a>
@@ -252,7 +256,7 @@
             <a href="#">Cours de tennis La Courneuve </a>
             <a href="#">Cours de tennis Le Kremlin Bicetre </a>
             <a href="#">Cours de tennis Le Perreux sur Marne </a>
-            <a href="#">Cours de </a>
+            <a href="#">Cours de </a> -->
           </p>
         </div>
         <div class="clearfix"></div>

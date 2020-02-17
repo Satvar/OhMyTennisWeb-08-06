@@ -11,7 +11,7 @@
             <span style="margin-top: 15px;">Réservé</span>
         </div>
         <a id="avBtn" class="btn btn-defauly" (click)="clearcheck()" style="background-color:#e75b00;color:#fff;margin-top: 15px;
-            float: right;" data-toggle="modal" data-target="#available">Ajouter la disponibilité</a>
+            float: right;" data-toggle="modal" data-target="#available">Ajouter la disponibilite</a>
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="form_devarea" style="margin-top: 26px">
@@ -53,22 +53,22 @@
                 </div>
                 <div class="row col-md-12" id="dateRangeDiv" style="display: none">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <label>From</label>
+                        <label>De</label>
                         <div class="input-group input-append date" id="datePicker1">
                             <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
                             <input [(ngModel)]="availabilityObj.StartDate" [min]="frommindate" type="text"
                                 id="StartDate" class="form-control ng-pristine ng-untouched ng-valid ng-empty" readonly
-                                name="date" placeholder="From" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1">
+                                name="date" placeholder="De" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1">
                             <owl-date-time #dt1 [pickerType]="'calendar'"></owl-date-time>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <label>To</label>
+                        <label>A</label>
                         <div class="input-group input-append date" id="datePicker2">
                             <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
                             <input [(ngModel)]="availabilityObj.EndDate" [min]="availabilityObj.StartDate" type="text"
                                 id="EndDate" class="form-control ng-pristine ng-untouched ng-valid ng-empty" readonly
-                                name="date" placeholder="To" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2">
+                                name="date" placeholder="A" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2">
                             <owl-date-time #dt2 [pickerType]="'calendar'"></owl-date-time>
                         </div>
                     </div>

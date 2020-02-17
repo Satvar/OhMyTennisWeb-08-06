@@ -78,9 +78,16 @@ import { from } from "rxjs";
 import { PaymentsComponent } from "src/app/admin/payments/payments.component";
 import { PaymentdetailsComponent } from "src/app/admin/payment-details/payment-details.component";
 import { PaidComponent } from "src/app/admin/paid-details/paid-details.component";
+import { dynamicMenuComponent } from "src/app/admin/dynamicMenu/dynamicMenu.component";
+import { dynamicMenuFormComponent } from "src/app/admin/dynamicMenuForm/dynamicMenuForm.component";
+import { CKEditorModule } from "ng2-ckeditor";
 import { CmsComponent } from "src/app/admin/cms/cms.component";
 import { CmsformComponent } from "src/app/admin/cmsform/cmsform.component";
-import { CKEditorModule } from "ng2-ckeditor";
+import { TreeViewComponent } from "@syncfusion/ej2-angular-navigations";
+import { TreeModule } from "angular-tree-component";
+
+import { AngularEditorModule } from "@kolkov/angular-editor";
+import { editDynamicMenuComponent } from "src/app/admin/editDynamicMenu/editDynamicMenu.component";
 const routes: Routes = [
   {
     path: "",
@@ -207,6 +214,27 @@ const routes: Routes = [
         }
       },
       {
+        path: CONST.PATH.ADMIN.DYNAMICMENU.SELF,
+        component: dynamicMenuComponent,
+        data: {
+          title: CONST.PATH.ADMIN.DYNAMICMENU.TITLE
+        }
+      },
+      {
+        path: CONST.PATH.ADMIN.DYNAMICMENUFORM.SELF,
+        component: dynamicMenuFormComponent,
+        data: {
+          title: CONST.PATH.ADMIN.DYNAMICMENUFORM.TITLE
+        }
+      },
+      {
+        path: CONST.PATH.ADMIN.EDITDYNAMICMENUFORM.SELF,
+        component: editDynamicMenuComponent,
+        data: {
+          title: CONST.PATH.ADMIN.EDITDYNAMICMENUFORM.TITLE
+        }
+      },
+      {
         path: CONST.PATH.ADMIN.CMS.SELF,
         component: CmsComponent,
         data: {
@@ -252,8 +280,12 @@ const routes: Routes = [
     PaymentsComponent,
     PaymentdetailsComponent,
     PaidComponent,
+    dynamicMenuComponent,
+    dynamicMenuFormComponent,
     CmsComponent,
-    CmsformComponent
+    CmsformComponent,
+    TreeViewComponent,
+    editDynamicMenuComponent
   ],
   imports: [
     CommonModule,
@@ -267,7 +299,10 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    CKEditorModule
+    CKEditorModule,
+    //TreeViewModule,
+    TreeModule.forRoot(),
+    AngularEditorModule
   ],
   providers: [{ provide: OWL_DATE_TIME_LOCALE, useValue: "fr" }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

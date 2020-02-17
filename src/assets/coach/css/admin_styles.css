@@ -377,7 +377,7 @@ label.radio {
   text-transform: capitalize;
 }
 span {
-  text-transform: capitalize;
+  text-transform: none;
 }
 .fc-today-button {
   text-transform: capitalize;

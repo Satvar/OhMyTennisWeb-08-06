@@ -98,7 +98,17 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
         style: false
       },
       {
-        title: "CMS",
+        title: "Menu",
+        path:
+          "/" +
+          this._const("PATH.ADMIN.SELF") +
+          "/" +
+          this._const("PATH.ADMIN.DYNAMICMENU.SELF"),
+        iclass: "fa fa-grav",
+        style: false
+      },
+      {
+        title: "Content",
         path:
           "/" +
           this._const("PATH.ADMIN.SELF") +

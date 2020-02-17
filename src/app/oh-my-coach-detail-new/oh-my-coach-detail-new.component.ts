@@ -17,6 +17,10 @@ import * as $ from "jquery";
 })
 export class OhMyCoachDetailNewComponent implements OnInit {
   public Ville: any = null;
+  public service = new Array();
+  public profileImage: any = "";
+  public eventList: any = {};
+
   public selectedCity: any = null;
   public alertMsg: any = {
     type: "",
@@ -159,9 +163,6 @@ export class OhMyCoachDetailNewComponent implements OnInit {
   calendarComponent: FullCalendarComponent;
 
   ngOnInit() {
-    const coachID: string = this.activatedRoute.snapshot.queryParamMap.get(
-      "id"
-    );
     this.spinner.show();
     if (window.innerWidth > 1024) {
       this.slidecnt = 4;
@@ -170,156 +171,37 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     } else {
       this.slidecnt = 2;
     }
-    this.coachSlider();
 
     this.couchdetail();
 
-    var pcode = localStorage.getItem("onmytennis");
-    var postalCode = JSON.parse(JSON.parse(pcode));
-    this.Ville = postalCode.postalCode;
+    // var pcode = localStorage.getItem("onmytennis");
+    // var postalCode = JSON.parse(JSON.parse(pcode));
+    // this.Ville = postalCode.postalCode;
   }
 
-  handleDateClick(arg) {
-    // handler method
-    this.spinner.show();
-    $(".day-highlight").removeClass("day-highlight");
-    $(arg.dayEl).addClass("day-highlight");
-    var course = localStorage.getItem("Course");
-    var coach = JSON.parse(localStorage.getItem("Coach"));
-    var detail = {
-      Start_Date: arg.dateStr,
-      Coach_ID: coach.id,
-      Course: course
-    };
-    this.bookingDate = arg.dateStr;
-    console.log(this.bookingDate);
-    this.Timeslotdata = {
-      Start_Date: arg.dateStr,
-      Coach_ID: coach.id,
-      Course: course
-    };
-    if (course != "CoursCollectifClub") {
-      this.appService.getAll("/coach/getTimeslot", detail).subscribe(data => {
-        this.timeslot = (data as any).data.availabilty;
-        this.spinner.hide();
-      });
-    } else {
-      this.showclub = true;
-      this.spinner.hide();
-    }
-  }
-
-  handleClick(event: Event) {
-    this.router.navigate(["/ohmycoach"]);
-  }
-
-  closemodal() {
-    this.spinner.show();
-    this.revokeChanges();
-    $("#available").hide();
-    $(".modal-backdrop").hide();
-    $("body").removeClass("modal-open");
-    this.appService
-      .getAll("/coach/getTimeslot", this.Timeslotdata)
-      .subscribe(data => {
-        this.timeslot = (data as any).data.availabilty[0];
-        this.spinner.hide();
-      });
-  }
-
-  closeclub() {
-    this.spinner.show();
-    this.revokeChanges();
-    $("#clubmodal").hide();
-    $(".modal-backdrop").hide();
-    $("body").removeClass("modal-open");
-    this.spinner.hide();
-  }
-
-  revokeChanges() {
-    this.booking = {
-      Coach_ID: "",
-      user_Id: "",
-      payment_Id: 0,
-      status: "",
-      bookingDate: "",
-      bookingCourse: "",
-      amount: "",
-      coach_Email: "",
-      user_Email: "",
-      coach_Name: "",
-      user_Name: "",
-      paymentStatus: "",
-      session: [],
-      bookingDateRange: ""
-    };
-    this.book_coach = {
-      P_CoachId: "",
-      P_CourseId: "",
-      P_Date: "",
-      P_Hour: "",
-      P_UserId: "",
-      P_Amount: "",
-      P_Remarks: ""
-    };
-    this.Amt = 0;
-    this.bookArray = [];
-    this.session = [];
-    this.moment_date = "";
-    this.temps = "";
-  }
-
-  formatDate(date) {
-    var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [year, month, day].join("-");
-  }
-
-  bookCoach() {
-    var req = {
-      bookArray: this.bookArray
-    };
-    this.spinner.show();
-    this.appService.create("/coach/setreservation", req).subscribe(response => {
-      if (response && response.isSuccess == true) {
-        document.getElementById("btnbooking").style.display = "none";
-        this._showAlertMessage("alert-success", "Cours réservé avec succès");
-      } else {
-        this._showAlertMessage(
-          "alert-danger",
-          "La réservation du cours a échoué"
-        );
-      }
-      this.spinner.hide();
-    });
+  transform(image) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(image);
   }
 
   couchdetail() {
     this.spinner.show();
-    var coach = JSON.parse(localStorage.getItem("Coach"));
-    if (coach != "") {
-      var coachemail = {
-        Coach_Email: coach.Coach_Email
-      };
-
+    const coachID: string = this.activatedRoute.snapshot.queryParamMap.get(
+      "id"
+    );
+    const coachId = {
+      id: coachID
+    };
+    if (coachID != "") {
       this.setCoachName = localStorage.getItem("sendCoachDetails");
       this.appService
-        .create("/coach/getcoachbyid", coachemail)
+        .create("/coach/getcoachdetailbyid", coachId)
         .subscribe(async response => {
           if (response && response["data"]) {
             this.coach_detail = response.data.coach_list[0];
-            //console.log('coachdetail',this.coach_detail);
-            var temp = new Array();
-            temp = this.coach_detail.Coach_payment_type.split(",");
-            //console.log(temp[0]);
-            this.str = temp.join(", ");
-
+            this.profileImage = this.transform(this.coach_detail.Coach_Image);
+            //console.log("coachdetail", this.coach_detail);
+            this.service = this.coach_detail.Coach_Services.split(",");
+            //console.log(this.service);
             this.spinner.hide();
           }
         });
@@ -328,9 +210,9 @@ export class OhMyCoachDetailNewComponent implements OnInit {
         queryParams: {}
       });
     }
-
-    //console.log('setcoachname',setCoachName)
   }
+
+  eventListDetails() {}
 
   download() {
     if (this.coach_detail.Coach_Resume) {
@@ -354,30 +236,6 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     }
     return new Blob([u8arr], {
       type: mime
-    });
-  }
-
-  coachSlider() {
-    this.slides = {
-      data: [],
-      config: {
-        slidesToShow: this.slidecnt,
-        slidesToScroll: 2,
-        autoplay: true,
-        autoplaySpeed: 1000,
-        arrows: true
-      }
-    };
-    var Data: any;
-    this.appService.getAll("/coach/getallcoaches").subscribe(response => {
-      Data = response;
-      Data.data.coach_list.forEach(element => {
-        this.slides.data.push({
-          img: element.Coach_Image,
-          name: element.Coach_Fname + " " + element.Coach_Lname,
-          comment: element.Coach_Description
-        });
-      });
     });
   }
 
@@ -413,19 +271,5 @@ export class OhMyCoachDetailNewComponent implements OnInit {
       this.alertMsg.msg = "";
       this.alertMsg.show = false;
     }
-  }
-  gotoCouch(couch: any) {
-    //alert('sample')
-    localStorage.setItem("sendCoachDetails", couch.name);
-    this.couchdetail();
-    // if (localStorage.getItem("onmytennis") !== null) {
-    //   var data = JSON.stringify(res);
-    //   localStorage.setItem("Coach", data);
-    //   localStorage.setItem("Course", ser);
-    //   this.router.navigate(['/coachdetail'])
-    // } else {
-    //   this.router.navigate(['/login'])
-    // }
-    this.router.navigate(["/ohmycoachdetail"]);
   }
 }

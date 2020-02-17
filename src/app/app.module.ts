@@ -129,7 +129,7 @@ import { HistoireSecondComponent } from "./pages/histoire/histoire-second/histoi
 import { ConseilsMatrielTesterComponent } from "./pages/conseils/conseils-matriel-tester/conseils-matriel-tester.component";
 import { OffreDeServiceCoachTennisComponent } from "./pages/offre-de-service-coach-tennis/offre-de-service-coach-tennis.component";
 import { OhMyEventComponent } from "./oh-my-event/oh-my-event.component";
-import { CmsComponent } from "./pages/cms/cms.component";
+//import { CmsComponent } from "./pages/cms/cms.component";
 import { OhMyCoachNewComponent } from "./oh-my-coach-new/oh-my-coach-new.component";
 import { CguComponent } from "./cgu/cgu.component";
 import { CGVComponent } from "./cgv/cgv.component";
@@ -138,6 +138,7 @@ import { OhMyCoachDetailNewComponent } from "./oh-my-coach-detail-new/oh-my-coac
 import { GuideDesTerrainsPratiqueComponent } from "./guide-des-terrains-pratique/guide-des-terrains-pratique.component";
 import { SitemapComponent } from "./sitemap/sitemap.component";
 import { PratiqueLicenseComponent } from "./pratique-license/pratique-license.component";
+import { CmsFrontComponent } from "./pages/cms/cms-front.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -432,8 +433,8 @@ const routes: Routes = [
     component: PratiqueLicenseComponent
   },
   {
-    path: CONST.PATH.USERS.CMS.SELF + "/:endpoint" + "/:cmsId",
-    component: CmsComponent
+    path: CONST.PATH.USERS.CMS.SELF + "/:endpoint",
+    component: CmsFrontComponent
   },
   {
     path: "**",
@@ -520,7 +521,7 @@ export function getAuthServiceConfigs() {
     QuizComponent,
     CharteComponent,
     OffreDeServiceCoachTennisComponent,
-    CmsComponent,
+    CmsFrontComponent,
     CguComponent,
     CGVComponent,
     MentionslegalesComponent,

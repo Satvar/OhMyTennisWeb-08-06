@@ -357,6 +357,18 @@ export const CONST = Object.freeze({
         SELF: "payments",
         TITLE: "payments"
       },
+      DYNAMICMENU: {
+        SELF: "dynamic-menu",
+        TITLE: "Dynamic Menu"
+      },
+      DYNAMICMENUFORM: {
+        SELF: "dynamic-menu-form",
+        TITLE: "Dynamic Menu Form"
+      },
+      EDITDYNAMICMENUFORM: {
+        SELF: "edit-menu-form",
+        TITLE: "Edit Dynamic Menu Form"
+      },
       CMS: {
         SELF: "cms",
         TITLE: "Content Management System"

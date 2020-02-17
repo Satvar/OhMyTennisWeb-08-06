@@ -5,26 +5,29 @@ import { AppService } from "../../shared/app.service";
 import { AppComponent } from "../../app.component";
 /* [ Spinner ] */
 import { NgxSpinnerService } from "ngx-spinner";
-import { DomSanitizer } from "@angular/platform-browser";
+import { DomSanitizer, Title, Meta } from "@angular/platform-browser";
 //import { interval } from "rxjs";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/takeWhile";
 import "rxjs/add/observable/timer";
 
 @Component({
-  selector: "app-cms",
-  templateUrl: "./cms.component.html",
-  styleUrls: ["./cms.component.scss"]
+  selector: "app-cms-front",
+  templateUrl: "./cms-front.component.html",
+  styleUrls: ["./cms-front.component.scss"]
 })
-export class CmsComponent extends AppComponent implements OnInit, OnDestroy {
+export class CmsFrontComponent extends AppComponent
+  implements OnInit, OnDestroy {
   public response = {
+    title: "",
     menu_name: "",
     endpoint: "",
     seo_keyword: "",
     description: "",
     photo: "",
     details: "",
-    created_date: ""
+    created_date: "",
+    seo_description: ""
   };
   //private timerObserver: Subscription;
   alive = true;
@@ -35,7 +38,9 @@ export class CmsComponent extends AppComponent implements OnInit, OnDestroy {
     appService: AppService,
     location: Location,
     spinner: NgxSpinnerService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private titleService: Title,
+    private meta: Meta
   ) {
     super(activatedRoute, router, appService, location, spinner);
   }
@@ -45,13 +50,18 @@ export class CmsComponent extends AppComponent implements OnInit, OnDestroy {
     const endpoint: string = this.activatedRoute.snapshot.paramMap.get(
       "endpoint"
     );
-    const id: string = this.activatedRoute.snapshot.paramMap.get("cmsId");
+    //const id: string = this.activatedRoute.snapshot.paramMap.get("cmsId");
     //console.log(endpoint, id);
-    if (endpoint && id) {
+    if (endpoint) {
       this.appService
-        .getAll("/admin/cms/getCmsData/" + endpoint + "/" + id)
+        .getAll("/admin/cms/getCmsData/" + endpoint)
         .subscribe(res => {
           this.response = (res as any).data.cms_list[0];
+          this.titleService.setTitle(this.response.title);
+          this.meta.updateTag({
+            name: this.response.seo_keyword,
+            content: this.response.seo_description
+          });
           this.myFile = this.transform(this.response["photo"]);
           this.response.photo = this.myFile;
           // if (!this.alive) {

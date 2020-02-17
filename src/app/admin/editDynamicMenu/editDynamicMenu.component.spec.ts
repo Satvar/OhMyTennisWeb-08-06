@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CmsComponent } from "./cms.component";
+import { editDynamicMenuComponent } from "./editDynamicMenu.component";
 
-describe("CmsComponent", () => {
-  let component: CmsComponent;
-  let fixture: ComponentFixture<CmsComponent>;
+describe("editDynamicMenuComponent", () => {
+  let component: editDynamicMenuComponent;
+  let fixture: ComponentFixture<editDynamicMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CmsComponent]
+      declarations: [editDynamicMenuComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CmsComponent);
+    fixture = TestBed.createComponent(editDynamicMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked } from "@angular/core";
+import { Component, OnInit, AfterViewChecked, OnDestroy } from "@angular/core";
 import { Location } from "@angular/common";
 import { BrowserModule, Title, Meta } from "@angular/platform-browser";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
@@ -6,14 +6,20 @@ import { AppService } from "../../shared/app.service";
 import { AppComponent } from "../../app.component";
 /* [ Spinner ] */
 import { NgxSpinnerService } from "ngx-spinner";
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/takeWhile";
+import "rxjs/add/observable/timer";
 
 @Component({
   selector: "app-top-menu",
   templateUrl: "./top-menu.component.html",
   styleUrls: ["./top-menu.component.scss"]
 })
-export class TopMenuComponent extends AppComponent implements OnInit {
+export class TopMenuComponent extends AppComponent
+  implements OnInit, OnDestroy {
   public response = [];
+  public treeData = [];
+  alive = true;
   constructor(
     activatedRoute: ActivatedRoute,
     router: Router,
@@ -25,7 +31,27 @@ export class TopMenuComponent extends AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCmsMenu();
+    //this.getCmsMenu();
+    // if (this.alive) {
+    //   Observable.timer(0, 10000) // only fires when component is alive
+    //     .subscribe(() => {
+    //       this.getMenuTree();
+    //       this.spinner.hide();
+    //     });
+    // }
+  }
+
+  getMenuTree() {
+    this.spinner.show();
+    this.appService.getAll("/admin/menu/toptree").subscribe(res => {
+      if (res["isSuccess"] == true) {
+        this.treeData = (res as any).data;
+        console.log(this.treeData);
+        this.spinner.hide();
+      } else {
+        this.spinner.hide();
+      }
+    });
   }
 
   getCmsMenu() {
@@ -41,21 +67,22 @@ export class TopMenuComponent extends AppComponent implements OnInit {
     });
   }
 
-  goToCms(event: Event, endpoint, id) {
+  goToCms(event: Event, endpoint) {
     event.preventDefault();
-    if (true) {
+    if (endpoint != "" && endpoint != null) {
       this.router.navigate(
-        [this._const("PATH.USERS.CMS.SELF") + "/" + endpoint + "/" + id],
+        [this._const("PATH.USERS.CMS.SELF") + "/" + endpoint],
         {
           queryParams: {}
         }
       );
     }
-    // setInterval(() => {
-    //   this.refreshCmsPage();
-    // }, 500);
   }
-  refreshCmsPage() {
-    window.location.reload();
+  // refreshCmsPage() {
+  //   window.location.reload();
+  // }
+
+  ngOnDestroy() {
+    this.alive = false;
   }
 }
