@@ -107,7 +107,7 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                                <label>Instagram <span class="red">*</span></label>
+                                                                <label>Instagram </label>
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control"
@@ -133,7 +133,7 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                                <label>Facebook <span class="red">*</span></label>
+                                                                <label>Facebook</label>
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control"
@@ -159,7 +159,7 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                                <label>Twitter <span class="red">*</span></label>
+                                                                <label>Twitter</label>
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control"
@@ -207,6 +207,26 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                  
+                                                    <div class="form-group bmd-form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <label>Emplacement <span class="red"> *</span></label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input type="text" class="form-control" [(ngModel)]="res.Location"
+                                                                    name="res.Location" readyonly required #Place="ngModel"
+                                                                    [ngClass]="{'alert_field': (Place.errors && (Place.touched || Place.dirty))}"
+                                                                    placeholder="">
+                                                                <ng-container *ngIf="Place.errors && (Place.touched || Place.dirty)">
+                                                                    <span class="alert_text" *ngIf="Place.errors.required">Indiquez votre
+                                                                        Emplacement.</span>
+                                                                </ng-container>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                    
                                                     <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
@@ -234,6 +254,23 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
+                                                                <label>Ville <span class="red"> *</span></label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input type="text" class="form-control" [(ngModel)]="res.Location"
+                                                                    name="res.Location" readyonly required #Place="ngModel"
+                                                                    [ngClass]="{'alert_field': (Place.errors && (Place.touched || Place.dirty))}"
+                                                                    placeholder="">
+                                                                <ng-container *ngIf="Place.errors && (Place.touched || Place.dirty)">
+                                                                    <span class="alert_text" *ngIf="Place.errors.required">Indiquez votre
+                                                                        Ville.</span>
+                                                                </ng-container>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group bmd-form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <label><span class="red">*</span>Champs
@@ -246,7 +283,7 @@
                                                     <div class="form-group bmd-form-group">
                                                         <div class="card card-profile">
                                                             <div class="card-avatar">
-                                                                <a href="#pablo">
+                                                                <a>
                                                                     <img class="img" src={{res.Coach_Image}}>
                                                                 </a>
                                                             </div>
@@ -277,6 +314,13 @@
                                 <div class="panel-body">
                                     <form #activeTabIndex1="ngForm" (ngSubmit)="onSubmit(res)"
                                         enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-xs-12"><a style="float:right;margin-bottom:20px; color: #ffffff;"
+                                                *ngIf="(activeTabIndex === 1)" (click)="makeEnable()" class="btn btn-info"><i
+                                                    class="fa fa-edit"></i> MODIFIER</a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-2"></div>
                                             <div class="col-md-8">
@@ -359,16 +403,30 @@
                                                             <select class="form-control" id="exampleFormControlSelect1"
                                                                 [(ngModel)]="res.Coach_Rayon" name="Coach_Rayon"
                                                                 readonly required>
-                                                                <option value="1" readonly>1 mile</option>
-                                                                <option value="2" readonly>2 miles</option>
-                                                                <option value="3" readonly>3 miles</option>
-                                                                <option value="4" readonly>4 miles</option>
-                                                                <option value="5" readonly>5 miles</option>
+                                                                <option value="1" readonly>1 kilomètre</option>
+                                                                <option value="2" readonly>2 Kilomètres</option>
+                                                                <option value="3" readonly>3 Kilomètres</option>
+                                                                <option value="4" readonly>4 Kilomètres</option>
+                                                                <option value="5" readonly>5 Kilomètres</option>
+                                                                <option value="5" readonly>6 Kilomètres</option>
+                                                                <option value="5" readonly>7 Kilomètres</option>
+                                                                <option value="5" readonly>8 Kilomètres</option>
+                                                                <option value="5" readonly>9 Kilomètres</option>
+                                                                <option value="5" readonly>10 Kilomètres</option>
+                                                                <option value="5" readonly>11 Kilomètres</option>
+                                                                <option value="5" readonly>12 Kilomètres</option>
+                                                                <option value="5" readonly>13 Kilomètres</option>
+                                                                <option value="5" readonly>15 Kilomètres</option>
+                                                                <option value="5" readonly>16 Kilomètres</option>
+                                                                <option value="5" readonly>17 Kilomètres</option>
+                                                                <option value="5" readonly>18 Kilomètres</option>
+                                                                <option value="5" readonly>19 Kilomètres</option>
+                                                                <option value="5" readonly>20 Kilomètres</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group bmd-form-group">
+                                                <!-- <div class="form-group bmd-form-group">
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <label>Prix <span class="red">*</span><br/>(Indiquer le prix en euros)</label>
@@ -410,7 +468,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="row">
                                                     <div class="form-group">
                                                         <div class="col-md-4 col-sm-4 col-xs-12">
@@ -473,6 +531,14 @@
                                 <div class="panel-body">
                                     <form #activeTabIndex2="ngForm" (ngSubmit)="onSubmit(res)"
                                         enctype="multipart/form-data">
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-12"><a style="float:right;margin-bottom:20px; color: #ffffff;"
+                                                *ngIf="(activeTabIndex === 2)" (click)="makeEnable()" class="btn btn-info"><i
+                                                    class="fa fa-edit"></i> MODIFIER</a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-2"></div>
                                             <div class="col-md-8">

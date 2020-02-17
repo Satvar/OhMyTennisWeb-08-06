@@ -1,4 +1,92 @@
 /** Header Starts **/
+.far.far-user-o {
+  background: url(../../../assets/images/dashboard_icons/coach/moncompte_ic.png) top left no-repeat;
+}
+.far.far-th-large {
+  background: url(../../../assets/images/dashboard_icons/coach/dashboard_ic.png) top left no-repeat;
+}
+.far.far-calendar {
+  background: url(../../../assets/images/dashboard_icons/coach/moncalendar_ic.png) top left no-repeat;
+}
+
+ .far.far-reser-o {
+  background: url(../../../assets/images/dashboard_icons/coach/MESRESRVATION.png) top left no-repeat;
+ }
+.far.far-courindiv {
+ background: url(../../../assets/images/dashboard_icons/coach/COURSEINDIVIDUAL.png) top left no-repeat;
+}
+.far.far-demand-o {
+ background: url(../../../assets/images/dashboard_icons/coach/coldemand_ic.png) top left no-repeat;
+}
+ .far.far-courcollect-o {
+  background: url(../../../assets/images/dashboard_icons/coach/collectiveclub_ic.png) top left no-repeat;
+}
+.far.far-stage-o {
+  background: url(../../../assets/images/dashboard_icons/coach/STAGE.png) top left no-repeat;
+}
+.far.far-animation-o{
+  background: url(../../../assets/images/dashboard_icons/coach/animation_ic.png) top left no-repeat;
+}
+.far.far-team-o {
+  background: url(../../../assets/images/dashboard_icons/coach/teambuild_ic.png) top left no-repeat;
+}
+.far.far-tour-o {
+  background: url(../../../assets/images/dashboard_icons/coach/tournament_ic.png) top left no-repeat;
+}
+.far.far-comments-o {
+  background: url(../../../assets/images/dashboard_icons/coach/comments_ic.png) top left no-repeat;
+} 
+.admin_tempstyle .sidebar .nav li a:hover {
+    background-color: #e75b00;
+    color: #ffffff !important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+}
+.admin_tempstyle .sidebar .nav li.active a:hover p, .admin_tempstyle .sidebar .nav li.active a p, .admin_tempstyle .sidebar .nav li.active a:hover, .admin_tempstyle .sidebar .nav li.active a{
+  color: #ffffff !important;
+}
+.admin_tempstyle .sidebar .nav li a:hover p, .admin_tempstyle .sidebar .nav li a p:hover{
+  color: #ffffff !important;
+}
+.admin_tempstyle .sidebar .nav li a i { 
+  height: 29px;
+  width: 29px;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-user-o, .admin_tempstyle .sidebar .nav li.active a .far.far-user-o  {
+  background: url(../../../assets/images/dashboard_icons/coach/moncompte_ichover.png) top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-th-large , .admin_tempstyle .sidebar .nav li.active a .far.far-th-large  {
+  background: url(../../../assets/images/dashboard_icons/coach/dashboard_ichover.png) top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-calendar , .admin_tempstyle .sidebar .nav li.active a .far.far-calendar {
+  background: url(../../../assets/images/dashboard_icons/coach/moncalendar_hover.png) top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-reser-o , .admin_tempstyle .sidebar .nav li.active a .far.far-reser-o{
+ background: url(../../../assets/images/dashboard_icons/coach/mesreservation_ichover.png) top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-courindiv , .admin_tempstyle .sidebar .nav li.active a .far.far-courindiv {
+ background: url(../../../assets/images/dashboard_icons/coach/coursindividual_ichover.png) top left no-repeat;
+}
+ .admin_tempstyle .sidebar .nav li a:hover .far.far-demand-o , .admin_tempstyle .sidebar .nav li.active a .far.far-demand-o{
+  background: url(../../../assets/images/dashboard_icons/coach/coldemand_ichover.png) top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-courcollect-o, .admin_tempstyle .sidebar .nav li.active a .far.far-courcollect-o {
+  background: url(../../../assets/images/dashboard_icons/coach/collectiveclub_ichover.png) top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-stage-o , .admin_tempstyle .sidebar .nav li.active a .far.far-stage-o{
+  background: url(../../../assets/images/dashboard_icons/coach/stageic_ichover.png) top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-team-o , .admin_tempstyle .sidebar .nav li.active a .far.far-team-o {
+  background: url(../../../assets/images/dashboard_icons/coach/teambuild_ichover.png) top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-animation-o, .admin_tempstyle .sidebar .nav li.active a .far.far-animation-o {
+  background: url(../../../assets/images/dashboard_icons/coach/animation_ichover.png) top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-tour-o , .admin_tempstyle .sidebar .nav li.active a .far.far-tour-o{
+  background: url(../../../assets/images/dashboard_icons/coach/tournament_ichover.png) top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-comments-o , .admin_tempstyle .sidebar .nav li.active a .far.far-comments-o{
+  background: url(../../../assets/images/dashboard_icons/coach/comments_ichover.png) top left no-repeat;
+} 
 .wrapper {
   position: relative;
   top: 0;
@@ -140,7 +228,7 @@ body.admin_tempstyle {
   font-size: 18px;
   float: left;
   margin-right: 12px;
-  margin-top: 9px;
+  margin-top: 0px;
   line-height: 30px;
   width: 25px;
   text-align: center;

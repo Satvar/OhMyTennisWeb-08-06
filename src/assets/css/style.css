@@ -5545,3 +5545,11 @@ cursor:default;
 	height: 230px;
 }
 }
+
+.admin_tempstyle .upload-btn-wrapper {
+    cursor: pointer;   
+}
+
+.admin_tempstyle .upload-btn-wrapper input[type="file"] {
+    cursor: pointer;   
+}

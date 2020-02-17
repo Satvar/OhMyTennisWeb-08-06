@@ -200,7 +200,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.DASHBOARD.SELF"),
-        iclass: "fa fa-th-large",
+        iclass: "far far-th-large",
         style: false
       },
       {
@@ -210,7 +210,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.PROFILE.SELF"),
-        iclass: "fa fa-user-o",
+        iclass: "far far-user-o",
         style: false
       },
       {
@@ -220,7 +220,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.MY_CALENDER.SELF"),
-        iclass: "fa fa-calendar",
+        iclass: "far far-calendar",
         style: false
       },
       {
@@ -230,7 +230,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.RESERVATION.SELF"),
-        iclass: "fa fa-user-o",
+        iclass: "far far-reser-o",
         style: false
       },
       {
@@ -240,7 +240,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.INDIVIDUAL_COURSE.SELF"),
-        iclass: "fa fa-calendar",
+        iclass: "far far-courindiv",
         style: false
       },
       {
@@ -250,7 +250,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.COURSECOLLECTION.SELF"),
-        iclass: "fa fa-pencil-square-o",
+        iclass: "far far-demand-o",
         style: true
       },
       {
@@ -260,7 +260,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.COURSECLUB.SELF"),
-        iclass: "fa fa-building-o",
+        iclass: "far far-courcollect-o",
         style: true
       },
       {
@@ -270,7 +270,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.STAGE.SELF"),
-        iclass: "fa fa-clock-o",
+        iclass: "far far-stage-o",
         style: false
       },
       {
@@ -280,7 +280,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.TEAMBUILDING.SELF"),
-        iclass: "fa fa-users",
+        iclass: "far far-team-o",
         style: false
       },
       {
@@ -290,7 +290,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.ANIMATION.SELF"),
-        iclass: "fa fa-cog",
+        iclass: "far far-animation-o",
         style: false
       },
       {
@@ -300,13 +300,13 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.TOURNAMENT.SELF"),
-        iclass: "fa fa-trophy",
+        iclass: "far far-tour-o",
         style: false
       },
       {
         title: "COMMENTAIRES",
         path: "/" + this._const("PATH.COACH.SELF"),
-        iclass: "fa fa-user-o",
+        iclass: "far far-comments-o",
         style: false
       }
     ];
