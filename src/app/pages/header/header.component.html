@@ -89,32 +89,163 @@
                   {{ username }}
                 </a>
                 <ul class="dropdown-menu">
-                  <li *ngIf="roleid == 1" style="width: 100%;color: black;">
+                  <li *ngIf="roleid == 1" style="width: 100%;">
                     <a
                       href="javascript:;"
                       routerLink="../user/dashboard"
-                      style="color: black;width: 100%;line-height: 40px;text-decoration: none;"
+                      style=";width: 100%;line-height: 40px;text-decoration: none;"
                       href="#"
-                      >TABLEAUX DE BORD</a
+                      >Tableaux de bord</a
                     >
                   </li>
-                  <li *ngIf="roleid == 2" style="width: 100%;color: black;">
+                  <li *ngIf="roleid == 2" style="width: 100%;">
                     <a
                       href="javascript:;"
                       routerLink="../coach/dashboard"
                       style="color: black;width: 100%;line-height: 40px;text-decoration: none;"
                       href="#"
-                      >TABLEAUX DE BORD</a
+                      >Tableaux de bord</a
                     >
                   </li>
-                  <li style="color: black;" class="divider"></li>
-                  <li style="width: 100%;color: black;">
+                  <li *ngIf="roleid == 1" style="width: 100%;">
                     <a
+                      href="javascript:;"
+                      routerLink="../user/profile"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Mon compte</a
+                    >
+                  </li>
+                  <li *ngIf="roleid == 2" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../coach/profile"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Mon Compte</a
+                    >
+                  </li> <li *ngIf="roleid == 1" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../user/reservation"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Mes reservation</a
+                    >
+                  </li>
+                  <li *ngIf="roleid == 2" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../coach/calendar"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Mon calendrier</a
+                    >
+                  </li>
+                   <li *ngIf="roleid == 1" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../user/notification"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Notifications</a
+                    >
+                  </li>
+                  <li *ngIf="roleid == 2" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../coach/reservation"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Mes reservation</a
+                    >
+                  </li>
+                  <li *ngIf="roleid == 2" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../coach/individual-course"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Cours individual</a
+                    >
+                  </li>
+                  <li *ngIf="roleid == 2" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../coach/CourseonDeman"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Cours collectif ondemand</a
+                    >
+                  </li>
+                  <li *ngIf="roleid == 2" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../coach/CourseOnClub"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Cours collective club</a
+                    >
+                  </li>
+                  <li *ngIf="roleid == 2" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../coach/Stage"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Stage</a
+                    >
+                  </li>
+                  <li *ngIf="roleid == 2" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../coach/team-building"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Team building</a
+                    >
+                  </li>
+                  <li *ngIf="roleid == 2" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../coach/Animation"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Animations</a
+                    >
+                  </li>
+                  <li *ngIf="roleid == 2" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../coach/Tounament"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >Tounament</a>
+                  </li>
+                   <!-- <li *ngIf="roleid == 1" style="width: 100%;color: black;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../user/reviews"
                       style="color: black;width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#"
+                      >AVIS ET COMMENTAIRES</a
+                    >
+                  </li> -->
+                 <li *ngIf="roleid == 1" style="width: 100%;">
+                    <a
+                      href="javascript:;"
+                      routerLink="../user/chnagepassword"
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
+                      href="#">Changer le mot de passe</a>
+                  </li>                
+                
+                  <li style="color: black;" class="divider"></li>
+                  <li style="width: 100%;">
+                    <a
+                      style="width: 100%;line-height: 40px;text-decoration: none;"
                       href="javascript:;"
                       (click)="_logout()"
-                      >Se déconnecter</a
-                    >
+                      >Se déconnecter</a>
                   </li>
                 </ul>
               </li>

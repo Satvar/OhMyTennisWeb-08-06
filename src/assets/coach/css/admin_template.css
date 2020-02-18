@@ -36,6 +36,21 @@
 .far.far-comments-o {
   background: url(../../../assets/images/dashboard_icons/coach/comments_ic.png) top left no-repeat;
 } 
+.far.far-bell-o {
+  background: url(../../../assets/images/dashboard_icons/user/usernotify_ic.png) top left no-repeat;
+} 
+.far.far-handshake-o {
+  background: url(../../../assets/images/dashboard_icons/user/userpartner_ic.png) top left no-repeat;
+} 
+.far.far-cogs-o {
+  background: url(../../../assets/images/dashboard_icons/user/usersparring_ic.png) top left no-repeat;
+} 
+.far.far-key-o {
+  background: url(../../../assets/images/dashboard_icons/user/userchange_ic.png) top left no-repeat;
+} 
+.far.far-sign-out-o {
+  background: url(../../../assets/images/dashboard_icons/user/userlogout_ic.png) top left no-repeat;
+} 
 .admin_tempstyle .sidebar .nav li a:hover {
     background-color: #e75b00;
     color: #ffffff !important;
@@ -47,9 +62,47 @@
 .admin_tempstyle .sidebar .nav li a:hover p, .admin_tempstyle .sidebar .nav li a p:hover{
   color: #ffffff !important;
 }
+.admin_tempstyle .sidebar .nav li .dropdown-menu a {
+  cursor: pointer;
+}
+.dropdown-menu:before {
+  height: 20px;
+  width: 20px;
+  border-left:3px solid #f00;
+  border-top:2px solid #f00;
+  z-index: 3000;
+  color:#f00;
+  position: absolute;
+  top:20px;
+  left: 20px;
+}
+.top_menu .open > .dropdown-menu {
+  padding: 14px 0px;
+}
+.top_menu .open > .dropdown-menu > li > a {
+  padding: 5px 17px;
+  color: #000000;
+  line-height: 26px !important;
+}
+.top_menu .open > .dropdown-menu > li > a:hover {
+  background-color: #ed9862;
+  color: #000000;
+}
 .admin_tempstyle .sidebar .nav li a i { 
-  height: 29px;
-  width: 29px;
+  height: 25px;
+  width: 25px;
+  background-size: 100% 100% !important;
+}
+.navi {
+  text-transform: uppercase;
+}
+.nav_bar1 .btn.btn-outline-success {
+  display: none !important;
+}
+.admin_tempstyle .sidebar .nav li a:hover i, .admin_tempstyle .sidebar .nav li a i:hover { 
+  height: 25px;
+  width: 25px;
+  background-size: 100% 100% !important;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-user-o, .admin_tempstyle .sidebar .nav li.active a .far.far-user-o  {
   background: url(../../../assets/images/dashboard_icons/coach/moncompte_ichover.png) top left no-repeat;
@@ -87,6 +140,24 @@
 .admin_tempstyle .sidebar .nav li a:hover .far.far-comments-o , .admin_tempstyle .sidebar .nav li.active a .far.far-comments-o{
   background: url(../../../assets/images/dashboard_icons/coach/comments_ichover.png) top left no-repeat;
 } 
+.admin_tempstyle .sidebar .nav li a:hover .far.far-bell-o , .admin_tempstyle .sidebar .nav li.active a .far.far-bell-o{
+ background: url(../../../assets/images/dashboard_icons/user/usernotify_ichover.png) top left no-repeat;
+} 
+.admin_tempstyle .sidebar .nav li a:hover .far.far-handshake-o , .admin_tempstyle .sidebar .nav li.active a .far.far-handshake-o{
+ background: url(../../../assets/images/dashboard_icons/user/userpartner_ichover.png) top left no-repeat;
+} 
+.admin_tempstyle .sidebar .nav li a:hover .far.far-cogs-o , .admin_tempstyle .sidebar .nav li.active a .far.far-cogs-o{
+ background: url(../../../assets/images/dashboard_icons/user/usersparring_ichover.png) top left no-repeat;
+} 
+.admin_tempstyle .sidebar .nav li a:hover .far.far-key-o , .admin_tempstyle .sidebar .nav li.active a .far.far-key-o{
+ background: url(../../../assets/images/dashboard_icons/user/userchange_ichover.png) top left no-repeat;
+} 
+.admin_tempstyle .sidebar .nav li a:hover .far.far-sign-out-o , .admin_tempstyle .sidebar .nav li.active a .far.far-sign-out-o{
+ background: url(../../../assets/images/dashboard_icons/user/userlogout_ichover.png) top left no-repeat;
+} 
+.text_box_search {
+display: none !important;
+}
 .wrapper {
   position: relative;
   top: 0;
@@ -205,8 +276,7 @@ body.admin_tempstyle {
 .sidebar .nav li:first-child > a {
   margin: 0 15px;
 }
-.sidebar .nav li a,
-.sidebar .nav li .dropdown-menu a {
+.sidebar .nav > li > a{
   margin: 10px 15px 0;
   border-radius: 0;
   color: #3c4858;
@@ -216,12 +286,17 @@ body.admin_tempstyle {
   font-size: 13px;
   padding: 10px 15px;
 }
+
+.sidebar .nav > li .dropdown-menu a {
+  background: #f00;
+  padding: 5px 15px;
+}
 .sidebar .nav-link {
   display: block;
   padding: 0.5rem 1rem;
 }
-.sidebar .nav li.active > a,
-.sidebar .nav li.active > a i {
+.sidebar .nav > li.active > a,
+.sidebar .nav > li.active > a i {
   color: #fff;
 }
 .sidebar .nav i {

@@ -50,6 +50,7 @@ export class UserleftpanelcomponentComponent extends UserComponent implements On
         this.appService.create("/user/getuserbyid", useremail).subscribe((data: any) => {
           if (data.isSuccess == true) {
             this.image = data.data.User_list[0].User_Image;
+            console.log(this.image);
             if(this.image==null) {
              
               this.image="https://www.w3schools.com/howto/img_avatar.png"
@@ -88,47 +89,47 @@ export class UserleftpanelcomponentComponent extends UserComponent implements On
     return [{
       title : 'TABLEAUX DE BORD',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.DASHBOARD.SELF'),
-      iclass: 'fa fa-th-large',
+      iclass: 'far far-th-large',
       style: false,
     }, {
       title : 'MON COMPTE',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.PROFILE.SELF'),
-      iclass: 'fa fa-user-o',
+      iclass: 'far far-user-o',
       style: false,
     }, {
       title : 'MES RESERVATION',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.RESERVATION.SELF'),
-      iclass: 'fa fa-ticket',
+      iclass: 'far far-reser-o',
       style: false,
     }, {
       title : 'NOTIFICATIONS',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.NOTIFICATION.SELF'),
-      iclass: 'fa fa-bell',
+      iclass: 'far far-bell-o',
       style: false,
     }, {
       title : 'AVIS ET COMMENTAIRES',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.REVIEWS.SELF'),
-      iclass: 'fa fa-comments',
+      iclass: 'far far-comments-o',
       style: false,
     }, {
       title : 'PARTENAIRE',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.PARTNER.SELF'),
-      iclass: 'fa fa-handshake-o',
+      iclass: 'far far-handshake-o',
       style: true,
     }, {
       title : 'SPARRING',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.SPARRING.SELF'),
-      iclass: 'fa fa-cogs',
+      iclass: 'far far-cogs-o',
       style: true,
     }, {
       title : 'CHANGER LE MOT DE PASSE',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.CHANGEPASSWORD.SELF'),
-      iclass: 'fa fa-key',
+      iclass: 'far far-key-o',
       style: false,
     }, {
       title : 'DÉCONNEXION',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.SINOUT.SELF'),
-      iclass: 'fa fa-sign-out',
+      iclass: 'far far-sign-out-o',
       style: false,
     }];
   }
