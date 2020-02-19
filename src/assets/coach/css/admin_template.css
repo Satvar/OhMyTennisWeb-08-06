@@ -1241,7 +1241,8 @@ label {
   width: 33px;
   height: 33px;
   text-align: center;
-  line-height: 33px;
+  line-height: 58px;
+    display: inline-block;
 }
 /** Footer ends **/
 
