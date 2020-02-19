@@ -312,7 +312,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
       {
         title: "SUPPRIMER VOTRE <br> COMPTE",
         path: "/",
-        iclass: "far far-comments-o",
+        iclass: "far far-sign-out-o",
         style: false
       }
     ];

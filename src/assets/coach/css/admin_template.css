@@ -329,6 +329,7 @@ body.admin_tempstyle {
   height: auto;
   display: inline-block !important;
   white-space: nowrap;
+  line-height: 18px !important;
   font-weight: bold;
 }
 #myModal_edit_course .modal-content{
@@ -433,6 +434,7 @@ border-radius: 7px;
   margin: 10px 10px 10px;
   border-radius: 0;
   color: #3c4858;
+  line-height: 28px;
   padding-left: 10px;
   padding-right: 10px;
   text-transform: capitalize;
@@ -448,13 +450,13 @@ border-radius: 7px;
 .admin_tempstyle .sidebar,
 .admin_tempstyle .main-panel,
 .admin_tempstyle .sidebar-wrapper {
-  -webkit-transition-property: top, bottom, width;
+  /* -webkit-transition-property: top, bottom, width;
   transition-property: top, bottom, width;
   -webkit-transition-duration: 0.2s, 0.2s, 0.35s;
   transition-duration: 0.2s, 0.2s, 0.35s;
   -webkit-transition-timing-function: linear, linear, ease;
   transition-timing-function: linear, linear, ease;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; */
 }
 .admin_tempstyle .main-panel {
   position: relative;
@@ -934,6 +936,7 @@ border-radius: 7px;
 .myaccount_page .card .card-header.card-header-text .card-title {
   margin-top: 15px;
   color: #3c4858;
+  line-height: 21px;
 }
 .myaccount_page .card .card-header-success .card-icon {
   background: linear-gradient(60deg, #66bb6a, #43a047);
@@ -971,12 +974,13 @@ border-radius: 7px;
 
 .myaccount_page .card [class*="card-header-"] .card-icon,
 .myaccount_page .card [class*="card-header-"] .card-text {
-  border-radius: 0;
+  border-radius: 50%;
   background-color: #999999;
-  padding: 12px;
-  margin-top: -20px;
-  margin-right: 15px;
-  float: left;
+  padding: 0px;
+  float: none;
+  width: 60px;
+  height: 60px;
+  margin: -25px auto 0px;
 }
 .myaccount_page .card .card-header-warning .card-icon a {
   color: #ffffff !important;
@@ -1180,7 +1184,7 @@ label {
   .card-stats
   .card-header.card-header-icon
   i {
-  font-size: 26px;
+  font-size: 23px;
   line-height: 56px;
   width: 56px;
   height: 56px;
@@ -1968,23 +1972,21 @@ label {
   border: 0;
   margin-bottom: 30px;
   margin-top: 30px;
-  border-radius: 0;
   color: #333333;
   background: #fff;
   width: 100%;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  min-height: 210px;
-
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid #eeeeee;
-  border-radius: 0.25rem;
+    min-height: 180px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #eeeeee;
+    border-radius: 7px;
 }
 .admin_tempstyle .card-profile .card-avatar img {
   width: 100%;

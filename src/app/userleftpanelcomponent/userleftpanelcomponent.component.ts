@@ -130,7 +130,7 @@ export class UserleftpanelcomponentComponent extends UserComponent implements On
     {
       title: "SUPPRIMER VOTRE <br> COMPTE",
       path: "/",
-      iclass: "far far-comments-o",
+      iclass: "far far-sign-out-o",
       style: false
     }, {
       title : 'DÉCONNEXION',
