@@ -78,14 +78,19 @@
 }
 .top_menu .open > .dropdown-menu {
   padding: 14px 0px;
+  border-radius: 10px;
 }
 .top_menu .open > .dropdown-menu > li > a {
-  padding: 5px 17px;
+  padding: 5px 0px 5px 15px;
   color: #000000;
   line-height: 26px !important;
 }
+
+.top_menu .open > .dropdown-menu > li > a i {
+  margin-right: 12px;
+}
 .top_menu .open > .dropdown-menu > li > a:hover {
-  background-color: #ed9862;
+  background-color: #efb693;
   color: #000000;
 }
 .admin_tempstyle .sidebar .nav li a i { 
