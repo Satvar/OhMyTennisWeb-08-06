@@ -1238,10 +1238,10 @@ label {
 }
 .admin_tempstyle .card .card-header.card-header-icon i,
 .admin_tempstyle .card .card-header.card-header-text i {
-  width: 33px;
-  height: 33px;
+  width: 56px;
+  height: 56px;
   text-align: center;
-  line-height: 58px;
+  line-height: 56px;
     display: inline-block;
 }
 /** Footer ends **/
