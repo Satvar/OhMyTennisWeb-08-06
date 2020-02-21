@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ɵConsole, AfterViewInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { AppService } from "../shared/app.service";
@@ -7,22 +7,57 @@ import { AppComponent } from "../app.component";
 import { Location } from "@angular/common";
 //import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import * as _ from "underscore";
+import * as $ from "jquery";
+import * as L from "leaflet";
 
 @Component({
-  selector: "app-oh-my-coach-new",
-  templateUrl: "./oh-my-coach-new.component.html",
-  styleUrls: ["./oh-my-coach-new.component.scss"]
+  selector: "app-oh-my-coach",
+  templateUrl: "./oh-my-coach.component.html",
+  styleUrls: ["./oh-my-coach.component.scss"]
 })
-export class OhMyCoachNewComponent extends AppComponent implements OnInit {
+export class OhMyCoachComponent extends AppComponent implements OnInit {
   public min = new Date();
   public date: any = "";
   public respon: any;
+  showMyMap: boolean = true;
+  showMapCSS: string = "none";
   public search: any = {
     date: "",
     ville: "",
-    rayon: "",
+    rayon: "0",
     course: ""
   };
+  //public latlongcurrent: any;
+  map: any;
+  mapvalues: any;
+  lat: any;
+  lang: any;
+  curentlat: any;
+  curentlang: any;
+  co_or_gps: any;
+  numbers = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ];
   public service: any;
 
   private allItems: any[];
@@ -45,6 +80,16 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
   }
   ngOnInit() {
     this.getcoach();
+  }
+
+  ngAfterViewInit(): void {
+    var pcode = localStorage.getItem("onmytennis");
+    if (!pcode) {
+      this.getcurrentcordinates();
+    }
+    $(".mapsection")
+      .delay(1000)
+      .fadeIn(500);
   }
 
   getcoach() {
@@ -74,8 +119,18 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
     if (pcode) {
       var postalCode = JSON.parse(JSON.parse(pcode));
       this.search.ville = postalCode.postalCode;
-      //console.log(this.search.ville);
-    }
+
+      //Getting Gelocation based on POstal Code and Display the Map
+      this.appService
+        .getAll("/coach/geolocationByPostalCode/" + this.search.ville)
+        .subscribe(data => {
+          if (data && data["data"]) {
+            this.co_or_gps = data["data"].coordonnees_gps;
+            var splited_gps = this.co_or_gps.split(",");
+            this.displayLoadedMap(splited_gps[0], splited_gps[1], 0);
+          }
+        });
+    } // End of pcode if it is present
     this.appService
       .getAll("/coach/searchByCoach", this.search)
       .subscribe(data => {
@@ -124,6 +179,29 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
       let selectorVilleID = document.querySelector("#ville") as HTMLElement;
       selectorVilleID.style.border = "1px solid red";
 
+      // //Ryan Code Starts Here
+      // console.log("Ryan ID - " +search.ryan);
+      // console.log('Type OF TOP'+ typeof search.ryan);
+
+      // if(parseInt(search.ryan)>=0 && parseInt(search.ryan)<=20)
+      // {
+      //     console.log("Ryan ID IF - " +search.ryan);
+      //     console.log('Type OF IF'+ typeof search.ryan);
+      //     let selectorRyanID = document.querySelector("#ryan") as HTMLElement;
+      //     selectorRyanID.style.border = "";
+      // }
+      // else
+      // {
+      //     console.log('Type OF ELSE'+ typeof search.ryan);
+      //     console.log("Ryan ID ELSE - " +search.ryan);
+      //     //let ryanID = document.getElementById("ryan") as HTMLElement;
+      //     //ryanID.setAttribute("tabIndex", "-2");
+      //     //ryanID.focus();
+      //     let selectorRyanID = document.querySelector("#ryan") as HTMLElement;
+      //     selectorRyanID.style.border = "1px solid red";
+      // }
+      // //Ryan Code Ends Here
+
       this.spinner.hide();
       window.scroll({
         top: 400,
@@ -133,12 +211,32 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
       return;
     }
 
+    //return;
+
+    //Getting Gelocation based on POstal Code and Display the Map
+    this.appService
+      .getAll("/coach/geolocationByPostalCode/" + search.ville)
+      .subscribe(data => {
+        console.log(data);
+        if (data && data["data"]) {
+          if (data["data"].coordonnees_gps.length > 0) {
+            this.co_or_gps = data["data"].coordonnees_gps;
+            var splited_gps = this.co_or_gps.split(",");
+            this.displayLoadedMap(splited_gps[0], splited_gps[1], search.rayon);
+          } else {
+            // If the Geo Co-Ordinates are available the load the Current Location Map
+            this.getcurrentcordinates();
+          }
+        }
+      });
     this.appService.getAll("/coach/searchByCoach", search).subscribe(data => {
       if ((data as any).isSuccess == true) {
         this.allItems = (data as any).data.coach_list;
+        console.log("ohmytennisnew -- searchByCoach 217", this.allItems);
         this.spinner.hide();
         if (this.allItems.length > 0) {
           this.pager.totalPages = this.allItems.length;
+          console.log(this.pager.totalPages);
           this.setPage(1);
         } else {
           this.pager.totalPages = this.allItems.length;
@@ -152,6 +250,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
         });
       }
     });
+    //this.showMyMap = !this.showMyMap;
   }
 
   getPager(totalItems: number, currentPage: number = 1, pageSize: number = 4) {
@@ -202,6 +301,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
       return;
     }
 
+    console.log("ohmytennisnew -- setPage 284", page);
     // get pager object from service
     this.pager = this.getPager(this.allItems.length, page);
 
@@ -242,8 +342,79 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
   }
 
   goToCouchDetail(id) {
-    this.router.navigate(["coach-detail-new"], {
+    this.router.navigate(["ohmycoachdetail"], {
       queryParams: { id }
     });
+  }
+
+  async getcurrentcordinates() {
+    const resp = await fetch("https://ipapi.co/json/");
+    const data = await resp.json();
+    this.curentlat = data.latitude.toFixed(3);
+    this.curentlang = data.longitude.toFixed(3);
+    console.log(this.curentlat, " ", this.curentlang);
+    //return
+    this.displayLoadedMap(this.curentlat, this.curentlang, 0);
+  }
+
+  displayLoadedMap(latitude, longitude, radius) {
+    console.log("latitude - " + latitude);
+    console.log("longitude - " + longitude);
+    if (this.map) {
+      console.log("Got longitude - " + longitude);
+      this.map.remove();
+      $("#map").html("");
+      $(".map-frame").empty();
+      $('<div id="map" style="height: 385px;"></div>').appendTo(".map-frame");
+    }
+
+    this.mapvalues = eval("[" + latitude + "," + longitude + "]");
+    this.lat = latitude;
+    this.lang = longitude;
+    console.log("Map Values" + this.mapvalues);
+
+    this.map = L.map("map", {
+      center: this.mapvalues,
+      zoom: 15
+    });
+    //return;
+
+    //Adding the Circle to the Map
+
+    L.circle([this.lat, this.lang], {
+      color: "orange",
+      fillColor: "#FFA500",
+      fillOpacity: 0.5,
+      radius: radius * 10
+    }).addTo(this.map);
+
+    const tiles = L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+        maxZoom: 25
+      }
+    );
+
+    tiles.addTo(this.map);
+    var greenIcon = L.icon({
+      iconUrl: "../assets/images/marker-icon.png",
+      iconSize: [38, 95],
+      iconAnchor: [22, 94]
+    });
+
+    L.marker([this.lat, this.lang], { icon: greenIcon }).addTo(this.map);
+    //.openPopup();
+  }
+
+  toogleData() {
+    this.showMyMap = !this.showMyMap;
+    if (this.showMyMap == false) {
+      $(".mapsection").hide();
+    } else {
+      //$(".mapsection").load(location.href + " .mapsection");
+      $(".mapsection")
+        .delay(500)
+        .fadeIn(1000);
+    }
   }
 }

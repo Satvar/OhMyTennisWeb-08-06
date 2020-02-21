@@ -40,21 +40,35 @@
 <div class="newcoachlist">
   <!-- Map section starts -->
   <div class="mapsection">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83998.7576939384!2d2.2770197739280396!3d48.85895068137429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis%2C%20France!5e0!3m2!1sen!2sin!4v1579860343856!5m2!1sen!2sin"
+    <!-- <iframe
+      src="https://maps.google.com/maps?q=11.9416,79.8083&hl=es&z=14&amp;output=embed"
       width="100%"
       height="350"
       frameborder="0"
       style="border:0;"
       allowfullscreen=""
-    ></iframe>
+    ></iframe> -->
+
+    <div class="map-container">
+      <div class="map-frame">
+      <!-- <a href="https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route={{curentlat}}%2C{{curentlang}}%3B{{lat}}%2C{{lang}}"
+          target="_blank"> -->
+          <div id="map"></div>
+      <!-- </a> -->
+      </div>
+    </div><!-- End of map-container-->
+
+
   </div>
   <!-- Map section ends -->
+
+  
   <div class="section">
     <div class="container">
       <div class="row">
         <div class="col-md-3 col-sm-4 col-xs-12 px-30">
-          <a href="#" class="viewmap_btn section_btn">Voir la carte</a>
+          <!-- <button class="viewmap_btn section_btn" (click)="showMyMap=!showMyMap">Voir la carte</button> -->
+          <button class="viewmap_btn section_btn" (click)="toogleData()">Voir la carte </button>
           <form (ngSubmit)="searchByCoach(search)">
             <div class="select_drop">
               <h2>Option de filtrage</h2>
@@ -74,6 +88,16 @@
                 />
               </div>
             </div>
+            <!-- SDKAT START -->
+            <div class="select_drop">
+              <h3>Rayon <small>(till 20 miles)</small></h3>
+              <div class="search search1">
+                <select [(ngModel)]="search.rayon" name="rayon" className="form-control" id="rayon">
+                  <option *ngFor="let number of numbers; index as i" [selected]="search.rayon===0">{{number}}</option>
+                </select>
+              </div>
+            </div>
+            <!-- SDKAT END -->
             <div class="cours">
               <h3>Selectionnez votre cours</h3>
               <input
@@ -183,7 +207,7 @@
           </div>
           <ul
             *ngIf="
-              pager.pages && pager.pages.length > 0 && pager.totalPages > 4
+              pager.pages && pager.pages.length > 0 
             "
             class="pager"
           >

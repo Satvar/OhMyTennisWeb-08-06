@@ -265,9 +265,9 @@ h3 {
   border: 1px solid #ff5722;
   color: #ff5722;
 }
-.newcoachlist .mapsection {
-  display: none;
-}
+
+
+
 .newcoachlist .px-30 {
   padding-right: 35px;
 }
@@ -428,4 +428,32 @@ input[type="radio"] {
   .set .tag {
     margin-bottom: 7px;
   }
+}
+/* SDKAT */
+.select_drop #rayon
+{
+  width: 100%;
+  padding: 15px 38px 11px 50px;
+  text-align: left;
+}
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 30px;
+}
+
+.map-frame {
+  border: 2px solid black;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+.newcoachlist .mapsection {
+   position: relative;
+   height: 450px;
 }
