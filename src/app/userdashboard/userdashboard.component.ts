@@ -39,7 +39,7 @@ export class UserdashboardComponent extends UserComponent implements OnInit {
   ngOnInit() {
     var titile = document.getElementsByClassName("brand");
     if (titile)
-      titile[0].innerHTML = 'TABLEAUX DE BORD';
+      titile[0].innerHTML = 'TABLEAU DE BORD';
       this.getcoursecount();
   }
 

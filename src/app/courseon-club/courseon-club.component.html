@@ -153,22 +153,29 @@
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="checkbox" value="Moto">
-                                                Vélo
+                                                <input type="checkbox" value="bus">
+                                                bus
                                             </label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="checkbox" value="Train">
-                                                Train
+                                                <input type="checkbox" value="métro">
+                                                métro
                                             </label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="checkbox" value="Bus" >
-                                                Bus
+                                                <input type="checkbox" value="RER" >
+                                                RER
                                             </label>
-                                        </div> <br>
+                                        </div> 
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" value="tram">
+                                                tram
+                                            </label>
+                                        </div> 
+                                        <br>
                                         <span class="alert_text" id="trans_error">Choisissez
                                             votre Mode de transport.</span>
                                     </div>
@@ -199,7 +206,7 @@
                             <div class="form-group bmd-form-group">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label>Vidéo <span class="red"> *</span></label>
+                                        <label>Vidéo</label>
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" [(ngModel)]="res.Video" name="res.Video"

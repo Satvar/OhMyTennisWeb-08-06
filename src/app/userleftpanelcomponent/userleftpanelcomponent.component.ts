@@ -87,7 +87,7 @@ export class UserleftpanelcomponentComponent extends UserComponent implements On
 
   leftPanel() {
     return [{
-      title : 'TABLEAUX DE BORD',
+      title : 'TABLEAU DE BORD',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.DASHBOARD.SELF'),
       iclass: 'far far-th-large',
       style: false,
@@ -122,10 +122,16 @@ export class UserleftpanelcomponentComponent extends UserComponent implements On
       iclass: 'far far-cogs-o',
       style: true,
     }, {
-      title : 'CHANGER LE MOT DE PASSE',
+      title : 'CHANGER LE MOT DE <br> PASSE',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.CHANGEPASSWORD.SELF'),
       iclass: 'far far-key-o',
       style: false,
+    },
+    {
+      title: "SUPPRIMER VOTRE <br> COMPTE",
+      path: "/",
+      iclass: "far far-sign-out-o",
+      style: false
     }, {
       title : 'DÉCONNEXION',
       path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.SINOUT.SELF'),

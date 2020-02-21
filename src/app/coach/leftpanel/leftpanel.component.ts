@@ -194,7 +194,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
   leftPanel() {
     return [
       {
-        title: "TABLEAUX DE BORD",
+        title: "TABLEAU DE BORD",
         path:
           "/" +
           this._const("PATH.COACH.SELF") +
@@ -307,6 +307,12 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
         title: "COMMENTAIRES",
         path: "/" + this._const("PATH.COACH.SELF"),
         iclass: "far far-comments-o",
+        style: false
+      },
+      {
+        title: "SUPPRIMER VOTRE <br> COMPTE",
+        path: "/",
+        iclass: "far far-sign-out-o",
         style: false
       }
     ];
