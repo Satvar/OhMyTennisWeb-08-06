@@ -9,7 +9,33 @@
 
 /** form wizrd **/
 
-
+.des_detail_sec {
+  max-width: 500px;
+}
+.des_detail_sec p {
+  line-height: 74px;
+  padding: 0px;
+}
+.des_detail_sec .des_icon_class{
+  padding: 0px;
+  line-height: 74px;
+}
+.des_detail_sec img {
+  margin-top: 23px;
+  line-height: 74px;
+}
+.coachnewlistview .des_detail_sec {
+  margin: 29px 0px 36px;
+}
+.border_bgwhite {
+  border-top: 1px solid #fff;
+  border-right:1px solid #fff;
+  height: 75px;
+}
+.px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .form_wizard li.active > a.hidden-xs {
   display: block!important;
  }
