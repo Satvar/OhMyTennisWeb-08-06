@@ -12,10 +12,10 @@ import * as moment from "moment";
 import * as $ from "jquery";
 @Component({
   selector: "app-oh-my-coach",
-  templateUrl: "./oh-my-coach-detail.component.html",
-  styleUrls: ["./oh-my-coach-detail.component.scss"]
+  templateUrl: "./oh-my-coach-detail-new.component.html",
+  styleUrls: ["./oh-my-coach-detail-new.component.scss"]
 })
-export class OhMyCoachDetailComponent implements OnInit {
+export class OhMyCoachDetailNewComponent implements OnInit {
   public Ville: any = null;
   public service = new Array();
   public profileImage: any = "";

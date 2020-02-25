@@ -11,11 +11,11 @@ import * as $ from "jquery";
 import * as L from "leaflet";
 
 @Component({
-  selector: "app-oh-my-coach",
-  templateUrl: "./oh-my-coach.component.html",
-  styleUrls: ["./oh-my-coach.component.scss"]
+  selector: "app-oh-my-coach-new",
+  templateUrl: "./oh-my-coach-new.component.html",
+  styleUrls: ["./oh-my-coach-new.component.scss"]
 })
-export class OhMyCoachComponent extends AppComponent implements OnInit {
+export class OhMyCoachNewComponent extends AppComponent implements OnInit {
   public min = new Date();
   public date: any = "";
   public respon: any;
