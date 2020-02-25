@@ -59,7 +59,7 @@ import { FullCalendarModule } from "@fullcalendar/angular";
 import { NgDatepickerModule } from "ng2-datepicker";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { OhMyCoachComponent } from "./oh-my-coach/oh-my-coach.component";
-import { OhMyCoachDetailComponent } from "./oh-my-coach-detail/oh-my-coach-detail.component";
+import { OhMyCoachDetailNewComponent } from "./oh-my-coach-detail-new/oh-my-coach-detail-new.component";
 import { CoachDetailComponent } from "./coach-detail/coach-detail.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { XunkCalendarModule } from "xunk-calendar";
@@ -134,7 +134,7 @@ import { OhMyCoachNewComponent } from "./oh-my-coach-new/oh-my-coach-new.compone
 import { CguComponent } from "./cgu/cgu.component";
 import { CGVComponent } from "./cgv/cgv.component";
 import { MentionslegalesComponent } from "./mentionslegales/mentionslegales.component";
-import { OhMyCoachDetailNewComponent } from "./oh-my-coach-detail-new/oh-my-coach-detail-new.component";
+// import { OhMyCoachDetailNewComponent } from "./oh-my-coach-detail-new/oh-my-coach-detail-new.component";
 import { GuideDesTerrainsPratiqueComponent } from "./guide-des-terrains-pratique/guide-des-terrains-pratique.component";
 import { SitemapComponent } from "./sitemap/sitemap.component";
 import { PratiqueLicenseComponent } from "./pratique-license/pratique-license.component";
@@ -186,7 +186,7 @@ const routes: Routes = [
   },
   {
     path: CONST.PATH.OH_MY_COACH_DETAIL,
-    component: OhMyCoachDetailComponent
+    component: OhMyCoachDetailNewComponent
   },
   {
     path: CONST.PATH.STAGE,
@@ -481,7 +481,7 @@ export function getAuthServiceConfigs() {
     UserStageDetailComponent,
     UserTeambuildingDetailComponent,
     UserAnimationDetailComponent,
-    OhMyCoachDetailComponent,
+    // OhMyCoachDetailComponent,
     ConceptComponent,
     PresentationComponent,
     EngagementsComponent,

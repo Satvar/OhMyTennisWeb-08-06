@@ -221,11 +221,11 @@
           <div class="row" *ngFor="let res of pagedItems; let i = index">
             <div class="set">
               <div class="col-lg-3 col-md-2 col-sm-2 col-xs-12 px-0">
-                <img style="cursor: pointer;" src="../assets/images/coach_searchimg.png" alt="header" (click)="goToCouchDetail(res.Coach_ID)"/>
+                <img style="cursor: pointer;" src="../assets/images/coach_searchimg.png" alt="header" (click)="goToCouchDetail(res.Coach_ID)" />
               </div>
               <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 ml-2 pl-0">
                 <div class="mx-minus40">
-                <h3 style="cursor: pointer;color: #000;" (click)="goToCouchDetail(res.Coach_ID)">{{ res.Coach_Fname }} {{ res.Coach_Lname }}</h3>
+                <h3 style="cursor: pointer;color: #000;">{{ res.Coach_Fname }} {{ res.Coach_Lname }}</h3>
                 <div class="star-rating">
                   <input type="radio" id="5-stars" name="rating" value="5" />
                   <label for="5-stars" class="star">&#9733;</label>
@@ -243,7 +243,7 @@
                   ><span>Email: </span>{{ res.Coach_Email }} |
                   <span>Phone: </span>{{ res.Coach_Phone }}</a
                 > -->
-                <div style="font-weight: bold; font-size: 18px; color: #000;">50,00 € / <span style="font-size: 14px; font-weight: normal !important; color: #000000;">1 heure</span> &nbsp; | &nbsp; 330,00 € / <span style="font-size: 14px; font-weight: normal !important; color: #000000;">10 heures</span></div>
+                <div style="margin-bottom:6px;font-weight: bold; font-size: 18px; color: #000;">50,00 € / <span style="font-size: 14px; font-weight: normal !important; color: #000000;">1 heure</span> &nbsp; | &nbsp; 330,00 € / <span style="font-size: 14px; font-weight: normal !important; color: #000000;">10 heures</span></div>
                 <p style="max-height: 39px;overflow: hidden;font-size: 14px;line-height: 20px;">
                   {{ res.Coach_Description }}
                 </p>
@@ -270,7 +270,7 @@
             *ngIf="
               pager.pages && pager.pages.length > 0 
             "
-            class="pager" style="text-align: right; "
+            class="pager" style="text-align: right;margin: 20px -15px 20px 0px; "
           >
             <li
               class="previou"

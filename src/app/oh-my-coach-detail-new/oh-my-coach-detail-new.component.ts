@@ -9,7 +9,10 @@ import dayGridView from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import * as moment from "moment";
+//import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import * as _ from "underscore";
 import * as $ from "jquery";
+import * as L from "leaflet";
 @Component({
   selector: "app-oh-my-coach-detail-new",
   templateUrl: "./oh-my-coach-detail-new.component.html",
@@ -42,6 +45,36 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     availability: ""
   };
 
+  map: any;
+  mapvalues: any;
+  lat: any;
+  lang: any;
+  curentlat: any;
+  curentlang: any;
+  co_or_gps: any;
+  numbers = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ];
   public booking = {
     Coach_ID: "",
     user_Id: "",
@@ -156,11 +189,17 @@ export class OhMyCoachDetailNewComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+
+    
     var datas = this.UserAviablility;
+     $(".mapsection")
+     .delay(1000)
+     .fadeIn(500);
   }
 
   @ViewChild("calendar", { static: false })
   calendarComponent: FullCalendarComponent;
+
 
   ngOnInit() {
     this.spinner.show();
@@ -173,6 +212,8 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     }
 
     this.couchdetail();
+
+    
 
     // var pcode = localStorage.getItem("onmytennis");
     // var postalCode = JSON.parse(JSON.parse(pcode));
@@ -210,6 +251,90 @@ export class OhMyCoachDetailNewComponent implements OnInit {
         queryParams: {}
       });
     }
+
+    // const coachID: string = this.activatedRoute.snapshot.queryParamMap.get(
+    //   "id"
+    // );
+    this.appService
+        .getAll("/course/getindividualcourse", coachID)
+        .subscribe(response => {
+          if ((response as any).data.course.length > 0) {
+            if (response && response["data"]) {
+              var dat = (response as any).data.course[0];
+              this.price = dat.Price_min;
+              this.Indiv_1hr = dat.Price_min;
+              this.Indiv_10hr = dat.Price_max;
+              this.Video = dat.Video;
+              this.Description = dat.Description;
+              this.pincode = dat.Postalcode;
+              this.location = dat.Location;
+              this.mapvalues = eval("[" + dat.coordonnees_gps + "]");
+              this.lat = this.mapvalues[0].toFixed(3);
+              this.lang = this.mapvalues[1].toFixed(3);
+              this.mapintigration(this.mapvalues);
+              this.appService
+                .getAll("/city/" + dat.Postalcode)
+                .subscribe(response => {
+                  // tslint:disable-next-line:no-string-literal
+                  if (response && response["data"]) {
+                    // tslint:disable-next-line:no-string-literal
+                    this.selectedCity = (response as any).data.city_list;
+                  }
+                });
+            }
+          }
+          this.couchdetail();
+          // this.spinner.hide();
+        });
+  }
+
+  displayLoadedMap(latitude, longitude, radius) {
+    console.log("latitude - " + latitude);
+    console.log("longitude - " + longitude);
+    if (this.map) {
+      console.log("Got longitude - " + longitude);
+      this.map.remove();
+      $("#map").html("");
+      $(".map-frame").empty();
+      $('<div id="map" style="height: 385px;"></div>').appendTo(".map-frame");
+    }
+
+    this.mapvalues = eval("[" + latitude + "," + longitude + "]");
+    this.lat = latitude;
+    this.lang = longitude;
+    console.log("Map Values" + this.mapvalues);
+
+    this.map = L.map("map", {
+      center: this.mapvalues,
+      zoom: 15
+    });
+    //return;
+
+    //Adding the Circle to the Map
+
+    L.circle([this.lat, this.lang], {
+      color: "orange",
+      fillColor: "#FFA500",
+      fillOpacity: 0.5,
+      radius: radius * 10
+    }).addTo(this.map);
+
+    const tiles = L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+        maxZoom: 25
+      }
+    );
+
+    tiles.addTo(this.map);
+    var greenIcon = L.icon({
+      iconUrl: "../assets/images/marker-icon.png",
+      iconSize: [38, 95],
+      iconAnchor: [22, 94]
+    });
+
+    L.marker([this.lat, this.lang], { icon: greenIcon }).addTo(this.map);
+    //.openPopup();
   }
 
   eventListDetails() {}
@@ -271,5 +396,28 @@ export class OhMyCoachDetailNewComponent implements OnInit {
       this.alertMsg.msg = "";
       this.alertMsg.show = false;
     }
+  }
+
+  mapintigration(mappoint) {
+    this.map = L.map("map", {
+      center: mappoint,
+      zoom: 16
+    });
+
+    const tiles = L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+        maxZoom: 25
+      }
+    );
+
+    tiles.addTo(this.map);
+    var greenIcon = L.icon({
+      iconUrl: "../assets/images/marker-icon.png"
+    });
+
+    L.marker(mappoint, { icon: greenIcon })
+      .addTo(this.map)
+      .openPopup();
   }
 }

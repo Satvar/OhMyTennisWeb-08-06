@@ -74,9 +74,9 @@
   border: 1px white;
   box-shadow: 2px 2px #00000014;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 5px;  
   margin-bottom: 19px;
-  box-shadow: -2px 0px 1px 3px #d4d2d2;
+  box-shadow: -2px 3px 3px 3px #d4d2d2;
   background: white;
 }
 .newcoachlist ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -257,12 +257,13 @@ h3 {
 }
 .star-rating {
   display:flex;
-  flex-direction: row-reverse;
-  font-size:1.5em;
-  justify-content:space-around;
-  padding:0 .2em;
-  text-align:center;
-  width:5em;
+  flex-direction: row-reverse; 
+  justify-content: space-around;
+  padding: 0px 0px;
+  margin-left: 7px;
+  margin-top: 1px;
+  text-align: left;
+  width: 5em;
 }
 .star-rating input {
   display:none;
@@ -270,7 +271,7 @@ h3 {
 .star-rating label {
   margin-bottom: 0px;
   color: #e75b00;
-    font-size: 22px;
+    font-size: 17px;
     font-weight: bold !important;
 }
 .star-rating :checked ~ label {
@@ -332,13 +333,9 @@ h3 {
   border: 1px solid #ff5722;
   color: #ff5722;
 }
-
-
-
 .newcoachlist .px-30 {
   padding-right: 35px;
 }
-
 .previou {
   cursor: pointer;
 }
