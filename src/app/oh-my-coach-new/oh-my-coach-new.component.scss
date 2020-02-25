@@ -74,21 +74,39 @@
   border: 1px white;
   box-shadow: 2px 2px #00000014;
   padding: 5px;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  border-radius: 5px;  
+  margin-bottom: 19px;
+  box-shadow: -2px 3px 3px 3px #d4d2d2;
   background: white;
+}
+.newcoachlist ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+.newcoachlist :-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: red;
+}
+
+.newcoachlist ::-ms-input-placeholder { /* Microsoft Edge */
+  color: red;
+}
+.newcoachlist .section1_btn:hover {
+  color: white;
+  background-color: #ff5722;
 }
 .newcoachlist .section1_btn {
   border-radius: 50px;
   background-color: white;
   box-sizing: border-box;
   border: 2px solid #ccc;
-  color: orange;
-  padding: 2px 21px 2px 21px;
+  padding: 9px 21px 9px 21px;
   color: #ff5722;
+  min-width: 110px;
+  outline: none;
   margin-top: 47px;
   border-color: #ff5722;
-  font-size: 18px;
+  font-size: 16px;
   float: left;
   font-style: normal;
 }
@@ -97,15 +115,14 @@
 }
 .newcoachlist .set img {
   border-radius: 7px;
-  height: 151px;
-  width: 151px;
+  height: 164px;
+  width: 164px;
 }
 .newcoachlist span,
 h3 {
   color: #ff5722;
 }
 .newcoachlist a {
-  font-style: italic;
   font-size: 15px;
 }
 
@@ -117,20 +134,23 @@ h3 {
 .newcoachlist .select_drop {
   background: white;
   width: 100%;
-  margin-top: 20px;
+  padding: 20px 20px 30px;
+  margin-top: 0px;
   border-bottom: 4px white;
 }
 .newcoachlist .select_drop h2 {
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
-  padding: 25px 15px 25px 15px;
+  padding: 20px 0px 20px 0px;
   border-bottom: 1px solid #9e9e9e;
-  /* margin-bottom: 20px; */
-  color: #282828;
+  color: #fff;
+  margin: -20px -20px 0px;
   font-weight: bold;
+  margin-bottom: 0px;
+  background: #626262;
 }
 .newcoachlist .select_drop h3 {
-  padding: 20px 25px 0px 25px;
+  padding: 15px 0px 0px 0px;
   color: #282828;
   margin: 0px;
   font-size: 20px;
@@ -151,7 +171,7 @@ h3 {
 }
 .newcoachlist .search {
   border-bottom: 4px white;
-  padding: 25px 20px 8px 20px;
+  padding: 5px 0px 0px 0px;
   position: relative;
 }
 .newcoachlist .clearfix {
@@ -161,13 +181,14 @@ h3 {
   background: white;
   width: 100%;
   margin-top: 15px;
+  margin-bottom: 15px;
   border-bottom: 4px white;
-  padding: 20px 15px;
+  padding: 20px 20px 25px;
   font-size: 15px;
   color: #282828;
 }
 .newcoachlist .cours h4 {
-  padding: 15px 4px 15px 4px;
+  padding: 15px 0px 15px 0px;
   color: black;
 }
 .newcoachlist input[type="checkbox"] {
@@ -177,14 +198,14 @@ h3 {
   margin-right: 13px;
   vertical-align: middle;
   background: none;
-  margin: 9px 18px 9px 7px;
+  margin: 9px 7px 9px 7px;
   height: 18px;
 }
 .newcoachlist .date {
   background: white;
   width: 100%;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 15px;
   position: relative;
 }
@@ -197,33 +218,76 @@ h3 {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 3px 15px;
+  margin: 13px 0px 0px;
   cursor: pointer;
-  width: 89%;
+  width: 100%;
   border-radius: 50px;
 }
 .newcoachlist .search input {
   font-weight: 500;
-  padding: 15px 38px 11px 26px;
+  padding: 9px 15px;
   border-radius: 50px;
   box-shadow: none;
   outline: none;
-  border: 1px solid gray;
+  border: 1px solid #000000;
   text-indent: 35px;
-  color: #666666;
-  font-size: 12px;
-  max-width: 205px;
+  color: #848484;
+  font-size: 13px;
+  outline: none;
+  max-width: 100%;
+  width: 100%;
+}
+.newcoachlist .cours input[type=radio] {
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+  background: #e3e3e3;
+  outline: none;
+  box-shadow: none;
+  border: 1px solid #e3e3e3;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+.row.ng-star-inserted h3 {
+  font-size: 21px;
+  color: #000000;
+  margin-top: 4px;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+.star-rating {
+  display:flex;
+  flex-direction: row-reverse; 
+  justify-content: space-around;
+  padding: 0px 0px;
+  margin-left: 7px;
+  margin-top: 1px;
+  text-align: left;
+  width: 5em;
+}
+.star-rating input {
+  display:none;
+}
+.star-rating label {
+  margin-bottom: 0px;
+  color: #e75b00;
+    font-size: 17px;
+    font-weight: bold !important;
+}
+.star-rating :checked ~ label {
+  color:#e75b00;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#e75b00;
 }
 .newcoachlist .search .fa {
   position: absolute;
-  top: 42px;
-  left: 43px;
+  top: 14px;
+  left: 23px;
   z-index: 10;
+  font-size: 16px !important;
 }
-.newcoachlist .search1 {
-  padding-bottom: 20px;
-}
-
 .newcoachlist .date input {
   padding: 13px 15px 13px 23px;
   border-radius: 50px;
@@ -234,44 +298,44 @@ h3 {
 }
 .newcoachlist .date .fa {
   position: absolute;
-  top: 32px;
-  left: 43px;
+  top: 20px;
+  left: 20px;
   z-index: 10;
+  font-size: 18px !important;
 }
 .newcoachlist .cours h3 {
   color: black;
   margin-bottom: 20px !important;
+  
 }
 .newcoachlist .tag a {
   border-radius: 50px;
-  border: 1px solid gray;
-  height: 35px;
-  width: 35px;
+  border: 1px solid #5b5b5b;
+  height: 24px;
+  width: 24px;
   margin: 0px 5px;
-  font-size: 20px;
+  font-size: 15px !important;
   text-align: center;
-  line-height: 35px !important;
-  color: gray;
+  line-height: 24px !important;
+  color: #5b5b5b;
 }
 .newcoachlist .select_drop h3,
 .cours h3 {
   color: black;
   margin: 0px;
+  margin-top: 0px;
   font-size: 16px;
   text-align: left;
   font-weight: bold;
+  padding-top: 0px;
 }
 .newcoachlist .tag a:hover {
   border: 1px solid #ff5722;
   color: #ff5722;
 }
-
-
-
 .newcoachlist .px-30 {
   padding-right: 35px;
 }
-
 .previou {
   cursor: pointer;
 }
@@ -423,7 +487,11 @@ input[type="radio"] {
     padding: 5px 21px;
   }
 }
-
+@media (min-width:992px) {
+  .mx-minus40 {
+    margin-left: -50px;
+  }
+}
 @media (min-width: 1200px) {
   .set .tag {
     margin-bottom: 7px;
@@ -433,8 +501,11 @@ input[type="radio"] {
 .select_drop #rayon
 {
   width: 100%;
-  padding: 15px 38px 11px 50px;
+  padding: 7px 30px 7px 20px;
   text-align: left;
+  outline: none;
+  border: 1px solid #000;
+  border-radius: 30px;
 }
 .map-container {
   position: absolute;

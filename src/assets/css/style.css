@@ -121,11 +121,15 @@ ul li {
     display: block;
     margin-bottom: 25px;
 }
+.header_top .search_div a .fa {
+	display: none;
+}
 .search_btn {
 	color:#ffffff;
 	background: #e75b00;
 	border:none;
 	height: 57px;
+	display: none;
 	font-size:12px;
 	padding-right: 39px;
 	padding-left: 10px;
@@ -1868,9 +1872,11 @@ section p{font-family:'Lato', sans-serif;}
 .inner_search_div {
 	text-align:left;
 }
-.darkgrey_btn {
-	background:#6f6f6f;
-	color:#ffffff;
+.darkorange_btn:hover , .darkgrey_btn , .newcoachlist .darkorange_btn:hover , .newcoachlist .darkgrey_btn {
+	background-color:#6f6f6f !important;
+	color:#ffffff !important;
+}
+.newcoachlist .darkgrey_btn , .newcoachlist .darkorange_btn , .darkgrey_btn , .darkorange_btn {
 	font-size:14px;
 	max-width:245px;
 	padding:11px 20px;
@@ -1878,9 +1884,9 @@ section p{font-family:'Lato', sans-serif;}
 	border-radius:30px;
 	text-transform:uppercase;
 }
-.darkgrey_btn:hover {
-	background:#e75b00;
-	color:#ffffff;
+.darkgrey_btn:hover , .darkorange_btn , .newcoachlist .darkgrey_btn:hover , .newcoachlist .darkorange_btn{
+	background:#e75b00 !important;
+	color:#ffffff !important;
 }
 .blackbold_title {
     font-family: 'ComfortaaBold';
@@ -2044,7 +2050,7 @@ des_contents_cdetail margimn
 		min-height: 60px;
     	max-height: 60px;
 	}
-	.des_events .des_event_sub_title {
+	.des_events .des_event_sub_title , .coach_deseventopen .des_event_sub_title{
 		min-height: 40px;
     	max-height: 60px;
 	}
@@ -2133,6 +2139,124 @@ des_contents_cdetail margimn
 }
 .section1.des_coach_content h1 {
 	font-size:35px;
+}
+.testimonial_avis p {
+	font-size: 13px;
+}
+.star-rating .list-inline {
+	margin-bottom: 0px;
+}
+.right_coachprofilenew .star-rating i {
+color:#e75b00;
+margin-right: 2px;
+}
+.testimonial_outer {
+	margin-right: -7px;
+	padding-right: 10px;
+	margin-top: 20px;
+	max-height: 359px;
+	overflow-y: scroll;
+	height: 310px;
+}
+.coach_deseventopen h3 {
+	background: #ececec;
+	padding: 11px 15px;
+	font-size: 16px;
+	font-weight: 600;
+	margin: 30px 0px 27px;
+}
+.train_title {
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+.train_secdiv h2 {
+	text-transform: uppercase;
+	font-size: 13px;
+	font-weight: bold;
+	margin-bottom: 0px;
+	line-height: 79px;
+}
+.bot_mapsection {
+	padding: 25px 0px;
+	margin:20px 0px;
+	text-align: center;
+	background: #f4f4f4;
+}
+.bot_mapsection .des_map_content {
+	float: none;
+}
+.bot_mapsection .des_map_content .select_drop_custom {
+	background: url(../images/down_arrow1.png) no-repeat 94% 50% #ffffff;
+    border: 1px solid #a0a0a0;
+    padding: 12px 27px 12px 23px;
+}
+.train_secdiv { 
+    background-size: 55px;
+    padding-left: 70px;
+    min-height: 80px;
+	border-top: 1px solid #afafaf;	
+	border-left: 1px solid #afafaf;
+	border-right: 1px solid #afafaf;
+}
+.train_secdiv3 , .train_secdiv6 , .train_secdiv7 { 
+	border-bottom: 1px solid #afafaf;	
+}
+.train_secdiv:hover { 
+	background: #e75b00;
+	color: #ffffff; 
+}
+.train_secdiv1 {
+	background: url(../images/dashboard_icons/trainicon/trainsec_img1.png) 9px 50% no-repeat;
+}
+.train_secdiv1:hover {
+	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img1ho.png) 9px 50% no-repeat;
+}
+.train_secdiv2 {
+	background: url(../images/dashboard_icons/trainicon/trainsec_img2.png) 9px 50% no-repeat;
+}
+.train_secdiv2:hover {
+	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img2ho.png) 9px 50% no-repeat;
+}
+.train_secdiv3 {
+	background: url(../images/dashboard_icons/trainicon/trainsec_img3.png) 9px 50% no-repeat;
+}
+.train_secdiv3:hover {
+	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img3ho.png) 9px 50% no-repeat;
+}
+.train_secdiv4 {
+	background: url(../images/dashboard_icons/trainicon/trainsec_img4.png) 9px 50% no-repeat;
+}
+.train_secdiv4:hover {
+	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img4ho.png) 9px 50% no-repeat;
+}
+.train_secdiv5 {
+	background: url(../images/dashboard_icons/trainicon/trainsec_img5.png) 9px 50% no-repeat;
+}
+.train_secdiv5:hover {
+	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img5ho.png) 9px 50% no-repeat;
+}
+.train_secdiv6 {
+	background: url(../images/dashboard_icons/trainicon/trainsec_img7.png) 9px 50% no-repeat;
+}
+.train_secdiv6:hover {
+	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img7ho.png) 9px 50% no-repeat;
+}
+.train_secdiv7 {
+	background: url(../images/dashboard_icons/trainicon/trainsec_img6.png) 9px 50% no-repeat;
+}
+.train_secdiv7:hover {
+	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img6ho.png) 9px 50% no-repeat;
+}
+.testimonial_outer span { font-size: 13px;}
+.right_coachprofilenew .des_event_btn {
+	padding: 7px 25px;
+	font-size: 14px;
+	text-transform: unset !important;
+	outline: none;
+}
+.testimonial_avis {
+	margin: 20px 0px;
+	border-bottom: 1px solid #b7b7b7;
 }
 .section1.des_coach_content p{
 	color:#4d4949;
@@ -2568,32 +2692,69 @@ span.grey_mild {
 .des_fav_content{
 	font:16px;
 }
+.don_avis {
+	outline: none;
+	width: 100%;
+	padding: 10px 20px 10px 20px;
+}
 .des_social_icons_footer1 ul li a {
-    background-color: #6f6f6f;
-    color: #fff;
+	border: 1px solid #6f6f6f;
+    color: #6f6f6f;
     padding: 8px 8px;
     margin-right: 12px;
-	margin-top:20px;
-	margin-bottom:20px;
-    width: 47px;
-    height: 44px;
-    border-radius: 3px;
+	margin-top:2px;
+	margin-bottom:2px;
+	line-height: 15px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
     display: inline-block;
 }
 .des_social_icons_footer1 ul li a:hover{
-	 background-color: #e75b00;
-	 
+	 border: 1px solid #e75b00;
+	 color: #e75b00;
 }
 .des_social_icons_footer1 ul li a i{
-	font-size:24px!important;
+	font-size:16px !important;
 }
+.right_coachprofile {	
+	padding: 20px 40px;
+}
+.right_coachprofile , .right_coachprofilenew{
+	box-shadow: 1px 2px 19px 1px #e4e4e4;
+	margin-bottom: 20px;
+  }
+  .right_coachprofilenew{	  
+	padding: 20px 20px 20px 20px;
+	text-align: left;
+  }
+  .right_coachprofile h1 {
+  	  font-size: 19px;
+	  font-weight: 600;
+	  margin-bottom: 5px;
+	  margin-top: 15px;
+  }
+  .right_coachprofilenew h3 {
+	font-size: 19px;
+    font-weight: 600;
+  }
+  .right_coachprofilenew h5 {
+  font-size: 15px;
+    color: #e75b00;
+	margin: 15px 0px;
+  }
+  .right_coachprofile .star-rating i {
+	color: #e75c01;
+	font-size: 17px !important;
+	margin-right: 10px;
+  }
 .des_social_icons_footer1 ul{
-	border-top:1px solid #e3e3e3;
-	border-bottom:1px solid #e3e3e3;
-	margin-left:20px;
+	border-top:0px solid #e3e3e3;
+	border-bottom:0px solid #e3e3e3;
+	margin-left:0px;
 }
 .des_social_icons_footer1{
-	margin-top:30px;
+	margin-top:0px;
 }
 .des_right_content{
 	margin-top:30px;

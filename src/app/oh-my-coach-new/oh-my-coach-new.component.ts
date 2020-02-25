@@ -87,9 +87,9 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
     if (!pcode) {
       this.getcurrentcordinates();
     }
-    $(".mapsection")
-      .delay(1000)
-      .fadeIn(500);
+   // $(".mapsection")
+    //  .delay(1000)
+     // .fadeIn(500);
   }
 
   getcoach() {

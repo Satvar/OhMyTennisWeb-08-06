@@ -1,7 +1,7 @@
 <app-header></app-header>
 <app-top-menu></app-top-menu>
 
-<div class="innerbanner">
+<div class="innerbanner ggs">
     <img src="../../assets/images/coach_banner.jpg" alt="Los Angeles">
     <div class="inner_carousel">
         <h3>oh my coachs</h3>
@@ -32,33 +32,25 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-4 col-lg-4 inner_search_div">
-                <button (click)="handleClick($event)" class="btn black_btn">Recherche</button>
+                <button (click)="handleClick($event)" class="btn black_btn">Rechercher</button>
             </div>
         </div>
     </div>
 </div>
 
 <div class="container">
-    <div class="des_coach_abt">
+    <div class="des_coach_abt coachnewlistview">
         <div class="col-md-8 col-sm-8 col-xs-12">
-            <div class="des_coach_abt_sec">
-                <h1 class="des_coach_abt_heading">{{setCoachName}}</h1>
-                <!-- <h3 *ngIf="course == 'CoursCollectifClub'"><strong>Cours Collectif
-                        Club</strong></h3> -->
-                <!-- <h3 *ngIf="course == 'CoursIndividuel'"><strong>Cours Individuel</strong> -->
-                <!-- </h3> -->
-                <!-- <h3 *ngIf="course == 'CoursCollectifOndemand'"><strong>Cours Collectif Ondemand</strong>
-                </h3> -->
-                <div class="star-rating">
-                    <ul class="list-inline1">
-                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                    </ul>
-                </div>
-            </div>
+            <h2 class="page_title" style="margin: 10px 0px 30px;">Cours Individuel</h2>
+           <div class="coachnewprice" style="max-width: 180px;">
+            <p style="font-weight: bold; font-size: 18px; color: #000;">50,00 € / <span style="font-size: 14px; font-weight: normal !important; color: #000000;">1 heure</span> </p>
+            <div style="border-bottom: 1px solid #000000; margin: 5px 0px;"></div>
+            <p style="font-weight: bold; font-size: 18px; color: #000;">330,00 € / <span style="font-size: 14px; font-weight: normal !important; color: #000000;">10 heures</span>
+            </p>
+           </div>           
+           <h3 style="font-weight: bold; font-size: 26px; margin: 20px 0px 10px;">Son expérience de coach</h3>
+           <p>
+            Coach Sportif professionnel depuis 10 ans, la forme le bien-être et la santé ont toujours été au cœur de mes préoccupations. En effet, imprégné par le Karaté (Ceinture Noire), le Football et la performance physique depuis l'enfance, se sentir en forme est en quelque sorte une seconde nature dont j'aimerais vous donner le goût durablement.</p>
             <div class="des_coach_abt_price">
                 <a href="#" class="btn btn-default">{{price}}</a>
                 <a href="#" *ngIf="course != 'CoursCollectifClub'" class="btn btn-default">{{price}} </a>
@@ -67,36 +59,34 @@
             <p class="des_coach_abt_para1">{{Description}}</p>
 
             <div class="des_detail_sec">
-                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12 px-0">
                     <div class="des_row1">
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
                             <p class="des_icon_class"><img src="../../assets/images/detail_icon1.png"> Noté 5/5 par ses
                                 élèves
                             </p>
-
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
                             <p class="des_icon_class" id="payment"><img
                                     src="../../assets/images/detail_icon2.png">{{this.str}}
                             </p>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <a id="resume" download={{coach_detail.ResumeName}} (click)="download()" href="#"
                                 class="des_icon_class"><img src="../../assets/images/detail_icon3.png"> Curriculum vitae
                             </a>
-                        </div>
+                        </div> -->
                         <div class="clearfix lg-block"></div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                         <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <p class="des_icon_class"><img src="../../assets/images/detail_icon5.png"> Coach connecté
+                            </p>
+                        </div> -->
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
                             <p class="des_icon_class" id="transport"><img src="../../assets/images/detail_icon4.png">
                                 {{coach_detail.Coach_transport}}
                             </p>
                         </div>
-                        <div class="clearfix sm-block "></div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                            <p class="des_icon_class"><img src="../../assets/images/detail_icon5.png"> Coach connecté
-                            </p>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngIf="course !== 'CoursCollectifOndemand'">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="course !== 'CoursCollectifOndemand'">
                             <a (click)="openURL()" target="_blank" class="des_icon_class"><img
                                     src="../../assets/images/detail_icon6.png"> Cours avec vidéo
                             </a>
@@ -105,6 +95,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
+            <h3 _ngcontent-uck-c2="" style="font-weight: bold; font-size: 26px; margin: 15px 0px 10px;">Fournisseur de services</h3>
             <p class="des_map_content">Intervention géographique :
                 <select class="select_drop_custom">
                     <option>Liste des villes</option>
@@ -511,12 +502,29 @@
         </div>
 
         <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+            <div class="right_coachprofile">
             <img src="{{coach_detail.Coach_Image}}" #img
                 (error)="img.src = 'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'"
-                class="img-responsive center-block" >
-            <br />
-            <img src="../../assets/images/fav_logo.png"> &nbsp;&nbsp;&nbsp;&nbsp;<span class="des_fav_content">Ajouter à
-                mes coachs favoris</span>
+                class="img-responsive center-block">
+            <h1>Marryaa Andrew</h1>
+            <div class="des_coach_abt_sec" style="float: none;">
+                <h1 class="des_coach_abt_heading">{{setCoachName}}</h1>
+                <!-- <h3 *ngIf="course == 'CoursCollectifClub'"><strong>Cours Collectif
+                        Club</strong></h3> -->
+                <!-- <h3 *ngIf="course == 'CoursIndividuel'"><strong>Cours Individuel</strong> -->
+                <!-- </h3> -->
+                <!-- <h3 *ngIf="course == 'CoursCollectifOndemand'"><strong>Cours Collectif Ondemand</strong>
+                </h3> -->
+                <div class="star-rating">
+                    <ul class="list-inline1">
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                    </ul>
+                </div>
+            </div>
             <div class="des_social_icons_footer1">
                 <ul>
                     <li><a class="twitter" target="_blank" href={{coach_detail.TwitterURL}}><i
@@ -529,6 +537,11 @@
                 </ul>
 
             </div>
+        </div>
+
+            <!-- <img src="../../assets/images/fav_logo.png"> &nbsp;&nbsp;&nbsp;&nbsp;<span class="des_fav_content">Ajouter à
+                mes coachs favoris</span>
+         
             <p class="des_right_content">Les 22 avis des élèves de Lena</p>
             <div class="star-rating">
                 <ul class="list-inline">
@@ -553,7 +566,17 @@
             <div class="chip">
                 <img src="../../assets/images/coach_detail_right_mini.png" alt="no file">
                 <span>Lorem Ipsum is simply dummy text of the printing & typesetting industry. </span>
-            </div>
+            </div> -->
+
+
+        <div class="right_coachprofilenew">
+        <h3>Avis Clients (20)</h3>
+        <h5>Reviews (20)</h5>
+        <form>
+            <textarea name="don_avis" rows="10" cols="30">Donnez votre avis</textarea>
+            <input type="button" value="Submit"/>
+        </form>
+        </div>
 
         </div>
     </div>
