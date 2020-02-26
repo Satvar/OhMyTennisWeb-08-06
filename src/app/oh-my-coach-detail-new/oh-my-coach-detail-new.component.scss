@@ -709,101 +709,128 @@
 //   right: 0px;
 // }
 
-
-
-
-
-
-
-h2 {
+.cours_testimonial h2 {
 	color: #333;
-	text-align: center;
+  text-align: center;
+  font-size: 20px;
 	text-transform: uppercase;
-	font-family: "Roboto", sans-serif;
-	font-weight: bold;
+	font-weight: 600;
 	position: relative;
-	margin: 30px 0 60px;
+	margin: 30px 0 40px;
 }
-h2::after {
+.cours_testimonial h2::after {
 	content: "";
 	width: 100px;
 	position: absolute;
 	margin: 0 auto;
 	height: 3px;
-	background: #8fbc54;
+	background: #e75b00;
 	left: 0;
 	right: 0;
 	bottom: -10px;
 }
-.col-center {
+.mapsection {
+  // position: relative;
+}
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 3px 0px;
+}
+
+.map-frame {
+ 
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+.newcoachlist .mapsection {
+   position: relative;
+   height: 450px;
+}
+.cours_testimonial .carousel-inner {
+padding: 0px 0px;
+}
+.cours_testimonial {
+  background: #ffffff;
+}
+.cours_testimonial .col-center {
 	margin: 0 auto;
 	float: none !important;
 }
-.carousel {
-	margin: 50px auto;
-	padding: 0 70px;
+.cours_testimonial .carousel {
+	margin: 0px auto;
+	padding: 0 100px;
 }
-.carousel .item {
-	color: #999;
-	font-size: 14px;
+.cours_testimonial .carousel .item {
+	  color: #999;
+	  font-size: 14px;
     text-align: center;
-	overflow: hidden;
+	  overflow: hidden;
     min-height: 290px;
 }
-.carousel .item .img-box {
-	width: 135px;
-	height: 135px;
+.cours_testimonial .carousel .item .img-box {
+	width: 90px;
+	height: 90px;
 	margin: 0 auto;
 	padding: 5px;
 	border: 1px solid #ddd;
 	border-radius: 50%;
 }
-.carousel .img-box img {
+.cours_testimonial .carousel .img-box img {
 	width: 100%;
 	height: 100%;
 	display: block;
 	border-radius: 50%;
 }
-.carousel .testimonial {
-	padding: 30px 0 10px;
+.cours_testimonial .carousel .testimonial {
+  padding: 30px 0px 10px;
+  color: #5d5d5d;
 }
-.carousel .overview {	
-	font-style: italic;
+.cours_testimonial .carousel .overview {	
+  color:#e75b00;
+  font-size: 20px;
+  margin-bottom: 6px;
 }
-.carousel .overview b {
-	text-transform: uppercase;
-	color: #7AA641;
-}
-.carousel .carousel-control {
+.cours_testimonial .carousel .carousel-control {
 	  width: 40px;
     height: 40px;
     margin-top: -20px;
     top: 50%;
 	  background: none;
 }
-.carousel-control i {
-    font-size: 68px !important;
-	  line-height: 42px !important;
+.cours_testimonial .carousel h5 {
+  color: #5d5d5d;
+}
+.cours_testimonial .carousel-control i {
+    font-size: 58px !important;
+	  line-height: 15px !important;
     position: absolute;
     display: inline-block;
 	  color: rgba(0, 0, 0, 0.8);
     text-shadow: 0 3px 3px #e6e6e6, 0 0 0 #000;
 }
-.carousel .carousel-indicators {
-	bottom: -40px;
+.cours_testimonial .carousel .carousel-indicators {
+  bottom: -40px;
+  display: none;
 }
-.carousel-indicators li, .carousel-indicators li.active {
+.cours_testimonial .carousel-indicators li, .cours_testimonial .carousel-indicators li.active {
 	width: 10px;
 	height: 10px;
 	margin: 1px 3px;
 	border-radius: 50%;
 }
-.carousel-indicators li {	
+.cours_testimonial .carousel-indicators li {	
 	background: #999;
 	border-color: transparent;
 	box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
 }
-.carousel-indicators li.active {	
+.cours_testimonial .carousel-indicators li.active {	
 	background: #555;		
 	box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
 }

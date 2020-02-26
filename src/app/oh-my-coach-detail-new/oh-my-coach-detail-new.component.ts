@@ -189,8 +189,6 @@ export class OhMyCoachDetailNewComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-
-    
     var datas = this.UserAviablility;
      $(".mapsection")
      .delay(1000)
@@ -212,9 +210,11 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     }
 
     this.couchdetail();
-
+    this.displayLoadedMap(11.941591, 79.808311, 25);
     
-
+    $(".mapsection")
+    .delay(1000)
+    .fadeIn(500);
     // var pcode = localStorage.getItem("onmytennis");
     // var postalCode = JSON.parse(JSON.parse(pcode));
     // this.Ville = postalCode.postalCode;
@@ -242,7 +242,7 @@ export class OhMyCoachDetailNewComponent implements OnInit {
             this.profileImage = this.transform(this.coach_detail.Coach_Image);
             //console.log("coachdetail", this.coach_detail);
             this.service = this.coach_detail.Coach_Services.split(",");
-            //console.log(this.service);
+            console.log(this.service);
             this.spinner.hide();
           }
         });
@@ -258,6 +258,7 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     this.appService
         .getAll("/course/getindividualcourse", coachID)
         .subscribe(response => {
+          console.log(response);
           if ((response as any).data.course.length > 0) {
             if (response && response["data"]) {
               var dat = (response as any).data.course[0];
