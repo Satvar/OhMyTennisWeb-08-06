@@ -209,15 +209,6 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     }
 
     this.couchdetail();
-<<<<<<< HEAD
-    this.displayLoadedMap(11.941591, 79.808311, 25);
-    
-    $(".mapsection")
-    .delay(1000)
-    .fadeIn(500);
-=======
-
->>>>>>> bd9b77134eafa1cc0ca46cdd520dd8557c94b219
     // var pcode = localStorage.getItem("onmytennis");
     // var postalCode = JSON.parse(JSON.parse(pcode));
     // this.Ville = postalCode.postalCode;
@@ -259,28 +250,6 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     //   "id"
     // );
     this.appService
-<<<<<<< HEAD
-        .getAll("/course/getindividualcourse", coachID)
-        .subscribe(response => {
-          console.log(response);
-          if ((response as any).data.course.length > 0) {
-            if (response && response["data"]) {
-              var dat = (response as any).data.course[0];
-              this.price = dat.Price_min;
-              this.Indiv_1hr = dat.Price_min;
-              this.Indiv_10hr = dat.Price_max;
-              this.Video = dat.Video;
-              this.Description = dat.Description;
-              this.pincode = dat.Postalcode;
-              this.location = dat.Location;
-              this.mapvalues = eval("[" + dat.coordonnees_gps + "]");
-              this.lat = this.mapvalues[0].toFixed(3);
-              this.lang = this.mapvalues[1].toFixed(3);
-              this.mapintigration(this.mapvalues);
-              this.appService
-                .getAll("/city/" + dat.Postalcode)
-                .subscribe(response => {
-=======
       .getAll("/course/getindividualcourse", coachID)
       .subscribe(response => {
         if ((response as any).data.course.length > 0) {
@@ -302,7 +271,6 @@ export class OhMyCoachDetailNewComponent implements OnInit {
               .subscribe(response => {
                 // tslint:disable-next-line:no-string-literal
                 if (response && response["data"]) {
->>>>>>> bd9b77134eafa1cc0ca46cdd520dd8557c94b219
                   // tslint:disable-next-line:no-string-literal
                   this.selectedCity = (response as any).data.city_list;
                 }

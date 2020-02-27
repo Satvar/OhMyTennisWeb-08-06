@@ -84,12 +84,12 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
 
   ngAfterViewInit(): void {
     var pcode = localStorage.getItem("onmytennis");
-    if (!pcode) {
-      this.getcurrentcordinates();
-    }
-   $(".mapsection")
-     .delay(1000)
-     .fadeIn(500);
+    // if (!pcode) {
+    //   this.getcurrentcordinates();
+    // }
+    //  $(".mapsection")
+    //    .delay(1000)
+    //    .fadeIn(500);
   }
 
   getcoach() {
@@ -121,15 +121,15 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
       this.search.ville = postalCode.postalCode;
 
       //Getting Gelocation based on POstal Code and Display the Map
-      this.appService
-        .getAll("/coach/geolocationByPostalCode/" + this.search.ville)
-        .subscribe(data => {
-          if (data && data["data"]) {
-            this.co_or_gps = data["data"].coordonnees_gps;
-            var splited_gps = this.co_or_gps.split(",");
-            this.displayLoadedMap(splited_gps[0], splited_gps[1], 0);
-          }
-        });
+      // this.appService
+      //   .getAll("/coach/geolocationByPostalCode/" + this.search.ville)
+      //   .subscribe(data => {
+      //     if (data && data["data"]) {
+      //       this.co_or_gps = data["data"].coordonnees_gps;
+      //       var splited_gps = this.co_or_gps.split(",");
+      //       this.displayLoadedMap(splited_gps[0], splited_gps[1], 0);
+      //     }
+      //   });
     } // End of pcode if it is present
     this.appService
       .getAll("/coach/searchByCoach", this.search)
@@ -204,7 +204,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
 
       this.spinner.hide();
       window.scroll({
-        top: 400,
+        top: 800,
         left: 0,
         behavior: "smooth"
       });
@@ -214,21 +214,21 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
     //return;
 
     //Getting Gelocation based on POstal Code and Display the Map
-    this.appService
-      .getAll("/coach/geolocationByPostalCode/" + search.ville)
-      .subscribe(data => {
-        console.log(data);
-        if (data && data["data"]) {
-          if (data["data"].coordonnees_gps.length > 0) {
-            this.co_or_gps = data["data"].coordonnees_gps;
-            var splited_gps = this.co_or_gps.split(",");
-            this.displayLoadedMap(splited_gps[0], splited_gps[1], search.rayon);
-          } else {
-            // If the Geo Co-Ordinates are available the load the Current Location Map
-            this.getcurrentcordinates();
-          }
-        }
-      });
+    // this.appService
+    //   .getAll("/coach/geolocationByPostalCode/" + search.ville)
+    //   .subscribe(data => {
+    //     console.log(data);
+    //     if (data && data["data"]) {
+    //       if (data["data"].coordonnees_gps.length > 0) {
+    //         this.co_or_gps = data["data"].coordonnees_gps;
+    //         var splited_gps = this.co_or_gps.split(",");
+    //         this.displayLoadedMap(splited_gps[0], splited_gps[1], search.rayon);
+    //       } else {
+    //         // If the Geo Co-Ordinates are available the load the Current Location Map
+    //         this.getcurrentcordinates();
+    //       }
+    //     }
+    //   });
     this.appService.getAll("/coach/searchByCoach", search).subscribe(data => {
       if ((data as any).isSuccess == true) {
         this.allItems = (data as any).data.coach_list;
@@ -244,7 +244,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
           this.setPage(1);
         }
         window.scroll({
-          top: 400,
+          top: 800,
           left: 0,
           behavior: "smooth"
         });
@@ -311,7 +311,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
       this.pager.endIndex + 1
     );
     window.scroll({
-      top: 400,
+      top: 1000,
       left: 0,
       behavior: "smooth"
     });
@@ -347,74 +347,74 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
     });
   }
 
-  async getcurrentcordinates() {
-    const resp = await fetch("https://ipapi.co/json/");
-    const data = await resp.json();
-    this.curentlat = data.latitude.toFixed(3);
-    this.curentlang = data.longitude.toFixed(3);
-    console.log(this.curentlat, " ", this.curentlang);
-    //return
-    this.displayLoadedMap(this.curentlat, this.curentlang, 0);
-  }
+  // async getcurrentcordinates() {
+  //   const resp = await fetch("https://ipapi.co/json/");
+  //   const data = await resp.json();
+  //   this.curentlat = data.latitude.toFixed(3);
+  //   this.curentlang = data.longitude.toFixed(3);
+  //   console.log(this.curentlat, " ", this.curentlang);
+  //   //return
+  //   this.displayLoadedMap(this.curentlat, this.curentlang, 0);
+  // }
 
-  displayLoadedMap(latitude, longitude, radius) {
-    console.log("latitude - " + latitude);
-    console.log("longitude - " + longitude);
-    if (this.map) {
-      console.log("Got longitude - " + longitude);
-      this.map.remove();
-      $("#map").html("");
-      $(".map-frame").empty();
-      $('<div id="map" style="height: 385px;"></div>').appendTo(".map-frame");
-    }
+  // displayLoadedMap(latitude, longitude, radius) {
+  //   console.log("latitude - " + latitude);
+  //   console.log("longitude - " + longitude);
+  //   if (this.map) {
+  //     console.log("Got longitude - " + longitude);
+  //     this.map.remove();
+  //     $("#map").html("");
+  //     $(".map-frame").empty();
+  //     $('<div id="map" style="height: 385px;"></div>').appendTo(".map-frame");
+  //   }
 
-    this.mapvalues = eval("[" + latitude + "," + longitude + "]");
-    this.lat = latitude;
-    this.lang = longitude;
-    console.log("Map Values" + this.mapvalues);
+  //   this.mapvalues = eval("[" + latitude + "," + longitude + "]");
+  //   this.lat = latitude;
+  //   this.lang = longitude;
+  //   console.log("Map Values" + this.mapvalues);
 
-    this.map = L.map("map", {
-      center: this.mapvalues,
-      zoom: 15
-    });
-    //return;
+  //   this.map = L.map("map", {
+  //     center: this.mapvalues,
+  //     zoom: 15
+  //   });
+  //   //return;
 
-    //Adding the Circle to the Map
+  //   //Adding the Circle to the Map
 
-    L.circle([this.lat, this.lang], {
-      color: "orange",
-      fillColor: "#FFA500",
-      fillOpacity: 0.5,
-      radius: radius * 10
-    }).addTo(this.map);
+  //   L.circle([this.lat, this.lang], {
+  //     color: "orange",
+  //     fillColor: "#FFA500",
+  //     fillOpacity: 0.5,
+  //     radius: radius * 10
+  //   }).addTo(this.map);
 
-    const tiles = L.tileLayer(
-      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      {
-        maxZoom: 25
-      }
-    );
+  //   const tiles = L.tileLayer(
+  //     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  //     {
+  //       maxZoom: 25
+  //     }
+  //   );
 
-    tiles.addTo(this.map);
-    var greenIcon = L.icon({
-      iconUrl: "../assets/images/marker-icon.png",
-      iconSize: [38, 95],
-      iconAnchor: [22, 94]
-    });
+  //   tiles.addTo(this.map);
+  //   var greenIcon = L.icon({
+  //     iconUrl: "../assets/images/marker-icon.png",
+  //     iconSize: [38, 95],
+  //     iconAnchor: [22, 94]
+  //   });
 
-    L.marker([this.lat, this.lang], { icon: greenIcon }).addTo(this.map);
-    //.openPopup();
-  }
+  //   L.marker([this.lat, this.lang], { icon: greenIcon }).addTo(this.map);
+  //   //.openPopup();
+  // }
 
   toogleData() {
     this.showMyMap = !this.showMyMap;
     if (this.showMyMap == false) {
-      $(".mapsection").hide();
+      //$(".mapsection").hide();
     } else {
       //$(".mapsection").load(location.href + " .mapsection");
-      $(".mapsection")
-        .delay(500)
-        .fadeIn(1000);
+      // $(".mapsection")
+      //   .delay(500)
+      //   .fadeIn(1000);
     }
   }
 }

@@ -23,7 +23,9 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     FacebookURL: "",
     TwitterURL: "",
     Coach_Description: "",
-    Coach_Rayon: "",
+    Coach_Rayon: 1,
+    Coach_Ville: "",
+    Coach_Emplacement: "",
     Coach_Price: "",
     Coach_City: "",
     Coach_Services: "",
@@ -36,6 +38,9 @@ export class ProfileComponent extends CoachComponent implements OnInit {
       "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png",
     Coach_Resume: ""
   };
+
+  public selectedCity: any = null;
+  public cityId: any = "";
 
   public trans_error: Boolean = false;
   public cheque_error: Boolean = false;
@@ -120,7 +125,26 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     $("#submit2").prop("readonly", false);
   }
 
+  searchCity(e) {
+    if (e && e.target.value) {
+      this.appService.getAll("/city/" + e.target.value).subscribe(
+        response => {
+          // tslint:disable-next-line:no-string-literal
+          if (response && response["data"]) {
+            // tslint:disable-next-line:no-string-literal
+            this.selectedCity = (response as any).data.city_list;
+
+            if (this.selectedCity.length > 0)
+              this.res.Coach_Ville = this.selectedCity[0].id;
+          }
+        },
+        error => {}
+      );
+    }
+  }
+
   onSubmit(res) {
+    console.log("[profile.components.ts - line - 124]", res);
     $("#trans_error").hide();
     $("#cheque_error").hide();
     this.trans_error = false;

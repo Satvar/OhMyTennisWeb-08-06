@@ -215,12 +215,12 @@
                                                                 <label>Emplacement <span class="red"> *</span></label>
                                                             </div>
                                                             <div class="col-md-8">
-                                                                <input type="text" class="form-control" [(ngModel)]="res.Location"
-                                                                    name="res.Location" readyonly required #Place="ngModel"
-                                                                    [ngClass]="{'alert_field': (Place.errors && (Place.touched || Place.dirty))}"
+                                                                <input type="text" class="form-control" [(ngModel)]="res.Coach_Emplacement"
+                                                                    name="res.Coach_Emplacement" readyonly required #Coach_Emplacement="ngModel"
+                                                                    [ngClass]="{'alert_field': (Coach_Emplacement.errors && (Coach_Emplacement.touched || Coach_Emplacement.dirty))}"
                                                                     placeholder="">
-                                                                <ng-container *ngIf="Place.errors && (Place.touched || Place.dirty)">
-                                                                    <span class="alert_text" *ngIf="Place.errors.required">Indiquez votre
+                                                                <ng-container *ngIf="Coach_Emplacement.errors && (Coach_Emplacement.touched || Coach_Emplacement.dirty)">
+                                                                    <span class="alert_text" *ngIf="Coach_Emplacement.errors.required">Indiquez votre
                                                                         Emplacement.</span>
                                                                 </ng-container>
                                                             </div>
@@ -233,12 +233,14 @@
                                                                 <label>Code Postal <span class="red">*</span></label>
                                                             </div>
                                                             <div class="col-md-8">
-                                                                <input type="text" class="form-control"
-                                                                    [(ngModel)]="res.Coach_City" type="number"
+                                                                <input class="form-control"
+                                                                    [(ngModel)]="res.Coach_City" minlength="5" onKeyPress="if(this.value.length>=5) return false;" type="number"
                                                                     #Coach_City="ngModel"
+                                                                    (change)="searchCity($event)"
                                                                     [ngClass]="{'alert_field': (Coach_City.errors && (Coach_City.touched || Coach_City.dirty))}"
                                                                     name="Coach_City" placeholder="Postal Code" readonly
                                                                     required>
+
                                                                 <ng-container
                                                                     *ngIf="Coach_City.errors && (Coach_City.touched || Coach_City.dirty)">
                                                                     <span class="alert_text"
@@ -257,12 +259,19 @@
                                                                 <label>Ville <span class="red"> *</span></label>
                                                             </div>
                                                             <div class="col-md-8">
-                                                                <input type="text" class="form-control" [(ngModel)]="res.Location"
-                                                                    name="res.Location" readyonly required #Place="ngModel"
-                                                                    [ngClass]="{'alert_field': (Place.errors && (Place.touched || Place.dirty))}"
-                                                                    placeholder="">
-                                                                <ng-container *ngIf="Place.errors && (Place.touched || Place.dirty)">
-                                                                    <span class="alert_text" *ngIf="Place.errors.required">Indiquez votre
+                                                                <!-- <input type="text" class="form-control" [(ngModel)]="res.Coach_Ville"
+                                                                    name="res.Coach_Ville" readyonly required #Coach_Ville="ngModel"
+                                                                    [ngClass]="{'alert_field': (Coach_Ville.errors && (Coach_Ville.touched || Coach_Ville.dirty))}"
+                                                                    placeholder=""> -->
+
+                                                                    <select [(ngModel)]="res.Coach_Ville" style="height:45px" class="form-control" #Coach_Ville="ngModel" name="res.Coach_Ville"
+                                                                        [ngClass]="{'alert_field': (Coach_Ville.errors && (Coach_Ville.touched || Coach_Ville.dirty))}">
+                                                                        <option [ngValue]="city.id" *ngFor="let city of selectedCity">
+                                                                            {{ city.Libelle_acheminement }}</option>
+                                                                    </select>
+
+                                                                <ng-container *ngIf="Coach_Ville.errors && (Coach_Ville.touched || Coach_Ville.dirty)">
+                                                                    <span class="alert_text" *ngIf="Coach_Ville.errors.required">Indiquez votre
                                                                         Ville.</span>
                                                                 </ng-container>
                                                             </div>
@@ -478,7 +487,7 @@
                                                         <div class="col-md-8 col-sm-8 col-xs-12">
                                                             <div class="chech_box_services1">
                                                                 <div class="form-group">
-                                                                    <label class="checkbox-inline"><input id="Voiture"
+                                                                    <label class="checkbox-inline"><input id="voiture"
                                                                             type="checkbox" class="transport" readonly
                                                                             name="transport"
                                                                             value="Voiture" />Voiture</label>
@@ -489,10 +498,10 @@
                                                                             readonly type="checkbox" class="transport"
                                                                             name="transport"
                                                                             value="métro" />métro</label>
-                                                                    <label class="checkbox-inline"><input id="RER"
+                                                                    <label class="checkbox-inline"><input id="rer"
                                                                             readonly type="checkbox" class="transport"
                                                                             name="transport"
-                                                                            value="RER" />RER</label>
+                                                                            value="rer" />RER</label>
                                                                             <label class="checkbox-inline"><input id="tram"
                                                                                     readonly type="checkbox" class="transport"
                                                                                     name="transport"
