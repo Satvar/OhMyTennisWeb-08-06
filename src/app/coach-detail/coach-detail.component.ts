@@ -16,6 +16,7 @@ import * as L from "leaflet";
   styleUrls: ["./coach-detail.component.scss"]
 })
 export class CoachDetailComponent implements OnInit {
+  //public slotRowData: any = [];
   public selectedCity: any = null;
   map: any;
   mapvalues: any;
@@ -230,6 +231,7 @@ export class CoachDetailComponent implements OnInit {
           if ((response as any).data.course.length > 0) {
             if (response && response["data"]) {
               var dat = (response as any).data.course[0];
+              console.log("[coach-detail.component.ts - line - 233]", dat);
               this.price = dat.Price_min;
               this.Indiv_1hr = dat.Price_min;
               this.Indiv_10hr = dat.Price_max;
@@ -408,6 +410,8 @@ export class CoachDetailComponent implements OnInit {
   }
 
   addTimeslot(rowData, id) {
+    //this.slotRowData = rowData;
+
     var course = localStorage.getItem("Course");
 
     //Single Select
@@ -790,15 +794,39 @@ export class CoachDetailComponent implements OnInit {
   }
 
   enable10h() {
+    console.log("[coach-detail.component.ts - line - 797]", this.bookArray);
     // this.price = this.Indiv_10hr;
-    this.is10Hr = true;
-    $("#10hrposter").hide();
+    this.appService
+      .getAll(
+        "/coach/get_avail_ten_is_or_not/" +
+          this.bookArray[0].P_CoachId +
+          "/" +
+          this.bookArray[0].P_Date
+      )
+      .subscribe(response => {
+        console.log("[coach-detail.component.ts - line - 807]", response);
+        var getAvail = response as any;
+        if (getAvail.data.ten == true) {
+          this.is10Hr = true;
+          $("#10hrposter").hide();
+        } else {
+          this.is10Hr = false;
+          $("#10hrposter").hide();
+          $("#actuellement").show();
+        }
+      });
   }
 
   hide10h() {
     // this.price = this.Indiv_1hr;
     this.is10Hr = false;
     $("#10hrposter").hide();
+  }
+
+  actuellement() {
+    // this.price = this.Indiv_1hr;
+    this.is10Hr = false;
+    $("#actuellement").hide();
   }
 
   openURL() {

@@ -183,13 +183,15 @@
                             id="check_{{rowData.SlotId}}" name="vehicle1" [disabled]="rowData.Availability != 'Y'"
                             value="{{rowData.description}}" style="margin-right: 5px;">{{rowData.description}}
                         <p *ngIf="rowData.Availability == 'B'"
-                            style=" margin: 0px;height: 10.5px;background-color: #e06363;color:white;">.</p>
+                            style=" margin: 0px;height: 10.5px;background-color: #fa0303;color:white;">.</p>
                         <p *ngIf="rowData.Availability == 'R'"
                             style=" margin: 0px;height: 10.5px;background-color: #de6111;color:white;">.</p>
                         <p *ngIf="rowData.Availability == 'Y'"
-                            style=" margin: 0px;height: 10.5px;background-color: #539654;color:white;">.</p>
+                            style=" margin: 0px;height: 10.5px;background-color: #41b843;color:white;">.</p>
                         <p *ngIf="rowData.Availability == 'N'"
                             style=" margin: 0px;height: 10.5px;background-color: #b9b4b4;color:white;">.</p>
+                        <p *ngIf="rowData.Availability == 'A'" 
+                            style=" margin: 0px;height:  10.5px;background-color: #fa0303;color:white;">.</p>
                         <p *ngIf="rowData.Availability == ''"
                             style=" margin: 0px;height: 10.5px;background-color: #b9b4b4;color:white;">.</p>
                     </div>
@@ -686,6 +688,19 @@
                 <span> </span>
                 <button type="button" class="btn btn-default" (click)="hide10h()" data-dismiss="modal">Rejeter</button>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="actuellement" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="width: 430px;">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="actuellement()" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Actuellement, 10 heures de cours n’est pas disponible pour cet entraîneur.</h4>
+            </div>            
         </div>
     </div>
 </div>
