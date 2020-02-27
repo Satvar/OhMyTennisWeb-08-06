@@ -175,7 +175,22 @@
                     </tbody>
                 </table>
             </div>
-
+            <div *ngIf="timeslot.length>0 " class="timeslot row timeslotselect" align="center">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <span style=" margin: 1px;height: 6px;background-color: #41b843;color:white;">&nbsp;&nbsp;Disponible&nbsp;&nbsp;</span> 
+                    </div>
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <span style=" margin: 1px;height: 6px;background-color: #de6111;color:white;">&nbsp;&nbsp;En attente&nbsp;&nbsp;</span> 
+                    </div>
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <span style=" margin: 1px;height: 6px;background-color: #fa0303;color:white;">&nbsp;&nbsp;Reserver&nbsp;&nbsp;</span> 
+                    </div>
+                    <div class="col-3 col-md-3 col-lg-3">
+                        <span style=" margin: 1px;height:65px;background-color: #b9b4b4;color:white;">&nbsp;&nbsp;Indisponible&nbsp;&nbsp;</span> 
+                    </div>
+                </div>
+            </div>
             <div *ngIf="timeslot.length>0 " class="timeslot row timeslotselect" align="center">
                 <div *ngFor="let rowData of timeslot" class="col-3 col-md-3 col-lg-3" style="margin: 10px;">
                     <div>
@@ -291,6 +306,13 @@
                                         <h4 class="text-center"><strong>Résumé & Détails Utilisateurs</strong></h4>
                                         <div class="order_summary">
                                             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                                <div *ngIf="alertMsg.show" class="alert {{alertMsg.type}} alert-dismissible text-center">
+                                                    <button type="button" (click)="_closeAlertMessage($event)" class="close"><span>&times;</span></button>
+                                                    {{alertMsg.msg}}
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                                                 <label style="margin-bottom:8px;"><strong>Type de
                                                         services</strong></label>
                                                 <p><strong>Cours Individuel</strong></p>
@@ -328,14 +350,14 @@
                                                 <a (click)="bookCoach()" id="btnbooking"
                                                     class="btn btn-primary des_coach_abt_btn btnbookingCoursIndividual">Confirmer</a>
                                             </div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                            <!-- <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                                                 <div *ngIf="alertMsg.show"
                                                     class="alert {{alertMsg.type}} alert-dismissible text-center">
                                                     <button type="button" (click)="_closeAlertMessage($event)"
                                                         class="close"><span>&times;</span></button> {{alertMsg.msg}}
                                                 </div>
                                             </div>
-                                            <div class="clearfix"></div>
+                                            <div class="clearfix"></div> -->
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -704,4 +726,17 @@
         </div>
     </div>
 </div>
+
+<div id="fentes" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="width: 430px;">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="fentes()" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Veuillez sélectionner 10 fentes</h4>
+            </div>            
+        </div>
+    </div>
+</div>
+
 <app-footer></app-footer>

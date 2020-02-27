@@ -16,6 +16,10 @@ import * as moment from "moment";
   styleUrls: ["./reservation.component.scss"]
 })
 export class ReservationComponent extends CoachComponent implements OnInit {
+  public user_name: string = "";
+  public slotRowDatas: any = [];
+  public remaining_status: string = "";
+
   public frommindate = new Date(Date.now() - 24 * 60 * 60 * 1000);
   public rowDataCollection: any = [];
   public filterDataCollection: any = [];
@@ -37,6 +41,7 @@ export class ReservationComponent extends CoachComponent implements OnInit {
   public booked_users: any = [];
   public Remarks: any = "";
   public user_Id: any = "";
+  public slot_view: any = [];
   public course_demand = {
     Price_2pl_1hr: "",
     Price_3pl_1hr: "",
@@ -137,7 +142,7 @@ export class ReservationComponent extends CoachComponent implements OnInit {
         if (response && response["data"]) {
           this.data = response["data"].booking;
           this.Fdata = response["data"].booking;
-          //console.log( this.data);
+          console.log("[reservation.component.ts - line - 140]", this.data);
           for (let row = 0; row < this.data.length; row++) {
             var rowCollection = [];
             var date = this.data[row].bookingDate.split("T");
@@ -155,10 +160,16 @@ export class ReservationComponent extends CoachComponent implements OnInit {
             rowCollection.push(this.data[row].CourseName);
             rowCollection.push(this.data[row].Remarks);
             rowCollection.push(this.data[row].user_Id);
+            rowCollection.push(this.data[row].slot);
+            rowCollection.push(this.data[row].remaingSlotStatus);
 
             this.rowDataCollection.push(rowCollection);
             date = [];
           }
+          console.log(
+            "[reservation.component.ts - line - 163]",
+            this.rowDataCollection
+          );
           this.spinner.hide();
           // this.filtersearch();
           // $('#approveBtn').show();
@@ -211,6 +222,7 @@ export class ReservationComponent extends CoachComponent implements OnInit {
               "Réservation acceptée avec succès"
             );
             $("#approveBtn").hide();
+            $("#cancelBtn").hide();
             this.getReservationData();
           } else {
             this._showAlertMessage(
@@ -223,7 +235,7 @@ export class ReservationComponent extends CoachComponent implements OnInit {
   }
   approveDialog(event: Event, rowData, hour, dateselected) {
     event.preventDefault();
-    //console.log("[reservation.components.ts]", rowData);
+    console.log("[reservation.components.ts - line 231]", rowData);
     $("#approveBtn").show();
     this.discount = 0;
     $("#approveBtn").prop("disabled", false);
@@ -236,24 +248,66 @@ export class ReservationComponent extends CoachComponent implements OnInit {
     this.booking_time = rowData[4];
     this.Remarks = rowData[12];
     this.user_Id = rowData[13];
+    this.slot_view = rowData[14];
     this.discount = this.amount;
-    (document.getElementById("userName") as HTMLInputElement).value =
-      rowData[9] + " " + rowData[10];
-    (document.getElementById("userCourseType") as HTMLInputElement).value =
-      rowData[11];
-    (document.getElementById("userDate") as HTMLInputElement).value =
-      rowData[3];
-    if (rowData[4]) {
-      (document.getElementById(
-        "divUserHours"
-      ) as HTMLInputElement).style.visibility = "";
-      (document.getElementById("userHours") as HTMLInputElement).value =
-        rowData[4];
+    this.user_name = rowData[9] + " " + rowData[10];
+    this.remaining_status = rowData[15] == "Yes" ? "10 Heures" : "1 Heure";
+    // (document.getElementById("userName") as HTMLInputElement).value =
+    //   rowData[9] + " " + rowData[10];
+    // (document.getElementById("userCourseType") as HTMLInputElement).value =
+    //   rowData[11];
+    // (document.getElementById("userDate") as HTMLInputElement).value =
+    //   rowData[3];
+
+    if (rowData[14].length > 0) {
+      // (document.getElementById(
+      //   "divUserHours"
+      // ) as HTMLInputElement).style.visibility = "";
+      this.slotRowDatas = rowData[14];
+      console.log("[reservation.component.ts - line 262]", this.slotRowDatas);
+      //var slot_row_datas = [];
+      // var year;
+      // var month;
+      // var day;
+      //for (let i = 0; i < slotRowDatas.length; i++) {
+      //const element = new Date(slotRowDatas[i].booking_date, 'YYYY-m-d');
+      // var date = new Date(slotRowDatas[i].booking_date);
+
+      // year = date.getFullYear();
+      // month = date.getMonth() + 1;
+      // day = date.getDate();
+
+      // if (day < 10) {
+      //   day = "0" + day;
+      // }
+      // if (month < 10) {
+      //   month = "0" + month;
+      // }
+
+      // var formattedDate = year + "-" + month + "-" + day;
+      // slot_row_datas.push(formattedDate);
+      //   slot_row_datas.push(slotRowDatas[i].booking_time);
+      // }
+      // console.log(slot_row_datas);
+      // (document.getElementById(
+      //   "userHours"
+      // ) as HTMLInputElement).value = slot_row_datas.toString();
     } else {
-      (document.getElementById(
-        "divUserHours"
-      ) as HTMLInputElement).style.visibility = "hidden";
+      // (document.getElementById(
+      //   "divUserHours"
+      // ) as HTMLInputElement).style.visibility = "hidden";
     }
+    // if (rowData[4]) {
+    //   (document.getElementById(
+    //     "divUserHours"
+    //   ) as HTMLInputElement).style.visibility = "";
+    //   (document.getElementById("userHours") as HTMLInputElement).value =
+    //     rowData[4];
+    // } else {
+    //   (document.getElementById(
+    //     "divUserHours"
+    //   ) as HTMLInputElement).style.visibility = "hidden";
+    // }
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
     var coach1 = JSON.parse(coach);
     if (this.course == "CoursCollectifOndemand") {

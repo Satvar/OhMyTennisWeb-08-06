@@ -399,13 +399,23 @@ export class CoachDetailComponent implements OnInit {
 
   reserve() {
     this.price = 0;
-    $("#available").show();
-    if (this.is10Hr == true) {
+    if (this.bookArray.length >= 10 && this.is10Hr == true) {
+      $("#available").show();
       this.price = this.Indiv_10hr;
+    } else if (this.bookArray.length < 10 && this.is10Hr == true) {
+      $("#fentes").show();
     } else {
+      $("#available").show();
       this.price = this.Indiv_1hr * this.bookArray.length;
     }
     this.booking.amount = this.price;
+    // $("#available").show();
+    // if (this.is10Hr == true) {
+    //   this.price = this.Indiv_10hr;
+    // } else {
+    //   this.price = this.Indiv_1hr * this.bookArray.length;
+    // }
+    // this.booking.amount = this.price;
     // $('#amount').html('Totale: €' + ' ' + this.price);
   }
 
@@ -542,6 +552,7 @@ export class CoachDetailComponent implements OnInit {
           P_Remarks: ""
         };
       }
+      console.log("[coach-detail.component.ts - line 555]", this.bookArray);
     } else if (course == "CoursCollectifOndemand" && this.IsChecked == true) {
       this.slot = rowData.description;
       var userId = user1.id;
@@ -706,21 +717,26 @@ export class CoachDetailComponent implements OnInit {
 
   bookCoach() {
     var req = {
-      bookArray: this.bookArray
+      bookArray: this.bookArray,
+      totalAmt: this.booking.amount,
+      remaingStatus: this.is10Hr == true ? "Yes" : "No"
     };
+    console.log("[coach-detail.component.ts - line - 713]", req);
     this.spinner.show();
-    this.appService.create("/coach/setreservation", req).subscribe(response => {
-      if (response && response.isSuccess == true) {
-        $(".btnbookingCoursIndividual").hide();
-        this._showAlertMessage("alert-success", "Cours réservé avec succès");
-      } else {
-        this._showAlertMessage(
-          "alert-danger",
-          "La réservation du cours a échoué"
-        );
-      }
-      this.spinner.hide();
-    });
+    this.appService
+      .create("/coach/setreservationfun", req)
+      .subscribe(response => {
+        if (response && response.isSuccess == true) {
+          $(".btnbookingCoursIndividual").hide();
+          this._showAlertMessage("alert-success", "Cours réservé avec succès");
+        } else {
+          this._showAlertMessage(
+            "alert-danger",
+            "La réservation du cours a échoué"
+          );
+        }
+        this.spinner.hide();
+      });
   }
 
   couchdetail() {
@@ -827,6 +843,12 @@ export class CoachDetailComponent implements OnInit {
     // this.price = this.Indiv_1hr;
     this.is10Hr = false;
     $("#actuellement").hide();
+  }
+
+  fentes() {
+    // this.price = this.Indiv_1hr;
+    this.is10Hr = true;
+    $("#fentes").hide();
   }
 
   openURL() {
