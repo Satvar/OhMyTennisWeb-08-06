@@ -35,7 +35,8 @@ export class CoachDetailComponent implements OnInit {
   public UserAviablility: any = [];
   calendarOptions = {
     format: "DD-MM-YYYY",
-    firstWeekdaySunday: false
+    firstWeekdaySunday: false,
+    selectable: true
   };
 
   public str: any = null;
@@ -382,6 +383,8 @@ export class CoachDetailComponent implements OnInit {
       Coach_ID: coach.Id,
       Course: course
     };
+    console.log("[coach-detail.component.ts - line - 386]", this.bookingDate);
+    console.log("[coach-detail.component.ts - line - 387]", this.Timeslotdata);
     if (course != "CoursCollectifClub") {
       this.appService.getAll("/coach/getTimeslot", detail).subscribe(data => {
         this.timeslot = (data as any).data.availabilty;
@@ -506,6 +509,7 @@ export class CoachDetailComponent implements OnInit {
           this.session.push(rowData.description + "," + this.bookingDate);
           this.Amt = this.Amt + parseInt(this.price, 10);
         }
+        console.log("[coach-detail.component.ts - line 509]", this.session);
       } else {
         var index = this.session.indexOf(
           rowData.description + "," + this.bookingDate
@@ -552,7 +556,8 @@ export class CoachDetailComponent implements OnInit {
           P_Remarks: ""
         };
       }
-      console.log("[coach-detail.component.ts - line 555]", this.bookArray);
+      console.log("[coach-detail.component.ts - line 555]", this.booking);
+      console.log("[coach-detail.component.ts - line 556]", this.bookArray);
     } else if (course == "CoursCollectifOndemand" && this.IsChecked == true) {
       this.slot = rowData.description;
       var userId = user1.id;
