@@ -194,7 +194,7 @@
             <div *ngIf="timeslot.length>0 " class="timeslot row timeslotselect" align="center">
                 <div *ngFor="let rowData of timeslot" class="col-3 col-md-3 col-lg-3" style="margin: 10px;">
                     <div>
-                        <input type="checkbox" (change)="addTimeslot(rowData,rowData.SlotId)"
+                        <input type="checkbox" [checked]="rowData.checked" (change)="addTimeslot(rowData,rowData.SlotId)"
                             id="check_{{rowData.SlotId}}" name="vehicle1" [disabled]="rowData.Availability != 'Y'"
                             value="{{rowData.description}}" style="margin-right: 5px;">{{rowData.description}}
                         <p *ngIf="rowData.Availability == 'B'"
@@ -300,7 +300,7 @@
                         class="col-md-12 col-sm-12 col-xs-12" style="top:-70px;">
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="" style="background-color:white;border: 5px solid #f5984d;">
+                                <div class="" style="background-color: white; border: 3px solid #f5984d; overflow: scroll; height: 600px; overflow: scroll;">
                                     <br>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <h4 class="text-center"><strong>Résumé & Détails Utilisateurs</strong></h4>
@@ -326,15 +326,29 @@
                                             <div class="col-md-6 col-sm-6 col-xs-6 text-left">
                                                 <p><label><strong>Emplacement</strong></label></p>
                                                 <p><label><strong>Postalcode</strong></label></p>
-                                                <p><label><strong>Date</strong></label></p>
-                                                <p><label><strong>Temps</strong></label></p>
+                                                <!-- <p><label><strong>Date</strong></label></p>
+                                                <p><label><strong>Temps</strong></label></p> -->
                                             </div>
                                             <div *ngIf="course != 'CoursCollectifClub'"
                                                 class="col-md-6 col-sm-6 col-xs-6 text-right">
                                                 <p><label><strong>{{location}}</strong></label></p>
                                                 <p><label><strong>{{pincode}}</strong></label></p>
-                                                <p><label><strong>{{moment_date}}</strong></label></p>
-                                                <p><label><strong>{{temps}}</strong></label></p>
+                                                <!-- <p><label><strong>{{moment_date}}</strong></label></p>
+                                                <p><label><strong>{{temps}}</strong></label></p> -->
+                                            </div>
+                                            <div *ngIf="course != 'CoursCollectifClub'" class="col-md-12 col-sm-12 col-xs-12 text-right">
+                                                <table class="table table-bordered">
+                                                    <tbody>                                                        
+                                                        <tr>
+                                                            <th scope="col">DATE</th>
+                                                            <th scope="col">HEURE</th>
+                                                        </tr>
+                                                        <tr *ngFor="let reserData of reserveData">
+                                                            <td scope="col pull-left">{{reserData.P_Date | date:'dd/MM/yyyy'}}</td>
+                                                            <td scope="col pull-left">{{reserData.P_Hour}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                             <div class="clearfix"></div>
 
@@ -734,7 +748,23 @@
             <div class="modal-header">
                 <button type="button" class="close" (click)="fentes()" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Veuillez sélectionner 10 fentes</h4>
-            </div>            
+            </div>
+            <div class="modal-footer" style="text-align: center; padding: 0px 20px;">
+                <button type="button" id="poster" style="margin-right: 20px;" (click)="fentes()"
+                    class="btn btn-success" data-dismiss="modal">Oui</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="hrtenmore" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="width: 430px;">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="hr10more()" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Vous avez sélectionné plus de 10 heures</h4>
+            </div>
         </div>
     </div>
 </div>

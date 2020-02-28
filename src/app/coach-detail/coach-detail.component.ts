@@ -16,7 +16,7 @@ import * as L from "leaflet";
   styleUrls: ["./coach-detail.component.scss"]
 })
 export class CoachDetailComponent implements OnInit {
-  //public slotRowData: any = [];
+  public reserveData: any = [];
   public selectedCity: any = null;
   map: any;
   mapvalues: any;
@@ -232,7 +232,7 @@ export class CoachDetailComponent implements OnInit {
           if ((response as any).data.course.length > 0) {
             if (response && response["data"]) {
               var dat = (response as any).data.course[0];
-              console.log("[coach-detail.component.ts - line - 233]", dat);
+              //console.log("[coach-detail.component.ts - line - 235]", dat);
               this.price = dat.Price_min;
               this.Indiv_1hr = dat.Price_min;
               this.Indiv_10hr = dat.Price_max;
@@ -315,7 +315,7 @@ export class CoachDetailComponent implements OnInit {
                   if (response && response["data"]) {
                     // tslint:disable-next-line:no-string-literal
                     this.selectedCity = (response as any).data.city_list;
-                    console.log(this.selectedCity);
+                    //console.log(this.selectedCity);
                   }
                 });
             }
@@ -353,7 +353,7 @@ export class CoachDetailComponent implements OnInit {
     const data = await resp.json();
     this.curentlat = data.latitude.toFixed(3);
     this.curentlang = data.longitude.toFixed(3);
-    console.log(this.curentlat, " ", this.curentlang);
+    //console.log(this.curentlat, " ", this.curentlang);
   }
 
   // async getcurrentcordinates() {
@@ -383,11 +383,67 @@ export class CoachDetailComponent implements OnInit {
       Coach_ID: coach.Id,
       Course: course
     };
-    console.log("[coach-detail.component.ts - line - 386]", this.bookingDate);
-    console.log("[coach-detail.component.ts - line - 387]", this.Timeslotdata);
+
+    //console.log("[coach-detail.component.ts - line - 387]", this.bookingDate);
+    //console.log("[coach-detail.component.ts - line - 388]", this.Timeslotdata);
+    //console.log("[coach-detail.component.ts - line - 389]", this.bookArray);
+
+    var dataVal = [];
+    for (let i = 0; i < this.bookArray.length; i++) {
+      dataVal.push({
+        date: this.bookArray[i].P_Date,
+        time: this.bookArray[i].P_Hour
+      });
+    }
+
+    //console.log("[coach-detail.component.ts - line - 399]", dataVal);
+
     if (course != "CoursCollectifClub") {
       this.appService.getAll("/coach/getTimeslot", detail).subscribe(data => {
-        this.timeslot = (data as any).data.availabilty;
+        if (this.bookArray.length > 0) {
+          var flag = false;
+          var timeSlotDatas = [];
+          var timeslotLength = (data as any).data.availabilty;
+          for (let j = 0; j < timeslotLength.length; j++) {
+            for (let k = 0; k < dataVal.length; k++) {
+              if (
+                dataVal[k].date == this.bookingDate &&
+                dataVal[k].time == timeslotLength[j].description
+              ) {
+                flag = true;
+              }
+            }
+            if (flag) {
+              timeSlotDatas.push({
+                SlotId: timeslotLength[j].SlotId,
+                description: timeslotLength[j].description,
+                Availability: timeslotLength[j].Availability,
+                checked: true
+              });
+              //console.log("[coach-detail.component.ts - line - 423] - same");
+            } else {
+              timeSlotDatas.push({
+                SlotId: timeslotLength[j].SlotId,
+                description: timeslotLength[j].description,
+                Availability: timeslotLength[j].Availability,
+                checked: false
+              });
+              // console.log(
+              //   "[coach-detail.component.ts - line - 432] - not same"
+              // );
+            }
+            flag = false;
+          }
+          // var slotData = [...timeSlotDatas]
+          // this.timeslot = slotData;
+          this.timeslot = timeSlotDatas as any;
+          // console.log(
+          //   "[coach-detail.component.ts - line - 441] - not same",
+          //   timeSlotDatas
+          // );
+        } else {
+          this.timeslot = (data as any).data.availabilty;
+        }
         this.spinner.hide();
       });
     } else {
@@ -405,12 +461,16 @@ export class CoachDetailComponent implements OnInit {
     if (this.bookArray.length >= 10 && this.is10Hr == true) {
       $("#available").show();
       this.price = this.Indiv_10hr;
+      this.reserveData = this.bookArray;
     } else if (this.bookArray.length < 10 && this.is10Hr == true) {
       $("#fentes").show();
     } else {
       $("#available").show();
       this.price = this.Indiv_1hr * this.bookArray.length;
+      this.reserveData = this.bookArray;
     }
+
+    //console.log("[coach-detail.component.ts - line 473]", this.bookArray);
     this.booking.amount = this.price;
     // $("#available").show();
     // if (this.is10Hr == true) {
@@ -473,9 +533,11 @@ export class CoachDetailComponent implements OnInit {
         $("#10hrposter").show();
       }
       if (this.bookArray.length == 9 && this.is10Hr == true) {
+        //$("#hrtenmore").show();
         let formInputItem = document
           .querySelectorAll(".timeslotselect")[0]
           .querySelectorAll("input");
+
         formInputItem.forEach(function(inputElement) {
           let mode = inputElement as HTMLInputElement;
           if (mode.type == "checkbox") {
@@ -509,7 +571,7 @@ export class CoachDetailComponent implements OnInit {
           this.session.push(rowData.description + "," + this.bookingDate);
           this.Amt = this.Amt + parseInt(this.price, 10);
         }
-        console.log("[coach-detail.component.ts - line 509]", this.session);
+        //console.log("[coach-detail.component.ts - line 572]", this.session);
       } else {
         var index = this.session.indexOf(
           rowData.description + "," + this.bookingDate
@@ -556,8 +618,8 @@ export class CoachDetailComponent implements OnInit {
           P_Remarks: ""
         };
       }
-      console.log("[coach-detail.component.ts - line 555]", this.booking);
-      console.log("[coach-detail.component.ts - line 556]", this.bookArray);
+      //console.log("[coach-detail.component.ts - line 619]", this.booking);
+      //console.log("[coach-detail.component.ts - line 620]", this.bookArray);
     } else if (course == "CoursCollectifOndemand" && this.IsChecked == true) {
       this.slot = rowData.description;
       var userId = user1.id;
@@ -649,7 +711,7 @@ export class CoachDetailComponent implements OnInit {
         P_Remarks: ""
       };
     }
-    console.log(this.bookArray);
+    // console.log("[coach-detail.component.ts - line - 712]", this.bookArray);
   }
 
   closemodal() {
@@ -726,7 +788,7 @@ export class CoachDetailComponent implements OnInit {
       totalAmt: this.booking.amount,
       remaingStatus: this.is10Hr == true ? "Yes" : "No"
     };
-    console.log("[coach-detail.component.ts - line - 713]", req);
+    //console.log("[coach-detail.component.ts - line - 789]", req);
     this.spinner.show();
     this.appService
       .create("/coach/setreservationfun", req)
@@ -815,7 +877,7 @@ export class CoachDetailComponent implements OnInit {
   }
 
   enable10h() {
-    console.log("[coach-detail.component.ts - line - 797]", this.bookArray);
+    //console.log("[coach-detail.component.ts - line - 878]", this.bookArray);
     // this.price = this.Indiv_10hr;
     this.appService
       .getAll(
@@ -825,7 +887,7 @@ export class CoachDetailComponent implements OnInit {
           this.bookArray[0].P_Date
       )
       .subscribe(response => {
-        console.log("[coach-detail.component.ts - line - 807]", response);
+        //console.log("[coach-detail.component.ts - line - 888]", response);
         var getAvail = response as any;
         if (getAvail.data.ten == true) {
           this.is10Hr = true;
@@ -854,6 +916,12 @@ export class CoachDetailComponent implements OnInit {
     // this.price = this.Indiv_1hr;
     this.is10Hr = true;
     $("#fentes").hide();
+  }
+
+  hr10more() {
+    // this.price = this.Indiv_1hr;
+    this.is10Hr = true;
+    $("#hrtenmore").hide();
   }
 
   openURL() {
