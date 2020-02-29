@@ -113,11 +113,10 @@
                                                                 <input type="text" class="form-control"
                                                                     [(ngModel)]="res.InstagramURL"
                                                                     pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
-                                                                    #Instagram="ngModel"
-                                                                    [ngClass]="{'alert_field': (Instagram.errors && (Instagram.touched || Instagram.dirty))}"
+                                                                    #Instagram="ngModel"     
                                                                     name="InstagramURL" placeholder="Instagram" readonly
                                                                     required>
-                                                                <ng-container
+                                                                <!-- <ng-container
                                                                     *ngIf="Instagram.errors && (Instagram.touched || Instagram.dirty)">
                                                                     <span class="alert_text"
                                                                         *ngIf="Instagram.errors.required">Indiquez
@@ -125,7 +124,7 @@
                                                                     <span class="alert_text"
                                                                         *ngIf="Instagram.errors.pattern">Entrez l'URL de
                                                                         vaild.</span>
-                                                                </ng-container>
+                                                                </ng-container> -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -140,10 +139,9 @@
                                                                     [(ngModel)]="res.FacebookURL"
                                                                     pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                                                     #Facebook="ngModel"
-                                                                    [ngClass]="{'alert_field': (Facebook.errors && (Facebook.touched || Facebook.dirty))}"
                                                                     name="FacebookURL" placeholder="Facebook" readonly
                                                                     required>
-                                                                <ng-container
+                                                                <!-- <ng-container
                                                                     *ngIf="Facebook.errors && (Facebook.touched || Facebook.dirty)">
                                                                     <span class="alert_text"
                                                                         *ngIf="Facebook.errors.required">Indiquez
@@ -151,7 +149,7 @@
                                                                     <span class="alert_text"
                                                                         *ngIf="Facebook.errors.pattern">Entrez l'URL de
                                                                         vaild.</span>
-                                                                </ng-container>
+                                                                </ng-container> -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -166,10 +164,9 @@
                                                                     [(ngModel)]="res.TwitterURL"
                                                                     pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                                                     #Twitter="ngModel"
-                                                                    [ngClass]="{'alert_field': (Twitter.errors && (Twitter.touched || Twitter.dirty))}"
                                                                     name="TwitterURL" placeholder="Twitter" readonly
                                                                     required>
-                                                                <ng-container
+                                                                <!-- <ng-container
                                                                     *ngIf="Twitter.errors && (Twitter.touched || Twitter.dirty)">
                                                                     <span class="alert_text"
                                                                         *ngIf="Twitter.errors.required">Indiquez
@@ -177,7 +174,7 @@
                                                                     <span class="alert_text"
                                                                         *ngIf="Twitter.errors.pattern">Entrez l'URL de
                                                                         vaild.</span>
-                                                                </ng-container>
+                                                                </ng-container> -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -209,7 +206,7 @@
                                                     </div>
 
                                                   
-                                                    <div class="form-group bmd-form-group">
+                                                    <!-- <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <label>Emplacement <span class="red"> *</span></label>
@@ -264,7 +261,7 @@
                                                                     [ngClass]="{'alert_field': (Coach_Ville.errors && (Coach_Ville.touched || Coach_Ville.dirty))}"
                                                                     placeholder=""> -->
 
-                                                                    <select [(ngModel)]="res.Coach_Ville" style="height:45px" class="form-control" #Coach_Ville="ngModel" name="res.Coach_Ville"
+                                                                    <!-- <select [(ngModel)]="res.Coach_Ville" style="height:45px" class="form-control" #Coach_Ville="ngModel" name="res.Coach_Ville"
                                                                         [ngClass]="{'alert_field': (Coach_Ville.errors && (Coach_Ville.touched || Coach_Ville.dirty))}">
                                                                         <option [ngValue]="city.id" *ngFor="let city of selectedCity">
                                                                             {{ city.Libelle_acheminement }}</option>
@@ -276,7 +273,7 @@
                                                                 </ng-container>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
