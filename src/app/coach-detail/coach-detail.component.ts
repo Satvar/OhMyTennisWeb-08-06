@@ -43,7 +43,8 @@ export class CoachDetailComponent implements OnInit {
   public timeslot = {
     description: "",
     session: "",
-    availability: ""
+    availability: "",
+    checked: false
   };
 
   public booking = {
@@ -446,6 +447,28 @@ export class CoachDetailComponent implements OnInit {
         }
         this.spinner.hide();
       });
+      console.log(
+        "[coach-detail.component.ts - line 450]",
+        this.bookArray.length,
+        this.is10Hr
+      );
+      if (this.bookArray.length == 10 && this.is10Hr == true) {
+        //$("#hrtenmore").show();
+        let formInputItem = document
+          .querySelectorAll(".timeslotselect")[0]
+          .querySelectorAll("input");
+
+        console.log("[coach-detail.component.ts - line 461]", formInputItem);
+
+        formInputItem.forEach(function(inputElement) {
+          let mode = inputElement as HTMLInputElement;
+          if (mode.type == "checkbox") {
+            if (mode.checked == false) {
+              mode.disabled = true;
+            }
+          }
+        });
+      }
     } else {
       this.showclub = true;
       this.spinner.hide();
