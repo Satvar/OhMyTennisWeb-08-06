@@ -234,7 +234,7 @@ export class OhMyCoachDetailNewComponent implements OnInit {
           if (response && response["data"]) {
             this.coach_detail = response.data.coach_list[0];
             this.profileImage = this.transform(this.coach_detail.Coach_Image);
-            //console.log("coachdetail", this.coach_detail);
+            console.log("coachdetail", this.coach_detail);
             this.service = this.coach_detail.Coach_Services.split(",");
             console.log(this.service);
             this.spinner.hide();

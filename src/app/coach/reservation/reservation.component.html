@@ -112,7 +112,14 @@
                         <button type="button" (click)="_closeAlertMessage($event)"
                             class="close"><span>&times;</span></button> {{alertMsg.msg}}
                     </div>
-                    <div class="form-group bmd-form-grou bmd-form-group is-filled">
+                    <div class="form-group bmd-form-grou bmd-form-group is-filled alert alert-danger">
+                        <div class="row">
+                            <div class="col-md-12">Remarque: Une fois acceptée, la réservation ne peut être annulée.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group bmd-form-grou bmd-form-group is-filled">
                         <div class="row">
                             <div class="col-md-4">
                                 <label>Nom</label>
@@ -131,8 +138,49 @@
                                 <input id="userCourseType" class="form-control" type="text" value="Individuel" disabled>
                             </div>
                         </div>
+                    </div> -->
+
+                    <div class="form-group bmd-form-grou bmd-form-group is-filled">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="col">Nom</th>
+                                            <td scope="col">{{user_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Cours</th>
+                                            <td scope="col">{{course}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Prix</th>
+                                            <td scope="col">{{amount |currency:'EUR':'symbol':'2.2-2':'fr'}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Paquet sélectionné</th>
+                                            <td scope="col">{{remaining_status}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">DATE</th>
+                                            <th scope="col">HEURE</th>
+                                        </tr>
+                                        <tr *ngFor="let slots of slotRowDatas">
+                                            <td scope="col">{{slots.booking_date | date:'dd/MM/yyyy'}}</td>
+                                            <td scope="col">{{slots.booking_time}}</td>
+                                        </tr>
+                                    </tbody>
+                                    <!-- <tbody>
+                                        <tr>
+                                            <th scope="row">{{course}}</th>
+                                            <td>Mark</td>
+                                        </tr>
+                                     -->
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group bmd-form-group">
+                    <!-- <div class="form-group bmd-form-group">
                         <div class="row">
                             <div class="col-md-4">
                                 <label>Date</label>
@@ -148,10 +196,10 @@
                                 <label>Heure</label>
                             </div>
                             <div class="col-md-8">
-                                <input id="userHours" type="text" class="form-control" disabled>
+                                <textarea id="userHours" class="form-control" disabled></textarea>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div *ngIf="course =='CoursCollectifClub'" class="form-group bmd-form-group">
                         <div class="row">
                             <div class="col-md-4">
@@ -321,14 +369,16 @@
 
                             <div class="col-md-12">
                                 <div class="form_buttons" style="text-align: center; padding: 0px 20px;">
+                                    <button *ngIf="book_status=='R'" type="button" id="cancelBtn" class="btn btn-danger" (click)="cancelreq()"
+                                        data-dismiss="modal">Annuler</button>
+                                    <button *ngIf="book_status=='B'" type="button" class="btn btn-danger" (click)="reschedule()"
+                                        data-dismiss="modal">Replanifier</button>
                                     <button *ngIf="book_status=='R'" id="approveBtn"
                                         class="btn btn-success des_save_btn" (click)="approvedData()">Demande
                                         acceptée</button>
                                     <!-- <a data-toggle="modal"  data-target="#myModal_save_course"  class="btn btn-success des_save_btn">Enregistrer</a> -->
-                                    <button *ngIf="book_status=='R' || book_status=='A'" type="button" class="btn btn-danger"
-                                        (click)="cancelreq()" data-dismiss="modal">Annuler</button>
-                                    <button *ngIf="book_status=='B'" type="button" class="btn btn-danger"
-                                        (click)="reschedule()" data-dismiss="modal">Replanifier</button>
+                                    
+                                   
                                     <!-- <button type="button" (click) = "modalclose()" class="btn btn-default" data-dismiss="modal">Proche</button> -->
                                 </div>
                             </div>

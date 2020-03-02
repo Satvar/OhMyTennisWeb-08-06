@@ -99,6 +99,7 @@
             <!-- <a class="btn btn-default login_btn_form btn-block">ME CONNECTER</a> -->
             <input
               type="submit"
+              [disabled]="!newUserForm.valid"
               value="ME CONNECTER"
               class="btn btn-default login_btn_form btn-block"
               style="text-transform:uppercase"

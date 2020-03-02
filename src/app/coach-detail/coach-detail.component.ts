@@ -16,6 +16,7 @@ import * as L from "leaflet";
   styleUrls: ["./coach-detail.component.scss"]
 })
 export class CoachDetailComponent implements OnInit {
+  public reserveData: any = [];
   public selectedCity: any = null;
   map: any;
   mapvalues: any;
@@ -34,14 +35,16 @@ export class CoachDetailComponent implements OnInit {
   public UserAviablility: any = [];
   calendarOptions = {
     format: "DD-MM-YYYY",
-    firstWeekdaySunday: false
+    firstWeekdaySunday: false,
+    selectable: true
   };
 
   public str: any = null;
   public timeslot = {
     description: "",
     session: "",
-    availability: ""
+    availability: "",
+    checked: false
   };
 
   public booking = {
@@ -230,6 +233,7 @@ export class CoachDetailComponent implements OnInit {
           if ((response as any).data.course.length > 0) {
             if (response && response["data"]) {
               var dat = (response as any).data.course[0];
+              //console.log("[coach-detail.component.ts - line - 235]", dat);
               this.price = dat.Price_min;
               this.Indiv_1hr = dat.Price_min;
               this.Indiv_10hr = dat.Price_max;
@@ -312,7 +316,7 @@ export class CoachDetailComponent implements OnInit {
                   if (response && response["data"]) {
                     // tslint:disable-next-line:no-string-literal
                     this.selectedCity = (response as any).data.city_list;
-                    console.log(this.selectedCity);
+                    //console.log(this.selectedCity);
                   }
                 });
             }
@@ -350,7 +354,7 @@ export class CoachDetailComponent implements OnInit {
     const data = await resp.json();
     this.curentlat = data.latitude.toFixed(3);
     this.curentlang = data.longitude.toFixed(3);
-    console.log(this.curentlat, " ", this.curentlang);
+    //console.log(this.curentlat, " ", this.curentlang);
   }
 
   // async getcurrentcordinates() {
@@ -380,11 +384,91 @@ export class CoachDetailComponent implements OnInit {
       Coach_ID: coach.Id,
       Course: course
     };
+
+    //console.log("[coach-detail.component.ts - line - 387]", this.bookingDate);
+    //console.log("[coach-detail.component.ts - line - 388]", this.Timeslotdata);
+    //console.log("[coach-detail.component.ts - line - 389]", this.bookArray);
+
+    var dataVal = [];
+    for (let i = 0; i < this.bookArray.length; i++) {
+      dataVal.push({
+        date: this.bookArray[i].P_Date,
+        time: this.bookArray[i].P_Hour
+      });
+    }
+
+    //console.log("[coach-detail.component.ts - line - 399]", dataVal);
+
     if (course != "CoursCollectifClub") {
       this.appService.getAll("/coach/getTimeslot", detail).subscribe(data => {
-        this.timeslot = (data as any).data.availabilty;
+        if (this.bookArray.length > 0) {
+          var flag = false;
+          var timeSlotDatas = [];
+          var timeslotLength = (data as any).data.availabilty;
+          for (let j = 0; j < timeslotLength.length; j++) {
+            for (let k = 0; k < dataVal.length; k++) {
+              if (
+                dataVal[k].date == this.bookingDate &&
+                dataVal[k].time == timeslotLength[j].description
+              ) {
+                flag = true;
+              }
+            }
+            if (flag) {
+              timeSlotDatas.push({
+                SlotId: timeslotLength[j].SlotId,
+                description: timeslotLength[j].description,
+                Availability: timeslotLength[j].Availability,
+                checked: true
+              });
+              //console.log("[coach-detail.component.ts - line - 423] - same");
+            } else {
+              timeSlotDatas.push({
+                SlotId: timeslotLength[j].SlotId,
+                description: timeslotLength[j].description,
+                Availability: timeslotLength[j].Availability,
+                checked: false
+              });
+              // console.log(
+              //   "[coach-detail.component.ts - line - 432] - not same"
+              // );
+            }
+            flag = false;
+          }
+          // var slotData = [...timeSlotDatas]
+          // this.timeslot = slotData;
+          this.timeslot = timeSlotDatas as any;
+          // console.log(
+          //   "[coach-detail.component.ts - line - 441] - not same",
+          //   timeSlotDatas
+          // );
+        } else {
+          this.timeslot = (data as any).data.availabilty;
+        }
         this.spinner.hide();
       });
+      console.log(
+        "[coach-detail.component.ts - line 450]",
+        this.bookArray.length,
+        this.is10Hr
+      );
+      if (this.bookArray.length == 10 && this.is10Hr == true) {
+        //$("#hrtenmore").show();
+        let formInputItem = document
+          .querySelectorAll(".timeslotselect")[0]
+          .querySelectorAll("input");
+
+        console.log("[coach-detail.component.ts - line 461]", formInputItem);
+
+        formInputItem.forEach(function(inputElement) {
+          let mode = inputElement as HTMLInputElement;
+          if (mode.type == "checkbox") {
+            if (mode.checked == false) {
+              mode.disabled = true;
+            }
+          }
+        });
+      }
     } else {
       this.showclub = true;
       this.spinner.hide();
@@ -397,17 +481,33 @@ export class CoachDetailComponent implements OnInit {
 
   reserve() {
     this.price = 0;
-    $("#available").show();
-    if (this.is10Hr == true) {
+    if (this.bookArray.length >= 10 && this.is10Hr == true) {
+      $("#available").show();
       this.price = this.Indiv_10hr;
+      this.reserveData = this.bookArray;
+    } else if (this.bookArray.length < 10 && this.is10Hr == true) {
+      $("#fentes").show();
     } else {
+      $("#available").show();
       this.price = this.Indiv_1hr * this.bookArray.length;
+      this.reserveData = this.bookArray;
     }
+
+    //console.log("[coach-detail.component.ts - line 473]", this.bookArray);
     this.booking.amount = this.price;
+    // $("#available").show();
+    // if (this.is10Hr == true) {
+    //   this.price = this.Indiv_10hr;
+    // } else {
+    //   this.price = this.Indiv_1hr * this.bookArray.length;
+    // }
+    // this.booking.amount = this.price;
     // $('#amount').html('Totale: €' + ' ' + this.price);
   }
 
   addTimeslot(rowData, id) {
+    //this.slotRowData = rowData;
+
     var course = localStorage.getItem("Course");
 
     //Single Select
@@ -456,9 +556,11 @@ export class CoachDetailComponent implements OnInit {
         $("#10hrposter").show();
       }
       if (this.bookArray.length == 9 && this.is10Hr == true) {
+        //$("#hrtenmore").show();
         let formInputItem = document
           .querySelectorAll(".timeslotselect")[0]
           .querySelectorAll("input");
+
         formInputItem.forEach(function(inputElement) {
           let mode = inputElement as HTMLInputElement;
           if (mode.type == "checkbox") {
@@ -492,6 +594,7 @@ export class CoachDetailComponent implements OnInit {
           this.session.push(rowData.description + "," + this.bookingDate);
           this.Amt = this.Amt + parseInt(this.price, 10);
         }
+        //console.log("[coach-detail.component.ts - line 572]", this.session);
       } else {
         var index = this.session.indexOf(
           rowData.description + "," + this.bookingDate
@@ -538,6 +641,8 @@ export class CoachDetailComponent implements OnInit {
           P_Remarks: ""
         };
       }
+      //console.log("[coach-detail.component.ts - line 619]", this.booking);
+      //console.log("[coach-detail.component.ts - line 620]", this.bookArray);
     } else if (course == "CoursCollectifOndemand" && this.IsChecked == true) {
       this.slot = rowData.description;
       var userId = user1.id;
@@ -629,7 +734,7 @@ export class CoachDetailComponent implements OnInit {
         P_Remarks: ""
       };
     }
-    console.log(this.bookArray);
+    // console.log("[coach-detail.component.ts - line - 712]", this.bookArray);
   }
 
   closemodal() {
@@ -702,21 +807,26 @@ export class CoachDetailComponent implements OnInit {
 
   bookCoach() {
     var req = {
-      bookArray: this.bookArray
+      bookArray: this.bookArray,
+      totalAmt: this.booking.amount,
+      remaingStatus: this.is10Hr == true ? "Yes" : "No"
     };
+    //console.log("[coach-detail.component.ts - line - 789]", req);
     this.spinner.show();
-    this.appService.create("/coach/setreservation", req).subscribe(response => {
-      if (response && response.isSuccess == true) {
-        $(".btnbookingCoursIndividual").hide();
-        this._showAlertMessage("alert-success", "Cours réservé avec succès");
-      } else {
-        this._showAlertMessage(
-          "alert-danger",
-          "La réservation du cours a échoué"
-        );
-      }
-      this.spinner.hide();
-    });
+    this.appService
+      .create("/coach/setreservationfun", req)
+      .subscribe(response => {
+        if (response && response.isSuccess == true) {
+          $(".btnbookingCoursIndividual").hide();
+          this._showAlertMessage("alert-success", "Cours réservé avec succès");
+        } else {
+          this._showAlertMessage(
+            "alert-danger",
+            "La réservation du cours a échoué"
+          );
+        }
+        this.spinner.hide();
+      });
   }
 
   couchdetail() {
@@ -790,15 +900,51 @@ export class CoachDetailComponent implements OnInit {
   }
 
   enable10h() {
+    //console.log("[coach-detail.component.ts - line - 878]", this.bookArray);
     // this.price = this.Indiv_10hr;
-    this.is10Hr = true;
-    $("#10hrposter").hide();
+    this.appService
+      .getAll(
+        "/coach/get_avail_ten_is_or_not/" +
+          this.bookArray[0].P_CoachId +
+          "/" +
+          this.bookArray[0].P_Date
+      )
+      .subscribe(response => {
+        //console.log("[coach-detail.component.ts - line - 888]", response);
+        var getAvail = response as any;
+        if (getAvail.data.ten == true) {
+          this.is10Hr = true;
+          $("#10hrposter").hide();
+        } else {
+          this.is10Hr = false;
+          $("#10hrposter").hide();
+          $("#actuellement").show();
+        }
+      });
   }
 
   hide10h() {
     // this.price = this.Indiv_1hr;
     this.is10Hr = false;
     $("#10hrposter").hide();
+  }
+
+  actuellement() {
+    // this.price = this.Indiv_1hr;
+    this.is10Hr = false;
+    $("#actuellement").hide();
+  }
+
+  fentes() {
+    // this.price = this.Indiv_1hr;
+    this.is10Hr = true;
+    $("#fentes").hide();
+  }
+
+  hr10more() {
+    // this.price = this.Indiv_1hr;
+    this.is10Hr = true;
+    $("#hrtenmore").hide();
   }
 
   openURL() {

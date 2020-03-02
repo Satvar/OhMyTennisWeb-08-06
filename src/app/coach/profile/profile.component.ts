@@ -278,7 +278,9 @@ export class ProfileComponent extends CoachComponent implements OnInit {
               var ele = <HTMLInputElement>(
                 document.getElementById(selectedTransportList[i])
               );
-              ele.checked = true;
+              if (ele != null) {
+                ele.checked = true;
+              }
             }
           }
         }

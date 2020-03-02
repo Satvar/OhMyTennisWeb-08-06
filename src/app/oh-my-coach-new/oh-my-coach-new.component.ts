@@ -27,6 +27,13 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
     rayon: "0",
     course: ""
   };
+
+  public course: any = {
+    CoursIndividuel: false,
+    CoursCollectifOndemand: false,
+    CoursCollectifClub: false
+  };
+
   //public latlongcurrent: any;
   map: any;
   mapvalues: any;
@@ -94,43 +101,14 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
 
   getcoach() {
     this.spinner.show();
-    //var date = sessionStorage.getItem("Date");
-    // this.search.ville = sessionStorage.getItem("postalCode");
-
-    // const ville = {
-    //   ville: sessionStorage.getItem("Ville"),
-    //   date: sessionStorage.getItem("Date")
-    // };
-
-    // if (ville == null) {
-    //   var pcode = localStorage.getItem("onmytennis");
-    //   if (pcode) {
-    //     var postalCode = JSON.parse(JSON.parse(pcode));
-    //     this.search.ville = postalCode.postalCode;
-    //   }
-    // } else {
-    //   this.search.ville = sessionStorage.getItem("Ville");
-    // }
-    // //this.search.ville = sessionStorage.getItem('Ville');
-    // this.search.date = sessionStorage.getItem("Date");
-    // this.date = sessionStorage.getItem("Date");
 
     var pcode = localStorage.getItem("onmytennis");
     if (pcode) {
       var postalCode = JSON.parse(JSON.parse(pcode));
       this.search.ville = postalCode.postalCode;
-
-      //Getting Gelocation based on POstal Code and Display the Map
-      // this.appService
-      //   .getAll("/coach/geolocationByPostalCode/" + this.search.ville)
-      //   .subscribe(data => {
-      //     if (data && data["data"]) {
-      //       this.co_or_gps = data["data"].coordonnees_gps;
-      //       var splited_gps = this.co_or_gps.split(",");
-      //       this.displayLoadedMap(splited_gps[0], splited_gps[1], 0);
-      //     }
-      //   });
     } // End of pcode if it is present
+
+    this.search.course = "";
     this.appService
       .getAll("/coach/searchByCoach", this.search)
       .subscribe(data => {
@@ -141,6 +119,55 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
           this.setPage(1);
         }
       });
+  }
+
+  selectedOneCheckbox(id) {
+    if (id == "CoursIndividuel") {
+      this.search.course = "";
+      let individual = document.getElementById(
+        "check_CoursIndividuel"
+      ) as HTMLInputElement;
+      individual.checked = true;
+      let ondemand = document.getElementById(
+        "check_CoursCollectifOndemand"
+      ) as HTMLInputElement;
+      ondemand.checked = false;
+      let club = document.getElementById(
+        "check_CoursCollectifClub"
+      ) as HTMLInputElement;
+      club.checked = false;
+      this.search.course = "CoursIndividuel";
+    } else if (id == "CoursCollectifOndemand") {
+      this.search.course = "";
+      let individual = document.getElementById(
+        "check_CoursIndividuel"
+      ) as HTMLInputElement;
+      individual.checked = false;
+      let ondemand = document.getElementById(
+        "check_CoursCollectifOndemand"
+      ) as HTMLInputElement;
+      ondemand.checked = true;
+      let club = document.getElementById(
+        "check_CoursCollectifClub"
+      ) as HTMLInputElement;
+      club.checked = false;
+      this.search.course = "CoursCollectifOndemand";
+    } else if (id == "CoursCollectifClub") {
+      this.search.course = "";
+      let individual = document.getElementById(
+        "check_CoursIndividuel"
+      ) as HTMLInputElement;
+      individual.checked = false;
+      let ondemand = document.getElementById(
+        "check_CoursCollectifOndemand"
+      ) as HTMLInputElement;
+      ondemand.checked = false;
+      let club = document.getElementById(
+        "check_CoursCollectifClub"
+      ) as HTMLInputElement;
+      club.checked = true;
+      this.search.course = "CoursCollectifClub";
+    }
   }
 
   findCoach(search) {
@@ -160,75 +187,37 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
   }
 
   onFilterChange(eve: any) {
-    console.log(eve);
+    //console.log(eve);
     this.search.individual = !this.search.individual;
   }
 
   searchByCoach(search) {
     //event.preventDefault();
-    console.log(search);
     this.spinner.show();
 
-    if (search.ville != "") {
-      let selectorVilleID = document.querySelector("#ville") as HTMLElement;
+    if (search.ville != "" && search.ville != null) {
+      let selectorVilleID = document.getElementById(
+        "ville"
+      ) as HTMLInputElement;
       selectorVilleID.style.border = "";
     } else {
-      let villeID = document.getElementById("ville") as HTMLElement;
+      let villeID = document.getElementById("ville") as HTMLInputElement;
       villeID.setAttribute("tabIndex", "-1");
       villeID.focus();
-      let selectorVilleID = document.querySelector("#ville") as HTMLElement;
+      let selectorVilleID = document.getElementById(
+        "ville"
+      ) as HTMLInputElement;
       selectorVilleID.style.border = "1px solid red";
-
-      // //Ryan Code Starts Here
-      // console.log("Ryan ID - " +search.ryan);
-      // console.log('Type OF TOP'+ typeof search.ryan);
-
-      // if(parseInt(search.ryan)>=0 && parseInt(search.ryan)<=20)
-      // {
-      //     console.log("Ryan ID IF - " +search.ryan);
-      //     console.log('Type OF IF'+ typeof search.ryan);
-      //     let selectorRyanID = document.querySelector("#ryan") as HTMLElement;
-      //     selectorRyanID.style.border = "";
-      // }
-      // else
-      // {
-      //     console.log('Type OF ELSE'+ typeof search.ryan);
-      //     console.log("Ryan ID ELSE - " +search.ryan);
-      //     //let ryanID = document.getElementById("ryan") as HTMLElement;
-      //     //ryanID.setAttribute("tabIndex", "-2");
-      //     //ryanID.focus();
-      //     let selectorRyanID = document.querySelector("#ryan") as HTMLElement;
-      //     selectorRyanID.style.border = "1px solid red";
-      // }
-      // //Ryan Code Ends Here
 
       this.spinner.hide();
       window.scroll({
-        top: 800,
+        top: 850,
         left: 0,
         behavior: "smooth"
       });
       return;
     }
 
-    //return;
-
-    //Getting Gelocation based on POstal Code and Display the Map
-    // this.appService
-    //   .getAll("/coach/geolocationByPostalCode/" + search.ville)
-    //   .subscribe(data => {
-    //     console.log(data);
-    //     if (data && data["data"]) {
-    //       if (data["data"].coordonnees_gps.length > 0) {
-    //         this.co_or_gps = data["data"].coordonnees_gps;
-    //         var splited_gps = this.co_or_gps.split(",");
-    //         this.displayLoadedMap(splited_gps[0], splited_gps[1], search.rayon);
-    //       } else {
-    //         // If the Geo Co-Ordinates are available the load the Current Location Map
-    //         this.getcurrentcordinates();
-    //       }
-    //     }
-    //   });
     this.appService.getAll("/coach/searchByCoach", search).subscribe(data => {
       if ((data as any).isSuccess == true) {
         this.allItems = (data as any).data.coach_list;
@@ -236,7 +225,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
         this.spinner.hide();
         if (this.allItems.length > 0) {
           this.pager.totalPages = this.allItems.length;
-          console.log(this.pager.totalPages);
+          //console.log(this.pager.totalPages);
           this.setPage(1);
         } else {
           this.pager.totalPages = this.allItems.length;
@@ -244,13 +233,12 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
           this.setPage(1);
         }
         window.scroll({
-          top: 800,
+          top: 850,
           left: 0,
           behavior: "smooth"
         });
       }
     });
-    //this.showMyMap = !this.showMyMap;
   }
 
   getPager(totalItems: number, currentPage: number = 1, pageSize: number = 4) {
@@ -295,8 +283,6 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
   }
 
   setPage(page: number) {
-    //console.log("page ", page);
-    //console.log("this.pager.totalPages ", this.pager.totalPages);
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
@@ -311,7 +297,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
       this.pager.endIndex + 1
     );
     window.scroll({
-      top: 1000,
+      top: 850,
       left: 0,
       behavior: "smooth"
     });
@@ -343,78 +329,10 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
 
   goToCouchDetail(id) {
     this.router.navigate(["ohmycoachdetail"], {
-      queryParams: { id }
+      queryParams: {
+        id,
+        course: this.search.course
+      }
     });
-  }
-
-  // async getcurrentcordinates() {
-  //   const resp = await fetch("https://ipapi.co/json/");
-  //   const data = await resp.json();
-  //   this.curentlat = data.latitude.toFixed(3);
-  //   this.curentlang = data.longitude.toFixed(3);
-  //   console.log(this.curentlat, " ", this.curentlang);
-  //   //return
-  //   this.displayLoadedMap(this.curentlat, this.curentlang, 0);
-  // }
-
-  // displayLoadedMap(latitude, longitude, radius) {
-  //   console.log("latitude - " + latitude);
-  //   console.log("longitude - " + longitude);
-  //   if (this.map) {
-  //     console.log("Got longitude - " + longitude);
-  //     this.map.remove();
-  //     $("#map").html("");
-  //     $(".map-frame").empty();
-  //     $('<div id="map" style="height: 385px;"></div>').appendTo(".map-frame");
-  //   }
-
-  //   this.mapvalues = eval("[" + latitude + "," + longitude + "]");
-  //   this.lat = latitude;
-  //   this.lang = longitude;
-  //   console.log("Map Values" + this.mapvalues);
-
-  //   this.map = L.map("map", {
-  //     center: this.mapvalues,
-  //     zoom: 15
-  //   });
-  //   //return;
-
-  //   //Adding the Circle to the Map
-
-  //   L.circle([this.lat, this.lang], {
-  //     color: "orange",
-  //     fillColor: "#FFA500",
-  //     fillOpacity: 0.5,
-  //     radius: radius * 10
-  //   }).addTo(this.map);
-
-  //   const tiles = L.tileLayer(
-  //     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-  //     {
-  //       maxZoom: 25
-  //     }
-  //   );
-
-  //   tiles.addTo(this.map);
-  //   var greenIcon = L.icon({
-  //     iconUrl: "../assets/images/marker-icon.png",
-  //     iconSize: [38, 95],
-  //     iconAnchor: [22, 94]
-  //   });
-
-  //   L.marker([this.lat, this.lang], { icon: greenIcon }).addTo(this.map);
-  //   //.openPopup();
-  // }
-
-  toogleData() {
-    this.showMyMap = !this.showMyMap;
-    if (this.showMyMap == false) {
-      //$(".mapsection").hide();
-    } else {
-      //$(".mapsection").load(location.href + " .mapsection");
-      // $(".mapsection")
-      //   .delay(500)
-      //   .fadeIn(1000);
-    }
   }
 }

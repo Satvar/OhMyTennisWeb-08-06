@@ -1,20 +1,19 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
-import { Location } from '@angular/common';
-import { BrowserModule, Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component, OnInit, AfterViewChecked } from "@angular/core";
+import { Location } from "@angular/common";
+import { BrowserModule, Title, Meta } from "@angular/platform-browser";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 /* [ Spinner ] */
-import { NgxSpinnerService } from 'ngx-spinner';
-import { UserComponent } from '../model/user/user.component';
-import { AppService } from '../shared/app.service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { UserComponent } from "../model/user/user.component";
+import { AppService } from "../shared/app.service";
 
 @Component({
-  selector: 'app-userleftpanelcomponent',
-  templateUrl: './userleftpanelcomponent.component.html',
-  styleUrls: ['./userleftpanelcomponent.component.scss']
+  selector: "app-userleftpanelcomponent",
+  templateUrl: "./userleftpanelcomponent.component.html",
+  styleUrls: ["./userleftpanelcomponent.component.scss"]
 })
-export class UserleftpanelcomponentComponent extends UserComponent implements OnInit {
-
- 
+export class UserleftpanelcomponentComponent extends UserComponent
+  implements OnInit {
   constructor(
     activatedRoute: ActivatedRoute,
     router: Router,
@@ -22,22 +21,15 @@ export class UserleftpanelcomponentComponent extends UserComponent implements On
     location: Location,
     spinner: NgxSpinnerService
   ) {
-    super(
-      activatedRoute,
-      router,
-      appService,
-      location,
-      spinner
-    );
+    super(activatedRoute, router, appService, location, spinner);
   }
 
   public username: any;
   public image = "https://www.w3schools.com/howto/img_avatar.png";
 
-  capitalizeFLetter(name) { 
-    return name[0].toUpperCase() +  
-    name.slice(1); 
-  } 
+  capitalizeFLetter(name) {
+    return name[0].toUpperCase() + name.slice(1);
+  }
   ngOnInit() {
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
     if (coach) {
@@ -46,97 +38,142 @@ export class UserleftpanelcomponentComponent extends UserComponent implements On
         this.spinner.show();
         var useremail = {
           User_Email: coach1.email
-        }
-        this.appService.create("/user/getuserbyid", useremail).subscribe((data: any) => {
-          if (data.isSuccess == true) {
-            this.image = data.data.User_list[0].User_Image;
-            console.log(this.image);
-            if(this.image==null) {
-             
-              this.image="https://www.w3schools.com/howto/img_avatar.png"
+        };
+        this.appService
+          .create("/user/getuserbyid", useremail)
+          .subscribe((data: any) => {
+            if (data.isSuccess == true) {
+              this.image = data.data.User_list[0].User_Image;
+              console.log(this.image);
+              if (this.image == null) {
+                this.image = "https://www.w3schools.com/howto/img_avatar.png";
+              }
+
+              this.spinner.hide();
+            } else {
+              this.spinner.hide();
             }
-            
-            this.spinner.hide();
-          }
-          else {
-            this.spinner.hide();
-          }
-        })
+          });
       } else if (coach1.roleId == 2) {
         this.spinner.show();
         var Coach_Email = {
           Coach_Email: coach1.Coach_Email
-        }
-        this.appService.create("/coach/getcoachbyid", Coach_Email).subscribe((data: any) => {
-          if (data.isSuccess == true) {
-            this.image = data.data.coach_list[0].Coach_Image;
-            if(this.image == null)
-            this.image = "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png";
-            console.log(this.image)
-            this.spinner.hide();
-          }
-          else {
-            this.spinner.hide();
-          }
-        })
+        };
+        this.appService
+          .create("/coach/getcoachbyid", Coach_Email)
+          .subscribe((data: any) => {
+            if (data.isSuccess == true) {
+              this.image = data.data.coach_list[0].Coach_Image;
+              if (this.image == null)
+                this.image =
+                  "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png";
+              console.log(this.image);
+              this.spinner.hide();
+            } else {
+              this.spinner.hide();
+            }
+          });
       }
       if (coach1.firstName + " " + coach1.lastName)
-        this.username = this.capitalizeFLetter(coach1.firstName + " " + coach1.lastName);
+        this.username = this.capitalizeFLetter(
+          coach1.firstName + " " + coach1.lastName
+        );
+    }
   }
-}
+
+  _logout() {
+    this._setSession("removeItem");
+    this._gotoPath("/");
+  }
 
   leftPanel() {
-    return [{
-      title : 'TABLEAU DE BORD',
-      path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.DASHBOARD.SELF'),
-      iclass: 'far far-th-large',
-      style: false,
-    }, {
-      title : 'MON COMPTE',
-      path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.PROFILE.SELF'),
-      iclass: 'far far-user-o',
-      style: false,
-    }, {
-      title : 'MES RESERVATION',
-      path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.RESERVATION.SELF'),
-      iclass: 'far far-reser-o',
-      style: false,
-    }, {
-      title : 'NOTIFICATIONS',
-      path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.NOTIFICATION.SELF'),
-      iclass: 'far far-bell-o',
-      style: false,
-    }, {
-      title : 'AVIS ET COMMENTAIRES',
-      path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.REVIEWS.SELF'),
-      iclass: 'far far-comments-o',
-      style: false,
-    }, {
-      title : 'PARTENAIRE',
-      path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.PARTNER.SELF'),
-      iclass: 'far far-handshake-o',
-      style: true,
-    }, {
-      title : 'SPARRING',
-      path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.SPARRING.SELF'),
-      iclass: 'far far-cogs-o',
-      style: true,
-    }, {
-      title : 'CHANGER LE MOT DE <br> PASSE',
-      path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.CHANGEPASSWORD.SELF'),
-      iclass: 'far far-key-o',
-      style: false,
-    },
-    {
-      title: "SUPPRIMER VOTRE <br> COMPTE",
-      path: "/",
-      iclass: "far far-sign-out-o",
-      style: false
-    }, {
-      title : 'DÉCONNEXION',
-      path: '/' + this._const('PATH.USERS.SELF') + '/' + this._const('PATH.USERS.SINOUT.SELF'),
-      iclass: 'far far-sign-out-o',
-      style: false,
-    }];
+    return [
+      {
+        title: "TABLEAU DE BORD",
+        path:
+          "/" +
+          this._const("PATH.USERS.SELF") +
+          "/" +
+          this._const("PATH.USERS.DASHBOARD.SELF"),
+        iclass: "far far-th-large",
+        style: false
+      },
+      {
+        title: "MON COMPTE",
+        path:
+          "/" +
+          this._const("PATH.USERS.SELF") +
+          "/" +
+          this._const("PATH.USERS.PROFILE.SELF"),
+        iclass: "far far-user-o",
+        style: false
+      },
+      {
+        title: "MES RESERVATION",
+        path:
+          "/" +
+          this._const("PATH.USERS.SELF") +
+          "/" +
+          this._const("PATH.USERS.RESERVATION.SELF"),
+        iclass: "far far-reser-o",
+        style: false
+      },
+      {
+        title: "NOTIFICATIONS",
+        path:
+          "/" +
+          this._const("PATH.USERS.SELF") +
+          "/" +
+          this._const("PATH.USERS.NOTIFICATION.SELF"),
+        iclass: "far far-bell-o",
+        style: false
+      },
+      {
+        title: "AVIS ET COMMENTAIRES",
+        path:
+          "/" +
+          this._const("PATH.USERS.SELF") +
+          "/" +
+          this._const("PATH.USERS.REVIEWS.SELF"),
+        iclass: "far far-comments-o",
+        style: false
+      },
+      {
+        title: "PARTENAIRE",
+        path:
+          "/" +
+          this._const("PATH.USERS.SELF") +
+          "/" +
+          this._const("PATH.USERS.PARTNER.SELF"),
+        iclass: "far far-handshake-o",
+        style: true
+      },
+      {
+        title: "SPARRING",
+        path:
+          "/" +
+          this._const("PATH.USERS.SELF") +
+          "/" +
+          this._const("PATH.USERS.SPARRING.SELF"),
+        iclass: "far far-cogs-o",
+        style: true
+      },
+      {
+        title: "CHANGER LE MOT DE <br> PASSE",
+        path:
+          "/" +
+          this._const("PATH.USERS.SELF") +
+          "/" +
+          this._const("PATH.USERS.CHANGEPASSWORD.SELF"),
+        iclass: "far far-key-o",
+        style: false
+      },
+      {
+        title: "SUPPRIMER VOTRE <br> COMPTE",
+        path: "/",
+        iclass: "far far-sign-out-o",
+        style: false
+      }
+    ];
   }
 }

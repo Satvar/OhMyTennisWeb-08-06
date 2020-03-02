@@ -105,7 +105,7 @@
                         <button type="button" (click)="_closeAlertMessage($event)"
                             class="close"><span>&times;</span></button> {{alertMsg.msg}}
                     </div>
-                    <div class="form-group bmd-form-grou bmd-form-group is-filled">
+                    <!-- <div class="form-group bmd-form-grou bmd-form-group is-filled">
                         <div class="row">
                             <div class="col-md-4">
                                 <label>Coach Nom</label>
@@ -134,8 +134,48 @@
                                 <input id="userDate" type="text" class="form-control" disabled>
                             </div>
                         </div>
+                    </div> -->
+                    <div class="form-group bmd-form-grou bmd-form-group is-filled alert alert-danger">
+                        <div class="row">
+                            <div class="col-md-12">Remarque: Le montant doit être payé 24 heures avant le début de la session / de l'événement. Aucun remboursement après paiement.
+                            </div>
+                        </div>
                     </div>
-                    <div *ngIf="course !== 'Stage' && course !== 'Tournoi' && course !== 'Animation' && course !== 'TeamBuilding'"
+                    <div class="form-group bmd-form-grou bmd-form-group is-filled">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="col">Coach</th>
+                                            <td scope="col">{{user_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Cours</th>
+                                            <td scope="col">{{course}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Prix</th>
+                                            <td scope="col">{{amount |currency:'EUR':'symbol':'2.2-2':'fr'}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Paquet sélectionné</th>
+                                            <td scope="col">{{remaining_status}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">DATE</th>
+                                            <th scope="col">HEURE</th>
+                                        </tr>
+                                        <tr *ngFor="let slots of slotRowDatas">
+                                            <td scope="col">{{slots.booking_date | date:'dd/MM/yyyy'}}</td>
+                                            <td scope="col">{{slots.booking_time}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div *ngIf="course !== 'Stage' && course !== 'Tournoi' && course !== 'Animation' && course !== 'TeamBuilding'"
                         class="form-group bmd-form-group">
                         <div class="row">
                             <div class="col-md-4">
@@ -145,7 +185,7 @@
                                 <input id="userhours" type="text" class="form-control" disabled>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div *ngIf="course =='CoursCollectifClub'" class="form-group bmd-form-group">
                         <div class="row">
                             <div class="col-md-4">
