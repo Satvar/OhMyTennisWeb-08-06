@@ -154,46 +154,19 @@
                 src="./assets/images/title_border.png"
                 style="margin: -5px 0px 20px;"
               /><br />
-              <!-- <input
-                type="radio"
-                [(ngModel)]="search.course"
-                id="stage"
-                value="Stage"
-                name="search.course"
-              />Stage<br />
-              <input
-                type="radio"
-                id="teambuilding"
-                value="TeamBuilding"
-                [(ngModel)]="search.course"
-                name="search.course"
-              />Team Building<br />
-              <input
-                type="radio"
-                id="animations"
-                value="Animations"
-                [(ngModel)]="search.course"
-                name="search.course"
-              />Animations<br />
-              <input
-                type="radio"
-                id="tournament"
-                value="Tournament"
-                [(ngModel)]="search.course"
-                name="search.course"
-              />Tournament<br /> -->
-
               <div class="chech_box_services1" style="margin-top: 0px;">
-                <div class="~form-group">
+                <div class="~form-group get getservices">
                   <span
                     class="chech_box_services"
                     style="color:#000000 !important; padding-bottom: 0px;"
                   >
                     <input
-                      [(ngModel)]="search.course"
+                      [(ngModel)]="course.CoursIndividuel"
                       type="checkbox"
+                      (change)="selectedOneCheckbox('CoursIndividuel')"
+                      id="check_CoursIndividuel"
                       class="service"
-                      name="search.course"
+                      name="course"
                       value="CoursIndividuel"
                     />
                     Course Individual</span
@@ -205,10 +178,11 @@
                     <input
                       id="CollectiveDemand"
                       type="checkbox"
-                      [(ngModel)]="search.course1"
+                      [(ngModel)]="course.CoursCollectifOndemand"
                       class="service"
-                      id="ondemand"
-                      name="search.course2"
+                      (change)="selectedOneCheckbox('CoursCollectifOndemand')"
+                      id="check_CoursCollectifOndemand"
+                      name="course"
                       value="CoursCollectifOndemand"
                     />
                     Collective on Demand</span
@@ -220,37 +194,17 @@
                     <input
                       id="collectifclub"
                       type="checkbox"
-                      [(ngModel)]="search.course2"
+                      [(ngModel)]="course.CoursCollectifClub"
+                      (change)="selectedOneCheckbox('CoursCollectifClub')"
+                      id="check_CoursCollectifClub"
                       class="service"
-                      name="search.course2"
+                      name="course"
                       value="CoursCollectifClub"
                     />
                     Collective Club</span
                   >
                 </div>
               </div>
-
-              <!-- <input
-                type="radio"
-                [(ngModel)]="search.course"
-                id="individual"
-                value="CoursIndividuel"
-                name="search.course"
-              />Course Individual<br />
-              <input
-                type="radio"
-                id="ondemand"
-                value="CoursCollectifOndemand"
-                [(ngModel)]="search.course"
-                name="search.course"
-              />Collective on Demand<br />
-              <input
-                type="radio"
-                id="collectifclub"
-                value="CoursCollectifClub"
-                [(ngModel)]="search.course"
-                name="search.course"
-              />Collective Club<br /> -->
             </div>
             <div class="select_drop">
               <h3>Selectionnez Date</h3>
@@ -314,13 +268,21 @@
                 > -->
                   <div
                     style="margin-bottom:6px;font-weight: bold; font-size: 18px; color: #000;"
+                    *ngIf="res.Coach_Price > '0' && res.Coach_PriceX10 > '0'"
                   >
-                    50,00 € /
+                    {{
+                      res.Coach_Price | currency: "EUR":"symbol":"2.2-2":"fr"
+                    }}
+                    /
                     <span
                       style="font-size: 14px; font-weight: normal !important; color: #000000;"
                       >1 heure</span
                     >
-                    &nbsp; | &nbsp; 330,00 € /
+                    &nbsp; | &nbsp;
+                    {{
+                      res.Coach_PriceX10 | currency: "EUR":"symbol":"2.2-2":"fr"
+                    }}
+                    /
                     <span
                       style="font-size: 14px; font-weight: normal !important; color: #000000;"
                       >10 heures</span
