@@ -17,7 +17,7 @@
           Ohmytennis: Offre de service coach tennis :
         </h1>
         <img
-          style="margin: 5px 0px 20px;"
+          style="margin: 5px 0px 15px;"
           alt="title_border"
           src="./assets/images/title_border.png"
         />
@@ -36,7 +36,7 @@
           Qu’est ce qu’un cours collectif de tennis ?
         </h1>
         <img
-          style="margin: 5px 0px 20px;"
+          style="margin: 5px 0px 15px;"
           alt="title_border"
           src="./assets/images/title_border.png"
         />
@@ -74,7 +74,7 @@
               <img
                 alt="title_border"
                 src="./assets/images/title_border.png"
-                style="margin: 10px 0px 30px;"
+                style="margin: 10px 0px 20px;"
               />
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -99,11 +99,11 @@
           <form (ngSubmit)="searchByCoach(search)">
             <div class="select_drop" style="margin-bottom: 10px;">
               <h2>Option de filtrage</h2>
-              <h3 style="margin-top: 20px;">Code Postal</h3>
+              <h3 style="margin-top: 14px;">Code Postal</h3>
               <img
                 alt="title_border"
                 src="./assets/images/title_border.png"
-                style="margin: 15px 0px 20px;"
+                style="margin: 15px 0px 15px;"
               />
               <div class="search search1">
                 <i class="fa fa-search"></i>
@@ -127,7 +127,7 @@
               <img
                 alt="title_border"
                 src="./assets/images/title_border.png"
-                style="margin: 15px 0px 20px;"
+                style="margin: 15px 0px 15px;"
               />
               <div class="search search1">
                 <select
@@ -211,7 +211,7 @@
               <img
                 alt="title_border"
                 src="./assets/images/title_border.png"
-                style="margin: 15px 0px 20px;"
+                style="margin: 15px 0px 15px;"
               />
               <div class="search">
                 <i class="fa fa-calendar"></i>
@@ -252,10 +252,11 @@
                   (click)="goToCouchDetail(res.Coach_ID)"
                 />
               </div>
-              <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 ml-2 pl-0">
-                <div class="mx-minus40">
+              <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12 ml-2 pl-0">
+                <div class="~mx-minus10">
                   <h3
-                    style="cursor: pointer;color: #000; text-transform:capitalize;"
+                    style="cursor: pointer;color: #000;"
+                    (click)="goToCouchDetail(res.Coach_ID)"
                   >
                     {{ res.Coach_Fname }} {{ res.Coach_Lname }}
                   </h3>
@@ -285,7 +286,7 @@
                     }}
                     /
                     <span
-                      style="font-size: 14px; font-weight: normal !important; color: #000000;"
+                      style="font-size: 15px; font-weight: normal !important; color: #000000;"
                       >1 heure</span
                     >
                     &nbsp; | &nbsp;
@@ -294,16 +295,16 @@
                     }}
                     /
                     <span
-                      style="font-size: 14px; font-weight: normal !important; color: #000000;"
+                      style="font-size: 15px; font-weight: normal !important; color: #000000;"
                       >10 heures</span
                     >
                   </div>
                   <p
-                    style="max-height: 39px;overflow: hidden;font-size: 14px;line-height: 20px;"
+                    style="max-height: 39px;overflow: hidden;font-size: 13px;line-height: 20px;"
                   >
                     {{ res.Coach_Description }}
                   </p>
-                  <div class="tag">
+                  <div class="tag social_tags">
                     <a
                       href="{{ res.FacebookURL }}"
                       class="fa fa-facebook-f"
@@ -331,7 +332,7 @@
           <ul
             *ngIf="pager.pages && pager.pages.length > 0"
             class="pager"
-            style="text-align: right;margin: 20px -15px 20px 0px; "
+            style="text-align: right;margin: 13px -15px 20px 0px; "
           >
             <li
               class="previou"

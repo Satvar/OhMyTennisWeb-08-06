@@ -118,8 +118,8 @@
 }
 .newcoachlist .set img {
   border-radius: 7px;
-  height: 164px;
-  width: 164px;
+  height: 130px;
+  width: 130px;
 }
 .newcoachlist span,
 h3 {
@@ -137,14 +137,14 @@ h3 {
 .newcoachlist .select_drop {
   background: white;
   width: 100%;
-  padding: 20px 20px 30px;
+  padding: 13px 15px 15px;
   margin-top: 0px;
   border-bottom: 4px white;
 }
 .newcoachlist .select_drop h2 {
   font-size: 18px;
   text-align: center;
-  padding: 20px 0px 20px 0px;
+  padding: 13px 0px 13px 0px;
   border-bottom: 1px solid #9e9e9e;
   color: #fff;
   margin: -20px -20px 0px;
@@ -186,7 +186,7 @@ h3 {
   margin-top: 15px;
   margin-bottom: 15px;
   border-bottom: 4px white;
-  padding: 20px 20px 25px;
+  padding: 10px 15px 15px;
   font-size: 15px;
   color: #282828;
 }
@@ -201,7 +201,7 @@ h3 {
   margin-right: 13px;
   vertical-align: middle;
   background: none;
-  margin: 9px 7px 9px 7px;
+  margin: 6px 7px 6px 7px;
   height: 18px;
 }
 .newcoachlist .date {
@@ -251,8 +251,14 @@ h3 {
   margin-right: 15px;
   margin-bottom: 10px;
 }
+.social_tags {
+  position: absolute;
+  top: 4px;
+  right: 0px;
+  z-index: 10;
+}
 .row.ng-star-inserted h3 {
-  font-size: 21px;
+  font-size: 18px;
   color: #000000;
   margin-top: 4px;
   font-weight: bold;
@@ -274,8 +280,8 @@ h3 {
 .star-rating label {
   margin-bottom: 0px;
   color: #e75b00;
-  font-size: 17px;
-  font-weight: bold !important;
+    font-size: 15px;
+    font-weight: bold !important;
 }
 .star-rating :checked ~ label {
   color: #e75b00;
@@ -427,6 +433,7 @@ input[type="radio"] {
   }
   .newcoachlist .set img {
     margin-top: 15px;
+  
   }
   newcoachlist .set p {
     white-space: nowrap;
@@ -492,6 +499,12 @@ input[type="radio"] {
 @media (min-width: 992px) {
   .mx-minus40 {
     margin-left: -50px;
+  }
+  .set img {
+    margin-left: 0px;
+  }
+  .pl-0 {
+    padding-left: 0px;
   }
 }
 @media (min-width: 1200px) {

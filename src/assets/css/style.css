@@ -2174,11 +2174,11 @@ margin-right: 2px;
 	font-size: 13px;
 	font-weight: bold;
 	margin-bottom: 0px;
-	line-height: 79px;
+	line-height: 69px;
 }
 .bot_mapsection {
 	padding: 25px 0px 15px;
-	margin:20px 0px 0px;
+	margin:42px 0px 0px;
 	text-align: center;
 	background: #f4f4f4;
 }
@@ -2192,8 +2192,8 @@ margin-right: 2px;
 }
 .train_secdiv { 
     background-size: 55px;
-    padding-left: 70px;
-    min-height: 80px;
+    padding-left: 80px;
+    min-height: 69px;
 	border-top: 1px solid #afafaf;	
 	border-left: 1px solid #afafaf;
 	border-right: 1px solid #afafaf;
@@ -2212,10 +2212,10 @@ margin-right: 2px;
 	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img1ho.png) 9px 50% no-repeat;
 }
 .train_secdiv2 {
-	background: url(../images/dashboard_icons/trainicon/trainsec_img2.png) 9px 50% no-repeat;
+	background: url(../images/dashboard_icons/trainicon/collective_groupicon.png) 12px 50% no-repeat;
 }
 .train_secdiv2:hover {
-	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img2ho.png) 9px 50% no-repeat;
+	background: #e75b00 url(../images/dashboard_icons/trainicon/collective_grouphovericon.png) 12px 50% no-repeat;
 }
 .train_secdiv3 {
 	background: url(../images/dashboard_icons/trainicon/trainsec_img3.png) 9px 50% no-repeat;
@@ -2230,22 +2230,22 @@ margin-right: 2px;
 	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img4ho.png) 9px 50% no-repeat;
 }
 .train_secdiv5 {
-	background: url(../images/dashboard_icons/trainicon/trainsec_img5.png) 9px 50% no-repeat;
+	background: url(../images/dashboard_icons/trainicon/team_icon.png) 20px 50% no-repeat;
 }
 .train_secdiv5:hover {
-	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img5ho.png) 9px 50% no-repeat;
+	background: #e75b00 url(../images/dashboard_icons/trainicon/team_hovericon.png) 20px 50% no-repeat;
 }
 .train_secdiv6 {
-	background: url(../images/dashboard_icons/trainicon/trainsec_img7.png) 9px 50% no-repeat;
+	background: url(../images/dashboard_icons/trainicon/trainsec_img7.png) 14px 50% no-repeat;
 }
 .train_secdiv6:hover {
-	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img7ho.png) 9px 50% no-repeat;
+	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img7ho.png) 14px 50% no-repeat;
 }
 .train_secdiv7 {
-	background: url(../images/dashboard_icons/trainicon/trainsec_img6.png) 9px 50% no-repeat;
+	background: url(../images/dashboard_icons/trainicon/tour_icon.png) 19px 50% no-repeat;
 }
 .train_secdiv7:hover {
-	background: #e75b00 url(../images/dashboard_icons/trainicon/trainsec_img6ho.png) 9px 50% no-repeat;
+	background: #e75b00 url(../images/dashboard_icons/trainicon/tour_hovericon.png) 19px 50% no-repeat;
 }
 .testimonial_outer span { font-size: 13px;}
 .right_coachprofilenew .des_event_btn {
