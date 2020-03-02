@@ -181,10 +181,6 @@ const routes: Routes = [
     component: OhMyCoachNewComponent
   },
   {
-    path: CONST.PATH.OH_MY_EVENT,
-    component: OhMyEventComponent
-  },
-  {
     path: CONST.PATH.OH_MY_COACH_DETAIL,
     component: OhMyCoachDetailNewComponent
   },
@@ -528,7 +524,7 @@ export function getAuthServiceConfigs() {
     OhMyCoachDetailNewComponent,
     GuideDesTerrainsPratiqueComponent,
     SitemapComponent,
-    PratiqueLicenseComponent
+    PratiqueLicenseComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,10 +8,10 @@ export const CONST = Object.freeze({
     COACH_MODULE: "coach",
     OH_MY_COACH: "ohmycoach",
     OH_MY_COACH_NEW: "ohmycoachnew",
+    OH_MY_EVENT_NEW: "ohmyeventnew",
     CGU: "cgu",
     CGV: "cgv",
     MENTIONS_LEGALES: "mentionslegales",
-    OH_MY_EVENT: "ohmyevent",
     OH_MY_COACH_DETAIL: "ohmycoachdetail",
     COACH_SLOT: "coachslot",
     STAGE: "stage",
@@ -182,6 +182,7 @@ export const CONST = Object.freeze({
         TITLE: "Admin Restpassword"
       }
     },
+ 
     USERS: {
       SELF: "user",
       DASHBOARD: {
