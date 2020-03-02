@@ -1,9 +1,9 @@
 <app-header></app-header>
 <app-top-menu></app-top-menu>
 <div class="innerbanner ggs">
-  <img src="../../assets/images/coach_banner.jpg" alt="Los Angeles">
+  <img src="../../assets/images/coach_banner.jpg" alt="Los Angeles" />
   <div class="inner_carousel">
-      <h3>oh my coachs</h3>
+    <h3>oh my coachs</h3>
   </div>
 </div>
 
@@ -39,25 +39,101 @@
 
 <div class="container">
   <div class="des_coach_abt coachnewlistview">
-      <div class="col-md-8 col-sm-8 col-xs-12">
-          <h2 class="page_title" style="margin: 10px 0px 30px;">Cours Individuel</h2>
-         <div class="coachnewprice" style="max-width: 180px;">
-          <p style="font-weight: bold; font-size: 18px; color: #000;">50,00 € / <span style="font-size: 14px; font-weight: normal !important; color: #000000;">1 heure</span> </p>
-          <div style="border-bottom: 1px solid #000000; margin: 5px 0px;"></div>
-          <p style="font-weight: bold; font-size: 18px; color: #000;">330,00 € / <span style="font-size: 14px; font-weight: normal !important; color: #000000;">10 heures</span>
-          </p>
-         </div>           
-         <h3 style="font-weight: bold; font-size: 26px; margin: 20px 0px 10px;">Son expérience de coach</h3>
-         <p>
-          Coach Sportif professionnel depuis 10 ans, la forme le bien-être et la santé ont toujours été au cœur de mes préoccupations. En effet, imprégné par le Karaté (Ceinture Noire), le Football et la performance physique depuis l'enfance, se sentir en forme est en quelque sorte une seconde nature dont j'aimerais vous donner le goût durablement.</p>
-          <div class="des_coach_abt_price">
-              <a href="#" class="btn btn-default">{{price}}</a>
+    <div class="col-md-8 col-sm-8 col-xs-12">
+      <h2 class="page_title" style="margin: 10px 0px 30px;">
+        Son expérience de coach <br /><img
+          src="./assets/images/title_border.png"
+          alt="title_border"
+        />
+      </h2>
+      <div
+        class="coachnewprice"
+        style="max-width: 180px;"
+        *ngIf="coach_detail.Coach_Price > 0 && coach_detail.Coach_PriceX10 > 0"
+      >
+        <p style="font-weight: bold; font-size: 18px; color: #000;">
+          {{ coach_detail.Coach_Price | currency: "EUR":"symbol":"2.2-2":"fr" }}
+          /
+          <span
+            style="font-size: 14px; font-weight: normal !important; color: #000000;"
+            >1 heure</span
+          >
+        </p>
+        <div style="border-bottom: 1px solid #000000; margin: 5px 0px;"></div>
+        <p style="font-weight: bold; font-size: 18px; color: #000;">
+          {{
+            coach_detail.Coach_PriceX10 | currency: "EUR":"symbol":"2.2-2":"fr"
+          }}
+          /
+          <span
+            style="font-size: 14px; font-weight: normal !important; color: #000000;"
+            >10 heures</span
+          >
+        </p>
+      </div>
+      <!-- <h3 style="font-weight: bold; font-size: 26px; margin: 20px 0px 10px;">Son expérience de coach</h3> -->
+      <p>
+        {{ coach_detail.Coach_Description }}
+      </p>
+      <!-- <div class="des_coach_abt_price">
+              <a href="#" class="btn btn-default">{{coach_detail.price}}</a>
               <a href="#" *ngIf="course != 'CoursCollectifClub'" class="btn btn-default">{{price}} </a>
           </div>
           <div class="clearfix"></div>
-          <p class="des_coach_abt_para1">{{Description}}</p>
+          <p class="des_coach_abt_para1">{{Description}}</p> -->
+      <div class="des_detail_sec">
+        <div class="col-md-12 col-sm-12 col-xs-12 px-0">
+          <div class="des_row1">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
+              <p class="des_icon_class">
+                <img src="../../assets/images/detail_icon1.png" /> Noté 5/5 par
+                ses élèves
+              </p>
+            </div>
+            <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
+              <p class="des_icon_class" id="payment">
+                <img src="../../assets/images/detail_icon2.png" />{{ this.str }}
+              </p>
+            </div> -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
+              <p class="des_icon_class" id="payment">
+                <a
+                  id="resume"
+                  download="{{ coach_detail.Coach_Resume }}"
+                  (click)="download()"
+                  href="#"
+                  class="des_icon_class"
+                  ><img src="../../assets/images/detail_icon2.png" /> Curriculum
+                  vitae
+                </a>
+              </p>
+            </div>
+            <div class="clearfix lg-block"></div>
+            <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                          <p class="des_icon_class"><img src="../../assets/images/detail_icon5.png"> Coach connecté
+                          </p>
+                      </div> -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
+              <p class="des_icon_class" id="transport">
+                <img src="../../assets/images/road_icon.png" />
+                {{ coach_detail.Coach_transport }}
+              </p>
+            </div>
+            <div
+              class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite"
+              *ngIf="courseActive !== 'CoursCollectifOndemand'"
+            >
+              <a (click)="openURL()" target="_blank" class="des_icon_class"
+                ><img src="../../assets/images/detail_icon6.png" /> Cours avec
+                vidéo
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
 
-          <div class="des_detail_sec">
+      <!-- <div class="des_detail_sec">
               <div class="col-md-12 col-sm-12 col-xs-12 px-0">
                   <div class="des_row1">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
@@ -75,12 +151,12 @@
                               class="des_icon_class"><img src="../../assets/images/detail_icon3.png"> Curriculum vitae
                           </a>
                       </div> -->
-                      <div class="clearfix lg-block"></div>
-                       <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+      <!-- <div class="clearfix lg-block"></div> -->
+      <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                           <p class="des_icon_class"><img src="../../assets/images/detail_icon5.png"> Coach connecté
                           </p>
                       </div> -->
-                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
+      <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
                           <p class="des_icon_class" id="transport"><img src="../../assets/images/road_icon.png">
                               {{coach_detail.Coach_transport}}
                           </p>
@@ -93,85 +169,119 @@
                   </div>
               </div>
               <div class="clearfix"></div>
+          </div> -->
+      <h3
+        _ngcontent-uck-c2=""
+        style="font-weight: bold; font-size: 23px; margin: 15px 0px 20px;"
+      >
+        Fournisseur de services
+      </h3>
+      <div class="row">
+        <div class="co-xs-12 col-md-5" *ngIf="service[0].length > 0">
+          <h4 class="train_title">MY TRAINING</h4>
+          <div *ngFor="let ser of service">
+            <div
+              class="train_secdiv train_secdiv1"
+              *ngIf="ser == 'CoursIndividuel'"
+              (click)="gotoCouch(ser, coach_detail)"
+            >
+              <h2>Course Individual</h2>
+            </div>
+            <div
+              class="train_secdiv train_secdiv2"
+              *ngIf="ser == 'CoursCollectifOndemand'"
+              (click)="gotoCouch(ser, coach_detail)"
+            >
+              <h2>colective on-demand</h2>
+            </div>
+            <div
+              class="train_secdiv train_secdiv3"
+              *ngIf="ser == 'CoursCollectifClub'"
+              (click)="gotoCouch(ser, coach_detail)"
+            >
+              <h2>colective club</h2>
+            </div>
           </div>
-          <h3 _ngcontent-uck-c2="" style="font-weight: bold; font-size: 23px; margin: 15px 0px 20px;">Fournisseur de services</h3>
-          <div class="row">
-            <div class="co-xs-12 col-md-5">
-              <h4 class="train_title">MY TRAINING</h4>
-              <div class="train_secdiv train_secdiv1">
-                <h2>Course Individual</h2>
-              </div>
-              <div class="train_secdiv train_secdiv2">
-                <h2>colective on-demand</h2>
-              </div>
-              <div class="train_secdiv train_secdiv3">
-                <h2>colective club</h2>
-              </div>
-            </div>
-            <div class="co-xs-12 col-md-7">
-              <h4 class="train_title">MY EVENTS</h4>
-                    <div class="~row">
-                        <div class="co-xs-12 col-md-6 no_padding">
-                        <div class="train_secdiv train_secdiv4">
-                          <h2>stage</h2>
-                        </div>              
-                        <div class="train_secdiv train_secdiv5">
-                          <h2>team building</h2>
-                        </div>         
-                        <div class="train_secdiv train_secdiv6">
-                          <h2>animation</h2>
-                        </div>
-                        </div>
-                        <div class="co-xs-12 col-md-6 no_padding">
-                        <div class="train_secdiv train_secdiv7">
-                          <h2>tournament</h2>
-                        </div>              
-                       
-                        </div>
-                    </div>
-            </div>
-            <div class="clearfix"></div>
-         </div>
-
-
-         <div class="coach_deseventopen">
-            <h3>STAGE</h3>
-            <div class="row">
-              <div class="col-xs-12 col-md-6">
-                <div class="des_events_bg" style="box-shadow: 2px 1px 9px 2px #dbd5d5;">
-                  <img src="../../assets/images/cours-collectifs-adultes.jpg" style="max-height: 200px; width: 100%;" />
-                  <div class=" ">
-                    <p class="des_date_sec">
-                      <span>1</span
-                      >March
-                    </p>
-                    <p class="des_event_sub_title">STAGE NEW 2020 MARCH</p>
-                    <p class="des_event_para max-lines">Le Lorem ipsum sit amet du faux texte employe</p>
-                  </div>              
+          <!-- <div *ngIf="service[0].length == 0">
+                <div class="train_secdiv train_secdiv3">
+                    <h2>No Course</h2>
                 </div>
-                
+            </div> -->
+        </div>
+        <div class="co-xs-12 col-md-7">
+          <h4 class="train_title">MY EVENTS</h4>
+          <div class="~row">
+            <div class="co-xs-12 col-md-6 no_padding">
+              <div class="train_secdiv train_secdiv4">
+                <h2>stage</h2>
               </div>
-
-              <div class="col-xs-12 col-md-6">
-                <div class="des_events_bg" style="box-shadow: 2px 1px 9px 2px #dbd5d5;">
-                  <img src="../../assets/images/cours-collectifs-adultes.jpg" style="max-height: 200px; width: 100%;" />
-                  <div class=" ">
-                    <p class="des_date_sec">
-                      <span>1</span
-                      >March
-                    </p>
-                    <p class="des_event_sub_title">STAGE NEW 2020 MARCH</p>
-                    <p class="des_event_para max-lines">Le Lorem ipsum sit amet du faux texte employe</p>
-                  </div>              
-                </div>
-                
+              <div class="train_secdiv train_secdiv5">
+                <h2>team building</h2>
               </div>
-              <div class="clearfix"></div>
+              <div class="train_secdiv train_secdiv6">
+                <h2>animation</h2>
+              </div>
             </div>
-         </div>
+            <div class="co-xs-12 col-md-6 no_padding">
+              <div class="train_secdiv train_secdiv7">
+                <h2>tournament</h2>
+              </div>
+            </div>
+          </div>
+          <!-- <div *ngIf="service[0].length == 0">
+                        <div class="train_secdiv train_secdiv3">
+                            <h2>No Course</h2>
+                        </div>
+                    </div> -->
+        </div>
+        <div class="clearfix"></div>
+      </div>
 
-   
-        <!--   <div class="des_map">
+      <div class="coach_deseventopen">
+        <h3>STAGE</h3>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <div
+              class="des_events_bg"
+              style="box-shadow: 2px 1px 9px 2px #dbd5d5;"
+            >
+              <img
+                src="../../assets/images/cours-collectifs-adultes.jpg"
+                style="max-height: 200px; width: 100%;"
+              />
+              <div class=" ">
+                <p class="des_date_sec"><span>1</span>March</p>
+                <p class="des_event_sub_title">STAGE NEW 2020 MARCH</p>
+                <p class="des_event_para max-lines">
+                  Le Lorem ipsum sit amet du faux texte employe
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6">
+            <div
+              class="des_events_bg"
+              style="box-shadow: 2px 1px 9px 2px #dbd5d5;"
+            >
+              <img
+                src="../../assets/images/cours-collectifs-adultes.jpg"
+                style="max-height: 200px; width: 100%;"
+              />
+              <div class=" ">
+                <p class="des_date_sec"><span>1</span>March</p>
+                <p class="des_event_sub_title">STAGE NEW 2020 MARCH</p>
+                <p class="des_event_para max-lines">
+                  Le Lorem ipsum sit amet du faux texte employe
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+
+      <!--   <div class="des_map">
               <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83998.75769374048!2d2.27701965694365!3d48.858950681492054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis%2C+France!5e0!3m2!1sen!2sin!4v1563876822850!5m2!1sen!2sin"
                   width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -565,47 +675,73 @@
               <p class="des_contents_cdetail">{{coach_detail.Coach_Experience}}</p>
 
           </div> -->
-      </div>
+    </div>
 
-      <div class="col-md-4 col-sm-4 col-xs-12" align="center">
-          <div class="right_coachprofile">
-          <img src="{{coach_detail.Coach_Image}}" #img
-              (error)="img.src = 'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'"
-              class="img-responsive center-block">
-          <h1>Marryaa Andrew</h1>
-          <div class="des_coach_abt_sec" style="float: none;">
-              <h1 class="des_coach_abt_heading">{{setCoachName}}</h1>
-              <!-- <h3 *ngIf="course == 'CoursCollectifClub'"><strong>Cours Collectif
+    <div class="col-md-4 col-sm-4 col-xs-12" align="center">
+      <div class="right_coachprofile">
+        <img
+          src="{{ coach_detail.Coach_Image }}"
+          #img
+          (error)="
+            img.src =
+              'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'
+          "
+          class="img-responsive center-block"
+        />
+        <!-- <h1>Marryaa Andrew</h1> -->
+        <div class="des_coach_abt_sec" style="float: none;">
+          <h1 class="des_coach_abt_heading">
+            {{ coach_detail.Coach_Fname.toUpperCase() }}
+            {{ coach_detail.Coach_Lname.toUpperCase() }}
+          </h1>
+          <!-- <h3 *ngIf="course == 'CoursCollectifClub'"><strong>Cours Collectif
                       Club</strong></h3> -->
-              <!-- <h3 *ngIf="course == 'CoursIndividuel'"><strong>Cours Individuel</strong> -->
-              <!-- </h3> -->
-              <!-- <h3 *ngIf="course == 'CoursCollectifOndemand'"><strong>Cours Collectif Ondemand</strong>
+          <!-- <h3 *ngIf="course == 'CoursIndividuel'"><strong>Cours Individuel</strong> -->
+          <!-- </h3> -->
+          <!-- <h3 *ngIf="course == 'CoursCollectifOndemand'"><strong>Cours Collectif Ondemand</strong>
               </h3> -->
-              <div class="star-rating">
-                  <ul class="list-inline1">
-                      <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                      <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-                  </ul>
-              </div>
+          <div class="star-rating">
+            <ul class="list-inline1">
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+            </ul>
           </div>
-          <div class="des_social_icons_footer1">
-              <ul>
-                  <li><a class="twitter" target="_blank" href={{coach_detail.TwitterURL}}><i
-                              class="fa fa-twitter"></i></a></li>
-                  <!-- <li><a class="linked" target="_blank" href={{coach_detail.TwitterURL}}><i class="fa fa-linkedin"></i></a></li> -->
-                  <li><a class="facebook" target="_blank" href={{coach_detail.FacebookURL}}><i
-                              class="fa fa-facebook-f"></i></a></li>
-                  <li><a class="insta" target="_blank" href={{coach_detail.InstagramURL}}><i
-                              class="fa fa-instagram"></i></a></li>
-              </ul>
-
-          </div>
+        </div>
+        <div class="des_social_icons_footer1">
+          <ul>
+            <li>
+              <a
+                class="twitter"
+                target="_blank"
+                href="{{ coach_detail.TwitterURL }}"
+                ><i class="fa fa-twitter"></i
+              ></a>
+            </li>
+            <!-- <li><a class="linked" target="_blank" href={{coach_detail.TwitterURL}}><i class="fa fa-linkedin"></i></a></li> -->
+            <li>
+              <a
+                class="facebook"
+                target="_blank"
+                href="{{ coach_detail.FacebookURL }}"
+                ><i class="fa fa-facebook-f"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                class="insta"
+                target="_blank"
+                href="{{ coach_detail.InstagramURL }}"
+                ><i class="fa fa-instagram"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
       </div>
 
-          <!-- <img src="../../assets/images/fav_logo.png"> &nbsp;&nbsp;&nbsp;&nbsp;<span class="des_fav_content">Ajouter à
+      <!-- <img src="../../assets/images/fav_logo.png"> &nbsp;&nbsp;&nbsp;&nbsp;<span class="des_fav_content">Ajouter à
               mes coachs favoris</span>
        
           <p class="des_right_content">Les 22 avis des élèves de Lena</p>
@@ -634,40 +770,54 @@
               <span>Lorem Ipsum is simply dummy text of the printing & typesetting industry. </span>
           </div> -->
 
-
       <div class="right_coachprofilenew">
-      <h3>Avis Clients &nbsp;&nbsp;<span style="color:#e75b00;">(20)</span></h3>
-      
-      <form class="text-left">
-          <textarea class="don_avis" name="don_avis" rows="3" cols="30" placeholder="Donnez votre avis"></textarea>
-          <input type="button" value="Donnez votre avis" class="btn des_event_btn" style="margin-top: 8px;"/>
-      </form>
-      
-      <div class="testimonial_outer">
+        <h3>
+          Avis Clients &nbsp;&nbsp;<span style="color:#e75b00;">(20)</span>
+        </h3>
+
+        <form class="text-left">
+          <textarea
+            class="don_avis"
+            name="don_avis"
+            rows="3"
+            cols="30"
+            placeholder="Donnez votre avis"
+          ></textarea>
+          <input
+            type="button"
+            value="Donnez votre avis"
+            class="btn des_event_btn"
+            style="margin-top: 8px;"
+          />
+        </form>
+
+        <div class="testimonial_outer">
           <div class="testimonial_avis">
             <div class="~row">
               <div class="col-xs-3 no_padding">
-                  <img src="../../assets/images/profile_icon.png" />
+                <img src="../../assets/images/profile_icon.png" />
               </div>
               <div class="col-xs-9 no_padding">
-                <div class="star-rating text-left" style="text-align: left; display: inline-block; margin-right: 6px;" >
+                <div
+                  class="star-rating text-left"
+                  style="text-align: left; display: inline-block; margin-right: 6px;"
+                >
                   <ul class="list-inline">
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star-o"></i>
-                      </li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star-o"></i>
+                    </li>
                   </ul>
                 </div>
-                  <span style="margin-right: 6px;"><b>Laure L le</b></span>
-                  <span>2 days ago</span>
-                  <p>Coach Sportif professionnel depuis 10 ans, la forme le bien-être et la santé ont ...</p>
-            
+                <span style="margin-right: 6px;"><b>Laure L le</b></span>
+                <span>2 days ago</span>
+                <p>
+                  Coach Sportif professionnel depuis 10 ans, la forme le
+                  bien-être et la santé ont ...
+                </p>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -676,27 +826,29 @@
           <div class="testimonial_avis">
             <div class="~row">
               <div class="col-xs-3 no_padding">
-                  <img src="../../assets/images/profile_icon.png" />
+                <img src="../../assets/images/profile_icon.png" />
               </div>
               <div class="col-xs-9 no_padding">
-                <div class="star-rating text-left" style="text-align: left; display: inline-block; margin-right: 6px;" >
+                <div
+                  class="star-rating text-left"
+                  style="text-align: left; display: inline-block; margin-right: 6px;"
+                >
                   <ul class="list-inline">
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star-o"></i>
-                      </li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star-o"></i>
+                    </li>
                   </ul>
                 </div>
-                  <span style="margin-right: 6px;"><b>Laure L le</b></span>
-                  <span>2 days ago</span>
-                  <p>Coach Sportif professionnel depuis 10 ans, la forme le bien-être et la santé ont ...</p>
-            
+                <span style="margin-right: 6px;"><b>Laure L le</b></span>
+                <span>2 days ago</span>
+                <p>
+                  Coach Sportif professionnel depuis 10 ans, la forme le
+                  bien-être et la santé ont ...
+                </p>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -704,27 +856,29 @@
           <div class="testimonial_avis">
             <div class="~row">
               <div class="col-xs-3 no_padding">
-                  <img src="../../assets/images/profile_icon.png" />
+                <img src="../../assets/images/profile_icon.png" />
               </div>
               <div class="col-xs-9 no_padding">
-                <div class="star-rating text-left" style="text-align: left; display: inline-block; margin-right: 6px;" >
+                <div
+                  class="star-rating text-left"
+                  style="text-align: left; display: inline-block; margin-right: 6px;"
+                >
                   <ul class="list-inline">
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star-o"></i>
-                      </li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star-o"></i>
+                    </li>
                   </ul>
                 </div>
-                  <span style="margin-right: 6px;"><b>Laure L le</b></span>
-                  <span>2 days ago</span>
-                  <p>Coach Sportif professionnel depuis 10 ans, la forme le bien-être et la santé ont ...</p>
-            
+                <span style="margin-right: 6px;"><b>Laure L le</b></span>
+                <span>2 days ago</span>
+                <p>
+                  Coach Sportif professionnel depuis 10 ans, la forme le
+                  bien-être et la santé ont ...
+                </p>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -732,56 +886,56 @@
           <div class="testimonial_avis">
             <div class="~row">
               <div class="col-xs-3 no_padding">
-                  <img src="../../assets/images/profile_icon.png" />
+                <img src="../../assets/images/profile_icon.png" />
               </div>
               <div class="col-xs-9 no_padding">
-                <div class="star-rating text-left" style="text-align: left; display: inline-block; margin-right: 6px;" >
+                <div
+                  class="star-rating text-left"
+                  style="text-align: left; display: inline-block; margin-right: 6px;"
+                >
                   <ul class="list-inline">
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star"></i>
-                      </li>
-                      <li class="list-inline-item"><i class="fa fa-star-o"></i>
-                      </li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item">
+                      <i class="fa fa-star-o"></i>
+                    </li>
                   </ul>
                 </div>
-                  <span style="margin-right: 6px;"><b>Laure L le</b></span>
-                  <span>2 days ago</span>
-                  <p>Coach Sportif professionnel depuis 10 ans, la forme le bien-être et la santé ont ...</p>
-            
+                <span style="margin-right: 6px;"><b>Laure L le</b></span>
+                <span>2 days ago</span>
+                <p>
+                  Coach Sportif professionnel depuis 10 ans, la forme le
+                  bien-être et la santé ont ...
+                </p>
               </div>
               <div class="clearfix"></div>
             </div>
           </div>
-          </div>
-
+        </div>
       </div>
-      </div>
+    </div>
   </div>
 </div>
 <div class="clearfix"></div>
 
-
-
 <div class="bot_mapsection">
-  <p class="des_map_content">Intervention géographique :
-   <select class="select_drop_custom">
-       <option>Liste des villes</option>
-       <option [ngValue]="city.id" *ngFor="let city of selectedCity">
-           {{city.Libelle_acheminement}}</option>
-   </select>
+  <p class="des_map_content">
+    Intervention géographique :
+    <select class="select_drop_custom">
+      <option>Liste des villes</option>
+      <option [ngValue]="city.id" *ngFor="let city of selectedCity">
+        {{ city.Libelle_acheminement }}</option
+      >
+    </select>
   </p>
 
-
-    <!-- Map section starts -->
-    <div class="clearfix"></div>
-    <div class="newcoachlist">
+  <!-- Map section starts -->
+  <div class="clearfix"></div>
+  <div class="newcoachlist">
     <div class="mapsection">
-        <!-- <iframe
+      <!-- <iframe
           src="https://maps.google.com/maps?q=11.9416,79.8083&hl=es&z=14&amp;output=embed"
           width="100%"
           height="350"
@@ -789,68 +943,97 @@
           style="border:0;"
           allowfullscreen=""
         ></iframe> -->
-    
-        <div class="map-container">
-          <div class="map-frame">
+
+      <div class="map-container">
+        <div class="map-frame">
           <!-- <a href="https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route={{curentlat}}%2C{{curentlang}}%3B{{lat}}%2C{{lang}}"
               target="_blank"> -->
-              <div id="map"></div>
+          <div id="map"></div>
           <!-- </a> -->
-          </div>
-        </div><!-- End of map-container-->
-    
-    
+        </div>
       </div>
+      <!-- End of map-container-->
+    </div>
     <!-- Map section ends -->
-</div> 
+  </div>
 
-<div class="clearfix"></div>
+  <div class="clearfix"></div>
 </div>
 
 <div class="cours_testimonial">
-<div class="container">
-	<div class="row">
-		<div class="col-md-12 col-center m-auto">
-			<h2>Testimonials</h2>
-			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-				<!-- Carousel indicators -->
-				<ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
-				</ol>   
-				<!-- Wrapper for carousel items -->
-				<div class="carousel-inner">
-					<div class="item carousel-item active">
-						<div class="img-box"><img src="../../assets/images/testimonial_img.jpg" alt=""></div>
-						<p class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <p class="overview">Paula Wilson</p>
-                        <h5><i>Course Individual</i></h5>
-					</div>
-					<div class="item carousel-item">
-						<div class="img-box"><img src="../../assets/images/testimonial_img.jpg" alt=""></div>
-						<p class="testimonial">Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Utmtc tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio.</p>
-						<p class="overview">Antonio Moreno</p>
-                        <h5><i>Course Collective Club</i></h5>
-					</div>
-					<div class="item carousel-item">
-						<div class="img-box"><img src="../../assets/images/testimonial_img.jpg" alt=""></div>
-						<p class="testimonial">Phasellus vitae suscipit justo. Mauris pharetra feugiat ante id lacinia. Etiam faucibus mauris id tempor egestas. Duis luctus turpis at accumsan tincidunt. Phasellus risus risus, volutpat vel tellus ac, tincidunt fringilla massa. Etiam hendrerit dolor eget rutrum.</p>
-						<p class="overview">Robert</p>
-                        <h5><i>Course Collective Ondemand</i></h5>
-					</div>
-				</div>
-				<!-- Carousel controls -->
-				<a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
-					<i class="fa fa-angle-left"></i>
-				</a>
-				<a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
-					<i class="fa fa-angle-right"></i>
-				</a>
-			</div>
-		</div>
-	</div>
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-center m-auto">
+        <h2>Testimonials</h2>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Carousel indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+          <!-- Wrapper for carousel items -->
+          <div class="carousel-inner">
+            <div class="item carousel-item active">
+              <div class="img-box">
+                <img src="../../assets/images/testimonial_img.jpg" alt="" />
+              </div>
+              <p class="testimonial">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+              <p class="overview">Paula Wilson</p>
+              <h5><i>Course Individual</i></h5>
+            </div>
+            <div class="item carousel-item">
+              <div class="img-box">
+                <img src="../../assets/images/testimonial_img.jpg" alt="" />
+              </div>
+              <p class="testimonial">
+                Vestibulum quis quam ut magna consequat faucibus. Pellentesque
+                eget nisi a mi suscipit tincidunt. Utmtc tempus dictum risus.
+                Pellentesque viverra sagittis quam at mattis. Suspendisse
+                potenti. Aliquam sit amet gravida nibh, facilisis gravida odio.
+              </p>
+              <p class="overview">Antonio Moreno</p>
+              <h5><i>Course Collective Club</i></h5>
+            </div>
+            <div class="item carousel-item">
+              <div class="img-box">
+                <img src="../../assets/images/testimonial_img.jpg" alt="" />
+              </div>
+              <p class="testimonial">
+                Phasellus vitae suscipit justo. Mauris pharetra feugiat ante id
+                lacinia. Etiam faucibus mauris id tempor egestas. Duis luctus
+                turpis at accumsan tincidunt. Phasellus risus risus, volutpat
+                vel tellus ac, tincidunt fringilla massa. Etiam hendrerit dolor
+                eget rutrum.
+              </p>
+              <p class="overview">Robert</p>
+              <h5><i>Course Collective Ondemand</i></h5>
+            </div>
+          </div>
+          <!-- Carousel controls -->
+          <a
+            class="carousel-control left carousel-control-prev"
+            href="#myCarousel"
+            data-slide="prev"
+          >
+            <i class="fa fa-angle-left"></i>
+          </a>
+          <a
+            class="carousel-control right carousel-control-next"
+            href="#myCarousel"
+            data-slide="next"
+          >
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- <div class="tab-content flipover_div container">
   <div class="tab-pane fade in active" id="Commentary">
@@ -937,38 +1120,65 @@
 <!-- 10Hr Popup -->
 <div id="10hrposter" class="modal" role="dialog">
   <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content" style="width: 430px;">
-          <div class="modal-header">
-              <button type="button" class="close" (click)="hide10h()" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Prix - Cours Individuel</h4>
-          </div>
-          <div class="modal-body" style="padding: 15px!important;">
-              <table class="table mytable">
-                  <thead>
-                      <tr>
-                          <th>Prix-1hr</th>
-                          <th>Prix-10hr</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td> <b>{{Indiv_1hr}}</b> </td>
-                          <td> <b>{{Indiv_10hr}}</b> </td>
-                      </tr>
-                  </tbody>
-              </table>
-              <div align="center">
-                  <b style="color: coral; margin-bottom: 10px;">
-                      Voulez-vous choisir 10 heures?</b></div>
-          </div>
-          <div class="modal-footer" style="text-align: center; padding: 0px 20px;">
-              <button type="button" id="poster" style="margin-right: 20px;" (click)="enable10h()"
-                  class="btn btn-success">Acceptez</button>
-              <span> </span>
-              <button type="button" class="btn btn-default" (click)="hide10h()" data-dismiss="modal">Rejeter</button>
-          </div>
+    <!-- Modal content-->
+    <div class="modal-content" style="width: 430px;">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          (click)="hide10h()"
+          data-dismiss="modal"
+        >
+          &times;
+        </button>
+        <h4 class="modal-title">Prix - Cours Individuel</h4>
       </div>
+      <div class="modal-body" style="padding: 15px!important;">
+        <table class="table mytable">
+          <thead>
+            <tr>
+              <th>Prix-1hr</th>
+              <th>Prix-10hr</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <b>{{ Indiv_1hr }}</b>
+              </td>
+              <td>
+                <b>{{ Indiv_10hr }}</b>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div align="center">
+          <b style="color: coral; margin-bottom: 10px;">
+            Voulez-vous choisir 10 heures?</b
+          >
+        </div>
+      </div>
+      <div class="modal-footer" style="text-align: center; padding: 0px 20px;">
+        <button
+          type="button"
+          id="poster"
+          style="margin-right: 20px;"
+          (click)="enable10h()"
+          class="btn btn-success"
+        >
+          Acceptez
+        </button>
+        <span> </span>
+        <button
+          type="button"
+          class="btn btn-default"
+          (click)="hide10h()"
+          data-dismiss="modal"
+        >
+          Rejeter
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 

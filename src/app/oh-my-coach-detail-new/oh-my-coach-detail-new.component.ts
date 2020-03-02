@@ -92,7 +92,7 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     bookingDateRange: ""
   };
 
-  public str: any = null;
+  //public str: any = null;
 
   public course = localStorage.getItem("Course");
 
@@ -177,6 +177,8 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     Course: ""
   };
 
+  public courseActive = "";
+
   constructor(
     public sanitizer: DomSanitizer,
     public activatedRoute: ActivatedRoute,
@@ -209,9 +211,6 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     }
 
     this.couchdetail();
-    // var pcode = localStorage.getItem("onmytennis");
-    // var postalCode = JSON.parse(JSON.parse(pcode));
-    // this.Ville = postalCode.postalCode;
   }
 
   transform(image) {
@@ -234,9 +233,15 @@ export class OhMyCoachDetailNewComponent implements OnInit {
           if (response && response["data"]) {
             this.coach_detail = response.data.coach_list[0];
             this.profileImage = this.transform(this.coach_detail.Coach_Image);
-            console.log("coachdetail", this.coach_detail);
+            console.log(
+              "oh-my-coach-detail-new.component.ts - line 237",
+              this.coach_detail
+            );
             this.service = this.coach_detail.Coach_Services.split(",");
-            console.log(this.service);
+            console.log(
+              "oh-my-coach-detail-new.component.ts - line 242",
+              this.service[0].length
+            );
             this.spinner.hide();
           }
         });
@@ -246,9 +251,13 @@ export class OhMyCoachDetailNewComponent implements OnInit {
       });
     }
 
-    // const coachID: string = this.activatedRoute.snapshot.queryParamMap.get(
-    //   "id"
-    // );
+    const courseSegment: string = this.activatedRoute.snapshot.queryParamMap.get(
+      "course"
+    );
+
+    if (courseSegment != "") {
+      this.courseActive = courseSegment;
+    }
     this.appService
       .getAll("/course/getindividualcourse", coachID)
       .subscribe(response => {
@@ -413,5 +422,16 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     L.marker(mappoint, { icon: greenIcon })
       .addTo(this.map)
       .openPopup();
+  }
+
+  gotoCouch(ser, res) {
+    if (localStorage.getItem("onmytennis") !== null) {
+      var data = JSON.stringify(res);
+      localStorage.setItem("Coach", data);
+      localStorage.setItem("Course", ser);
+      this.router.navigate(["/coachdetail"]);
+    } else {
+      this.router.navigate(["/login"]);
+    }
   }
 }

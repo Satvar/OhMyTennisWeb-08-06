@@ -237,16 +237,26 @@
           <div class="row" *ngFor="let res of pagedItems; let i = index">
             <div class="set">
               <div class="col-lg-3 col-md-2 col-sm-2 col-xs-12 px-0">
-                <img
+                <!-- <img
                   style="cursor: pointer;"
                   src="../assets/images/coach_searchimg.png"
                   alt="header"
+                  (click)="goToCouchDetail(res.Coach_ID)"
+                /> -->
+
+                <img
+                  style="cursor: pointer;"
+                  src="{{ res.Coach_Image }}"
+                  #img
+                  (error)="img.src = '../assets/images/coach_searchimg.png'"
                   (click)="goToCouchDetail(res.Coach_ID)"
                 />
               </div>
               <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 ml-2 pl-0">
                 <div class="mx-minus40">
-                  <h3 style="cursor: pointer;color: #000;">
+                  <h3
+                    style="cursor: pointer;color: #000; text-transform:capitalize;"
+                  >
                     {{ res.Coach_Fname }} {{ res.Coach_Lname }}
                   </h3>
                   <div class="star-rating">
