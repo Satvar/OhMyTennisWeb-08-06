@@ -151,7 +151,7 @@
                                 <img src="../../assets/images/detail_icon2.png" />{{ this.str }}
                             </p>
                             </div> -->
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="coach_detail.Coach_Resume != ''">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="coach_detail.Coach_Resume == ''">
                                
                                     <a id="resume" download="{{ coach_detail.Coach_Resume }}" (click)="download()" href="#"
                                         class="des_icon_class "><img src="../../assets/images/detail_icon3.png" /> Curriculum
@@ -159,7 +159,7 @@
                                     </a>
                                 
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="coach_detail.Coach_Resume == ''">                            
+                            <div disabled class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite disable_select" *ngIf="coach_detail.Coach_Resume != ''">                            
                                 <img src="../../assets/images/detail_icon3.png" /> Curriculum vitae                            
                             </div>
                             <div class="clearfix lg-block"></div>
@@ -170,7 +170,12 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
                                 <p class="des_icon_class" id="transport">
                                     <img src="../../assets/images/road_icon.png" />
-                                    {{ coach_detail.Coach_transport }}
+                                    <!-- {{ coach_detail.Coach_transport }} -->
+                                    <span>Voiture,</span>
+                                    <span>bus,</span>
+                                    <span>métro,</span>
+                                    <span>RER,</span>
+                                    <span>tram</span>
                                 </p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite"
@@ -180,6 +185,9 @@
                                     vidéo
                                 </a>
                             </div>
+                            <div disabled class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="Video == ''"><img src="../../assets/images/detail_icon6.png" />
+                                Cours avec vidéo
+                                </div>
                         </div>
                     </div>
                     <div class="clearfix"></div>
