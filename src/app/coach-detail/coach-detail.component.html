@@ -174,11 +174,14 @@
                                 </p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite"
-                                *ngIf="courseActive !== 'CoursCollectifOndemand'">
+                                *ngIf="courseActive !== 'CoursCollectifOndemand' && Video !== ''">
                                 <a (click)="openURL()" target="_blank" class="des_icon_class"><img
                                         src="../../assets/images/detail_icon6.png" /> Cours avec
                                     vidéo
                                 </a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="Video == ''"><img src="../../assets/images/detail_icon6.png" />
+                                    Cours avec vidéo
                             </div>
                         </div>
                     </div>
