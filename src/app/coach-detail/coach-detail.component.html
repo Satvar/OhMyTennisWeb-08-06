@@ -159,8 +159,8 @@
                                     </a>
                                 
                             </div>
-                            <div disabled class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite disable_select" *ngIf="coach_detail.Coach_Resume != ''">                            
-                                <img src="../../assets/images/detail_icon3.png" /> Curriculum vitae                            
+                            <div disabled class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite disable_select" *ngIf="coach_detail.Coach_Resume != ''">                      <p>      
+                                <img src="../../assets/images/detail_icon2.png" /> Curriculum vitae      </p>                      
                             </div>
                             <div class="clearfix lg-block"></div>
                             <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -171,11 +171,11 @@
                                 <p class="des_icon_class" id="transport">
                                     <img src="../../assets/images/road_icon.png" />
                                     <!-- {{ coach_detail.Coach_transport }} -->
-                                    <span>Voiture,</span>
-                                    <span>bus,</span>
-                                    <span>métro,</span>
-                                    <span>RER,</span>
-                                    <span>tram</span>
+                                    <span [ngClass]="(voiture=='true')?'my-class1':'my-class2'">Voiture,</span>
+                                    <span [ngClass]="(bus=='true')?'my-class1':'my-class2'">Bus,</span>
+                                    <span [ngClass]="(metro=='true')?'my-class1':'my-class2'">Métro,</span>
+                                    <span [ngClass]="(rer=='true')?'my-class1':'my-class2'">RER,</span>
+                                    <span [ngClass]="(tram=='true')?'my-class1':'my-class2'">Tram</span>
                                 </p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite"
@@ -652,15 +652,19 @@
                 <div class="des_social_icons_footer1">
                     <ul>
                         <li>
-                            <a class="twitter" target="_blank" href="{{ coach_detail.TwitterURL }}"><i class="fa fa-twitter"></i></a>
+                            <a *ngIf="coach_detail.TwitterURL != ''" class="twitter" target="_blank" href="{{ coach_detail.TwitterURL }}"><i class="fa fa-twitter"></i></a>
+                            <a *ngIf="coach_detail.TwitterURL == ''" class="twitter"><i class="fa fa-twitter"></i></a>
                         </li>
                         <!-- <li><a class="linked" target="_blank" href={{coach_detail.TwitterURL}}><i class="fa fa-linkedin"></i></a></li> -->
                         <li>
-                            <a class="facebook" target="_blank" href="{{ coach_detail.FacebookURL }}"><i
+                            <a *ngIf="coach_detail.FacebookURL != ''" class="facebook" target="_blank" href="{{ coach_detail.FacebookURL }}"><i
                                     class="fa fa-facebook-f"></i></a>
+                            <a *ngIf="coach_detail.FacebookURL == ''" class="facebook"><i class="fa fa-facebook-f"></i></a>
                         </li>
                         <li>
-                            <a class="insta" target="_blank" href="{{ coach_detail.InstagramURL }}"><i class="fa fa-instagram"></i></a>
+                            <a *ngIf="coach_detail.InstagramURL != ''" class="insta" target="_blank" href="{{ coach_detail.InstagramURL }}"><i class="fa fa-instagram"></i></a>
+                            <a *ngIf="coach_detail.InstagramURL == ''" class="insta"><i
+                                    class="fa fa-instagram"></i></a>
                         </li>
                     </ul>
                 </div>

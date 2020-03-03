@@ -112,6 +112,12 @@ export class CoachDetailComponent implements OnInit {
     P_Remarks: ""
   };
 
+  public voiture: boolean = false;
+  public bus: boolean = false;
+  public metro: boolean = false;
+  public rer: boolean = false;
+  public tram: boolean = false;
+
   public moment_date: any;
   public temps: string = "";
   public Video: any;
@@ -841,6 +847,13 @@ export class CoachDetailComponent implements OnInit {
       .subscribe(async response => {
         if (response && response["data"]) {
           this.coach_detail = response.data.coach_list[0];
+          var transportData = this.coach_detail.Coach_transport.split(", ");
+          this.voiture = transportData.includes("voiture");
+          this.bus = transportData.includes("bus");
+          this.metro = transportData.includes("métro");
+          this.rer = transportData.includes("rer");
+          this.tram = transportData.includes("tram");
+
           var temp = new Array();
           temp = this.coach_detail.Coach_payment_type.split(",");
           //console.log(temp[0]);
