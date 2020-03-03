@@ -74,16 +74,16 @@
             </div> -->
 
     <div class="coachnewprice" style="max-width: 180px;"
-        *ngIf="price > 0">
+        *ngIf="Indiv_1hr > 0 || Indiv_10hr > 0">
         <p style="font-weight: bold; font-size: 18px; color: #000;">
-            {{ price | currency: "EUR":"symbol":"2.2-2":"fr" }}
+            {{ Indiv_1hr | currency: "EUR":"symbol":"2.2-2":"fr" }}
             /
             <span style="font-size: 14px; font-weight: normal !important; color: #000000;">1 heure</span>
         </p>
         <div style="border-bottom: 1px solid #000000; margin: 5px 0px;"></div>
         <p style="font-weight: bold; font-size: 18px; color: #000;">
             {{
-                price | currency: "EUR":"symbol":"2.2-2":"fr"
+                Indiv_10hr | currency: "EUR":"symbol":"2.2-2":"fr"
               }}
             /
             <span style="font-size: 14px; font-weight: normal !important; color: #000000;">10 heures</span>
@@ -151,13 +151,16 @@
                                 <img src="../../assets/images/detail_icon2.png" />{{ this.str }}
                             </p>
                             </div> -->
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="coach_detail.Coach_Resume != ''">
                                
                                     <a id="resume" download="{{ coach_detail.Coach_Resume }}" (click)="download()" href="#"
                                         class="des_icon_class "><img src="../../assets/images/detail_icon3.png" /> Curriculum
                                         vitae
                                     </a>
                                 
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="coach_detail.Coach_Resume == ''">                            
+                                <img src="../../assets/images/detail_icon3.png" /> Curriculum vitae                            
                             </div>
                             <div class="clearfix lg-block"></div>
                             <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
