@@ -234,9 +234,12 @@
           class="col-md-9 col-sm-8 col-xs-12"
           *ngIf="pager.totalPages > 0; else nocoachesdata"
         >
-          <div class="row" *ngFor="let res of pagedItems; let i = index">
+          <div
+            class="row ng-star-inserted"
+            *ngFor="let res of pagedItems; let i = index"
+          >
             <div class="set">
-              <div class="col-lg-3 col-md-2 col-sm-2 col-xs-12 px-0">
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 px-0">
                 <!-- <img
                   style="cursor: pointer;"
                   src="../assets/images/coach_searchimg.png"

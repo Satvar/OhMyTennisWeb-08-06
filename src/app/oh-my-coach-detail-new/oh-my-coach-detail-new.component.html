@@ -40,7 +40,7 @@
 <div class="container">
   <div class="des_coach_abt coachnewlistview">
     <div class="col-md-8 col-sm-8 col-xs-12">
-      <h2 class="page_title" style="margin: 10px 0px 30px;">
+      <h2 class="page_title" style="margin: 10px 0px 22px;">
         Son expérience de coach <br /><img
           src="./assets/images/title_border.png"
           alt="title_border"
@@ -207,6 +207,20 @@
                     <h2>No Course</h2>
                 </div>
             </div> -->
+        </div>
+        <div class="co-xs-12 col-md-5" *ngIf="service[0].length == 0">
+          <h4 class="train_title">MY TRAINING</h4>
+          <div *ngFor="let ser of service">
+            <div class="train_secdiv train_secdiv1">
+              <h2>Course Individual</h2>
+            </div>
+            <div class="train_secdiv train_secdiv2">
+              <h2>colective on-demand</h2>
+            </div>
+            <div class="train_secdiv train_secdiv3">
+              <h2>colective club</h2>
+            </div>
+          </div>
         </div>
         <div class="co-xs-12 col-md-7">
           <h4 class="train_title">MY EVENTS</h4>
@@ -686,7 +700,7 @@
             img.src =
               'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'
           "
-          class="img-responsive center-block"
+          class="coachright_image img-responsive center-block"
         />
         <!-- <h1>Marryaa Andrew</h1> -->
         <div class="des_coach_abt_sec" style="float: none;">

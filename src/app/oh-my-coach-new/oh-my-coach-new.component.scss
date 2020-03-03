@@ -24,6 +24,13 @@
   width: 80%;
 }
 
+.row.ng-star-inserted h3 {
+  font-size: 18px;
+  color: #000000;
+  margin-top: 4px;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
 /* The Close Button */
 .close {
   color: #aaaaaa;
@@ -147,7 +154,7 @@ h3 {
   padding: 13px 0px 13px 0px;
   border-bottom: 1px solid #9e9e9e;
   color: #fff;
-  margin: -20px -20px 0px;
+  margin: -20px -15px 0px;
   font-weight: bold;
   margin-bottom: 0px;
   background: #626262;
@@ -280,8 +287,8 @@ h3 {
 .star-rating label {
   margin-bottom: 0px;
   color: #e75b00;
-    font-size: 15px;
-    font-weight: bold !important;
+  font-size: 15px;
+  font-weight: bold !important;
 }
 .star-rating :checked ~ label {
   color: #e75b00;
@@ -433,7 +440,6 @@ input[type="radio"] {
   }
   .newcoachlist .set img {
     margin-top: 15px;
-  
   }
   newcoachlist .set p {
     white-space: nowrap;
