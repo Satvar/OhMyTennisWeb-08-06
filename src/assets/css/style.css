@@ -2675,7 +2675,7 @@ span.grey_mild {
 }
 .des_detail_sec p{
 	color:#fff;
-	font-size:14px;
+	font-size:13px;
 	margin:0px;
 	padding:15px 0px;
 }
@@ -5744,6 +5744,9 @@ body .right_coachprofile img.coachright_image{
 	min-width: 230px;
 	height: 230px;
 	width: 230px;
+}
+.disable_select  {
+	background-color: #bcb8b8;
 }
 @media (min-width:992px) {
 	.header_top .top_menu .open > .dropdown-menu {
