@@ -117,8 +117,7 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     Coach_Bank_City: "",
     Coach_payment_type: "",
     Coach_transport: "",
-    Coach_Image:
-      "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png",
+    Coach_Image: "../../assets/images/profile_blackwhite.png",
     Coach_Resume: "",
     ResumeName: ""
   };
@@ -141,6 +140,12 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     P_Amount: "",
     P_Remarks: ""
   };
+
+  public voiture: boolean = false;
+  public bus: boolean = false;
+  public metro: boolean = false;
+  public rer: boolean = false;
+  public tram: boolean = false;
 
   public moment_date: any;
   public temps: string = "";
@@ -232,15 +237,21 @@ export class OhMyCoachDetailNewComponent implements OnInit {
         .subscribe(async response => {
           if (response && response["data"]) {
             this.coach_detail = response.data.coach_list[0];
+            var transportData = this.coach_detail.Coach_transport.split(", ");
+            this.voiture = transportData.includes("voiture");
+            this.bus = transportData.includes("bus");
+            this.metro = transportData.includes("métro");
+            this.rer = transportData.includes("rer");
+            this.tram = transportData.includes("tram");
             this.profileImage = this.transform(this.coach_detail.Coach_Image);
             console.log(
-              "oh-my-coach-detail-new.component.ts - line 237",
+              "oh-my-coach-detail-new.component.ts - line 248",
               this.coach_detail
             );
             this.service = this.coach_detail.Coach_Services.split(",");
             console.log(
-              "oh-my-coach-detail-new.component.ts - line 242",
-              this.service[0].length
+              "oh-my-coach-detail-new.component.ts - line 252",
+              this.service
             );
             this.spinner.hide();
           }

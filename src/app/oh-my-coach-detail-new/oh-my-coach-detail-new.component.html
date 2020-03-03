@@ -696,10 +696,7 @@
         <img
           src="{{ coach_detail.Coach_Image }}"
           #img
-          (error)="
-            img.src =
-              'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'
-          "
+          (error)="img.src = '../../assets/images/profile_blackwhite.png'"
           class="coachright_image img-responsive center-block"
         />
         <!-- <h1>Marryaa Andrew</h1> -->
@@ -795,6 +792,7 @@
             name="don_avis"
             rows="3"
             cols="30"
+            maxlength="200"
             placeholder="Donnez votre avis"
           ></textarea>
           <input
