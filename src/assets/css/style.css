@@ -3738,7 +3738,7 @@ background-color:#fff;
     background: #fff;
 }
 .form-login h2.form-login-heading {
-    margin: 0;30px!important
+    margin: 0.30px!important;
     padding: 15px 20px;
     text-align: center;
 	background: #e75b00;
@@ -5764,6 +5764,6 @@ body .right_coachprofile img.coachright_image{
 @media (min-width:992px) {
 	.header_top .top_menu .open > .dropdown-menu {
 		max-width: 222px;
-		left: -36px;
+		left: -46px;
 	}
 }

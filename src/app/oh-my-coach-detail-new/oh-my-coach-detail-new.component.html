@@ -95,8 +95,12 @@
                 <img src="../../assets/images/detail_icon2.png" />{{ this.str }}
               </p>
             </div> -->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
-              <p class="des_icon_class" id="payment">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="coach_detail.Coach_Resume != ''">
+              <p
+                class="des_icon_class"
+                id="payment"
+                *ngIf="coach_detail.Coach_Resume != ''"
+              >
                 <a
                   id="resume"
                   download="{{ coach_detail.Coach_Resume }}"
@@ -108,6 +112,11 @@
                 </a>
               </p>
             </div>
+            <div disabled class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite disable_select"
+              *ngIf="coach_detail.Coach_Resume == ''">
+              <p>
+                <img src="../../assets/images/detail_icon2.png" /> Curriculum vitae </p>
+            </div>
             <div class="clearfix lg-block"></div>
             <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                           <p class="des_icon_class"><img src="../../assets/images/detail_icon5.png"> Coach connecté
@@ -117,21 +126,25 @@
               <p class="des_icon_class" id="transport">
                 <img src="../../assets/images/road_icon.png" />
                 <!-- {{ coach_detail.Coach_transport }} -->
-                <span>Voiture,</span>
-                <span>Bus,</span>
-                <span>Métro,</span>
-                <span>RER,</span>
-                <span>Tram</span>
+                <span [ngClass]="(voiture=='true')?'my-class1':'my-class2'">Voiture,</span>
+                <span [ngClass]="(bus=='true')?'my-class1':'my-class2'">Bus,</span>
+                <span [ngClass]="(metro=='true')?'my-class1':'my-class2'">Métro,</span>
+                <span [ngClass]="(rer=='true')?'my-class1':'my-class2'">RER,</span>
+                <span [ngClass]="(tram=='true')?'my-class1':'my-class2'">Tram</span>
               </p>
             </div>
             <div
               class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite"
-              *ngIf="courseActive !== 'CoursCollectifOndemand'"
+              *ngIf="courseActive !== 'CoursCollectifOndemand' && Video != ''"
             >
               <a (click)="openURL()" target="_blank" class="des_icon_class"
                 ><img src="../../assets/images/detail_icon6.png" /> Cours avec
                 vidéo
               </a>
+            </div>
+            <div disabled class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="Video == ''"><img
+                src="../../assets/images/detail_icon6.png" />
+              Cours avec vidéo
             </div>
           </div>
         </div>
@@ -230,7 +243,11 @@
           <h4 class="train_title">MY EVENTS</h4>
           <div class="~row">
             <div class="co-xs-12 col-md-6 no_padding">
-              <div class="train_secdiv train_secdiv4" *ngIf="Stage == true">
+              <div
+                class="train_secdiv train_secdiv4"
+                (click)="getEventData('stage', coach_id)"
+                *ngIf="Stage == true"
+              >
                 <h2>stage</h2>
               </div>
               <div class="train_secdiv train_secdiv4" *ngIf="Stage == false">
@@ -239,6 +256,7 @@
               <div
                 class="train_secdiv train_secdiv5"
                 *ngIf="TeamBuilding == true"
+                (click)="getEventData('teambuilding', coach_id)"
               >
                 <h2>team building</h2>
               </div>
@@ -251,6 +269,7 @@
               <div
                 class="train_secdiv train_secdiv6"
                 *ngIf="Animations == true"
+                (click)="getEventData('animations', coach_id)"
               >
                 <h2>animation</h2>
               </div>
@@ -265,6 +284,7 @@
               <div
                 class="train_secdiv train_secdiv7"
                 *ngIf="Tournament == true"
+                (click)="getEventData('tournament', coach_id)"
               >
                 <h2>tournament</h2>
               </div>
@@ -280,43 +300,156 @@
         <div class="clearfix"></div>
       </div>
 
-      <div class="coach_deseventopen">
+      <div class="coach_deseventopen" *ngIf="stageRecord.length > 0">
         <h3>STAGE</h3>
         <div class="row">
-          <div class="col-xs-12 col-md-6">
+          <div class="col-xs-12 col-md-6" *ngFor="let res of stageRecord">
             <div
               class="des_events_bg"
               style="box-shadow: 2px 1px 9px 2px #dbd5d5;"
             >
               <img
-                src="../../assets/images/cours-collectifs-adultes.jpg"
+                src="{{ res.Photo }}"
                 style="max-height: 200px; width: 100%;"
               />
               <div class=" ">
-                <p class="des_date_sec"><span>1</span>March</p>
-                <p class="des_event_sub_title">STAGE NEW 2020 MARCH</p>
-                <p class="des_event_para max-lines">
-                  Le Lorem ipsum sit amet du faux texte employe
+                <p class="des_date_sec">
+                  <span>{{ res.Date }}</span
+                  >{{ res.Month_Year }}
                 </p>
+                <p class="des_event_sub_title">
+                  {{ res.Eventname.toUpperCase() }}
+                </p>
+                <p class="des_event_para max-lines">
+                  {{ res.Description }}
+                </p>
+              </div>
+              <div class="text-center">
+                <a
+                  class="btn btn-primary des_event_btn"
+                  (click)="gotoStage(res)"
+                  style="margin-top: 15px;"
+                  >Reserve maintenant</a
+                >
               </div>
             </div>
           </div>
-
-          <div class="col-xs-12 col-md-6">
+          <div class="row" *ngIf="stageRecordCount > 2">
+            <div class="col-xs-12 col-md-12">
+              <div class="text-center">
+                <a
+                  class="btn btn-primary des_event_btn"
+                  (click)="gotoStage(res)"
+                  style="margin-top: 15px;"
+                  >Voir plus</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="coach_deseventopen" *ngIf="teambuildingRecord.length > 0">
+        <h3>TEAM BUILDING</h3>
+        <div class="row">
+          <div
+            class="col-xs-12 col-md-6"
+            *ngFor="let restb of teambuildingRecord"
+          >
             <div
               class="des_events_bg"
               style="box-shadow: 2px 1px 9px 2px #dbd5d5;"
             >
               <img
-                src="../../assets/images/cours-collectifs-adultes.jpg"
+                src="{{ restb.Photo }}"
                 style="max-height: 200px; width: 100%;"
               />
-              <div class=" ">
-                <p class="des_date_sec"><span>1</span>March</p>
-                <p class="des_event_sub_title">STAGE NEW 2020 MARCH</p>
+              <div class=" ">                
                 <p class="des_event_para max-lines">
-                  Le Lorem ipsum sit amet du faux texte employe
+                  {{ restb.Description }}
                 </p>
+              </div>
+              <div class="text-center">
+                <a
+                  class="btn btn-primary des_event_btn"
+                  (click)="gotoTeambuilding(restb)"
+                  style="margin-top: 15px;"
+                  >Reserve maintenant</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="teambuildingRecordCount > 2">
+            <div class="col-xs-12 col-md-12">
+              <div class="text-center">
+                <a
+                  class="btn btn-primary des_event_btn"
+                  (click)="gotoStage(res)"
+                  style="margin-top: 15px;"
+                  >Voir plus</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+
+      <div class="coach_deseventopen" *ngIf="animationsRecord.length > 0">
+        <h3>ANIMATIONS</h3>
+        <div class="row">
+          <div class="col-xs-12 col-md-6" *ngFor="let resan of animationsRecord">
+            <div class="des_events_bg" style="box-shadow: 2px 1px 9px 2px #dbd5d5;">
+              <img src="{{ resan.Photo }}" style="max-height: 200px; width: 100%;" />
+              <div class=" ">
+                <p class="des_event_para max-lines">
+                  {{ resan.Description }}
+                </p>
+              </div>
+              <div class="text-center">
+                <a class="btn btn-primary des_event_btn" (click)="gotoAnimations(resan)" style="margin-top: 15px;">Reserve
+                  maintenant</a>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="animationsRecordCount > 2">
+            <div class="col-xs-12 col-md-12">
+              <div class="text-center">
+                <a class="btn btn-primary des_event_btn" (click)="gotoStage(res)" style="margin-top: 15px;">Voir plus</a>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+
+      <div class="coach_deseventopen" *ngIf="tournamentRecord.length > 0">
+        <h3>TOURNAMENT</h3>
+        <div class="row">
+          <div class="col-xs-12 col-md-6" *ngFor="let resTR of tournamentRecord">
+            <div class="des_events_bg" style="box-shadow: 2px 1px 9px 2px #dbd5d5;">
+              <img src="{{ resTR.Photo }}" style="max-height: 200px; width: 100%;" />
+              <div class=" ">
+                <p class="des_date_sec">
+                  <span>{{ resTR.Date }}</span>{{ resTR.Month_Year }}
+                </p>
+                <p class="des_event_sub_title">
+                  {{ resTR.Tournamentname.toUpperCase() }}
+                </p>
+                <p class="des_event_para max-lines">
+                  {{ resTR.Description }}
+                </p>
+              </div>
+              <div class="text-center">
+                <a class="btn btn-primary des_event_btn" (click)="gotoTournament(resTR)" style="margin-top: 15px;">Reserve
+                  maintenant</a>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="tournamentRecordCount > 2">
+            <div class="col-xs-12 col-md-12">
+              <div class="text-center">
+                <a class="btn btn-primary des_event_btn" (click)="gotoStage(res)" style="margin-top: 15px;">Voir plus</a>
               </div>
             </div>
           </div>
@@ -815,7 +948,7 @@
           Avis Clients &nbsp;&nbsp;<span style="color:#e75b00;">(20)</span>
         </h3>
 
-        <form class="text-left">
+        <!-- <form class="text-left">
           <textarea
             class="don_avis"
             name="don_avis"
@@ -830,7 +963,7 @@
             class="btn des_event_btn"
             style="margin-top: 8px;"
           />
-        </form>
+        </form> -->
 
         <div class="testimonial_outer">
           <div class="testimonial_avis">
@@ -961,7 +1094,7 @@
 </div>
 <div class="clearfix"></div>
 
-<div class="bot_mapsection">
+<!-- <div class="bot_mapsection">
   <p class="des_map_content">
     Intervention géographique :
     <select class="select_drop_custom">
@@ -973,10 +1106,10 @@
   </p>
 
   <!-- Map section starts -->
-  <div class="clearfix"></div>
+<!-- <div class="clearfix"></div>
   <div class="newcoachlist">
-    <div class="mapsection">
-      <!-- <iframe
+    <div class="mapsection"> -->
+<!-- <iframe
           src="https://maps.google.com/maps?q=11.9416,79.8083&hl=es&z=14&amp;output=embed"
           width="100%"
           height="350"
@@ -985,21 +1118,21 @@
           allowfullscreen=""
         ></iframe> -->
 
-      <div class="map-container">
-        <div class="map-frame">
-          <!-- <a href="https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route={{curentlat}}%2C{{curentlang}}%3B{{lat}}%2C{{lang}}"
+<!-- <div class="map-container">
+        <div class="map-frame"> -->
+<!-- <a href="https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route={{curentlat}}%2C{{curentlang}}%3B{{lat}}%2C{{lang}}"
               target="_blank"> -->
-          <div id="map"></div>
-          <!-- </a> -->
-        </div>
-      </div>
-      <!-- End of map-container-->
-    </div>
-    <!-- Map section ends -->
-  </div>
+<!-- <div id="map"></div> -->
+<!-- </a> -->
+<!-- </div>
+      </div> -->
+<!-- End of map-container-->
+<!-- </div> -->
+<!-- Map section ends -->
+<!-- </div> -->
 
-  <div class="clearfix"></div>
-</div>
+<!-- <div class="clearfix"></div>
+</div>  -->
 
 <div class="cours_testimonial">
   <div class="container">

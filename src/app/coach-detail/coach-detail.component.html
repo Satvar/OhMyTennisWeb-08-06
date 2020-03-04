@@ -151,7 +151,7 @@
                                 <img src="../../assets/images/detail_icon2.png" />{{ this.str }}
                             </p>
                             </div> -->
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="coach_detail.Coach_Resume == ''">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite" *ngIf="coach_detail.Coach_Resume != ''">
                                
                                     <a id="resume" download="{{ coach_detail.Coach_Resume }}" (click)="download()" href="#"
                                         class="des_icon_class "><img src="../../assets/images/detail_icon3.png" /> Curriculum
@@ -159,7 +159,7 @@
                                     </a>
                                 
                             </div>
-                            <div disabled class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite disable_select" *ngIf="coach_detail.Coach_Resume != ''">                      <p>      
+                            <div disabled class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite disable_select" *ngIf="coach_detail.Coach_Resume == ''">                      <p>      
                                 <img src="../../assets/images/detail_icon2.png" /> Curriculum vitae      </p>                      
                             </div>
                             <div class="clearfix lg-block"></div>
