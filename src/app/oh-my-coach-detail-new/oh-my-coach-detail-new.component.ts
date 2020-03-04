@@ -147,6 +147,14 @@ export class OhMyCoachDetailNewComponent implements OnInit {
   public rer: boolean = false;
   public tram: boolean = false;
 
+  public CoursIndividuel: boolean = false;
+  public CoursCollectifOndemand: boolean = false;
+  public CoursCollectifClub: boolean = false;
+  public Stage: boolean = false;
+  public TeamBuilding: boolean = false;
+  public Animations: boolean = false;
+  public Tournament: boolean = false;
+
   public moment_date: any;
   public temps: string = "";
   public Video: any;
@@ -249,6 +257,19 @@ export class OhMyCoachDetailNewComponent implements OnInit {
               this.coach_detail
             );
             this.service = this.coach_detail.Coach_Services.split(",");
+            this.CoursIndividuel = this.service.includes("CoursIndividuel");
+
+            console.log("test", this.CoursIndividuel);
+            this.CoursCollectifOndemand = this.service.includes(
+              "CoursCollectifOndemand"
+            );
+            this.CoursCollectifClub = this.service.includes(
+              "CoursCollectifClub"
+            );
+            this.Stage = this.service.includes("Stage");
+            this.TeamBuilding = this.service.includes("TeamBuilding");
+            this.Animations = this.service.includes("Animations");
+            this.Tournament = this.service.includes("Tournament");
             console.log(
               "oh-my-coach-detail-new.component.ts - line 252",
               this.service

@@ -116,7 +116,12 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 border_bgwhite">
               <p class="des_icon_class" id="transport">
                 <img src="../../assets/images/road_icon.png" />
-                {{ coach_detail.Coach_transport }}
+                <!-- {{ coach_detail.Coach_transport }} -->
+                <span>Voiture,</span>
+                <span>Bus,</span>
+                <span>Métro,</span>
+                <span>RER,</span>
+                <span>Tram</span>
               </p>
             </div>
             <div
@@ -177,47 +182,46 @@
         Fournisseur de services
       </h3>
       <div class="row">
-        <div class="co-xs-12 col-md-5" *ngIf="service[0].length > 0">
+        <div class="co-xs-12 col-md-5">
           <h4 class="train_title">MY TRAINING</h4>
-          <div *ngFor="let ser of service">
+          <div>
             <div
               class="train_secdiv train_secdiv1"
-              *ngIf="ser == 'CoursIndividuel'"
-              (click)="gotoCouch(ser, coach_detail)"
+              *ngIf="CoursIndividuel == true"
+              (click)="gotoCouch('CoursIndividuel', coach_detail)"
+            >
+              <h2>Course Individual</h2>
+            </div>
+            <div
+              class="train_secdiv train_secdiv1"
+              *ngIf="CoursIndividuel == false"
             >
               <h2>Course Individual</h2>
             </div>
             <div
               class="train_secdiv train_secdiv2"
-              *ngIf="ser == 'CoursCollectifOndemand'"
-              (click)="gotoCouch(ser, coach_detail)"
+              *ngIf="CoursCollectifOndemand == true"
+              (click)="gotoCouch('CoursCollectifOndemand', coach_detail)"
+            >
+              <h2>colective on-demand</h2>
+            </div>
+            <div
+              class="train_secdiv train_secdiv2"
+              *ngIf="CoursCollectifOndemand == false"
             >
               <h2>colective on-demand</h2>
             </div>
             <div
               class="train_secdiv train_secdiv3"
-              *ngIf="ser == 'CoursCollectifClub'"
-              (click)="gotoCouch(ser, coach_detail)"
+              *ngIf="CoursCollectifClub == true"
+              (click)="gotoCouch('CoursCollectifClub', coach_detail)"
             >
               <h2>colective club</h2>
             </div>
-          </div>
-          <!-- <div *ngIf="service[0].length == 0">
-                <div class="train_secdiv train_secdiv3">
-                    <h2>No Course</h2>
-                </div>
-            </div> -->
-        </div>
-        <div class="co-xs-12 col-md-5" *ngIf="service[0].length == 0">
-          <h4 class="train_title">MY TRAINING</h4>
-          <div *ngFor="let ser of service">
-            <div class="train_secdiv train_secdiv1">
-              <h2>Course Individual</h2>
-            </div>
-            <div class="train_secdiv train_secdiv2">
-              <h2>colective on-demand</h2>
-            </div>
-            <div class="train_secdiv train_secdiv3">
+            <div
+              class="train_secdiv train_secdiv3"
+              *ngIf="CoursCollectifClub == false"
+            >
               <h2>colective club</h2>
             </div>
           </div>
@@ -226,27 +230,52 @@
           <h4 class="train_title">MY EVENTS</h4>
           <div class="~row">
             <div class="co-xs-12 col-md-6 no_padding">
-              <div class="train_secdiv train_secdiv4">
+              <div class="train_secdiv train_secdiv4" *ngIf="Stage == true">
                 <h2>stage</h2>
               </div>
-              <div class="train_secdiv train_secdiv5">
+              <div class="train_secdiv train_secdiv4" *ngIf="Stage == false">
+                <h2>stage</h2>
+              </div>
+              <div
+                class="train_secdiv train_secdiv5"
+                *ngIf="TeamBuilding == true"
+              >
                 <h2>team building</h2>
               </div>
-              <div class="train_secdiv train_secdiv6">
+              <div
+                class="train_secdiv train_secdiv5"
+                *ngIf="TeamBuilding == false"
+              >
+                <h2>team building</h2>
+              </div>
+              <div
+                class="train_secdiv train_secdiv6"
+                *ngIf="Animations == true"
+              >
+                <h2>animation</h2>
+              </div>
+              <div
+                class="train_secdiv train_secdiv6"
+                *ngIf="Animations == false"
+              >
                 <h2>animation</h2>
               </div>
             </div>
             <div class="co-xs-12 col-md-6 no_padding">
-              <div class="train_secdiv train_secdiv7">
+              <div
+                class="train_secdiv train_secdiv7"
+                *ngIf="Tournament == true"
+              >
+                <h2>tournament</h2>
+              </div>
+              <div
+                class="train_secdiv train_secdiv7"
+                *ngIf="Tournament == false"
+              >
                 <h2>tournament</h2>
               </div>
             </div>
           </div>
-          <!-- <div *ngIf="service[0].length == 0">
-                        <div class="train_secdiv train_secdiv3">
-                            <h2>No Course</h2>
-                        </div>
-                    </div> -->
         </div>
         <div class="clearfix"></div>
       </div>
