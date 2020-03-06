@@ -579,6 +579,19 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     }
   }
 
+  gotoVoirPlus(event_type, coach) {
+    localStorage.setItem("coach_id", coach);
+    if(event_type == 'stage') {
+      this.router.navigate(["/coach-stage"]);
+    } else if(event_type == 'teambuilding') {
+      this.router.navigate(["/coach-teambuilding"]);
+    } else if(event_type == 'animations') {
+      this.router.navigate(["/coach-animations"]);
+    } else if(event_type == 'tournament') {
+      this.router.navigate(["/coach-tounament"]);
+    }
+  }
+
   formatDate(date) {
     date = moment(date).toDate();
     var monthNames = [

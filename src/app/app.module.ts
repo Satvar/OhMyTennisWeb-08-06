@@ -1,5 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+// search module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -139,6 +141,10 @@ import { GuideDesTerrainsPratiqueComponent } from "./guide-des-terrains-pratique
 import { SitemapComponent } from "./sitemap/sitemap.component";
 import { PratiqueLicenseComponent } from "./pratique-license/pratique-license.component";
 import { CmsFrontComponent } from "./pages/cms/cms-front.component";
+import { AllTournamentComponent } from "./all-tournament/all-tournament.component";
+import { AllAnimationsComponent } from "./all-animations/all-animations.component";
+import { AllStageComponent } from "./all-stage/all-stage.component";
+import { AllTeambuildingComponent } from "./all-teambuilding/all-teambuilding.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -429,6 +435,22 @@ const routes: Routes = [
     component: PratiqueLicenseComponent
   },
   {
+    path: CONST.PATH.ALL_TOUNAMENT,
+    component: AllTournamentComponent
+  },
+  {
+    path: CONST.PATH.ALL_TEAMBUILDING,
+    component: AllTeambuildingComponent
+  },
+  {
+    path: CONST.PATH.ALL_STAGE,
+    component: AllStageComponent
+  },
+  {
+    path: CONST.PATH.ALL_ANIMATIONS,
+    component: AllAnimationsComponent
+  },
+  {
     path: CONST.PATH.USERS.CMS.SELF + "/:endpoint",
     component: CmsFrontComponent
   },
@@ -525,6 +547,8 @@ export function getAuthServiceConfigs() {
     GuideDesTerrainsPratiqueComponent,
     SitemapComponent,
     PratiqueLicenseComponent,
+    AllTournamentComponent,
+    AllAnimationsComponent, AllStageComponent, AllTeambuildingComponent
   ],
   imports: [
     BrowserModule,
@@ -540,6 +564,7 @@ export function getAuthServiceConfigs() {
     XunkCalendarModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule
+    , Ng2SearchPipeModule
   ],
   providers: [
     AppService,

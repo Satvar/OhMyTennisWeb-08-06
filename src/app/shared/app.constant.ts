@@ -38,6 +38,10 @@ export const CONST = Object.freeze({
     GUIDE_DES_TERRAINS_PRATIQUE: "guide-des-terrains-pratique",
     SITE_MAP: "sitemap",
     PRATIQUE_LICENSE: "pratique-license",
+    ALL_TOUNAMENT: "coach-tounament",
+    ALL_TEAMBUILDING: "coach-teambuilding",
+    ALL_ANIMATIONS: "coach-animations",
+    ALL_STAGE: "coach-stage",
     CONCEPTS: {
       SELF: "concept",
       CONCEPT: {

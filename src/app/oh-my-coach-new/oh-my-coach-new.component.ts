@@ -69,6 +69,8 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
 
   private allItems: any[];
 
+  searchText;
+
   // pager object
   pager: any = {};
 
@@ -335,4 +337,14 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
       }
     });
   }
+
+  //rechercherfun() {
+    //console.log("oh-my-coach-new.component.ts - line 342",this.rechercher)
+    //  const availableFilters = [{ status: 'done' }, { other: false }], // your filters
+    //   filters = Object.entries(Object.assign(availableFilters)), // returns an array of the filter's own enumerable property
+    //    result = this.allItems.filter(o => filters.every(([k, v]) => o[k] === v)); // .every returns true, when every item is fulfilling the condition
+
+    // console.log(result);
+
+  //}
 }
