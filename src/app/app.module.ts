@@ -139,6 +139,12 @@ import { GuideDesTerrainsPratiqueComponent } from "./guide-des-terrains-pratique
 import { SitemapComponent } from "./sitemap/sitemap.component";
 import { PratiqueLicenseComponent } from "./pratique-license/pratique-license.component";
 import { CmsFrontComponent } from "./pages/cms/cms-front.component";
+import { CoursDeTennisComponent } from './cours-de-tennis/cours-de-tennis.component';
+import { RecrutementComponent } from './recrutement/recrutement.component';
+import { NewslettersComponent } from './newsletters/newsletters.component';
+import { QuisommenousComponent } from './quisommenous/quisommenous.component';
+import { FaqComponent } from './faq/faq.component';
+import { EnsavoirplusComponent } from './ensavoirplus/ensavoirplus.component';
 
 registerLocaleData(localeFr, "fr");
 
@@ -413,6 +419,30 @@ const routes: Routes = [
     component: MentionslegalesComponent
   },
   {
+    path: CONST.PATH.COURDETENNIS,
+    component: CoursDeTennisComponent
+  },
+  {
+    path: CONST.PATH.FAQ,
+    component: FaqComponent
+  },
+  {
+    path: CONST.PATH.QUISOMMENOUS,
+    component: QuisommenousComponent
+  },
+  {
+    path: CONST.PATH.RECRUTEMENT,
+    component: RecrutementComponent
+  },
+  {
+    path: CONST.PATH.ENSAVIORPLUS,
+    component: EnsavoirplusComponent
+  },
+  {
+    path: CONST.PATH.NEWSLETTERS,
+    component:NewslettersComponent
+  },
+  {
     path: CONST.PATH.OH_MY_COACH_DETAIL_NEW,
     component: OhMyCoachDetailNewComponent
   },
@@ -525,6 +555,12 @@ export function getAuthServiceConfigs() {
     GuideDesTerrainsPratiqueComponent,
     SitemapComponent,
     PratiqueLicenseComponent,
+    CoursDeTennisComponent,
+    RecrutementComponent,
+    NewslettersComponent,
+    QuisommenousComponent,
+    FaqComponent,
+    EnsavoirplusComponent,
   ],
   imports: [
     BrowserModule,
