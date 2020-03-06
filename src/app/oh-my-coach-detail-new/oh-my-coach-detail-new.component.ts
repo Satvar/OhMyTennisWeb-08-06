@@ -117,8 +117,7 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     Coach_Bank_City: "",
     Coach_payment_type: "",
     Coach_transport: "",
-    Coach_Image:
-      "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png",
+    Coach_Image: "../../assets/images/profile_blackwhite.png",
     Coach_Resume: "",
     ResumeName: ""
   };
@@ -132,6 +131,15 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     person: ""
   };
 
+  public stageRecord: any = [];
+  public stageRecordCount: number;
+  public teambuildingRecord: any = [];
+  public teambuildingRecordCount: number;
+  public animationsRecord: any = [];
+  public animationsRecordCount: number;
+  public tournamentRecord: any = [];
+  public tournamentRecordCount: number;
+
   public book_coach = {
     P_CoachId: "",
     P_CourseId: "",
@@ -141,6 +149,22 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     P_Amount: "",
     P_Remarks: ""
   };
+
+  public voiture: boolean = false;
+  public bus: boolean = false;
+  public metro: boolean = false;
+  public rer: boolean = false;
+  public tram: boolean = false;
+
+  public CoursIndividuel: boolean = false;
+  public CoursCollectifOndemand: boolean = false;
+  public CoursCollectifClub: boolean = false;
+  public Stage: boolean = false;
+  public TeamBuilding: boolean = false;
+  public Animations: boolean = false;
+  public Tournament: boolean = false;
+
+  public coach_id: number;
 
   public moment_date: any;
   public temps: string = "";
@@ -222,6 +246,7 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     const coachID: string = this.activatedRoute.snapshot.queryParamMap.get(
       "id"
     );
+    this.coach_id = parseInt(coachID);
     const coachId = {
       id: coachID
     };
@@ -232,16 +257,35 @@ export class OhMyCoachDetailNewComponent implements OnInit {
         .subscribe(async response => {
           if (response && response["data"]) {
             this.coach_detail = response.data.coach_list[0];
+            var transportData = this.coach_detail.Coach_transport.split(", ");
+            this.voiture = transportData.includes("voiture");
+            this.bus = transportData.includes("bus");
+            this.metro = transportData.includes("métro");
+            this.rer = transportData.includes("rer");
+            this.tram = transportData.includes("tram");
             this.profileImage = this.transform(this.coach_detail.Coach_Image);
-            console.log(
-              "oh-my-coach-detail-new.component.ts - line 237",
-              this.coach_detail
-            );
+
             this.service = this.coach_detail.Coach_Services.split(",");
-            console.log(
-              "oh-my-coach-detail-new.component.ts - line 242",
-              this.service[0].length
+            this.CoursIndividuel = this.service.includes("CoursIndividuel");
+            this.CoursCollectifOndemand = this.service.includes(
+              "CoursCollectifOndemand"
             );
+            this.CoursCollectifClub = this.service.includes(
+              "CoursCollectifClub"
+            );
+            this.Stage = this.service.includes("Stage");
+            this.TeamBuilding = this.service.includes("TeamBuilding");
+            this.Animations = this.service.includes("Animations");
+            this.Tournament = this.service.includes("Tournament");
+            if (this.Stage) {
+              this.getEventData("stage", this.coach_id);
+            } else if (this.TeamBuilding) {
+              this.getEventData("teambuilding", this.coach_id);
+            } else if (this.Animations) {
+              this.getEventData("animations", this.coach_id);
+            } else if (this.Tournament) {
+              this.getEventData("tournament", this.coach_id);
+            }
             this.spinner.hide();
           }
         });
@@ -259,7 +303,7 @@ export class OhMyCoachDetailNewComponent implements OnInit {
       this.courseActive = courseSegment;
     }
     this.appService
-      .getAll("/course/getindividualcourse", coachID)
+      .getAll("/course/getindividualcourses/" + coachID)
       .subscribe(response => {
         if ((response as any).data.course.length > 0) {
           if (response && response["data"]) {
@@ -286,9 +330,69 @@ export class OhMyCoachDetailNewComponent implements OnInit {
               });
           }
         }
-        this.couchdetail();
+        //this.couchdetail();
         // this.spinner.hide();
       });
+  }
+
+  getEventData(eventname, coachId) {
+    console.log(coachId);
+    this.stageRecord = [];
+    this.teambuildingRecord = [];
+    this.animationsRecord = [];
+    this.tournamentRecord = [];
+
+    if (eventname == "stage") {
+      this.appService
+        .getAll("/coach/getstagebycoachid/" + coachId)
+        .subscribe(async stageRes => {
+          if (stageRes && (stageRes as any).data.stage_list.length > 0) {
+            this.stageRecord = (stageRes as any).data.stage_list;
+            this.stageRecordCount = (stageRes as any).data.count;
+            for (var i = 0; i < 2; i++) {
+              var split = this.formatDate(this.stageRecord[i].from_date).split(
+                "-"
+              );
+              this.stageRecord[i].Date = split[0];
+              this.stageRecord[i].Month_Year = split[1];
+            }
+          }
+        });
+    } else if (eventname == "teambuilding") {
+      this.appService
+        .getAll("/coach/getteambuildingbycoachid/" + coachId)
+        .subscribe(async teambuildingRes => {
+          this.teambuildingRecord = (teambuildingRes as any).data.teambuilding_list;
+          if (this.teambuildingRecord && this.teambuildingRecord.length > 0) {
+            this.teambuildingRecordCount = (teambuildingRes as any).data.count;
+          }
+        });
+    } else if (eventname == "animations") {
+      this.appService
+        .getAll("/coach/getanimationsbycoachid/" + coachId)
+        .subscribe(async animationsRes => {
+          this.animationsRecord = (animationsRes as any).data.animations_list;
+          if (this.animationsRecord && this.animationsRecord.length > 0) {
+            this.animationsRecordCount = (animationsRes as any).data.count;
+          }
+        });
+    } else if (eventname == "tournament") {
+      this.appService
+        .getAll("/coach/gettournamentbycoachid/" + coachId)
+        .subscribe(async tournamentRes => {
+          this.tournamentRecord = (tournamentRes as any).data.tournament_list;
+          if (this.tournamentRecord && this.tournamentRecord.length > 0) {
+            for (var i = 0; i < 2; i++) {
+              var split = this.formatDate(
+                this.tournamentRecord[i].from_date
+              ).split("-");
+              this.tournamentRecord[i].Date = split[0];
+              this.tournamentRecord[i].Month_Year = split[1];
+            }
+            this.tournamentRecordCount = (tournamentRes as any).data.count;
+          }
+        });
+    }
   }
 
   displayLoadedMap(latitude, longitude, radius) {
@@ -433,5 +537,81 @@ export class OhMyCoachDetailNewComponent implements OnInit {
     } else {
       this.router.navigate(["/login"]);
     }
+  }
+
+  gotoStage(res) {
+    if (localStorage.getItem("onmytennis") !== null) {
+      var data = JSON.stringify(res);
+      localStorage.setItem("Event", data);
+      this.router.navigate(["/stage-detail"]);
+    } else {
+      this.router.navigate(["/login"]);
+    }
+  }
+
+  gotoTeambuilding(res) {
+    if (localStorage.getItem("onmytennis") !== null) {
+      var data = JSON.stringify(res);
+      localStorage.setItem("Event", data);
+      this.router.navigate(["/team-building-detail"]);
+    } else {
+      this.router.navigate(["/login"]);
+    }
+  }
+
+  gotoAnimations(res) {
+    if (localStorage.getItem("onmytennis") !== null) {
+      var data = JSON.stringify(res);
+      localStorage.setItem("Event", data);
+      this.router.navigate(["/animation-detail"]);
+    } else {
+      this.router.navigate(["/login"]);
+    }
+  }
+
+  gotoTournament(res) {
+    if (localStorage.getItem("onmytennis") !== null) {
+      var data = JSON.stringify(res);
+      localStorage.setItem("Event", data);
+      this.router.navigate(["/tournament-detail"]);
+    } else {
+      this.router.navigate(["/login"]);
+    }
+  }
+
+  gotoVoirPlus(event_type, coach) {
+    localStorage.setItem("coach_id", coach);
+    if(event_type == 'stage') {
+      this.router.navigate(["/coach-stage"]);
+    } else if(event_type == 'teambuilding') {
+      this.router.navigate(["/coach-teambuilding"]);
+    } else if(event_type == 'animations') {
+      this.router.navigate(["/coach-animations"]);
+    } else if(event_type == 'tournament') {
+      this.router.navigate(["/coach-tounament"]);
+    }
+  }
+
+  formatDate(date) {
+    date = moment(date).toDate();
+    var monthNames = [
+      "January",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre"
+    ];
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var trans = monthNames[monthIndex];
+    return day + "-" + trans;
   }
 }

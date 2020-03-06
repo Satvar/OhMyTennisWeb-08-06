@@ -1,65 +1,63 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AppService } from '../shared/app.service';
-import { AppComponent } from '../app.component';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Location } from '@angular/common';
-import { FullCalendarComponent } from '@fullcalendar/angular';
-import dayGridView from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import * as moment from 'moment';
-import * as $ from 'jquery'
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { AppService } from "../shared/app.service";
+import { AppComponent } from "../app.component";
+import { ActivatedRoute, Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
+import { Location } from "@angular/common";
+import { FullCalendarComponent } from "@fullcalendar/angular";
+import dayGridView from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import * as moment from "moment";
+import * as $ from "jquery";
 @Component({
-  selector: 'app-oh-my-coach-detail',
-  templateUrl: './oh-my-coach-detail.component.html',
-  styleUrls: ['./oh-my-coach-detail.component.scss']
+  selector: "app-oh-my-coach-detail",
+  templateUrl: "./oh-my-coach-detail.component.html",
+  styleUrls: ["./oh-my-coach-detail.component.scss"]
 })
-
 export class OhMyCoachDetailComponent implements OnInit {
-  public Ville: any= null;
+  public Ville: any = null;
   public selectedCity: any = null;
   public alertMsg: any = {
-    type: '',
-    msg: '',
+    type: "",
+    msg: "",
     show: false
   };
   public min = new Date();
   public calender = [];
-  calendarPlugins = [dayGridView, interactionPlugin]
+  calendarPlugins = [dayGridView, interactionPlugin];
   public UserAviablility: any = [];
   calendarOptions = {
     format: "DD-MM-YYYY",
     firstWeekdaySunday: false
   };
 
-
   public timeslot = {
     description: "",
     session: "",
     availability: ""
-  }
+  };
 
   public booking = {
-    "Coach_ID": "",
-    "user_Id": "",
-    "payment_Id": 0,
-    "status": "",
-    "bookingDate": "",
-    "bookingCourse": "",
-    "amount": "",
-    "coach_Email": "",
-    "user_Email": "",
-    "coach_Name": "",
-    "user_Name": "",
-    "paymentStatus": "",
-    "session": [],
-    "bookingDateRange": ""
-  }
+    Coach_ID: "",
+    user_Id: "",
+    payment_Id: 0,
+    status: "",
+    bookingDate: "",
+    bookingCourse: "",
+    amount: "",
+    coach_Email: "",
+    user_Email: "",
+    coach_Name: "",
+    user_Name: "",
+    paymentStatus: "",
+    session: [],
+    bookingDateRange: ""
+  };
 
-public str : any = null;
+  public str: any = null;
 
-  public course = localStorage.getItem('Course');
+  public course = localStorage.getItem("Course");
 
   public coach_detail = {
     Coach_Fname: "",
@@ -67,9 +65,9 @@ public str : any = null;
     Coach_Lname: "",
     Coach_Email: "",
     Coach_Phone: "",
-    InstagramURL:"",
-    FacebookURL:"",
-    TwitterURL:"",
+    InstagramURL: "",
+    FacebookURL: "",
+    TwitterURL: "",
     Coach_Description: "",
     Coach_Experience: "",
     Coach_Rayon: "",
@@ -82,30 +80,29 @@ public str : any = null;
     Coach_Bank_City: "",
     Coach_payment_type: "",
     Coach_transport: "",
-    Coach_Image: "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png",
+    Coach_Image: "../../assets/images/profile_blackwhite.png",
     Coach_Resume: "",
-    ResumeName: "",
-    
-  }
+    ResumeName: ""
+  };
 
   public course_demand = {
-    "Price_2pl_1hr": "",
-    "Price_3pl_1hr": "",
-    "Price_4pl_1hr": "",
-    "Price_5pl_1hr": "",
-    "Price_6pl_1hr": "",
-    "person": ""
-  }
+    Price_2pl_1hr: "",
+    Price_3pl_1hr: "",
+    Price_4pl_1hr: "",
+    Price_5pl_1hr: "",
+    Price_6pl_1hr: "",
+    person: ""
+  };
 
   public book_coach = {
-    "P_CoachId": "",
-    "P_CourseId": "",
-    "P_Date": "",
-    "P_Hour": "",
-    "P_UserId": "",
-    "P_Amount": "",
-    "P_Remarks": ""
-  }
+    P_CoachId: "",
+    P_CourseId: "",
+    P_Date: "",
+    P_Hour: "",
+    P_UserId: "",
+    P_Amount: "",
+    P_Remarks: ""
+  };
 
   public moment_date: any;
   public temps: string = "";
@@ -137,12 +134,10 @@ public str : any = null;
   public step_3 = false;
   public showclub = false;
   public Timeslotdata = {
-    "Start_Date": "",
-    "Coach_ID": "",
-    "Course": ""
-  }
-
-
+    Start_Date: "",
+    Coach_ID: "",
+    Course: ""
+  };
 
   constructor(
     public sanitizer: DomSanitizer,
@@ -152,7 +147,6 @@ public str : any = null;
     public Location: Location,
     public spinner: NgxSpinnerService
   ) {
-
     this.slidecnt = 4;
   }
 
@@ -160,113 +154,110 @@ public str : any = null;
     var datas = this.UserAviablility;
   }
 
-  @ViewChild('calendar', { static: false }) calendarComponent: FullCalendarComponent;
-
+  @ViewChild("calendar", { static: false })
+  calendarComponent: FullCalendarComponent;
 
   ngOnInit() {
-  
-    this.spinner.show()
+    this.spinner.show();
     if (window.innerWidth > 1024) {
       this.slidecnt = 4;
-    }
-    else if (window.innerWidth > 768) {
+    } else if (window.innerWidth > 768) {
       this.slidecnt = 3;
-    }
-    else {
+    } else {
       this.slidecnt = 2;
     }
     this.coachSlider();
 
     this.couchdetail();
 
-    var pcode=localStorage.getItem("onmytennis")
-    var postalCode= JSON.parse(JSON.parse(pcode));
-    this.Ville=postalCode.postalCode;
-    
-      }
+    var pcode = localStorage.getItem("onmytennis");
+    var postalCode = JSON.parse(JSON.parse(pcode));
+    this.Ville = postalCode.postalCode;
+  }
 
-  handleDateClick(arg) { // handler method
+  handleDateClick(arg) {
+    // handler method
     this.spinner.show();
     $(".day-highlight").removeClass("day-highlight");
     $(arg.dayEl).addClass("day-highlight");
-    var course = localStorage.getItem('Course');
+    var course = localStorage.getItem("Course");
     var coach = JSON.parse(localStorage.getItem("Coach"));
     var detail = {
-      "Start_Date": arg.dateStr,
-      "Coach_ID": coach.id,
-      "Course": course
-    }
+      Start_Date: arg.dateStr,
+      Coach_ID: coach.id,
+      Course: course
+    };
     this.bookingDate = arg.dateStr;
-    console.log( this.bookingDate );
+    console.log(this.bookingDate);
     this.Timeslotdata = {
-      "Start_Date": arg.dateStr,
-      "Coach_ID": coach.id,
-      "Course": course
+      Start_Date: arg.dateStr,
+      Coach_ID: coach.id,
+      Course: course
     };
     if (course != "CoursCollectifClub") {
-      this.appService.getAll('/coach/getTimeslot', detail).subscribe((data) => {
+      this.appService.getAll("/coach/getTimeslot", detail).subscribe(data => {
         this.timeslot = (data as any).data.availabilty;
         this.spinner.hide();
-      })
+      });
     } else {
-      this.showclub = true
+      this.showclub = true;
       this.spinner.hide();
     }
   }
 
   handleClick(event: Event) {
-    this.router.navigate(['/ohmycoach'])
+    this.router.navigate(["/ohmycoach"]);
   }
-
-
 
   closemodal() {
     this.spinner.show();
     this.revokeChanges();
-    $('#available').hide();
-    $('.modal-backdrop').hide();
-    $('body').removeClass("modal-open");
-    this.appService.getAll('/coach/getTimeslot', this.Timeslotdata).subscribe((data) => {
-      this.timeslot = (data as any).data.availabilty[0];
-      this.spinner.hide();
-    })
+    $("#available").hide();
+    $(".modal-backdrop").hide();
+    $("body").removeClass("modal-open");
+    this.appService
+      .getAll("/coach/getTimeslot", this.Timeslotdata)
+      .subscribe(data => {
+        this.timeslot = (data as any).data.availabilty[0];
+        this.spinner.hide();
+      });
   }
 
   closeclub() {
     this.spinner.show();
     this.revokeChanges();
-    $('#clubmodal').hide();
-    $('.modal-backdrop').hide();
-    $('body').removeClass("modal-open");
-    this.spinner.hide()
+    $("#clubmodal").hide();
+    $(".modal-backdrop").hide();
+    $("body").removeClass("modal-open");
+    this.spinner.hide();
   }
 
   revokeChanges() {
     this.booking = {
-      "Coach_ID": "",
-      "user_Id": "",
-      "payment_Id": 0,
-      "status": "",
-      "bookingDate": "",
-      "bookingCourse": "",
-      "amount": "",
-      "coach_Email": "",
-      "user_Email": "",
-      "coach_Name": "",
-      "user_Name": "",
-      "paymentStatus": "",
-      "session": [],
-      "bookingDateRange": ""
-    }
+      Coach_ID: "",
+      user_Id: "",
+      payment_Id: 0,
+      status: "",
+      bookingDate: "",
+      bookingCourse: "",
+      amount: "",
+      coach_Email: "",
+      user_Email: "",
+      coach_Name: "",
+      user_Name: "",
+      paymentStatus: "",
+      session: [],
+      bookingDateRange: ""
+    };
     this.book_coach = {
-      "P_CoachId": "",
-      "P_CourseId": "",
-      "P_Date": "",
-      "P_Hour": "",
-      "P_UserId": "",
-      "P_Amount": "",
-      "P_Remarks": ""
-    }
+      P_CoachId: "",
+      P_CourseId: "",
+      P_Date: "",
+      P_Hour: "",
+      P_UserId: "",
+      P_Amount: "",
+      P_Remarks: ""
+    };
     this.Amt = 0;
     this.bookArray = [];
     this.session = [];
@@ -276,63 +267,65 @@ public str : any = null;
 
   formatDate(date) {
     var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
       year = d.getFullYear();
 
-    if (month.length < 2)
-      month = '0' + month;
-    if (day.length < 2)
-      day = '0' + day;
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
 
-    return [year, month, day].join('-');
+    return [year, month, day].join("-");
   }
 
   bookCoach() {
     var req = {
       bookArray: this.bookArray
-    }
-    this.spinner.show()
-    this.appService.create('/coach/setreservation', req).subscribe((response) => {
+    };
+    this.spinner.show();
+    this.appService.create("/coach/setreservation", req).subscribe(response => {
       if (response && response.isSuccess == true) {
         document.getElementById("btnbooking").style.display = "none";
-        this._showAlertMessage('alert-success', 'Cours réservé avec succès');
+        this._showAlertMessage("alert-success", "Cours réservé avec succès");
+      } else {
+        this._showAlertMessage(
+          "alert-danger",
+          "La réservation du cours a échoué"
+        );
       }
-      else {
-        this._showAlertMessage('alert-danger', 'La réservation du cours a échoué');
-      }
-      this.spinner.hide()
-    })
+      this.spinner.hide();
+    });
   }
 
   couchdetail() {
     this.spinner.show();
     var coach = JSON.parse(localStorage.getItem("Coach"));
     var coachemail = {
-      "Coach_Email": coach.Coach_Email
-    }
+      Coach_Email: coach.Coach_Email
+    };
 
-    this.setCoachName = localStorage.getItem("sendCoachDetails")
+    this.setCoachName = localStorage.getItem("sendCoachDetails");
     //console.log('setcoachname',setCoachName)
 
-    this.appService.create('/coach/getcoachbyid', coachemail).subscribe(async (response) => {
-      if (response && response['data']) {
-        this.coach_detail = response.data.coach_list[0];
-        //console.log('coachdetail',this.coach_detail);
-        var temp = new Array();
-        temp = this.coach_detail.Coach_payment_type.split(",");
-        //console.log(temp[0]);
-        this.str = temp.join(', ');
-        
-        this.spinner.hide();
-      }
-    });
-  } 
+    this.appService
+      .create("/coach/getcoachbyid", coachemail)
+      .subscribe(async response => {
+        if (response && response["data"]) {
+          this.coach_detail = response.data.coach_list[0];
+          //console.log('coachdetail',this.coach_detail);
+          var temp = new Array();
+          temp = this.coach_detail.Coach_payment_type.split(",");
+          //console.log(temp[0]);
+          this.str = temp.join(", ");
+
+          this.spinner.hide();
+        }
+      });
+  }
 
   download() {
     if (this.coach_detail.Coach_Resume) {
       var blob = this.dataURLtoBlob(this.coach_detail.Coach_Resume);
-      var link = document.createElement('a');
+      var link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
       link.download = this.coach_detail.ResumeName;
       link.click();
@@ -340,7 +333,7 @@ public str : any = null;
   }
 
   dataURLtoBlob(dataurl) {
-    var arr = dataurl.split(',');
+    var arr = dataurl.split(",");
     var mime = arr[0].match(/:(.*?);/)[1];
     var bstr = window.atob(arr[1]);
     var n = bstr.length;
@@ -366,28 +359,27 @@ public str : any = null;
       }
     };
     var Data: any;
-    this.appService.getAll('/coach/getallcoaches')
-      .subscribe(response => {
-        Data = response;
-        Data.data.coach_list.forEach(element => {
-          this.slides.data.push({
-            img: element.Coach_Image,
-            name: element.Coach_Fname + ' ' + element.Coach_Lname,
-            comment: element.Coach_Description
-          });
+    this.appService.getAll("/coach/getallcoaches").subscribe(response => {
+      Data = response;
+      Data.data.coach_list.forEach(element => {
+        this.slides.data.push({
+          img: element.Coach_Image,
+          name: element.Coach_Fname + " " + element.Coach_Lname,
+          comment: element.Coach_Description
         });
       });
+    });
   }
 
   enable10h() {
     this.price = this.Indiv_10hr;
     this.is10Hr = true;
-    $('#amount').html('Totale: €' + ' ' + this.price);
+    $("#amount").html("Totale: €" + " " + this.price);
     this.hide10h();
   }
 
   hide10h() {
-    $('#10hrposter').hide();
+    $("#10hrposter").hide();
   }
 
   openURL() {
@@ -395,30 +387,27 @@ public str : any = null;
   }
 
   _showAlertMessage(c: string, t: string): void {
-    $('.alert-dismissible').show();
+    $(".alert-dismissible").show();
     this.alertMsg.type = c;
     this.alertMsg.msg = t;
     this.alertMsg.show = true;
 
-    setTimeout(function () {
-      $('.alert-dismissible').hide();
-    }, 3000)
+    setTimeout(function() {
+      $(".alert-dismissible").hide();
+    }, 3000);
   }
-
 
   _closeAlertMessage(e) {
     if (e) {
-      this.alertMsg.type = '';
-      this.alertMsg.msg = '';
+      this.alertMsg.type = "";
+      this.alertMsg.msg = "";
       this.alertMsg.show = false;
     }
   }
-  gotoCouch(couch:any)
-  {
-    
+  gotoCouch(couch: any) {
     //alert('sample')
-   localStorage.setItem("sendCoachDetails",couch.name);
-   this.couchdetail();
+    localStorage.setItem("sendCoachDetails", couch.name);
+    this.couchdetail();
     // if (localStorage.getItem("onmytennis") !== null) {
     //   var data = JSON.stringify(res);
     //   localStorage.setItem("Coach", data);
@@ -427,6 +416,6 @@ public str : any = null;
     // } else {
     //   this.router.navigate(['/login'])
     // }
-    this.router.navigate(['/ohmycoachdetail'])
+    this.router.navigate(["/ohmycoachdetail"]);
   }
 }

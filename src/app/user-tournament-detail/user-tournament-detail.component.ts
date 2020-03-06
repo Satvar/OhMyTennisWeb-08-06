@@ -44,8 +44,7 @@ export class UserTournamentDetailComponent extends UserComponent
     Coach_Bank_City: "",
     Coach_payment_type: "",
     Coach_transport: "",
-    Coach_Image:
-      "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png",
+    Coach_Image: "../../assets/images/profile_blackwhite.png",
     Coach_Resume: "",
     ResumeName: ""
   };
@@ -65,6 +64,12 @@ export class UserTournamentDetailComponent extends UserComponent
     Plan: "",
     filename: ""
   };
+
+  public voiture: boolean = false;
+  public bus: boolean = false;
+  public metro: boolean = false;
+  public rer: boolean = false;
+  public tram: boolean = false;
 
   public reserve = {
     Coach_Id: "",
@@ -105,6 +110,14 @@ export class UserTournamentDetailComponent extends UserComponent
           if (response.isSuccess == true) {
             if (response.data.coach_list[0]) {
               this.coach_detail = response.data.coach_list[0];
+
+              var transportData = this.coach_detail.Coach_transport.split(", ");
+              this.voiture = transportData.includes("voiture");
+              this.bus = transportData.includes("bus");
+              this.metro = transportData.includes("métro");
+              this.rer = transportData.includes("rer");
+              this.tram = transportData.includes("tram");
+
               console.log(this.coach_detail);
               this.mapvalues = eval(
                 "[" + this.coach_detail["coordonnees_gps"] + "]"

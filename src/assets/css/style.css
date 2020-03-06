@@ -2680,7 +2680,16 @@ span.grey_mild {
 	color:#fff;
 	font-size:13px;
 	margin:0px;
-	padding:15px 0px;
+	padding:21px 0px;
+}
+.disable_select {
+	background: #9e9e9e;
+}
+.des_icon_class img{
+	height: 20px;
+}
+.disable_select p{
+	color: #e2e2e2;
 }
 .des_detail_sec img{
 	margin-right:8px;
@@ -2691,7 +2700,7 @@ span.grey_mild {
 	color: #fff;
     font-size: 14px;
     margin: 0px;
-    padding: 15px 0px;
+    padding: 19px 0px;
 }
 .des_fav_content{
 	font:16px;
@@ -2808,6 +2817,13 @@ span.grey_mild {
 	cursor: pointer;
 	
 	opacity: 0.7;
+}
+.textenable_wh2 {
+	color: #c3bbbb;
+}
+textenable_wh {
+	color: #ffffff;
+
 }
 .chip2 img {
   float: left;
@@ -3725,7 +3741,7 @@ background-color:#fff;
     background: #fff;
 }
 .form-login h2.form-login-heading {
-    margin: 0;30px!important
+    margin: 0.30px!important;
     padding: 15px 20px;
     text-align: center;
 	background: #e75b00;
@@ -5754,6 +5770,6 @@ body .right_coachprofile img.coachright_image{
 @media (min-width:992px) {
 	.header_top .top_menu .open > .dropdown-menu {
 		max-width: 222px;
-		left: -36px;
+		left: -46px;
 	}
 }
