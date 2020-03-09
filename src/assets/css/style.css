@@ -346,6 +346,10 @@ ul li {
 	.menuarea .nav.navbar-nav {
 		float:none;
 	}
+	#myNavbar ul li:nth-child(5) .first_submenu li ul.second_submenu {
+		right: 101%;
+		left: auto !important;
+	}
 }
 @media (min-width:992px) {
 	.logo_icon img{
