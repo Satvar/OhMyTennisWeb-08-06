@@ -284,24 +284,42 @@
                                                 </div>
                                                 <div class="col-md-5">
                                                     <div class="form-group bmd-form-group">
-                                                        <div class="~card card-profile">
-                                                            <div class="card-avatar" style="cursor: pointer;">
-                                                                <a style="cursor: pointer;">
-                                                                    <img class="img" src={{res.Coach_Image}} style="cursor: pointer;">
-                                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                        <div class="card card-profile">
+                                                            <div class="card-avatar">
+                                                                <a>
+                                                                    <img class="img" src={{res.Coach_Image}}>
                                                                 </a>
                                                             </div>
                                                             <div class="card-body">
                                                                 <h4 class="card-title">Photo de profil</h4>
-                                                                <div class="upload-btn-wrapper">
-                                                                    <button class="btn">Importer l'image</button>
-                                                                    <input type="file" name="myfile"
-                                                                        (change)="changeListener($event)" />
+                                                                <div style="cursor: pointer;" class="upload-btn-wrapper">
+                                                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                                                    <!-- <button style="cursor: pointer;" class="btn">Importer l'image</button> -->
+                                                                    <input style="cursor: pointer;" type="file" name="myfile" (change)="changeListener($event)" />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
+                                                <!-- <div class="col-md-5">
+                                                    <div class="form-group bmd-form-group">
+                                                        <div class="card card-profile">
+                                                            <div class="card-body" style="cursor: pointer;">
+                                                              
+                                                                <div class="upload-btn-wrapper card-avatar" style="cursor: pointer;">
+                                                                    <img class="img" src={{res.Coach_Image}} style="cursor: pointer;" (change)="changeListener($event)">
+                                                                 
+                                                               
+ 
+                                                                <h4 class="card-title">Photo de profil</h4>
+                                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                                <input type="file" style="cursor: pointer;" name="myfile" (change)="changeListener($event)" />
+                                                        </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
                                                 <div class="col-md-12 text-center">
                                                     <button type="submit"
                                                         [disabled]="!activeTabIndex0.valid || submit_disabled" readonly

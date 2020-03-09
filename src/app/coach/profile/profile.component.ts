@@ -80,6 +80,7 @@ export class ProfileComponent extends CoachComponent implements OnInit {
   };
 
   changeListener($event): void {
+    console.log("changeListener");
     this.readThis($event.target);
   }
 

@@ -223,8 +223,7 @@
 
                                     
                                     <div class="col-md-12 text-center">
-                                        <button type="submit" [disabled]="!user.valid || submit_disabled" disabled
-                                            id="submit" readonly class="btn btn-primary"
+                                        <button type="submit" [disabled]="!user.valid || submit_disabled" id="submit" readonly class="btn btn-primary"
                                             style="margin-left: 99px;">SAUVEGARDER</button>
 
                                         <!-- <a (click)="makeEnable()" style="margin-left:20px; color: #ffffff;"
@@ -240,14 +239,23 @@
                                                     <img class="img" src={{res.User_Image}}>
                                                 </a>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="user_profile card-body">
+                                                <h4 class="card-title">Photo de profil</h4>
+                                                <div style="cursor: pointer;" class="upload-btn-wrapper">
+                                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                                    <!-- <button style="cursor: pointer;" class="btn">Importer l'image</button> -->
+                                                    <input style="cursor: pointer;" type="file" name="myfile" (change)="changeListener($event)" />
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="card-body">
                                                 <h4 class="card-title">Photo de profil</h4>
                                                 <div style="cursor: pointer;" class="upload-btn-wrapper">
                                                     <button style="cursor: pointer;" class="btn">Importer l'image</button>
                                                     <input style="cursor: pointer;"type="file" name="myfile"
                                                         (change)="changeListener($event)" />
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>

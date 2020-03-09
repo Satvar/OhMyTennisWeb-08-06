@@ -1,65 +1,87 @@
 /** Header Starts **/
 .far.far-user-o {
-  background: url(../../../assets/images/dashboard_icons/coach/moncompte_ic.png) top left no-repeat;
+  background: url(../../../assets/images/dashboard_icons/coach/moncompte_ic.png)
+    top left no-repeat;
 }
 .far.far-th-large {
-  background: url(../../../assets/images/dashboard_icons/coach/dashboard_ic.png) top left no-repeat;
+  background: url(../../../assets/images/dashboard_icons/coach/dashboard_ic.png)
+    top left no-repeat;
 }
 .far.far-calendar {
-  background: url(../../../assets/images/dashboard_icons/coach/moncalendar_ic.png) top left no-repeat;
+  background: url(../../../assets/images/dashboard_icons/coach/moncalendar_ic.png)
+    top left no-repeat;
 }
 
- .far.far-reser-o {
-  background: url(../../../assets/images/dashboard_icons/coach/MESRESRVATION.png) top left no-repeat;
- }
+.far.far-reser-o {
+  background: url(../../../assets/images/dashboard_icons/coach/MESRESRVATION.png)
+    top left no-repeat;
+}
 .far.far-courindiv {
- background: url(../../../assets/images/dashboard_icons/coach/COURSEINDIVIDUAL.png) top left no-repeat;
+  background: url(../../../assets/images/dashboard_icons/coach/COURSEINDIVIDUAL.png)
+    top left no-repeat;
 }
 .far.far-demand-o {
- background: url(../../../assets/images/dashboard_icons/coach/coldemand_ic.png) top left no-repeat;
+  background: url(../../../assets/images/dashboard_icons/coach/coldemand_ic.png)
+    top left no-repeat;
 }
- .far.far-courcollect-o {
-  background: url(../../../assets/images/dashboard_icons/coach/collectiveclub_ic.png) top left no-repeat;
+.far.far-courcollect-o {
+  background: url(../../../assets/images/dashboard_icons/coach/collectiveclub_ic.png)
+    top left no-repeat;
 }
 .far.far-stage-o {
-  background: url(../../../assets/images/dashboard_icons/coach/STAGE.png) top left no-repeat;
+  background: url(../../../assets/images/dashboard_icons/coach/STAGE.png) top
+    left no-repeat;
 }
-.far.far-animation-o{
-  background: url(../../../assets/images/dashboard_icons/coach/animation_ic.png) top left no-repeat;
+.far.far-animation-o {
+  background: url(../../../assets/images/dashboard_icons/coach/animation_ic.png)
+    top left no-repeat;
 }
 .far.far-team-o {
-  background: url(../../../assets/images/dashboard_icons/coach/teambuild_ic.png) top left no-repeat;
+  background: url(../../../assets/images/dashboard_icons/coach/teambuild_ic.png)
+    top left no-repeat;
 }
 .far.far-tour-o {
-  background: url(../../../assets/images/dashboard_icons/coach/tournament_ic.png) top left no-repeat;
+  background: url(../../../assets/images/dashboard_icons/coach/tournament_ic.png)
+    top left no-repeat;
 }
 .far.far-comments-o {
-  background: url(../../../assets/images/dashboard_icons/coach/comments_ic.png) top left no-repeat;
-} 
-.far.far-bell-o {
-  background: url(../../../assets/images/dashboard_icons/user/usernotify_ic.png) top left no-repeat;
-} 
-.far.far-handshake-o {
-  background: url(../../../assets/images/dashboard_icons/user/userpartner_ic.png) top left no-repeat;
-} 
-.far.far-cogs-o {
-  background: url(../../../assets/images/dashboard_icons/user/usersparring_ic.png) top left no-repeat;
-} 
-.far.far-key-o {
-  background: url(../../../assets/images/dashboard_icons/user/userchange_ic.png) top left no-repeat;
-} 
-.far.far-sign-out-o {
-  background: url(../../../assets/images/dashboard_icons/user/userlogout_ic.png) top left no-repeat;
-} 
-.admin_tempstyle .sidebar .nav li a:hover {
-    background-color: #e75b00;
-    color: #ffffff !important;
-    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  background: url(../../../assets/images/dashboard_icons/coach/comments_ic.png)
+    top left no-repeat;
 }
-.admin_tempstyle .sidebar .nav li.active a:hover p, .admin_tempstyle .sidebar .nav li.active a p, .admin_tempstyle .sidebar .nav li.active a:hover, .admin_tempstyle .sidebar .nav li.active a{
+.far.far-bell-o {
+  background: url(../../../assets/images/dashboard_icons/user/usernotify_ic.png)
+    top left no-repeat;
+}
+.far.far-handshake-o {
+  background: url(../../../assets/images/dashboard_icons/user/userpartner_ic.png)
+    top left no-repeat;
+}
+.far.far-cogs-o {
+  background: url(../../../assets/images/dashboard_icons/user/usersparring_ic.png)
+    top left no-repeat;
+}
+.far.far-key-o {
+  background: url(../../../assets/images/dashboard_icons/user/userchange_ic.png)
+    top left no-repeat;
+}
+.far.far-sign-out-o {
+  background: url(../../../assets/images/dashboard_icons/user/userlogout_ic.png)
+    top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover {
+  background-color: #e75b00;
+  color: #ffffff !important;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(156, 39, 176, 0.4);
+}
+.admin_tempstyle .sidebar .nav li.active a:hover p,
+.admin_tempstyle .sidebar .nav li.active a p,
+.admin_tempstyle .sidebar .nav li.active a:hover,
+.admin_tempstyle .sidebar .nav li.active a {
   color: #ffffff !important;
 }
-.admin_tempstyle .sidebar .nav li a:hover p, .admin_tempstyle .sidebar .nav li a p:hover{
+.admin_tempstyle .sidebar .nav li a:hover p,
+.admin_tempstyle .sidebar .nav li a p:hover {
   color: #ffffff !important;
 }
 .admin_tempstyle .sidebar .nav li .dropdown-menu a {
@@ -74,12 +96,12 @@
 .dropdown-menu:before {
   height: 20px;
   width: 20px;
-  border-left:3px solid #f00;
-  border-top:2px solid #f00;
+  border-left: 3px solid #f00;
+  border-top: 2px solid #f00;
   z-index: 3000;
-  color:#f00;
+  color: #f00;
   position: absolute;
-  top:20px;
+  top: 20px;
   left: 20px;
 }
 .top_menu .open > .dropdown-menu {
@@ -99,7 +121,7 @@
   background-color: #efb693;
   color: #000000;
 }
-.admin_tempstyle .sidebar .nav li a i { 
+.admin_tempstyle .sidebar .nav li a i {
   height: 25px;
   width: 25px;
   background-size: 100% 100% !important;
@@ -110,64 +132,99 @@
 .nav_bar1 .btn.btn-outline-success {
   display: none !important;
 }
-.admin_tempstyle .sidebar .nav li a:hover i, .admin_tempstyle .sidebar .nav li a i:hover { 
+.admin_tempstyle .sidebar .nav li a:hover i,
+.admin_tempstyle .sidebar .nav li a i:hover {
   height: 25px;
   width: 25px;
   background-size: 100% 100% !important;
 }
-.admin_tempstyle .sidebar .nav li a:hover .far.far-user-o, .admin_tempstyle .sidebar .nav li.active a .far.far-user-o  {
-  background: url(../../../assets/images/dashboard_icons/coach/moncompte_ichover.png) top left no-repeat;
+.admin_tempstyle .sidebar .nav li a:hover .far.far-user-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-user-o {
+  background: url(../../../assets/images/dashboard_icons/coach/moncompte_ichover.png)
+    top left no-repeat;
 }
-.admin_tempstyle .sidebar .nav li a:hover .far.far-th-large , .admin_tempstyle .sidebar .nav li.active a .far.far-th-large  {
-  background: url(../../../assets/images/dashboard_icons/coach/dashboard_ichover.png) top left no-repeat;
+.admin_tempstyle .sidebar .nav li a:hover .far.far-th-large,
+.admin_tempstyle .sidebar .nav li.active a .far.far-th-large {
+  background: url(../../../assets/images/dashboard_icons/coach/dashboard_ichover.png)
+    top left no-repeat;
 }
-.admin_tempstyle .sidebar .nav li a:hover .far.far-calendar , .admin_tempstyle .sidebar .nav li.active a .far.far-calendar {
-  background: url(../../../assets/images/dashboard_icons/coach/moncalendar_hover.png) top left no-repeat;
+.admin_tempstyle .sidebar .nav li a:hover .far.far-calendar,
+.admin_tempstyle .sidebar .nav li.active a .far.far-calendar {
+  background: url(../../../assets/images/dashboard_icons/coach/moncalendar_hover.png)
+    top left no-repeat;
 }
-.admin_tempstyle .sidebar .nav li a:hover .far.far-reser-o , .admin_tempstyle .sidebar .nav li.active a .far.far-reser-o{
- background: url(../../../assets/images/dashboard_icons/coach/mesreservation_ichover.png) top left no-repeat;
+.admin_tempstyle .sidebar .nav li a:hover .far.far-reser-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-reser-o {
+  background: url(../../../assets/images/dashboard_icons/coach/mesreservation_ichover.png)
+    top left no-repeat;
 }
-.admin_tempstyle .sidebar .nav li a:hover .far.far-courindiv , .admin_tempstyle .sidebar .nav li.active a .far.far-courindiv {
- background: url(../../../assets/images/dashboard_icons/coach/coursindividual_ichover.png) top left no-repeat;
+.admin_tempstyle .sidebar .nav li a:hover .far.far-courindiv,
+.admin_tempstyle .sidebar .nav li.active a .far.far-courindiv {
+  background: url(../../../assets/images/dashboard_icons/coach/coursindividual_ichover.png)
+    top left no-repeat;
 }
- .admin_tempstyle .sidebar .nav li a:hover .far.far-demand-o , .admin_tempstyle .sidebar .nav li.active a .far.far-demand-o{
-  background: url(../../../assets/images/dashboard_icons/coach/coldemand_ichover.png) top left no-repeat;
+.admin_tempstyle .sidebar .nav li a:hover .far.far-demand-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-demand-o {
+  background: url(../../../assets/images/dashboard_icons/coach/coldemand_ichover.png)
+    top left no-repeat;
 }
-.admin_tempstyle .sidebar .nav li a:hover .far.far-courcollect-o, .admin_tempstyle .sidebar .nav li.active a .far.far-courcollect-o {
-  background: url(../../../assets/images/dashboard_icons/coach/collectiveclub_ichover.png) top left no-repeat;
+.admin_tempstyle .sidebar .nav li a:hover .far.far-courcollect-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-courcollect-o {
+  background: url(../../../assets/images/dashboard_icons/coach/collectiveclub_ichover.png)
+    top left no-repeat;
 }
-.admin_tempstyle .sidebar .nav li a:hover .far.far-stage-o , .admin_tempstyle .sidebar .nav li.active a .far.far-stage-o{
-  background: url(../../../assets/images/dashboard_icons/coach/stageic_ichover.png) top left no-repeat;
+.admin_tempstyle .sidebar .nav li a:hover .far.far-stage-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-stage-o {
+  background: url(../../../assets/images/dashboard_icons/coach/stageic_ichover.png)
+    top left no-repeat;
 }
-.admin_tempstyle .sidebar .nav li a:hover .far.far-team-o , .admin_tempstyle .sidebar .nav li.active a .far.far-team-o {
-  background: url(../../../assets/images/dashboard_icons/coach/teambuild_ichover.png) top left no-repeat;
+.admin_tempstyle .sidebar .nav li a:hover .far.far-team-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-team-o {
+  background: url(../../../assets/images/dashboard_icons/coach/teambuild_ichover.png)
+    top left no-repeat;
 }
-.admin_tempstyle .sidebar .nav li a:hover .far.far-animation-o, .admin_tempstyle .sidebar .nav li.active a .far.far-animation-o {
-  background: url(../../../assets/images/dashboard_icons/coach/animation_ichover.png) top left no-repeat;
+.admin_tempstyle .sidebar .nav li a:hover .far.far-animation-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-animation-o {
+  background: url(../../../assets/images/dashboard_icons/coach/animation_ichover.png)
+    top left no-repeat;
 }
-.admin_tempstyle .sidebar .nav li a:hover .far.far-tour-o , .admin_tempstyle .sidebar .nav li.active a .far.far-tour-o{
-  background: url(../../../assets/images/dashboard_icons/coach/tournament_ichover.png) top left no-repeat;
+.admin_tempstyle .sidebar .nav li a:hover .far.far-tour-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-tour-o {
+  background: url(../../../assets/images/dashboard_icons/coach/tournament_ichover.png)
+    top left no-repeat;
 }
-.admin_tempstyle .sidebar .nav li a:hover .far.far-comments-o , .admin_tempstyle .sidebar .nav li.active a .far.far-comments-o{
-  background: url(../../../assets/images/dashboard_icons/coach/comments_ichover.png) top left no-repeat;
-} 
-.admin_tempstyle .sidebar .nav li a:hover .far.far-bell-o , .admin_tempstyle .sidebar .nav li.active a .far.far-bell-o{
- background: url(../../../assets/images/dashboard_icons/user/usernotify_ichover.png) top left no-repeat;
-} 
-.admin_tempstyle .sidebar .nav li a:hover .far.far-handshake-o , .admin_tempstyle .sidebar .nav li.active a .far.far-handshake-o{
- background: url(../../../assets/images/dashboard_icons/user/userpartner_ichover.png) top left no-repeat;
-} 
-.admin_tempstyle .sidebar .nav li a:hover .far.far-cogs-o , .admin_tempstyle .sidebar .nav li.active a .far.far-cogs-o{
- background: url(../../../assets/images/dashboard_icons/user/usersparring_ichover.png) top left no-repeat;
-} 
-.admin_tempstyle .sidebar .nav li a:hover .far.far-key-o , .admin_tempstyle .sidebar .nav li.active a .far.far-key-o{
- background: url(../../../assets/images/dashboard_icons/user/userchange_ichover.png) top left no-repeat;
-} 
-.admin_tempstyle .sidebar .nav li a:hover .far.far-sign-out-o , .admin_tempstyle .sidebar .nav li.active a .far.far-sign-out-o{
- background: url(../../../assets/images/dashboard_icons/user/userlogout_ichover.png) top left no-repeat;
-} 
+.admin_tempstyle .sidebar .nav li a:hover .far.far-comments-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-comments-o {
+  background: url(../../../assets/images/dashboard_icons/coach/comments_ichover.png)
+    top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-bell-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-bell-o {
+  background: url(../../../assets/images/dashboard_icons/user/usernotify_ichover.png)
+    top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-handshake-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-handshake-o {
+  background: url(../../../assets/images/dashboard_icons/user/userpartner_ichover.png)
+    top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-cogs-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-cogs-o {
+  background: url(../../../assets/images/dashboard_icons/user/usersparring_ichover.png)
+    top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-key-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-key-o {
+  background: url(../../../assets/images/dashboard_icons/user/userchange_ichover.png)
+    top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li a:hover .far.far-sign-out-o,
+.admin_tempstyle .sidebar .nav li.active a .far.far-sign-out-o {
+  background: url(../../../assets/images/dashboard_icons/user/userlogout_ichover.png)
+    top left no-repeat;
+}
 .text_box_search {
-display: none !important;
+  display: none !important;
 }
 .wrapper {
   position: relative;
@@ -287,7 +344,7 @@ body.admin_tempstyle {
 .sidebar .nav li:first-child > a {
   margin: 0 15px;
 }
-.sidebar .nav > li > a{
+.sidebar .nav > li > a {
   margin: 10px 15px 0;
   border-radius: 0;
   color: #3c4858;
@@ -332,13 +389,15 @@ body.admin_tempstyle {
   line-height: 18px !important;
   font-weight: bold;
 }
-#myModal_edit_course .modal-content{
-border-radius: 7px;
+#myModal_edit_course .modal-content {
+  border-radius: 7px;
 }
 .admin_tempstyle #myModal_edit_course .modal-footer {
   padding: 15px 15px 10px;
 }
-.sidebar .nav li:hover p , .sidebar .nav li:hover a p, .sidebar .nav li a:hover p {
+.sidebar .nav li:hover p,
+.sidebar .nav li:hover a p,
+.sidebar .nav li a:hover p {
   color: #ffffff;
 }
 .sidebar .nav li:hover > a,
@@ -1242,7 +1301,7 @@ label {
   height: 56px;
   text-align: center;
   line-height: 56px;
-    display: inline-block;
+  display: inline-block;
 }
 /** Footer ends **/
 
@@ -1955,12 +2014,29 @@ label {
   max-height: 180px;
   height: 165px;
 }
-.admin_tempstyle .card-profile .card-avatar .fa{
+.admin_tempstyle .card-profile .fa {
+  font-size: 24px !important;
+  color: black;
+}
+.tab_accordian .card.card-profile .card-body {
+  padding: 10px 30px 20px 0px;
+}
+
+.admin_tempstyle .card-profile .user_profile.card-body {
+  padding: 10px 30px 20px 0px;
+}
+.admin_tempstyle .card-profile .upload-btn-wrapper {
   position: absolute;
-  bottom: 36px;
-  right: 35px;
-  font-size: 28px !important;
-  color: red;
+  top: 7px;
+  right: 72px;
+}
+.admin_tempstyle .card-profile .user_profile .upload-btn-wrapper {
+  position: absolute;
+  top: 8px;
+  right: 72px;
+}
+.admin_tempstyle .card-profile .user_profile {
+  position: relative;
 }
 .admin_tempstyle .card-profile .card-avatar {
   margin: -50px auto 0;
@@ -1985,16 +2061,16 @@ label {
   width: 100%;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    min-height: 180px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid #eeeeee;
-    border-radius: 7px;
+  min-height: 180px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #eeeeee;
+  border-radius: 7px;
 }
 .admin_tempstyle .card-profile .card-avatar img {
   width: 100%;
