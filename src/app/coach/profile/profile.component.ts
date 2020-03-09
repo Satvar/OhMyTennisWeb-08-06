@@ -34,8 +34,7 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     Coach_Bank_ACCNum: "",
     Branch_Code: "",
     Coach_Bank_City: "",
-    Coach_Image:
-      "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png",
+    Coach_Image: "../../assets/images/profile_blackwhite.png",
     Coach_Resume: ""
   };
 
@@ -64,6 +63,7 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     $("#cheque_error").hide();
     var titile = document.getElementsByClassName("brand");
     if (titile) titile[0].innerHTML = "MON COMPTE";
+
     this.profileUpdate();
   }
 
@@ -143,8 +143,24 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     }
   }
 
+  citySearch(code) {
+    this.appService.getAll("/city/" + code).subscribe(
+      response => {
+        // tslint:disable-next-line:no-string-literal
+        if (response && response["data"]) {
+          // tslint:disable-next-line:no-string-literal
+          this.selectedCity = (response as any).data.city_list;
+
+          if (this.selectedCity.length > 0)
+            this.res.Coach_Ville = this.selectedCity[0].id;
+        }
+      },
+      error => {}
+    );
+  }
+
   onSubmit(res) {
-    console.log("[profile.components.ts - line - 124]", res);
+    console.log("[profile.components.ts - line - 147]", res);
     $("#trans_error").hide();
     $("#cheque_error").hide();
     this.trans_error = false;
@@ -191,7 +207,10 @@ export class ProfileComponent extends CoachComponent implements OnInit {
       res.Coach_Services = service;
     }
 
+    console.log("[profile.component.ts - line 194]", res.Coach_Services);
+
     res.ResumeName = this.filename;
+    console.log("[profile.component.ts - line 197]", res.Coach_transport);
     if (res.Coach_transport == "") {
       this.trans_error = true;
       $("#trans_error").show();
@@ -200,18 +219,41 @@ export class ProfileComponent extends CoachComponent implements OnInit {
       this.cheque_error = true;
     }
 
+    console.log("[profile.component.ts - line 206]", this.activeTabIndex);
     if (this.activeTabIndex == 1 && this.trans_error == false) {
-      this.activeTabIndex = this.activeTabIndex + 1;
+      //this.activeTabIndex = this.activeTabIndex + 1;
+      this.appService
+        .create("/coach/updateprofile", res)
+        .subscribe(response => {
+          if (response && response.isSuccess == true) {
+            if (this.activeTabIndex == 1)
+              this.activeTabIndex = this.activeTabIndex + 1;
+            //this._showAlertMessage("alert-success", "Mis à jour avec succés");
+          } else {
+            this._showAlertMessage("alert-danger", "Échec de la mise à jour");
+          }
+        });
     } else if (this.activeTabIndex == 0) {
-      this.activeTabIndex = this.activeTabIndex + 1;
+      //this.activeTabIndex = this.activeTabIndex + 1;
+      this.appService
+        .create("/coach/updateprofile", res)
+        .subscribe(response => {
+          if (response && response.isSuccess == true) {
+            if (this.activeTabIndex == 0)
+              this.activeTabIndex = this.activeTabIndex + 1;
+            //this._showAlertMessage("alert-success", "Mis à jour avec succés");
+          } else {
+            this._showAlertMessage("alert-danger", "Échec de la mise à jour");
+          }
+        });
     } else if (this.activeTabIndex == 2 && this.cheque_error == false) {
       this.appService
         .create("/coach/updateprofile", res)
         .subscribe(response => {
           if (response && response.isSuccess == true) {
-            if (this.activeTabIndex < 2)
-              this.activeTabIndex = this.activeTabIndex + 1;
-            this._showAlertMessage("alert-success", "Mis à jour avec succés");
+            if (this.activeTabIndex == 2)
+              //this.activeTabIndex = this.activeTabIndex + 1;
+              this._showAlertMessage("alert-success", "Mis à jour avec succés");
           } else {
             this._showAlertMessage("alert-danger", "Échec de la mise à jour");
           }
@@ -244,13 +286,15 @@ export class ProfileComponent extends CoachComponent implements OnInit {
         } else {
           this.spinner.hide();
         }
-        // console.log(data);
+
+        let codePostal = data.data.coach_list[0].Coach_City;
+        this.citySearch(codePostal);
+        console.log(codePostal);
         this.response = data.data.coach_list[0];
         this.res = data.data.coach_list[0];
         //console.log("res", this.res)
         if (this.res.Coach_Image == null) {
-          this.res.Coach_Image =
-            "https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png";
+          this.res.Coach_Image = "../../assets/images/profile_blackwhite.png";
         }
         this.filename = data.data.coach_list[0].ResumeName;
         selectedServicesList = data.data.coach_list[0].Coach_Services.split(

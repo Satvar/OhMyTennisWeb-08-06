@@ -54,13 +54,13 @@ export class FooterComponent extends AppComponent implements OnInit {
 
   ngOnInit() {
     this.loadScript();
-    if (this.alive) {
-      Observable.timer(0, 10000) // only fires when component is alive
-        .subscribe(() => {
-          this.getMenuTree();
-          this.spinner.hide();
-        });
-    }
+    // if (this.alive) {
+    //   Observable.timer(0, 10000) // only fires when component is alive
+    //     .subscribe(() => {
+    //       this.getMenuTree();
+    //       this.spinner.hide();
+    //     });
+    // }
   }
 
   getMenuTree() {

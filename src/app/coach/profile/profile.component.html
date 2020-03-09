@@ -114,8 +114,7 @@
                                                                     [(ngModel)]="res.InstagramURL"
                                                                     pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                                                     #Instagram="ngModel"     
-                                                                    name="InstagramURL" placeholder="Instagram" readonly
-                                                                    required>
+                                                                    name="InstagramURL" placeholder="Instagram" readonly>
                                                                 <!-- <ng-container
                                                                     *ngIf="Instagram.errors && (Instagram.touched || Instagram.dirty)">
                                                                     <span class="alert_text"
@@ -139,8 +138,7 @@
                                                                     [(ngModel)]="res.FacebookURL"
                                                                     pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                                                     #Facebook="ngModel"
-                                                                    name="FacebookURL" placeholder="Facebook" readonly
-                                                                    required>
+                                                                    name="FacebookURL" placeholder="Facebook" readonly>
                                                                 <!-- <ng-container
                                                                     *ngIf="Facebook.errors && (Facebook.touched || Facebook.dirty)">
                                                                     <span class="alert_text"
@@ -164,8 +162,7 @@
                                                                     [(ngModel)]="res.TwitterURL"
                                                                     pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                                                     #Twitter="ngModel"
-                                                                    name="TwitterURL" placeholder="Twitter" readonly
-                                                                    required>
+                                                                    name="TwitterURL" placeholder="Twitter" readonly>
                                                                 <!-- <ng-container
                                                                     *ngIf="Twitter.errors && (Twitter.touched || Twitter.dirty)">
                                                                     <span class="alert_text"
@@ -206,7 +203,7 @@
                                                     </div>
 
                                                   
-                                                    <!-- <div class="form-group bmd-form-group">
+                                                    <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <label>Emplacement <span class="red"> *</span></label>
@@ -215,7 +212,7 @@
                                                                 <input type="text" class="form-control" [(ngModel)]="res.Coach_Emplacement"
                                                                     name="res.Coach_Emplacement" readyonly required #Coach_Emplacement="ngModel"
                                                                     [ngClass]="{'alert_field': (Coach_Emplacement.errors && (Coach_Emplacement.touched || Coach_Emplacement.dirty))}"
-                                                                    placeholder="">
+                                                                    placeholder="" readonly required>
                                                                 <ng-container *ngIf="Coach_Emplacement.errors && (Coach_Emplacement.touched || Coach_Emplacement.dirty)">
                                                                     <span class="alert_text" *ngIf="Coach_Emplacement.errors.required">Indiquez votre
                                                                         Emplacement.</span>
@@ -231,11 +228,16 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <input class="form-control"
-                                                                    [(ngModel)]="res.Coach_City" minlength="5" onKeyPress="if(this.value.length>=5) return false;" type="number"
+                                                                    [(ngModel)]="res.Coach_City" 
+                                                                    minlength="5" 
+                                                                    onKeyPress="if(this.value.length>=5) return false;" type="number"
+                                                                    id="coach_city"
                                                                     #Coach_City="ngModel"
                                                                     (change)="searchCity($event)"
                                                                     [ngClass]="{'alert_field': (Coach_City.errors && (Coach_City.touched || Coach_City.dirty))}"
-                                                                    name="Coach_City" placeholder="Postal Code" readonly
+                                                                    name="Coach_City" 
+                                                                    placeholder="Postal Code" 
+                                                                    readonly
                                                                     required>
 
                                                                 <ng-container
@@ -250,18 +252,13 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group bmd-form-group">
+                                                 <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <label>Ville <span class="red"> *</span></label>
                                                             </div>
                                                             <div class="col-md-8">
-                                                                <!-- <input type="text" class="form-control" [(ngModel)]="res.Coach_Ville"
-                                                                    name="res.Coach_Ville" readyonly required #Coach_Ville="ngModel"
-                                                                    [ngClass]="{'alert_field': (Coach_Ville.errors && (Coach_Ville.touched || Coach_Ville.dirty))}"
-                                                                    placeholder=""> -->
-
-                                                                    <!-- <select [(ngModel)]="res.Coach_Ville" style="height:45px" class="form-control" #Coach_Ville="ngModel" name="res.Coach_Ville"
+                                                                    <select [(ngModel)]="res.Coach_Ville" style="height:45px" class="form-control" #Coach_Ville="ngModel" name="res.Coach_Ville"
                                                                         [ngClass]="{'alert_field': (Coach_Ville.errors && (Coach_Ville.touched || Coach_Ville.dirty))}">
                                                                         <option [ngValue]="city.id" *ngFor="let city of selectedCity">
                                                                             {{ city.Libelle_acheminement }}</option>
@@ -273,7 +270,7 @@
                                                                 </ng-container>
                                                             </div>
                                                         </div>
-                                                    </div> -->
+                                                    </div>
                                                     <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
@@ -352,8 +349,7 @@
                                                 <div class="row">
                                                     <div class="form-group">
                                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                                            <label class="label1">Préstation de service <span
-                                                                    class="mandatory">*</span></label>
+                                                            <label class="label1">Préstation de service </label>
                                                         </div>
                                                         <div class="col-md-8 col-sm-8 col-xs-12">
                                                             <div class="chech_box_services1">
@@ -414,20 +410,21 @@
                                                                 <option value="3" readonly>3 Kilomètres</option>
                                                                 <option value="4" readonly>4 Kilomètres</option>
                                                                 <option value="5" readonly>5 Kilomètres</option>
-                                                                <option value="5" readonly>6 Kilomètres</option>
-                                                                <option value="5" readonly>7 Kilomètres</option>
-                                                                <option value="5" readonly>8 Kilomètres</option>
-                                                                <option value="5" readonly>9 Kilomètres</option>
-                                                                <option value="5" readonly>10 Kilomètres</option>
-                                                                <option value="5" readonly>11 Kilomètres</option>
-                                                                <option value="5" readonly>12 Kilomètres</option>
-                                                                <option value="5" readonly>13 Kilomètres</option>
-                                                                <option value="5" readonly>15 Kilomètres</option>
-                                                                <option value="5" readonly>16 Kilomètres</option>
-                                                                <option value="5" readonly>17 Kilomètres</option>
-                                                                <option value="5" readonly>18 Kilomètres</option>
-                                                                <option value="5" readonly>19 Kilomètres</option>
-                                                                <option value="5" readonly>20 Kilomètres</option>
+                                                                <option value="6" readonly>6 Kilomètres</option>
+                                                                <option value="7" readonly>7 Kilomètres</option>
+                                                                <option value="8" readonly>8 Kilomètres</option>
+                                                                <option value="9" readonly>9 Kilomètres</option>
+                                                                <option value="10" readonly>10 Kilomètres</option>
+                                                                <option value="11" readonly>11 Kilomètres</option>
+                                                                <option value="12" readonly>12 Kilomètres</option>
+                                                                <option value="13" readonly>13 Kilomètres</option>
+                                                                <option value="14" readonly>14 Kilomètres</option>
+                                                                <option value="15" readonly>15 Kilomètres</option>
+                                                                <option value="16" readonly>16 Kilomètres</option>
+                                                                <option value="17" readonly>17 Kilomètres</option>
+                                                                <option value="18" readonly>18 Kilomètres</option>
+                                                                <option value="19" readonly>19 Kilomètres</option>
+                                                                <option value="20" readonly>20 Kilomètres</option>
                                                             </select>
                                                         </div>
                                                     </div>
