@@ -152,6 +152,7 @@ import { NewslettersComponent } from './newsletters/newsletters.component';
 import { QuisommenousComponent } from './quisommenous/quisommenous.component';
 import { FaqComponent } from './faq/faq.component';
 import { EnsavoirplusComponent } from './ensavoirplus/ensavoirplus.component';
+import { ContactnewComponent } from './contactnew/contactnew.component';
 
 registerLocaleData(localeFr, "fr");
 
@@ -586,6 +587,7 @@ export function getAuthServiceConfigs() {
     QuisommenousComponent,
     FaqComponent,
     EnsavoirplusComponent,
+    ContactnewComponent,
   ],
   imports: [
     BrowserModule,
