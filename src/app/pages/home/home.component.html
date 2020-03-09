@@ -327,7 +327,7 @@
 <div class="middle_sec">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-sm-6 col-xs-12">
+      <!-- <div class="col-md-6 col-sm-6 col-xs-12">
         <img
           [src]="getTransForm('../assets/images/slides_3.png')"
           class="img-responsive"
@@ -352,13 +352,15 @@
             >DECOUVRIR</a
           >
         </div>
+      </div> -->
+      <div class="col-md-6 col-sm-6 col-xs-12">        
+        <img src="./assets/images/team.png" class="img-responsive" style="max-height: 350px !important;"/>
       </div>
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <img src="./assets/images/team.png" class="img-responsive" />
-        <div class="middle_sec_contents">
-          <img src="./assets/images/tennis-ball.png" class="ball_img" />
-          <h2>Oh My Tennis</h2>
-          <p>
+        <div class="middle_sec_contents" style="padding: 0px 0px 0px;">
+          <!-- <img src="./assets/images/tennis-ball.png" class="ball_img" /> -->
+          <h2 style="text-align: left;">Oh My Tennis</h2>
+          <p style="text-align: left;">
             Rejoignez la rubrique dédiée aux passionnés du tennis ! Une
             immersion inédite dans le monde de la balle jaune pour tous ceux qui
             souhaitent franchir un premier pas. Vous allez pouvoir apprendre
@@ -366,7 +368,7 @@
             (trouver un partenaire, acheter du materiel) et suivre les
             profesionnels du circuit ATP/WTA.
           </p>
-          <a
+          <a style="text-align: left; margin: 20px 0px 0px;"
             href="javascript:;"
             routerLink="{{ '/' + this._const('PATH.CONCEPTS.CONCEPT.SELF') }}"
             class="btn btn-primary middle_sec_btn"
