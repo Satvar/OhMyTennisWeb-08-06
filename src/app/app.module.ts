@@ -443,6 +443,10 @@ const routes: Routes = [
     component: RecrutementComponent
   },
   {
+    path: CONST.PATH.CONTACT,
+    component: ContactnewComponent
+  },
+  {
     path: CONST.PATH.ENSAVIORPLUS,
     component: EnsavoirplusComponent
   },

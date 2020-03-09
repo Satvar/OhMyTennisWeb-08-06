@@ -20,6 +20,7 @@ export const CONST = Object.freeze({
     QUISOMMENOUS: "professeurs-tennis",
     OH_MY_COACH_DETAIL: "ohmycoachdetail",
     COACH_SLOT: "coachslot",
+    CONTACT: "contact",
     STAGE: "stage",
     STAGE_DETAIL: "stage-detail",
     TOUNAMENT: "tournament",
