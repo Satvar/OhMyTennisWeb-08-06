@@ -224,7 +224,7 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     if (this.activeTabIndex == 1 && this.trans_error == false) {
       //this.activeTabIndex = this.activeTabIndex + 1;
       this.appService
-        .create("/coach/updateprofile", res)
+        .create("/coach/updateProfileTab2", res)
         .subscribe(response => {
           if (response && response.isSuccess == true) {
             if (this.activeTabIndex == 1)
@@ -249,7 +249,7 @@ export class ProfileComponent extends CoachComponent implements OnInit {
         });
     } else if (this.activeTabIndex == 2 && this.cheque_error == false) {
       this.appService
-        .create("/coach/updateprofile", res)
+        .create("/coach/updateProfileTab3", res)
         .subscribe(response => {
           if (response && response.isSuccess == true) {
             if (this.activeTabIndex == 2)
