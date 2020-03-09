@@ -9,8 +9,14 @@
                                 <button type="button" (click)="_closeAlertMessage($event)"
                                     class="close"><span>&times;</span></button> {{alertMsg.msg}}
                             </div>
+                            
                             <form #user="ngForm" (ngSubmit)="onSubmit(res)">
-
+<div class="col-xs-12">
+    <a (click)="makeEnable()" style="float:right;margin-bottom:20px; color: #ffffff;" class="btn btn-info"><i
+            class="fa fa-edit"></i>
+        MODIFIER</a>
+</div>
+<div class="clearfix"></div>
                                 <div class="col-xs-12 col-md-8">
                                     <div class="form-group bmd-form-group">
                                         <div class="row">
@@ -86,10 +92,17 @@
                                                 <label>Code Postal <span class="red">*</span></label>
                                             </div>
                                             <div class="col-xs-12 col-md-8">
-                                                <input type="text" [(ngModel)]="res.postalCode" #postalCode="ngModel"
+                                                <input [(ngModel)]="res.postalCode" #postalCode="ngModel"
                                                     [ngClass]="{'alert_field': (postalCode.errors && (postalCode.touched || postalCode.dirty))}"
-                                                    name="postalCode" class="form-control"
-                                                    placeholder="Code Postal" readonly required>
+                                                    name="postalCode" 
+                                                    class="form-control"
+                                                    minlength="5" 
+                                                    onKeyPress="if(this.value.length>=5) return false;" 
+                                                    type="number"
+                                                    placeholder="Code Postal" 
+                                                    (change)="searchCity($event)" 
+                                                    readonly 
+                                                    required>
                                                 <ng-container
                                                     *ngIf="postalCode.errors && (postalCode.touched || postalCode.dirty)">
                                                     <span class="alert_text" *ngIf="postalCode.errors.required">Indiquez
@@ -105,6 +118,19 @@
                                                 <label>Ville<span class="red">*</span></label>
                                             </div>
                                             <div class="col-xs-12 col-md-8">
+                                                <select [(ngModel)]="res.ville" style="height:45px" class="form-control" #ville="ngModel"
+                                                    name="res.ville"
+                                                    [ngClass]="{'alert_field': (ville.errors && (ville.touched || ville.dirty))}">
+                                                    <option [ngValue]="city.id" *ngFor="let city of selectedCity">
+                                                        {{ city.Libelle_acheminement }}</option>
+                                                </select>
+                                            
+                                                <ng-container *ngIf="ville.errors && (ville.touched || ville.dirty)">
+                                                    <span class="alert_text" *ngIf="ville.errors.required">Indiquez votre
+                                                        Ville.</span>
+                                                </ng-container>
+                                            </div>
+                                            <!-- <div class="col-xs-12 col-md-8">
                                                 <input type="text" [(ngModel)]="res.postalCode" #postalCode="ngModel"
                                                     [ngClass]="{'alert_field': (postalCode.errors && (postalCode.touched || postalCode.dirty))}"
                                                     name="postalCode" class="form-control"
@@ -114,6 +140,23 @@
                                                     <span class="alert_text" *ngIf="postalCode.errors.required">Indiquez
                                                         votre
                                                         Ville.</span>
+                                                </ng-container>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="form-group bmd-form-group">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-md-4">
+                                                <label>Emplacement <span class="red">*</span></label>
+                                            </div>
+                                            <div class="col-xs-12 col-md-8">
+                                                <textarea class="form-control" id="address" style="height:110px;" readonly required
+                                                    [(ngModel)]="res.address" name="res.address" #address="ngModel"
+                                                    [ngClass]="{'alert_field': (address.errors && (address.touched || address.dirty))}">
+                                                                    </textarea>
+                                                <ng-container *ngIf="address.errors && (address.touched || address.dirty)">
+                                                    <span class="alert_text" *ngIf="address.errors.required">Indiquez votre
+                                                        Emplacement.</span>
                                                 </ng-container>
                                             </div>
                                         </div>
@@ -127,14 +170,35 @@
                                                 <select class="form-control" [(ngModel)]="res.User_Level"
                                                     name="User_Level" placeholder="Niveau de tennis" readonly>
                                                     <option value="Débutant" selected>Débutant</option>
-                                                    <option value="Intermédiaire">Intermédiaire</option>
-                                                    <option value="Avancée">Avancée</option>
+                                                    <option value="Moyen">Moyen</option>
+                                                    <option value="Fort">Fort</option>
+                                                    <option value="40">40</option>
+                                                    <option value="30/4">30/4</option>
+                                                    <option value="30/3">30/3</option>
+                                                    <option value="30/2">30/2</option>
+                                                    <option value="30/1">30/1</option>
+                                                    <option value="30">30</option>
+                                                    <option value="15/5">15/5</option>
+                                                    <option value="15/4">15/4</option>
+                                                    <option value="15/3">15/3</option>
+                                                    <option value="15/2">15/2</option>
+                                                    <option value="15/1">15/1</option>
+                                                    <option value="15">15</option>
+                                                    <option value="5/6">5/6</option>
+                                                    <option value="4/6">4/6</option>
+                                                    <option value="3/6">3/6</option>
+                                                    <option value="2/6">2/6</option>
+                                                    <option value="1/6">1/6</option>
+                                                    <option value="0">0</option>
+                                                    <option value="-2/6">-2/6</option>
+                                                    <option value="-4/6">-4/6</option>
+                                                    <option value="-15">-15</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group bmd-form-group">
+                                    <!-- <div class="form-group bmd-form-group">
                                         <div class="row">
                                             <div class="col-xs-12 col-md-4">
                                                 <label class="label1">Team <span class="mandatory">*</span></label>
@@ -155,34 +219,16 @@
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
-                                    <div class="form-group bmd-form-group">
-                                        <div class="row">
-                                            <div class="col-xs-12 col-md-4">
-                                                <label>Description <span class="red">*</span></label>
-                                            </div>
-                                            <div class="col-xs-12 col-md-8">
-                                                <textarea class="form-control" id="address" style="height:110px;"
-                                                    readonly required [(ngModel)]="res.address" name="res.address"
-                                                    #address="ngModel"
-                                                    [ngClass]="{'alert_field': (address.errors && (address.touched || address.dirty))}">
-                                </textarea>
-                                                <ng-container
-                                                    *ngIf="address.errors && (address.touched || address.dirty)">
-                                                    <span class="alert_text" *ngIf="address.errors.required">Indiquez
-                                                        votre description.</span>
-                                                </ng-container>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-md-12 text-center">
                                         <button type="submit" [disabled]="!user.valid || submit_disabled" disabled
                                             id="submit" readonly class="btn btn-primary"
                                             style="margin-left: 99px;">SAUVEGARDER</button>
 
-                                        <a (click)="makeEnable()" style="margin-left:20px; color: #ffffff;"
-                                            class="btn btn-info"><i class="fa fa-edit"></i> MODIFIER</a>
+                                        <!-- <a (click)="makeEnable()" style="margin-left:20px; color: #ffffff;"
+                                            class="btn btn-info"><i class="fa fa-edit"></i> MODIFIER</a> -->
                                     </div>
                                 </div>
 

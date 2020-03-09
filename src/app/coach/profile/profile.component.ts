@@ -160,7 +160,7 @@ export class ProfileComponent extends CoachComponent implements OnInit {
   }
 
   onSubmit(res) {
-    console.log("[profile.components.ts - line - 147]", res);
+    //console.log("[profile.components.ts - line - 147]", res);
     $("#trans_error").hide();
     $("#cheque_error").hide();
     this.trans_error = false;
@@ -207,10 +207,10 @@ export class ProfileComponent extends CoachComponent implements OnInit {
       res.Coach_Services = service;
     }
 
-    console.log("[profile.component.ts - line 194]", res.Coach_Services);
+    //console.log("[profile.component.ts - line 194]", res.Coach_Services);
 
     res.ResumeName = this.filename;
-    console.log("[profile.component.ts - line 197]", res.Coach_transport);
+    //console.log("[profile.component.ts - line 197]", res.Coach_transport);
     if (res.Coach_transport == "") {
       this.trans_error = true;
       $("#trans_error").show();
@@ -219,7 +219,7 @@ export class ProfileComponent extends CoachComponent implements OnInit {
       this.cheque_error = true;
     }
 
-    console.log("[profile.component.ts - line 206]", this.activeTabIndex);
+    //console.log("[profile.component.ts - line 206]", this.activeTabIndex);
     if (this.activeTabIndex == 1 && this.trans_error == false) {
       //this.activeTabIndex = this.activeTabIndex + 1;
       this.appService
@@ -289,7 +289,7 @@ export class ProfileComponent extends CoachComponent implements OnInit {
 
         let codePostal = data.data.coach_list[0].Coach_City;
         this.citySearch(codePostal);
-        console.log(codePostal);
+        //console.log(codePostal);
         this.response = data.data.coach_list[0];
         this.res = data.data.coach_list[0];
         //console.log("res", this.res)
