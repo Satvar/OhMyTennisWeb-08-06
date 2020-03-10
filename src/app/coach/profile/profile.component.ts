@@ -224,12 +224,13 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     if (this.activeTabIndex == 1 && this.trans_error == false) {
       //this.activeTabIndex = this.activeTabIndex + 1;
       this.appService
-        .create("/coach/updateprofile", res)
+        .create("/coach/updateProfileTab2", res)
         .subscribe(response => {
           if (response && response.isSuccess == true) {
-            if (this.activeTabIndex == 1)
-              this.activeTabIndex = this.activeTabIndex + 1;
-            //this._showAlertMessage("alert-success", "Mis à jour avec succés");
+            if (this.activeTabIndex == 1) {
+              //this.activeTabIndex = this.activeTabIndex + 1;
+              this._showAlertMessage("alert-success", "Mis à jour avec succés");
+            }
           } else {
             this._showAlertMessage("alert-danger", "Échec de la mise à jour");
           }
@@ -240,21 +241,23 @@ export class ProfileComponent extends CoachComponent implements OnInit {
         .create("/coach/updateprofile", res)
         .subscribe(response => {
           if (response && response.isSuccess == true) {
-            if (this.activeTabIndex == 0)
-              this.activeTabIndex = this.activeTabIndex + 1;
-            //this._showAlertMessage("alert-success", "Mis à jour avec succés");
+            if (this.activeTabIndex == 0) {
+              //this.activeTabIndex = this.activeTabIndex + 1;
+              this._showAlertMessage("alert-success", "Mis à jour avec succés");
+            }
           } else {
             this._showAlertMessage("alert-danger", "Échec de la mise à jour");
           }
         });
     } else if (this.activeTabIndex == 2 && this.cheque_error == false) {
       this.appService
-        .create("/coach/updateprofile", res)
+        .create("/coach/updateProfileTab3", res)
         .subscribe(response => {
           if (response && response.isSuccess == true) {
-            if (this.activeTabIndex == 2)
+            if (this.activeTabIndex == 2) {
               //this.activeTabIndex = this.activeTabIndex + 1;
               this._showAlertMessage("alert-success", "Mis à jour avec succés");
+            }
           } else {
             this._showAlertMessage("alert-danger", "Échec de la mise à jour");
           }

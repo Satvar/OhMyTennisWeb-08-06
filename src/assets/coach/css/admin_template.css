@@ -395,11 +395,14 @@ body.admin_tempstyle {
 .admin_tempstyle #myModal_edit_course .modal-footer {
   padding: 15px 15px 10px;
 }
-.sidebar .nav li:hover p,
+.sidebar .nav li:hover a p {
+  color: #2a2828;
+}
+/* .sidebar .nav li:hover p,
 .sidebar .nav li:hover a p,
 .sidebar .nav li a:hover p {
   color: #ffffff;
-}
+} */
 .sidebar .nav li:hover > a,
 .sidebar .nav li .dropdown-menu a:hover,
 .sidebar .nav li .dropdown-menu a:focus,

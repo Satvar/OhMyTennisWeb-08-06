@@ -146,7 +146,7 @@
                                                         name="res.from_date" [owlDateTime]="fromdate"
                                                         [owlDateTimeTrigger]="fromdate"
                                                         [ngClass]="{'alert_field': (fromDate.errors && (fromDate.touched || fromDate.dirty))}"
-                                                        class="form-control" placeholder="Date" readonly required>
+                                                        class="form-control" placeholder="Date de début" readonly required>
                                                     <owl-date-time #fromdate [pickerType]="'calendar'"></owl-date-time>
                                                     <ng-container
                                                         *ngIf="fromDate.errors && (fromDate.touched || fromDate.dirty)">
@@ -161,7 +161,7 @@
                                                 <div class="col-md-6"><input id="todate" type="text" #toDate="ngModel"
                                                         [(ngModel)]="res.to_date" name="res.to_date"
                                                         [ngClass]="{'alert_field': (toDate.errors && (toDate.touched || toDate.dirty))}"
-                                                        class="form-control" placeholder="Date"
+                                                        class="form-control" placeholder="Date de fin"
                                                         [owlDateTime]="todate" [owlDateTimeTrigger]="todate" readonly
                                                         required>
                                                     <owl-date-time #todate [pickerType]="'calendar'"></owl-date-time>

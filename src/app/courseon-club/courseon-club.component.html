@@ -190,15 +190,14 @@
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" [(ngModel)]="res.Technical_Provided"
-                                            name="res.Technical_Provided" readyonly required
+                                            name="res.Technical_Provided" readyonly
                                             #Technical_Provided="ngModel"
-                                            [ngClass]="{'alert_field': (Technical_Provided.errors && (Technical_Provided.touched || Technical_Provided.dirty))}"
                                             placeholder="Entrer technique fournie">
-                                        <ng-container
+                                        <!-- <ng-container
                                             *ngIf="Technical_Provided.errors && (Technical_Provided.touched || Technical_Provided.dirty)">
                                             <span class="alert_text" *ngIf="Technical_Provided.errors.required">Indiquez
                                                 votre Technique fournie.</span>
-                                        </ng-container>
+                                        </ng-container> -->
                                     </div>
                                 </div>
                             </div>
@@ -210,17 +209,16 @@
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" [(ngModel)]="res.Video" name="res.Video"
-                                            readyonly required
+                                            readyonly
                                             pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
                                             #Video="ngModel"
-                                            [ngClass]="{'alert_field': (Video.errors && (Video.touched || Video.dirty))}"
                                             placeholder="EmbedURL incorporée">
-                                        <ng-container *ngIf="Video.errors && (Video.touched || Video.dirty)">
+                                        <!-- <ng-container *ngIf="Video.errors && (Video.touched || Video.dirty)">
                                             <span class="alert_text" *ngIf="Video.errors.required">Indiquez votre Vidéo
                                                 URL.</span>
                                             <span class="alert_text" *ngIf="Video.errors.pattern">Entrez l'URL de
                                                 vaild.</span>
-                                        </ng-container>
+                                        </ng-container> -->
                                     </div>
                                 </div>
                             </div>
