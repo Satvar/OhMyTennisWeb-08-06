@@ -52,6 +52,7 @@ import { UsersparringComponent } from "src/app/usersparring/usersparring.compone
 import { UserchangepasswordComponent } from "src/app/userchangepassword/userchangepassword.component";
 import { UsersignoutComponent } from "src/app/usersignout/usersignout.component";
 import { UsernotificationComponent } from "src/app/usernotification/usernotification.component";
+import { DeleteUserAccountComponent } from "src/app/pages/delete-user-account/delete-user-account.component";
 
 const routes: Routes = [
   {
@@ -123,6 +124,13 @@ const routes: Routes = [
         }
       },
       {
+        path: CONST.PATH.USERS.DELETE_USER_ACCOUNT.SELF,
+        component: DeleteUserAccountComponent,
+        data: {
+          title: CONST.PATH.USERS.DELETE_USER_ACCOUNT.TITLE
+        }
+      },
+      {
         path: "**",
         component: UserdashboardComponent
       }
@@ -144,7 +152,8 @@ const routes: Routes = [
     UsersparringComponent,
     UserchangepasswordComponent,
     UsersignoutComponent,
-    UsernotificationComponent
+    UsernotificationComponent,
+    DeleteUserAccountComponent
   ],
   imports: [
     NgxPaginationModule,

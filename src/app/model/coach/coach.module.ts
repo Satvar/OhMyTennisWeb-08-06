@@ -65,6 +65,8 @@ import { StageEditComponent } from "src/app/stage-edit/stage-edit.component";
 import { AnimationEditComponent } from "src/app/animation-edit/animation-edit.component";
 import { AngularEditorModule } from "@kolkov/angular-editor";
 
+import { DeleteAccountComponent } from "src/app/pages/delete-account/delete-account.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -182,6 +184,13 @@ const routes: Routes = [
         data: {
           title: CONST.PATH.COACH.EDITANIMATION.TITLE
         }
+      },
+      {
+        path: CONST.PATH.COACH.DELETE_ACCOUNT.SELF,
+        component: DeleteAccountComponent,
+        data: {
+          title: CONST.PATH.COACH.DELETE_ACCOUNT.TITLE
+        }
       }
     ]
   }
@@ -210,7 +219,8 @@ const routes: Routes = [
     TournamentComponent,
     TournamentEditComponent,
     StageEditComponent,
-    AnimationEditComponent
+    AnimationEditComponent,
+    DeleteAccountComponent
   ],
   imports: [
     CommonModule,

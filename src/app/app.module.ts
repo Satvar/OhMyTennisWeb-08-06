@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 // search module
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -117,12 +117,12 @@ import { DimensionsComponent } from "./pages/tennis/dimensions/dimensions.compon
 import { ElementsComponent } from "./pages/tennis/elements/elements.component";
 import { CompterComponent } from "./pages/tennis/compter/compter.component";
 import { PrincipleComponent } from "./pages/tennis/principle/principle.component";
-import { ClubhouselistComponent } from "./clubhouselist/clubhouselist.component";
-import { ClubhouseviewComponent } from "./clubhouseview/clubhouseview.component";
-import { PetticesComponent } from "./pages/clubhouse/pettices/pettices.component";
-import { ParrainerComponent } from "./pages/clubhouse/parrainer/parrainer.component";
-import { JeuxconcourComponent } from "./pages/clubhouse/jeuxconcour/jeuxconcour.component";
-import { QuizComponent } from "./pages/clubhouse/quiz/quiz.component";
+// import { ClubhouselistComponent } from "./clubhouselist/clubhouselist.component";
+// import { ClubhouseviewComponent } from "./clubhouseview/clubhouseview.component";
+// import { PetticesComponent } from "./pages/clubhouse/pettices/pettices.component";
+// import { ParrainerComponent } from "./pages/clubhouse/parrainer/parrainer.component";
+// import { JeuxconcourComponent } from "./pages/clubhouse/jeuxconcour/jeuxconcour.component";
+// import { QuizComponent } from "./pages/clubhouse/quiz/quiz.component";
 import { CharteComponent } from "./pages/concepts/charte/charte.component";
 import { HistoireFirstComponent } from "./pages/histoire/histoire-first/histoire-first.component";
 import { HistoireFourComponent } from "./pages/histoire/histoire-four/histoire-four.component";
@@ -146,13 +146,15 @@ import { AllAnimationsComponent } from "./all-animations/all-animations.componen
 import { AllStageComponent } from "./all-stage/all-stage.component";
 import { AllTeambuildingComponent } from "./all-teambuilding/all-teambuilding.component";
 
-import { CoursDeTennisComponent } from './cours-de-tennis/cours-de-tennis.component';
-import { RecrutementComponent } from './recrutement/recrutement.component';
-import { NewslettersComponent } from './newsletters/newsletters.component';
-import { QuisommenousComponent } from './quisommenous/quisommenous.component';
-import { FaqComponent } from './faq/faq.component';
-import { EnsavoirplusComponent } from './ensavoirplus/ensavoirplus.component';
-import { ContactnewComponent } from './contactnew/contactnew.component';
+import { CoursDeTennisComponent } from "./cours-de-tennis/cours-de-tennis.component";
+import { RecrutementComponent } from "./recrutement/recrutement.component";
+import { NewslettersComponent } from "./newsletters/newsletters.component";
+import { QuisommenousComponent } from "./quisommenous/quisommenous.component";
+import { FaqComponent } from "./faq/faq.component";
+import { EnsavoirplusComponent } from "./ensavoirplus/ensavoirplus.component";
+import { ContactnewComponent } from "./contactnew/contactnew.component";
+
+import { TermsConditionComponent } from "./terms-condition/terms-condition.component";
 
 registerLocaleData(localeFr, "fr");
 
@@ -381,35 +383,35 @@ const routes: Routes = [
     path: CONST.PATH.TENNIS.PRINCIPLE.SELF,
     component: PrincipleComponent
   },
-  {
-    path: CONST.PATH.CLUB_HOUSE_LIST,
-    component: ClubhouselistComponent
-  },
-  {
-    path: CONST.PATH.CLUB_HOUSE_VIEW,
-    component: ClubhouseviewComponent
-  },
-  {
-    path: CONST.PATH.PETTICES_ANNOUNCES,
-    component: PetticesComponent
-  },
-  {
-    path: CONST.PATH.PARRAINER_CLUBHOUSE,
-    component: ParrainerComponent
-  },
-  {
-    path: CONST.PATH.CLUB_HOUSE,
-    component: ClubhouseComponent
-  },
-  {
-    path: CONST.PATH.QUIZ_JEUXCONCOUR,
-    component: JeuxconcourComponent
-  },
+  // {
+  //   path: CONST.PATH.CLUB_HOUSE_LIST,
+  //   component: ClubhouselistComponent
+  // },
+  // {
+  //   path: CONST.PATH.CLUB_HOUSE_VIEW,
+  //   component: ClubhouseviewComponent
+  // },
+  // {
+  //   path: CONST.PATH.PETTICES_ANNOUNCES,
+  //   component: PetticesComponent
+  // },
+  // {
+  //   path: CONST.PATH.PARRAINER_CLUBHOUSE,
+  //   component: ParrainerComponent
+  // },
+  // {
+  //   path: CONST.PATH.CLUB_HOUSE,
+  //   component: ClubhouseComponent
+  // },
+  // {
+  //   path: CONST.PATH.QUIZ_JEUXCONCOUR,
+  //   component: JeuxconcourComponent
+  // },
 
-  {
-    path: CONST.PATH.QUIZ,
-    component: QuizComponent
-  },
+  // {
+  //   path: CONST.PATH.QUIZ,
+  //   component: QuizComponent
+  // },
   {
     path: CONST.PATH.OFFREDESERVICE,
     component: OffreDeServiceCoachTennisComponent
@@ -452,7 +454,7 @@ const routes: Routes = [
   },
   {
     path: CONST.PATH.NEWSLETTERS,
-    component:NewslettersComponent
+    component: NewslettersComponent
   },
   {
     path: CONST.PATH.OH_MY_COACH_DETAIL_NEW,
@@ -485,6 +487,10 @@ const routes: Routes = [
   {
     path: CONST.PATH.ALL_ANIMATIONS,
     component: AllAnimationsComponent
+  },
+  {
+    path: CONST.PATH.TERMS_CONDITION,
+    component: TermsConditionComponent
   },
   {
     path: CONST.PATH.USERS.CMS.SELF + "/:endpoint",
@@ -550,7 +556,7 @@ export function getAuthServiceConfigs() {
     FormephysiqueComponent,
     ChoisirComponent,
     ConseilsMatrielTesterComponent,
-    ClubhouseComponent,
+    // ClubhouseComponent,
     TennisComponent,
     HistoireComponent,
     HistoireFirstComponent,
@@ -567,12 +573,12 @@ export function getAuthServiceConfigs() {
     ElementsComponent,
     CompterComponent,
     PrincipleComponent,
-    ClubhouselistComponent,
-    ClubhouseviewComponent,
-    PetticesComponent,
-    ParrainerComponent,
-    JeuxconcourComponent,
-    QuizComponent,
+    // ClubhouselistComponent,
+    // ClubhouseviewComponent,
+    // PetticesComponent,
+    // ParrainerComponent,
+    // JeuxconcourComponent,
+    // QuizComponent,
     CharteComponent,
     OffreDeServiceCoachTennisComponent,
     CmsFrontComponent,
@@ -584,7 +590,9 @@ export function getAuthServiceConfigs() {
     SitemapComponent,
     PratiqueLicenseComponent,
     AllTournamentComponent,
-    AllAnimationsComponent, AllStageComponent, AllTeambuildingComponent,
+    AllAnimationsComponent,
+    AllStageComponent,
+    AllTeambuildingComponent,
     CoursDeTennisComponent,
     RecrutementComponent,
     NewslettersComponent,
@@ -592,6 +600,7 @@ export function getAuthServiceConfigs() {
     FaqComponent,
     EnsavoirplusComponent,
     ContactnewComponent,
+    TermsConditionComponent
   ],
   imports: [
     BrowserModule,
@@ -606,8 +615,8 @@ export function getAuthServiceConfigs() {
     NgbModule,
     XunkCalendarModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
-    , Ng2SearchPipeModule
+    OwlNativeDateTimeModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     AppService,

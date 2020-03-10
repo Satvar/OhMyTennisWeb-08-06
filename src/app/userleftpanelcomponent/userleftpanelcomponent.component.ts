@@ -86,6 +86,29 @@ export class UserleftpanelcomponentComponent extends UserComponent
     this._gotoPath("/");
   }
 
+  _delete_account() {
+    var coach = JSON.parse(localStorage.getItem("onmytennis"));
+    if (coach) {
+      var coach1 = JSON.parse(coach);
+      var emailId = {
+        email: coach1.email
+      };
+      this.spinner.show();
+
+      this.appService
+        .create("/user/accountdeletebyemail", emailId)
+        .subscribe((data: any) => {
+          if (data.isSuccess == true) {
+            this.spinner.hide();
+            this._setSession("removeItem");
+            this._gotoPath("/");
+          } else {
+            this.spinner.hide();
+          }
+        });
+    }
+  }
+
   leftPanel() {
     return [
       {
@@ -171,6 +194,16 @@ export class UserleftpanelcomponentComponent extends UserComponent
       {
         title: "SUPPRIMER VOTRE <br> COMPTE",
         path: "/",
+        iclass: "far far-sign-out-o",
+        style: false
+      },
+      {
+        title: "DELETE ACCOUNT",
+        path:
+          "/" +
+          this._const("PATH.USERS.SELF") +
+          "/" +
+          this._const("PATH.USERS.DELETE_USER_ACCOUNT.SELF"),
         iclass: "far far-sign-out-o",
         style: false
       }

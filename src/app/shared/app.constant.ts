@@ -33,13 +33,13 @@ export const CONST = Object.freeze({
     USER_MODULE: "user",
     FORGET_PASSWORD: "forgetpassword",
     SET_NEW_PASSWORD: "setnewpassword",
-    CLUB_HOUSE: "clubhouse-presentation",
-    CLUB_HOUSE_LIST: "clubhouse-list",
-    CLUB_HOUSE_VIEW: "clubhouse-view",
-    PETTICES_ANNOUNCES: "pettices-announces-clubhouse",
-    PARRAINER_CLUBHOUSE: "parrainer-clubhouse",
-    QUIZ_JEUXCONCOUR: "quiz-testintroduction",
-    QUIZ: "quiz-jeuxconcour",
+    // CLUB_HOUSE: "clubhouse-presentation",
+    // CLUB_HOUSE_LIST: "clubhouse-list",
+    // CLUB_HOUSE_VIEW: "clubhouse-view",
+    // PETTICES_ANNOUNCES: "pettices-announces-clubhouse",
+    // PARRAINER_CLUBHOUSE: "parrainer-clubhouse",
+    // QUIZ_JEUXCONCOUR: "quiz-testintroduction",
+    // QUIZ: "quiz-jeuxconcour",
     OFFREDESERVICE: "offre-de-service-coach-tennis",
     OH_MY_COACH_DETAIL_NEW: "coach-detail-new",
     GUIDE_DES_TERRAINS_PRATIQUE: "guide-des-terrains-pratique",
@@ -49,6 +49,8 @@ export const CONST = Object.freeze({
     ALL_TEAMBUILDING: "coach-teambuilding",
     ALL_ANIMATIONS: "coach-animations",
     ALL_STAGE: "coach-stage",
+    TERMS_CONDITION: "terms-condition",
+    //  DELETE_ACCOUNT: "account-delete",
     CONCEPTS: {
       SELF: "concept",
       CONCEPT: {
@@ -193,7 +195,7 @@ export const CONST = Object.freeze({
         TITLE: "Admin Restpassword"
       }
     },
- 
+
     USERS: {
       SELF: "user",
       DASHBOARD: {
@@ -235,6 +237,10 @@ export const CONST = Object.freeze({
       SINOUT: {
         SELF: "déconnexion",
         TITLE: "déconnexion"
+      },
+      DELETE_USER_ACCOUNT: {
+        SELF: "deleteuseraccount",
+        TITLE: "Delete User Account"
       }
     },
     COACH: {
@@ -294,6 +300,10 @@ export const CONST = Object.freeze({
       EDITANIMATION: {
         SELF: "Animationedit",
         TITLE: "Animation"
+      },
+      DELETE_ACCOUNT: {
+        SELF: "deleteaccount",
+        TITLE: "Delete Account"
       }
     },
     USER: {
