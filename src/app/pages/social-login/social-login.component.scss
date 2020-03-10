@@ -438,13 +438,25 @@
     }
     .btn-twitter:hover {
         background-color: #83c3f3;
+    }    
+    .btn-linkedin {
+      background-color: #2867B2;
+    }
+    .btn-linkedin:hover {
+        background-color: #4083D3;
     }
     .btn-instagram {
         background-color: #E1306C;
     }
-    .btn-instagram:hover {
-        background-color: #E1306C;
+    .btn-google:hover {
+        background-color: #F05C4F;
     }
+    .btn-google {
+      background-color: #DB4437;
+  }
+  .btn-instagram:hover {
+      background-color: #E1306C;
+  }
     .fields{
         display: block;
         height: 45px;

@@ -70,10 +70,13 @@
                                             <span *ngIf="rowData[6] == 'UC'" style="color: #111110;">Prestation annulé</span>
 
                                         </td>
-                                        <td><a data-toggle="modal" style="cursor: pointer;"
+                                        <td><a class="btn btn-success" data-toggle="modal" style="cursor: pointer;"
                                                 data-target="#myModal_edit_course" id="bookingDetailPage"
-                                                (click)="cancelDialog(rowData)"><i class="fa fa-thumbs-o-up fa-2x"
-                                                    aria-hidden="true"></i></a></td>
+                                                (click)="cancelDialog(rowData)">VIEW
+                                                <!-- <i class="fa fa-thumbs-o-up fa-2x"
+                                                    aria-hidden="true"></i> -->
+
+                                                </a></td>
                                     </tr>
                                 </tbody>
                             </table>
