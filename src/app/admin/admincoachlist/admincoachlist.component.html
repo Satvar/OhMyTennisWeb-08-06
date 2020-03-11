@@ -26,12 +26,13 @@
             >
               <thead>
                 <tr>
-                  <th>Sl.no</th>
-                  <th>Coach Name</th>
-                  <th>Email</th>
-                  <th>Code Postal</th>
-                  <th>Edit</th>
-                  <th>Status</th>
+                  <th width="7%">Sl.no</th>
+                  <th width="16%">Coach Name</th>
+                  <th width="25%">Email</th>
+                  <th width="16%">Password</th>
+                  <th width="16%">Code Postal</th>
+                  <th width="8%">Edit</th>
+                  <th width="13%">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -39,10 +40,11 @@
                   <td>{{ i + 1 }}</td>
                   <td>{{ group.coachname }}</td>
                   <td>{{ group.email }}</td>
+                  <td></td>
                   <td>{{ group.phone }}</td>
                   <td>
                     <a (click)="getcoach(group.email)"
-                      ><i class="fa fa-edit color-green"></i
+                      ><i style="font-size: 22px !important;" class="fa fa-edit color-green"></i
                     ></a>
                   </td>
                   <td *ngIf="group.status == 1; else falseprint">

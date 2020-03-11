@@ -13,7 +13,7 @@
                             <button type="button" (click)="_closeAlertMessage($event)"
                                 class="close"><span>&times;</span></button> {{alertMsg.msg}}
                         </div>
-                        <div class="col-xs-12"><a style="float:right;margin-bottom:20px; color: #ffffff;"
+                        <div class="col-xs-12"><a id="enableBtn" data-target="#myModal_edit_course"style="float:right;margin-bottom:20px; color: #ffffff;"
                                 *ngIf="(activeTabIndex === 0)" (click)="makeEnable()" class="btn btn-info"><i
                                     class="fa fa-edit"></i> MODIFIER</a>
                         </div>
@@ -203,7 +203,7 @@
                                                     </div>
 
                                                   
-                                                    <div class="form-group bmd-form-group">
+                                                    <!-- <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <label>Emplacement <span class="red"> *</span></label>
@@ -219,8 +219,26 @@
                                                                 </ng-container>
                                                             </div>
                                                         </div>
+                                                    </div> -->
+                                                    <div class="form-group bmd-form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <label>Emplacement <span class="red"> *</span></label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                    <select [(ngModel)]="res.Coach_Ville" style="height:45px" class="form-control" #Coach_Ville="ngModel" name="res.Coach_Ville"
+                                                                        [ngClass]="{'alert_field': (Coach_Ville.errors && (Coach_Ville.touched || Coach_Ville.dirty))}">
+                                                                        <option [ngValue]="city.id" *ngFor="let city of selectedCity">
+                                                                            {{ city.Libelle_acheminement }}</option>
+                                                                    </select>
+
+                                                                <ng-container *ngIf="Coach_Ville.errors && (Coach_Ville.touched || Coach_Ville.dirty)">
+                                                                    <span class="alert_text" *ngIf="Coach_Ville.errors.required">Indiquez votre
+                                                                        Emplacement.</span>
+                                                                </ng-container>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                    
                                                     <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
@@ -252,25 +270,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                 <div class="form-group bmd-form-group">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <label>Ville <span class="red"> *</span></label>
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                    <select [(ngModel)]="res.Coach_Ville" style="height:45px" class="form-control" #Coach_Ville="ngModel" name="res.Coach_Ville"
-                                                                        [ngClass]="{'alert_field': (Coach_Ville.errors && (Coach_Ville.touched || Coach_Ville.dirty))}">
-                                                                        <option [ngValue]="city.id" *ngFor="let city of selectedCity">
-                                                                            {{ city.Libelle_acheminement }}</option>
-                                                                    </select>
-
-                                                                <ng-container *ngIf="Coach_Ville.errors && (Coach_Ville.touched || Coach_Ville.dirty)">
-                                                                    <span class="alert_text" *ngIf="Coach_Ville.errors.required">Indiquez votre
-                                                                        Ville.</span>
-                                                                </ng-container>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                             
                                                     <div class="form-group bmd-form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
@@ -337,7 +337,7 @@
                                     <form #activeTabIndex1="ngForm" (ngSubmit)="onSubmit(res)"
                                         enctype="multipart/form-data">
                                         <div class="row">
-                                            <div class="col-xs-12"><a style="float:right;margin-bottom:20px; color: #ffffff;"
+                                            <div class="col-xs-12"><a id="enableBtn" data-target="#myModal_edit_course" style="float:right;margin-bottom:20px; color: #ffffff;"
                                                 *ngIf="(activeTabIndex === 1)" (click)="makeEnable()" class="btn btn-info"><i
                                                     class="fa fa-edit"></i> MODIFIER</a>
                                             </div>
@@ -559,7 +559,7 @@
                                         enctype="multipart/form-data">
                                         
                                         <div class="row">
-                                            <div class="col-xs-12"><a style="float:right;margin-bottom:20px; color: #ffffff;"
+                                            <div class="col-xs-12"><a id="enableBtn" data-target="#myModal_edit_course" style="float:right;margin-bottom:20px; color: #ffffff;"
                                                 *ngIf="(activeTabIndex === 2)" (click)="makeEnable()" class="btn btn-info"><i
                                                     class="fa fa-edit"></i> MODIFIER</a>
                                             </div>
@@ -698,5 +698,28 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+
+
+<div id="myModal_edit_course" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirmer les modifications</h4>
+            </div>
+            <div class="modal-body" style="padding: 15px!important;">
+                <p>Êtes-vous sûr de vouloir faire les changements?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="enableForm()" class="btn btn-success" data-dismiss="modal">Oui</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+
     </div>
 </div>

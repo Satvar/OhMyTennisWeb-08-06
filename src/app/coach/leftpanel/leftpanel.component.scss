@@ -17,8 +17,38 @@
 }
 .stage_submenu {
   display: none;
+  border: 1px solid #dfdddd;
+  margin: -8px 10px 0px !important;
+  background: #f1eaea;
+  color: #000000;
 }
+.admin_tempstyle .sidebar .nav li.active .stage_submenu ul li a p {
+  color: #ffffff !important;
+  padding: 0px !important;
+}
+.admin_tempstyle .sidebar .nav li.active ul li a {
+  padding: 0px !important;
+  margin: 0px !important;
 
+}
+.admin_tempstyle .sidebar .nav li.active ul li a p {
+  color: #ffffff !important;
+}
+.admin_tempstyle .sidebar .nav li.active .stage_submenu a p, 
+.admin_tempstyle .sidebar .nav li.active .stage_submenu a p {
+  color: white !important;
+}
+.admin_tempstyle .sidebar .nav li .stage_submenu ul li a p{
+  color: white !important;
+}
+.admin_tempstyle .sidebar .nav li.active a {
+  margin: 0px 0px !important;
+  color: white !important;
+  padding: 0px 0px !important;
+}
+.admin_tempstyle .sidebar .nav li .stage_submenu ul li a:hover {
+  color: white !important;
+}
 .animation_mainmenu:hover .animation_submenu {
   display: block;
 }

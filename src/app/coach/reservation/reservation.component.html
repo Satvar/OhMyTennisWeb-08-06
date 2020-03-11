@@ -61,6 +61,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr *ngIf="rowDataCollection.length==0">
+                                     <td colspan="6" class="text-center">NO DATA FOUND</td>   
+                                    </tr>
                                     <tr
                                         *ngFor="let rowData of rowDataCollection | paginate: { itemsPerPage: 10, currentPage: p }">
                                         <td> {{rowData[0]}} </td>
@@ -79,8 +82,10 @@
                                         </td>
                                         <td><a data-toggle="modal" style="cursor: pointer;"
                                                 data-target="#myModal_edit_course" id="bookingDetailPage"
-                                                (click)="approveDialog($event,rowData,rowData[4],rowData[3])"><i
-                                                    class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a></td>
+                                                (click)="approveDialog($event,rowData,rowData[4],rowData[3])">
+                                                <!-- <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>-->
+                                                VUE
+                                                </a></td>
                                     </tr>
                                 </tbody>
                             </table>
