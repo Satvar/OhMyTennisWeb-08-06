@@ -111,7 +111,10 @@ export class LoginComponent extends AppComponent implements OnInit {
                       JSON.stringify(response.data)
                     ) === true
                   ) {
-                    this._gotoPath(this._const("PATH.COACH.SELF"));
+                    this._gotoPath("/");
+                    setTimeout(() => {
+                      this._gotoPath(this._const("PATH.COACH.SELF"));
+                    }, 500);
                   }
                 } else if (response.data.roleId == 1) {
                   if (
