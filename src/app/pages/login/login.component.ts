@@ -114,7 +114,7 @@ export class LoginComponent extends AppComponent implements OnInit {
                     this._gotoPath("/");
                     setTimeout(() => {
                       this._gotoPath(this._const("PATH.COACH.SELF"));
-                    }, 500);
+                    }, 300);
                   }
                 } else if (response.data.roleId == 1) {
                   if (
