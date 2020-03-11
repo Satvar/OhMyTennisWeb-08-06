@@ -212,29 +212,44 @@ export class ProfileComponent extends CoachComponent implements OnInit {
 
     res.ResumeName = this.filename;
     //console.log("[profile.component.ts - line 197]", res.Coach_transport);
-    if (res.Coach_transport == "") {
-      this.trans_error = true;
-      $("#trans_error").show();
-    } else if (res.Coach_payment_type == "") {
-      $("#cheque_error").show();
-      this.cheque_error = true;
-    }
+    // if (res.Coach_transport == "") {
+    //   this.trans_error = true;
+    //   $("#trans_error").show();
+    // } else if (res.Coach_payment_type == "") {
+    //   $("#cheque_error").show();
+    //   this.cheque_error = true;
+    // }
 
     //console.log("[profile.component.ts - line 206]", this.activeTabIndex);
-    if (this.activeTabIndex == 1 && this.trans_error == false) {
+    if (this.activeTabIndex == 1) {
       //this.activeTabIndex = this.activeTabIndex + 1;
-      this.appService
-        .create("/coach/updateProfileTab2", res)
-        .subscribe(response => {
-          if (response && response.isSuccess == true) {
-            if (this.activeTabIndex == 1) {
-              //this.activeTabIndex = this.activeTabIndex + 1;
-              this._showAlertMessage("alert-success", "Mis à jour avec succés");
+      if (res.Coach_transport == "") {
+        this.trans_error = true;
+        $("#trans_error").show();
+      }
+      if (this.activeTabIndex == 1 && this.trans_error == false) {
+        this._showAlertMessage(
+          "alert-danger",
+          "champ obligatoire ne peut pas être vide"
+        );
+        this.spinner.hide();
+      } else {
+        this.appService
+          .create("/coach/updateProfileTab2", res)
+          .subscribe(response => {
+            if (response && response.isSuccess == true) {
+              if (this.activeTabIndex == 1) {
+                //this.activeTabIndex = this.activeTabIndex + 1;
+                this._showAlertMessage(
+                  "alert-success",
+                  "Mis à jour avec succés"
+                );
+              }
+            } else {
+              this._showAlertMessage("alert-danger", "Échec de la mise à jour");
             }
-          } else {
-            this._showAlertMessage("alert-danger", "Échec de la mise à jour");
-          }
-        });
+          });
+      }
     } else if (this.activeTabIndex == 0) {
       //this.activeTabIndex = this.activeTabIndex + 1;
       this.appService
@@ -249,19 +264,34 @@ export class ProfileComponent extends CoachComponent implements OnInit {
             this._showAlertMessage("alert-danger", "Échec de la mise à jour");
           }
         });
-    } else if (this.activeTabIndex == 2 && this.cheque_error == false) {
-      this.appService
-        .create("/coach/updateProfileTab3", res)
-        .subscribe(response => {
-          if (response && response.isSuccess == true) {
-            if (this.activeTabIndex == 2) {
-              //this.activeTabIndex = this.activeTabIndex + 1;
-              this._showAlertMessage("alert-success", "Mis à jour avec succés");
+    } else if (this.activeTabIndex == 2) {
+      if (res.Coach_payment_type == "") {
+        $("#cheque_error").show();
+        this.cheque_error = true;
+      }
+      if (this.activeTabIndex == 2 && this.cheque_error == false) {
+        this._showAlertMessage(
+          "alert-danger",
+          "champ obligatoire ne peut pas être vide"
+        );
+        this.spinner.hide();
+      } else {
+        this.appService
+          .create("/coach/updateProfileTab3", res)
+          .subscribe(response => {
+            if (response && response.isSuccess == true) {
+              if (this.activeTabIndex == 2) {
+                //this.activeTabIndex = this.activeTabIndex + 1;
+                this._showAlertMessage(
+                  "alert-success",
+                  "Mis à jour avec succés"
+                );
+              }
+            } else {
+              this._showAlertMessage("alert-danger", "Échec de la mise à jour");
             }
-          } else {
-            this._showAlertMessage("alert-danger", "Échec de la mise à jour");
-          }
-        });
+          });
+      }
     } else {
       this._showAlertMessage(
         "alert-danger",
