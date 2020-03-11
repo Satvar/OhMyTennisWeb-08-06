@@ -804,14 +804,17 @@ padding: 60px 60px 20px;
 .flipover_div .ct-heart{
 color: #F74933;
 }
-
-
-.flipover_div .des_abt_btn  {
+.flipover_div .des_abt_btn:hover, .view_reservation .des_abt_btn:hover  {
+  background-color: #da5600 !important;
+  color: #ffffff !important;
+}
+.flipover_div .des_abt_btn, .view_reservation .des_abt_btn  {
     border-radius: 30px;
     position: absolute;
     bottom: 18px;
     left: 0;
     right: 0;
+    font-size: 14px;
     outline: none;
     box-shadow: none;
     max-width: 110px;

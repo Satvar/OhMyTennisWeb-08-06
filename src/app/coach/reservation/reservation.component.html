@@ -62,7 +62,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngIf="rowDataCollection.length==0">
-                                     <td colspan="6" class="text-center">NO DATA FOUND</td>   
+                                     <td colspan="6" class="text-center" style="font-size: 14px;padding-top: 30px;">AUCUNE DONNÉE DISPONIBLE</td>   
                                     </tr>
                                     <tr
                                         *ngFor="let rowData of rowDataCollection | paginate: { itemsPerPage: 10, currentPage: p }">
@@ -80,7 +80,7 @@
                                             <span *ngIf="rowData[6] == 'UC'" style="color: #111110;">Prestation annulé</span>
 
                                         </td>
-                                        <td><a data-toggle="modal" style="cursor: pointer;"
+                                        <td><a data-toggle="modal" class="btn btn-success" style="cursor: pointer;"
                                                 data-target="#myModal_edit_course" id="bookingDetailPage"
                                                 (click)="approveDialog($event,rowData,rowData[4],rowData[3])">
                                                 <!-- <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>-->
