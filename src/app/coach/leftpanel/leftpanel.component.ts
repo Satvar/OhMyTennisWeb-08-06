@@ -7,6 +7,10 @@ import { CoachComponent } from "./../../model/coach/coach.component";
 /* [ Spinner ] */
 import { NgxSpinnerService } from "ngx-spinner";
 import * as $ from "jquery";
+
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/takeWhile";
+import "rxjs/add/observable/timer";
 @Component({
   selector: "app-leftpanel",
   templateUrl: "./leftpanel.component.html",
@@ -14,6 +18,7 @@ import * as $ from "jquery";
 })
 export class LeftpanelComponent extends CoachComponent implements OnInit {
   public navActiveIndex = 0;
+  alive = true;
   public username: any;
   public image = "https://www.w3schools.com/howto/img_avatar.png";
   public res = [];
@@ -54,71 +59,17 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           .subscribe((data: any) => {
             //console.log("data", data);
             if (data.isSuccess == true) {
-              this.appService
-                .getAll("/course/gettournamentcourse", coachid)
-                .subscribe(response => {
-                  if ((response as any).data.course.length > 0) {
-                    if (response && response["data"]) {
-                      this.res = (response as any).data.course;
-                      let tourData = this.res.map(value => {
-                        return {
-                          title: value.Tournamentname,
-                          tourn_id: value.id,
-                          coach_id: value.Coach_Id,
-                          iclass: "fa fa-th-large",
-                          style: false,
-                          path: "/coach/Tounamentedit"
-                        };
-                      });
-                      this.tournList = tourData;
-                      //console.log("data1", tourData);
-                    }
-                  }
-                });
+              if (this.alive) {
+                Observable.timer(0, 10000) // only fires when component is alive
+                  .subscribe(() => {
+                    this.getStage(coachid);
+                    this.gettournament(coachid);
+                    this.getanimation(coachid);
+                    console.log("stage");
+                    this.spinner.hide();
+                  });
+              }
 
-              this.appService
-                .getAll("/course/getstagecourse", coachid)
-                .subscribe(response => {
-                  if ((response as any).data.course.length > 0) {
-                    if (response && response["data"]) {
-                      this.resStage = (response as any).data.course;
-                      let stageData = this.resStage.map(value => {
-                        return {
-                          title: value.Eventname,
-                          stage_id: value.id,
-                          coach_id: value.Coach_Id,
-                          iclass: "fa fa-th-large",
-                          style: false,
-                          path: "/coach/Stage"
-                        };
-                      });
-                      this.stageList = stageData;
-                      //console.log("data1", this.stageList);
-                    }
-                  }
-                });
-
-              this.appService
-                .getAll("/course/getAnimationCourseLeft", coachid)
-                .subscribe(response => {
-                  if ((response as any).data.course.length > 0) {
-                    if (response && response["data"]) {
-                      this.resStage = (response as any).data.course;
-                      let animationData = this.resStage.map((value, key) => {
-                        return {
-                          title: "Animation-" + (key + 1),
-                          stage_id: value.id,
-                          coach_id: value.Coach_Id,
-                          iclass: "fa fa-th-large",
-                          style: false,
-                          path: "/coach/Stage"
-                        };
-                      });
-                      this.animationList = animationData;
-                      //console.log("data1", this.animationList);
-                    }
-                  }
-                });
               if (data.data.coach_list) {
                 this.image = data.data.coach_list[0].Coach_Image;
                 if (this.image == null) {
@@ -137,6 +88,78 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           coach1.firstName + " " + coach1.lastName
         );
     }
+  }
+
+  getanimation(coachid) {
+    this.appService
+      .getAll("/course/getAnimationCourseLeft", coachid)
+      .subscribe(response => {
+        if ((response as any).data.course.length > 0) {
+          if (response && response["data"]) {
+            this.resStage = (response as any).data.course;
+            let animationData = this.resStage.map((value, key) => {
+              return {
+                title: "Animation-" + (key + 1),
+                stage_id: value.id,
+                coach_id: value.Coach_Id,
+                iclass: "fa fa-th-large",
+                style: false,
+                path: "/coach/Stage"
+              };
+            });
+            this.animationList = animationData;
+            //console.log("data1", this.animationList);
+          }
+        }
+      });
+  }
+
+  gettournament(coachid) {
+    this.appService
+      .getAll("/course/gettournamentcourse", coachid)
+      .subscribe(response => {
+        if ((response as any).data.course.length > 0) {
+          if (response && response["data"]) {
+            this.res = (response as any).data.course;
+            let tourData = this.res.map(value => {
+              return {
+                title: value.Tournamentname,
+                tourn_id: value.id,
+                coach_id: value.Coach_Id,
+                iclass: "fa fa-th-large",
+                style: false,
+                path: "/coach/Tounamentedit"
+              };
+            });
+            this.tournList = tourData;
+            //console.log("data1", tourData);
+          }
+        }
+      });
+  }
+
+  getStage(coachid) {
+    this.appService
+      .getAll("/course/getstagecourse", coachid)
+      .subscribe(response => {
+        if ((response as any).data.course.length > 0) {
+          if (response && response["data"]) {
+            this.resStage = (response as any).data.course;
+            let stageData = this.resStage.map(value => {
+              return {
+                title: value.Eventname,
+                stage_id: value.id,
+                coach_id: value.Coach_Id,
+                iclass: "fa fa-th-large",
+                style: false,
+                path: "/coach/Stage"
+              };
+            });
+            this.stageList = stageData;
+            //console.log("data1", this.stageList);
+          }
+        }
+      });
   }
 
   editTournament(id, coachId) {
