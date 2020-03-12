@@ -60,7 +60,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           coachId: coach1.id
         };
         this.appService
-          .create("/coach/getcoachbyid", Coach_Email)
+          .create("/coach/get_coach_by_id", Coach_Email)
           .subscribe((data: any) => {
             //console.log("data", data);
             if (data.isSuccess == true) {
