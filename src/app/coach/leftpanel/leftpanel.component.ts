@@ -373,9 +373,9 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
         title: "CHANGER LE MOT DE <br> PASSE",
         path:
           "/" +
-          this._const("PATH.USERS.SELF") +
+          this._const("PATH.COACH.SELF") +
           "/" +
-          this._const("PATH.USERS.CHANGEPASSWORD.SELF"),
+          this._const("PATH.COACH.CHANGE_PASSWORD.SELF"),
         iclass: "far far-key-o",
         style: false
       },
