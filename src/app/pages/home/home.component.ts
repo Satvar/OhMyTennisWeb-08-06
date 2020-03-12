@@ -96,25 +96,7 @@ export class HomeComponent extends AppComponent implements OnInit {
     const bookid: string = this.activatedRoute.snapshot.queryParamMap.get(
       "bookid"
     );
-    if (bookid) {
-      this.appService
-        .getAll("/coach/BookingDetail?booking_Id=" + bookid, this.newUser)
-        .subscribe(response => {
-          var res: any = response;
-          console.log(res);
-          if (res.data.availabilty[0].status == "A") {
-            this.amt = res.data.availabilty[0].amount;
-            this.pay(
-              this.appService,
-              res.data.availabilty[0].amount,
-              res.data.availabilty[0].email,
-              bookid
-            );
-          } else {
-            alert("Paiement déjà effectué");
-          }
-        });
-    }
+
     this.newUser = {
       email: "",
       password: ""
@@ -127,25 +109,61 @@ export class HomeComponent extends AppComponent implements OnInit {
     } else {
       this.slidecnt = 2;
     }
-
-    this.bannerImage();
-    this.coachSlider();
-    this.searchEvent();
-    this.myCoaches = [
-      {
-        title: "Tous Les Coachs",
-        class: "active"
-      },
-      {
-        title: "Réserver un cours",
-        class: ""
+    this.slides = {
+      data: [],
+      config: {
+        slidesToShow: this.slidecnt,
+        slidesToScroll: 2,
+        autoplay: true,
+        autoplaySpeed: 1000,
+        arrows: true
       }
-    ];
-    this.titleService.setTitle("Oh My Tennis");
-    this.meta.updateTag({ name: "description", content: "desc" });
-    var pcode = localStorage.getItem("onmytennis");
-    var postalCode = JSON.parse(JSON.parse(pcode));
-    if (postalCode) this.Ville = postalCode.postalCode;
+    };
+    //console.time("someFunction");
+    var t0 = performance.now();
+    setTimeout(() => {
+      if (bookid) {
+        this.appService
+          .getAll("/coach/BookingDetail?booking_Id=" + bookid, this.newUser)
+          .subscribe(response => {
+            var res: any = response;
+            //console.log(res);
+            if (res.data.availabilty[0].status == "A") {
+              this.amt = res.data.availabilty[0].amount;
+              this.pay(
+                this.appService,
+                res.data.availabilty[0].amount,
+                res.data.availabilty[0].email,
+                bookid
+              );
+            } else {
+              alert("Paiement déjà effectué");
+            }
+          });
+      }
+      this.bannerImage();
+
+      this.coachSlider();
+      this.searchEvent();
+      this.myCoaches = [
+        {
+          title: "Tous Les Coachs",
+          class: "active"
+        },
+        {
+          title: "Réserver un cours",
+          class: ""
+        }
+      ];
+      this.titleService.setTitle("Oh My Tennis");
+      this.meta.updateTag({ name: "description", content: "desc" });
+      var pcode = localStorage.getItem("onmytennis");
+      var postalCode = JSON.parse(JSON.parse(pcode));
+      if (postalCode) this.Ville = postalCode.postalCode;
+    }, 1500);
+    // console.timeEnd("someFunction");
+    var t1 = performance.now();
+    console.log("Call to home ngoninit took " + (t1 - t0) + " milliseconds.");
   }
 
   getTransForm(image) {
@@ -171,16 +189,6 @@ export class HomeComponent extends AppComponent implements OnInit {
 
   /* [ Coach slider ] */
   coachSlider() {
-    this.slides = {
-      data: [],
-      config: {
-        slidesToShow: this.slidecnt,
-        slidesToScroll: 2,
-        autoplay: true,
-        autoplaySpeed: 1000,
-        arrows: true
-      }
-    };
     var Data: any;
     this.appService.getAll("/coach/getallcoaches").subscribe(response => {
       Data = response;
@@ -224,7 +232,7 @@ export class HomeComponent extends AppComponent implements OnInit {
   private mdlSampleIsOpen: boolean = false;
   private Mytitle: string = "";
   private openModal(title): void {
-    console.log(title);
+    //console.log(title);
     this.mdlSampleIsOpen = true;
   }
 
@@ -246,12 +254,12 @@ export class HomeComponent extends AppComponent implements OnInit {
             amount: amount,
             token: JSON.stringify(token)
           };
-          console.log("[home.component.ts]", coachemail);
+          //console.log("[home.component.ts]", coachemail);
 
           appService
             .create("/coach/setpayment", coachemail)
             .subscribe(response => {
-              console.log("response", response);
+              //console.log("response", response);
             });
           data = token;
         }
