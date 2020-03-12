@@ -9,6 +9,9 @@ import { NgxSpinnerService } from "ngx-spinner";
 import * as $ from "jquery";
 
 import { Observable } from "rxjs/Observable";
+
+import { ISubscription } from "rxjs/Subscription";
+
 import "rxjs/add/operator/takeWhile";
 import "rxjs/add/observable/timer";
 @Component({
@@ -27,6 +30,8 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
   stageList = [];
   animationList = [];
   message: string;
+  //private $timer: ISubscription;
+  subs: ISubscription;
   constructor(
     activatedRoute: ActivatedRoute,
     router: Router,
@@ -65,7 +70,8 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
                     this.getStage(coachid);
                     this.gettournament(coachid);
                     this.getanimation(coachid);
-                    console.log("stage");
+                    //console.log("stage");
+                    //this.disactivate();
                     this.spinner.hide();
                   });
               }
@@ -90,6 +96,9 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
     }
   }
 
+  private disactivate() {
+    //this.subs.unsubscribe();
+  }
   getanimation(coachid) {
     this.appService
       .getAll("/course/getAnimationCourseLeft", coachid)
@@ -358,6 +367,16 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
         title: "SUPPRIMER VOTRE <br> COMPTE",
         path: "/",
         iclass: "far far-sign-out-o",
+        style: false
+      },
+      {
+        title: "CHANGER LE MOT DE <br> PASSE",
+        path:
+          "/" +
+          this._const("PATH.USERS.SELF") +
+          "/" +
+          this._const("PATH.USERS.CHANGEPASSWORD.SELF"),
+        iclass: "far far-key-o",
         style: false
       },
       {
