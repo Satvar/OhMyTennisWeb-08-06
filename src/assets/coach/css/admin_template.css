@@ -68,6 +68,12 @@
   background: url(../../../assets/images/dashboard_icons/user/userlogout_ic.png)
     top left no-repeat;
 }
+
+.far.far-deleteacc {
+  background: url(../../../assets/images/dashboard_icons/user/deleteacc_ic.png)
+    top left no-repeat;
+}
+
 .admin_tempstyle .sidebar .nav li a:hover {
   background-color: #e75b00;
   color: #ffffff !important;
@@ -267,7 +273,17 @@ body .admin_tempstyle .sidebar .nav li.active .stage_submenu ul li:hover a p, bo
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-sign-out-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-sign-out-o {
-  background: url(../../images/dashboard_icons/user/userlogout_ichover.png)
+  background: url(../../images/dashboard_icons/user/userlogout_ic.png)
+    top left no-repeat;
+}
+
+.admin_tempstyle .sidebar .nav li a:hover .far.deleteacc
+.admin_tempstyle .sidebar .nav li.active a .far.deleteacc {
+  background: url(../../images/dashboard_icons/user/userlogout_ic.png)
+    top left no-repeat;
+}
+.far.far-deleteacc {
+  background: url(../../../assets/images/dashboard_icons/user/deleteacc_ic.png)
     top left no-repeat;
 }
 .text_box_search {
