@@ -99,21 +99,12 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
         );
     }
   }
-
-<<<<<<< HEAD
-//   (".stage_mainmenu").click(function() { 
-//     (".stage_submenu").slideToggle(); 
-// }); 
-
-stageclick() {
-  $(".stage_submenu").slideToggle(); 
-}
-
-=======
+  stageclick() {
+    $(".stage_submenu").slideToggle();
+    }
   private disactivate() {
     //this.subs.unsubscribe();
   }
->>>>>>> 7e20b8ab608689d4ca9713a9020acdbba85944bf
   getanimation(coachid) {
     this.appService
       .getAll("/course/getAnimationCourseLeft", coachid)

@@ -273,17 +273,13 @@ body .admin_tempstyle .sidebar .nav li.active .stage_submenu ul li:hover a p, bo
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-sign-out-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-sign-out-o {
-  background: url(../../images/dashboard_icons/user/userlogout_ic.png)
+  background: url(../../images/dashboard_icons/user/userlogout_ichover.png)
     top left no-repeat;
 }
 
 .admin_tempstyle .sidebar .nav li a:hover .far.deleteacc
 .admin_tempstyle .sidebar .nav li.active a .far.deleteacc {
-  background: url(../../images/dashboard_icons/user/userlogout_ic.png)
-    top left no-repeat;
-}
-.far.far-deleteacc {
-  background: url(../../../assets/images/dashboard_icons/user/deleteacc_ic.png)
+  background: url(../../images/dashboard_icons/user/deleteacc_ichover.png)
     top left no-repeat;
 }
 .text_box_search {
@@ -962,6 +958,36 @@ body.admin_tempstyle {
     padding-right: 1.5rem;
     padding-left: 1.5rem;
   }
+  .delete_bigimage {
+    margin-top: 100px;
+  }
+ .row.book_course_label {
+  max-width: 690px;
+  margin: 0px auto;
+  padding: 25px 15px 0px;
+  border-radius: 6px;
+  border-bottom: 3px solid #e75b00;
+  box-shadow: 2px 0px 18px 0px rgba(0,0,0,0.66); 
+ }
+ .row.book_course_label .modal-title {
+    text-transform: uppercase;
+    font-size: 17px;
+    color: #e75b00;
+    font-weight: bold;
+    position: relative;
+ }
+ .row.book_course_label h4.modal-title:before {
+    content: '';
+    position: absolute;
+    border-bottom-color:#e75b00;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    height: 3px;
+    top: 30px;
+    width: 70px;
+    left: 0px;
+ }
+  
   .admin_tempstyle .dropdown-menu .dropdown-item,
   .admin_tempstyle .dropdown-menu li > a {
     position: relative;
