@@ -8,19 +8,22 @@ import { CoachComponent } from "./../../model/coach/coach.component";
 import { NgxSpinnerService } from "ngx-spinner";
 import * as $ from "jquery";
 
-import { Observable } from "rxjs/Observable";
+//import { Observable } from "rxjs/Observable";
 
 import { ISubscription } from "rxjs/Subscription";
 
 import "rxjs/add/operator/takeWhile";
 import "rxjs/add/observable/timer";
-import { StageComponent } from 'src/app/stage/stage.component';
+import { StageComponent } from "src/app/stage/stage.component";
 @Component({
   selector: "app-leftpanel",
   templateUrl: "./leftpanel.component.html",
   styleUrls: ["./leftpanel.component.scss"]
 })
 export class LeftpanelComponent extends CoachComponent implements OnInit {
+  public stageClass: boolean = false;
+  public tourClass: boolean = false;
+  public animationClass: boolean = false;
   public navActiveIndex = 0;
   alive = true;
   public username: any;
@@ -50,8 +53,6 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
     // );
     // console.log(url);
 
-  
-
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
     if (coach) {
       var coach1 = JSON.parse(coach);
@@ -63,21 +64,22 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
         var coachid = {
           coachId: coach1.id
         };
+        console.log(coachid, Coach_Email);
         this.appService
           .create("/coach/get_coach_by_id", Coach_Email)
           .subscribe((data: any) => {
             //console.log("data", data);
             if (data.isSuccess == true) {
               if (this.alive) {
-                Observable.timer(0, 10000) // only fires when component is alive
-                  .subscribe(() => {
-                    this.getStage(coachid);
-                    this.gettournament(coachid);
-                    this.getanimation(coachid);
-                    //console.log("stage");
-                    //this.disactivate();
-                    this.spinner.hide();
-                  });
+                //Observable.timer(0, 10000) // only fires when component is alive
+                //.subscribe(() => {
+                this.getStage(coachid);
+                this.gettournament(coachid);
+                this.getanimation(coachid);
+                //console.log("stage");
+                //this.disactivate();
+                this.spinner.hide();
+                //});
               }
 
               if (data.data.coach_list) {
@@ -99,12 +101,35 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
         );
     }
   }
-  stageclick() {
-    $(".stage_submenu").slideToggle();
-    }
-  private disactivate() {
-    //this.subs.unsubscribe();
+
+  //   (".stage_mainmenu").click(function() {
+  //     (".stage_submenu").slideToggle();
+  // });
+
+  commonMenuclick() {
+    this.stageClass = false;
+    this.tourClass = false;
+    this.animationClass = false;
   }
+
+  stageclick() {
+    this.stageClass = true;
+    this.tourClass = false;
+    this.animationClass = false;
+  }
+
+  tounamentclick() {
+    this.tourClass = true;
+    this.stageClass = false;
+    this.animationClass = false;
+  }
+
+  animationclick() {
+    this.animationClass = true;
+    this.tourClass = false;
+    this.stageClass = false;
+  }
+
   getanimation(coachid) {
     this.appService
       .getAll("/course/getAnimationCourseLeft", coachid)
@@ -392,7 +417,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.DELETE_ACCOUNT.SELF"),
-        iclass: "far far-sign-out-o",
+        iclass: ".far .deleteacc",
         style: false
       }
     ];
