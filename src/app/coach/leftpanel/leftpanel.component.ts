@@ -36,6 +36,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
   message: string;
   //private $timer: ISubscription;
   subs: ISubscription;
+  public href: string = "";
   constructor(
     activatedRoute: ActivatedRoute,
     router: Router,
@@ -52,6 +53,21 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
     //   this.router.url.indexOf("?")
     // );
     // console.log(url);
+    this.href = this.router.url;
+
+    if (this.href == "/coach/Stage") {
+      this.stageClass = true;
+      this.tourClass = false;
+      this.animationClass = false;
+    } else if (this.href == "/coach/Animation") {
+      this.stageClass = false;
+      this.tourClass = false;
+      this.animationClass = true;
+    } else if (this.href == "/coach/Tounament") {
+      this.stageClass = false;
+      this.tourClass = true;
+      this.animationClass = false;
+    }
 
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
     if (coach) {
@@ -64,7 +80,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
         var coachid = {
           coachId: coach1.id
         };
-        console.log(coachid, Coach_Email);
+        //console.log(coachid, Coach_Email);
         this.appService
           .create("/coach/get_coach_by_id", Coach_Email)
           .subscribe((data: any) => {
