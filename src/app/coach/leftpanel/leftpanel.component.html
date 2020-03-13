@@ -18,8 +18,57 @@
           ? 'nav-item active'
           : null
       "
-      (click)="stageclick()" >
-      <a routerLink="{{ l.path }}" class="nav-link" href="javascript:;">
+    >
+      <a
+        routerLink="{{ l.path }}"
+        (click)="stageclick()"
+        *ngIf="l.path === '/coach/Stage'"
+        class="nav-link"
+        href="javascript:;"
+      >
+        <i [ngClass]="l.iclass"></i>
+        <p
+          [ngClass]="l.style ? 'nav-sub-title' : null"
+          [innerHTML]="l.title"
+        ></p>
+      </a>
+      <a
+        routerLink="{{ l.path }}"
+        (click)="tounamentclick()"
+        *ngIf="l.path === '/coach/Tounament'"
+        class="nav-link"
+        href="javascript:;"
+      >
+        <i [ngClass]="l.iclass"></i>
+        <p
+          [ngClass]="l.style ? 'nav-sub-title' : null"
+          [innerHTML]="l.title"
+        ></p>
+      </a>
+      <a
+        routerLink="{{ l.path }}"
+        (click)="animationclick()"
+        *ngIf="l.path === '/coach/Animation'"
+        class="nav-link"
+        href="javascript:;"
+      >
+        <i [ngClass]="l.iclass"></i>
+        <p
+          [ngClass]="l.style ? 'nav-sub-title' : null"
+          [innerHTML]="l.title"
+        ></p>
+      </a>
+      <a
+        routerLink="{{ l.path }}"
+        (click)="commonMenuclick()"
+        *ngIf="
+          l.path !== '/coach/Stage' &&
+          l.path !== '/coach/Animation' &&
+          l.path !== '/coach/Tounament'
+        "
+        class=" nav-link"
+        href="javascript:;"
+      >
         <i [ngClass]="l.iclass"></i>
         <p
           [ngClass]="l.style ? 'nav-sub-title' : null"
@@ -27,7 +76,10 @@
         ></p>
       </a>
       <div
-        class="tour_submenu"
+        [ngClass]="{
+          'tour_submenu ng-star-inserted activecl': tourClass === true,
+          tour_submenu: tourClass === false
+        }"
         *ngIf="l.path === '/coach/Tounament' && tournList.length > 0"
       >
         <ul class="nav">
@@ -47,7 +99,10 @@
       </div>
 
       <div
-        class="stage_submenu"
+        [ngClass]="{
+          'stage_submenu ng-star-inserted activecl': stageClass === true,
+          stage_submenu: stageClass === false
+        }"
         *ngIf="l.path === '/coach/Stage' && stageList.length > 0"
       >
         <ul class="nav">
@@ -67,7 +122,11 @@
       </div>
 
       <div
-        class="animation_submenu"
+        [ngClass]="{
+          'animation_submenu ng-star-inserted activecl':
+            animationClass === true,
+          animation_submenu: animationClass === false
+        }"
         *ngIf="l.path === '/coach/Animation' && animationList.length > 0"
       >
         <ul class="nav">
