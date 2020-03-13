@@ -18,19 +18,18 @@ import {
 import { Location } from "@angular/common";
 import { BrowserModule, Title, Meta } from "@angular/platform-browser";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { AppService } from "../shared/app.service";
-import { AppComponent } from "../app.component";
+import { AppService } from "../../shared/app.service";
+import { AppComponent } from "../../app.component";
 /* [ Spinner ] */
 import { NgxSpinnerService } from "ngx-spinner";
 import { async } from "q";
 
 @Component({
-  selector: "app-userchangepassword",
-  templateUrl: "./userchangepassword.component.html",
-  styleUrls: ["./userchangepassword.component.scss"]
+  selector: "app-coach-password",
+  templateUrl: "./coach-password.component.html",
+  styleUrls: ["./coach-password.component.scss"]
 })
-export class UserchangepasswordComponent extends AppComponent
-  implements OnInit {
+export class CoachPasswordComponent extends AppComponent implements OnInit {
   public changePasswordForm: FormGroup;
 
   constructor(
@@ -78,7 +77,7 @@ export class UserchangepasswordComponent extends AppComponent
     //console.log(isValid);
     if (isValid.status === "VALID") {
       const userData = JSON.parse(this._setSession("getItem"));
-      //console.log(userData["roleId"]);
+      //console.log(userData);
       // if (val) {
       //   return data[val];
       // }

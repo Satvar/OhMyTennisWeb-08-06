@@ -304,6 +304,10 @@ export const CONST = Object.freeze({
       DELETE_ACCOUNT: {
         SELF: "deleteaccount",
         TITLE: "Delete Account"
+      },
+      CHANGE_PASSWORD: {
+        SELF: "chnagepassword",
+        TITLE: "changepassword"
       }
     },
     USER: {

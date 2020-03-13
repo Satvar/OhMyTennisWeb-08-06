@@ -64,7 +64,7 @@ import { TournamentEditComponent } from "src/app/tournament-edit/tournament-edit
 import { StageEditComponent } from "src/app/stage-edit/stage-edit.component";
 import { AnimationEditComponent } from "src/app/animation-edit/animation-edit.component";
 import { AngularEditorModule } from "@kolkov/angular-editor";
-
+import { CoachPasswordComponent } from "src/app/coach/coach-password/coach-password.component";
 import { DeleteAccountComponent } from "src/app/pages/delete-account/delete-account.component";
 
 const routes: Routes = [
@@ -191,6 +191,13 @@ const routes: Routes = [
         data: {
           title: CONST.PATH.COACH.DELETE_ACCOUNT.TITLE
         }
+      },
+      {
+        path: CONST.PATH.COACH.CHANGE_PASSWORD.SELF,
+        component: CoachPasswordComponent,
+        data: {
+          title: CONST.PATH.COACH.CHANGE_PASSWORD.TITLE
+        }
       }
     ]
   }
@@ -220,7 +227,8 @@ const routes: Routes = [
     TournamentEditComponent,
     StageEditComponent,
     AnimationEditComponent,
-    DeleteAccountComponent
+    DeleteAccountComponent,
+    CoachPasswordComponent
   ],
   imports: [
     CommonModule,

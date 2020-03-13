@@ -35,14 +35,16 @@ export class UserTeambuildingComponent extends AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    var pcode = localStorage.getItem("onmytennis");
-    var postalCode = JSON.parse(JSON.parse(pcode));
-    if (postalCode) {
-      this.Ville = postalCode.postalCode;
-      this.searchEvent();
-    } else {
+    // var pcode = localStorage.getItem("onmytennis");
+    // var postalCode = JSON.parse(JSON.parse(pcode));
+    // if (postalCode) {
+    //   this.Ville = postalCode.postalCode;
+    //   this.searchEvent();
+    // } else {
+    setTimeout(() => {
       this.geTeambuildingCourse();
-    }
+    }, 1500);
+    //}
   }
 
   geTeambuildingCourse() {

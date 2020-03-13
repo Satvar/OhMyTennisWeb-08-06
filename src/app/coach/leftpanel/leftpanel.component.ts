@@ -9,6 +9,9 @@ import { NgxSpinnerService } from "ngx-spinner";
 import * as $ from "jquery";
 
 import { Observable } from "rxjs/Observable";
+
+import { ISubscription } from "rxjs/Subscription";
+
 import "rxjs/add/operator/takeWhile";
 import "rxjs/add/observable/timer";
 import { StageComponent } from 'src/app/stage/stage.component';
@@ -28,6 +31,8 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
   stageList = [];
   animationList = [];
   message: string;
+  //private $timer: ISubscription;
+  subs: ISubscription;
   constructor(
     activatedRoute: ActivatedRoute,
     router: Router,
@@ -59,7 +64,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           coachId: coach1.id
         };
         this.appService
-          .create("/coach/getcoachbyid", Coach_Email)
+          .create("/coach/get_coach_by_id", Coach_Email)
           .subscribe((data: any) => {
             //console.log("data", data);
             if (data.isSuccess == true) {
@@ -69,7 +74,8 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
                     this.getStage(coachid);
                     this.gettournament(coachid);
                     this.getanimation(coachid);
-                    console.log("stage");
+                    //console.log("stage");
+                    //this.disactivate();
                     this.spinner.hide();
                   });
               }
@@ -94,6 +100,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
 //   (".stage_mainmenu").click(function() { 
 //     (".stage_submenu").slideToggle(); 
 // }); 
@@ -102,6 +109,11 @@ stageclick() {
   $(".stage_submenu").slideToggle(); 
 }
 
+=======
+  private disactivate() {
+    //this.subs.unsubscribe();
+  }
+>>>>>>> 7e20b8ab608689d4ca9713a9020acdbba85944bf
   getanimation(coachid) {
     this.appService
       .getAll("/course/getAnimationCourseLeft", coachid)
@@ -370,6 +382,16 @@ stageclick() {
         title: "SUPPRIMER VOTRE <br> COMPTE",
         path: "/",
         iclass: "far far-sign-out-o",
+        style: false
+      },
+      {
+        title: "CHANGER LE MOT DE <br> PASSE",
+        path:
+          "/" +
+          this._const("PATH.COACH.SELF") +
+          "/" +
+          this._const("PATH.COACH.CHANGE_PASSWORD.SELF"),
+        iclass: "far far-key-o",
         style: false
       },
       {
