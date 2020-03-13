@@ -97,6 +97,7 @@ export class CoachRegisterComponent extends AppComponent implements OnInit {
   }
 
   addnewCoach(isValid) {
+    console.log(this.registerForm.value);
     if (isValid.status === "VALID") {
       this.spinner.show();
       this.appService
