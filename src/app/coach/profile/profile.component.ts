@@ -228,12 +228,6 @@ export class ProfileComponent extends CoachComponent implements OnInit {
         $("#trans_error").show();
       }
       if (this.activeTabIndex == 1 && this.trans_error == false) {
-        this._showAlertMessage(
-          "alert-danger",
-          "champ obligatoire ne peut pas être vide"
-        );
-        this.spinner.hide();
-      } else {
         this.appService
           .create("/coach/updateProfileTab2", res)
           .subscribe(response => {
@@ -249,6 +243,12 @@ export class ProfileComponent extends CoachComponent implements OnInit {
               this._showAlertMessage("alert-danger", "Échec de la mise à jour");
             }
           });
+      } else {
+        this._showAlertMessage(
+          "alert-danger",
+          "champ obligatoire ne peut pas être vide"
+        );
+        this.spinner.hide();
       }
     } else if (this.activeTabIndex == 0) {
       //this.activeTabIndex = this.activeTabIndex + 1;
@@ -270,12 +270,6 @@ export class ProfileComponent extends CoachComponent implements OnInit {
         this.cheque_error = true;
       }
       if (this.activeTabIndex == 2 && this.cheque_error == false) {
-        this._showAlertMessage(
-          "alert-danger",
-          "champ obligatoire ne peut pas être vide"
-        );
-        this.spinner.hide();
-      } else {
         this.appService
           .create("/coach/updateProfileTab3", res)
           .subscribe(response => {
@@ -291,14 +285,21 @@ export class ProfileComponent extends CoachComponent implements OnInit {
               this._showAlertMessage("alert-danger", "Échec de la mise à jour");
             }
           });
+      } else {
+        this._showAlertMessage(
+          "alert-danger",
+          "champ obligatoire ne peut pas être vide"
+        );
+        this.spinner.hide();
       }
-    } else {
-      this._showAlertMessage(
-        "alert-danger",
-        "champ obligatoire ne peut pas être vide"
-      );
-      this.spinner.hide();
     }
+    // else {
+    //   this._showAlertMessage(
+    //     "alert-danger",
+    //     "champ obligatoire ne peut pas être vide"
+    //   );
+    //   this.spinner.hide();
+    // }
   }
 
   profileUpdate() {
