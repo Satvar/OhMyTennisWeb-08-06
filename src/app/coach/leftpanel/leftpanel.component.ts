@@ -14,7 +14,7 @@ import { ISubscription } from "rxjs/Subscription";
 
 import "rxjs/add/operator/takeWhile";
 import "rxjs/add/observable/timer";
-import { StageComponent } from 'src/app/stage/stage.component';
+import { StageComponent } from "src/app/stage/stage.component";
 @Component({
   selector: "app-leftpanel",
   templateUrl: "./leftpanel.component.html",
@@ -49,8 +49,6 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
     //   this.router.url.indexOf("?")
     // );
     // console.log(url);
-
-  
 
     var coach = JSON.parse(localStorage.getItem("onmytennis"));
     if (coach) {
@@ -100,20 +98,14 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
-//   (".stage_mainmenu").click(function() { 
-//     (".stage_submenu").slideToggle(); 
-// }); 
+  //   (".stage_mainmenu").click(function() {
+  //     (".stage_submenu").slideToggle();
+  // });
 
-stageclick() {
-  $(".stage_submenu").slideToggle(); 
-}
-
-=======
-  private disactivate() {
-    //this.subs.unsubscribe();
+  stageclick() {
+    $(".stage_submenu").slideToggle();
   }
->>>>>>> 7e20b8ab608689d4ca9713a9020acdbba85944bf
+
   getanimation(coachid) {
     this.appService
       .getAll("/course/getAnimationCourseLeft", coachid)
