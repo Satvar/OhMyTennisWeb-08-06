@@ -97,8 +97,11 @@ body .admin_tempstyle .stage_mainmenu.nav-item.active a:hover p {
 body .admin_tempstyle .stage_mainmenu.nav-item.active a p {
   color: #ffffff !important;
 }
-body .admin_tempstyle .sidebar .nav li.active .stage_submenu ul li:hover a p, body .admin_tempstyle .sidebar .nav li.active .stage_submenu ul li a:hover p {
+body .admin_tempstyle .sidebar .nav li.active .stage_submenu11 ul li:hover a p, body .admin_tempstyle .sidebar .nav li.active .stage_submenu ul li a:hover p {
   color: #ffffff !important;
+}
+body .admin_tempstyle .stage_submenu11 {
+  margin: -8px 10px 0px;
 }
 .admin_tempstyle .sidebar .nav li.active ul li a, .admin_tempstyle .sidebar .nav li ul li a {
   padding: 4px 10px 4px 20px !important;
@@ -106,21 +109,19 @@ body .admin_tempstyle .sidebar .nav li.active .stage_submenu ul li:hover a p, bo
   color: #000 !important;
   border-bottom: 1px solid #c8c8c8;
   background: #f1eaea;
-
 }
-
 .admin_tempstyle .sidebar .nav li.active ul li a p {
   color: #000000 !important;
 }
-.admin_tempstyle .sidebar .nav li.active .stage_submenu a p, 
-.admin_tempstyle .sidebar .nav li.active .stage_submenu a p {
+.admin_tempstyle .sidebar .nav li.active .stage_submenu11 a p, 
+.admin_tempstyle .sidebar .nav li.active .stage_submenu11 a p {
   color: #000000 !important;
 }
-.admin_tempstyle .sidebar .nav li .stage_submenu ul li a p{
+.admin_tempstyle .sidebar .nav li .stage_submenu11 ul li a p{
   color: #000000 !important;
 }
 
-.admin_tempstyle .sidebar .nav li .stage_submenu ul li a:hover {
+.admin_tempstyle .sidebar .nav li .stage_submenu11 ul li a:hover {
   color: #ffffff !important;
 }
 .admin_tempstyle .sidebar .nav li.active a:hover p,
@@ -133,8 +134,8 @@ body .admin_tempstyle .sidebar .nav li.active .stage_submenu ul li:hover a p, bo
 .admin_tempstyle .sidebar .nav li a p:hover {
   color: #ffffff !important;
 }
-.admin_tempstyle .sidebar .nav li .stage_submenu a:hover p,
-.admin_tempstyle .sidebar .nav li .stage_submenu a p:hover {
+.admin_tempstyle .sidebar .nav li .stage_submenu11 a:hover p,
+.admin_tempstyle .sidebar .nav li .stage_submenu11 a p:hover {
   color: #ffffff !important;
 }
 .admin_tempstyle .sidebar .nav li .dropdown-menu a {
