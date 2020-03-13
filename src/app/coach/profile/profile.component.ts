@@ -311,68 +311,71 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     var coachemail = {
       Coach_Email: coach1.email
     };
-    this.spinner.show();
-    this.appService
-      .create("/coach/getcoachbyid", coachemail)
-      .subscribe((data: any) => {
-        if (data.isSuccess == true) {
-          this.spinner.hide();
-        } else {
-          this.spinner.hide();
-        }
 
-        let codePostal = data.data.coach_list[0].Coach_City;
-        this.citySearch(codePostal);
-        //console.log(codePostal);
-        this.response = data.data.coach_list[0];
-        this.res = data.data.coach_list[0];
-        //console.log("res", this.res)
-        if (this.res.Coach_Image == null) {
-          this.res.Coach_Image = "../../assets/images/profile_blackwhite.png";
-        }
-        this.filename = data.data.coach_list[0].ResumeName;
-        selectedServicesList = data.data.coach_list[0].Coach_Services.split(
-          ","
-        );
-        selectedTransportList = data.data.coach_list[0].Coach_transport.split(
-          ","
-        );
-        selectedPaymentList = data.data.coach_list[0].Coach_payment_type.split(
-          ","
-        );
-        if (selectedServicesList.length > 0) {
-          for (var i = 0; i < selectedServicesList.length; i++) {
-            if (selectedServicesList[i] !== "") {
-              var element = <HTMLInputElement>(
-                document.getElementById(selectedServicesList[i])
-              );
-              element.checked = true;
-            }
+    setTimeout(() => {
+      this.spinner.show();
+      this.appService
+        .create("/coach/get_coach_by_id", coachemail)
+        .subscribe((data: any) => {
+          if (data.isSuccess == true) {
+            this.spinner.hide();
+          } else {
+            this.spinner.hide();
           }
-        }
-        if (selectedTransportList.length > 0) {
-          for (var i = 0; i < selectedTransportList.length; i++) {
-            if (selectedTransportList[i] !== "") {
-              var ele = <HTMLInputElement>(
-                document.getElementById(selectedTransportList[i])
-              );
-              if (ele != null) {
-                ele.checked = true;
+
+          let codePostal = data.data.coach_list[0].Coach_City;
+          this.citySearch(codePostal);
+          //console.log(codePostal);
+          this.response = data.data.coach_list[0];
+          this.res = data.data.coach_list[0];
+          //console.log("res", this.res)
+          if (this.res.Coach_Image == null) {
+            this.res.Coach_Image = "../../assets/images/profile_blackwhite.png";
+          }
+          this.filename = data.data.coach_list[0].ResumeName;
+          selectedServicesList = data.data.coach_list[0].Coach_Services.split(
+            ","
+          );
+          selectedTransportList = data.data.coach_list[0].Coach_transport.split(
+            ","
+          );
+          selectedPaymentList = data.data.coach_list[0].Coach_payment_type.split(
+            ","
+          );
+          if (selectedServicesList.length > 0) {
+            for (var i = 0; i < selectedServicesList.length; i++) {
+              if (selectedServicesList[i] !== "") {
+                var element = <HTMLInputElement>(
+                  document.getElementById(selectedServicesList[i])
+                );
+                element.checked = true;
               }
             }
           }
-        }
-        if (selectedPaymentList.length > 0) {
-          for (var i = 0; i < selectedPaymentList.length; i++) {
-            if (selectedPaymentList[i] !== "") {
-              var elem = <HTMLInputElement>(
-                document.getElementById(selectedPaymentList[i])
-              );
-              elem.checked = true;
+          if (selectedTransportList.length > 0) {
+            for (var i = 0; i < selectedTransportList.length; i++) {
+              if (selectedTransportList[i] !== "") {
+                var ele = <HTMLInputElement>(
+                  document.getElementById(selectedTransportList[i])
+                );
+                if (ele != null) {
+                  ele.checked = true;
+                }
+              }
             }
           }
-        }
-      });
+          if (selectedPaymentList.length > 0) {
+            for (var i = 0; i < selectedPaymentList.length; i++) {
+              if (selectedPaymentList[i] !== "") {
+                var elem = <HTMLInputElement>(
+                  document.getElementById(selectedPaymentList[i])
+                );
+                elem.checked = true;
+              }
+            }
+          }
+        });
+    }, 1000);
   }
 
   download() {

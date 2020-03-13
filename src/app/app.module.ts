@@ -46,6 +46,7 @@ import { CONST } from "./shared/app.constant";
 /* [ Shared Module ] */
 import { AppSharedModule } from "./shared/app.shared.module";
 import { AppComponent } from "./app.component";
+import { ScrollingModule } from "@angular/cdk/scrolling";
 import { HeaderComponent } from "./pages/header/header.component";
 import { FooterComponent } from "./pages/footer/footer.component";
 import { HomeComponent } from "./pages/home/home.component";
@@ -616,7 +617,8 @@ export function getAuthServiceConfigs() {
     XunkCalendarModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    ScrollingModule
   ],
   providers: [
     AppService,
