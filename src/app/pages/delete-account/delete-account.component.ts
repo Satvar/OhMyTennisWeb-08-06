@@ -25,7 +25,7 @@ export class DeleteAccountComponent extends CoachComponent implements OnInit {
 
   ngOnInit() {
     var titile = document.getElementsByClassName("brand");
-    if (titile) titile[0].innerHTML = "DELETE ACCOUNT";
+    if (titile) titile[0].innerHTML = "SUPPRIMER UN COMPTE";
   }
 
   _delete_account() {

@@ -26,7 +26,7 @@ export class DeleteUserAccountComponent extends UserComponent
 
   ngOnInit() {
     var titile = document.getElementsByClassName("brand");
-    if (titile) titile[0].innerHTML = "DELETE USER ACCOUNT";
+    if (titile) titile[0].innerHTML = "SUPPRIMER UN COMPTE";
   }
 
   _delete_account() {
