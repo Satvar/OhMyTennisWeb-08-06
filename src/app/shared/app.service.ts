@@ -38,7 +38,6 @@ export class AppService {
   api = "http://18.223.20.2:4004";
   // tslint:disable-next-line:variable-name
   _headers: HttpHeaders;
-  git;
 
   // tslint:disable-next-line:variable-name
   _httpOptions = {};
