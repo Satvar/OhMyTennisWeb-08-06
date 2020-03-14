@@ -1,4 +1,10 @@
-import { Component, OnInit, ɵConsole, AfterViewInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ɵConsole,
+  AfterViewInit,
+  OnDestroy
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { AppService } from "../shared/app.service";
@@ -9,6 +15,7 @@ import { Location } from "@angular/common";
 import * as _ from "underscore";
 import * as $ from "jquery";
 import * as L from "leaflet";
+import { HttpParams } from "@angular/common/http";
 
 @Component({
   selector: "app-oh-my-coach-new",
@@ -92,7 +99,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    var pcode = localStorage.getItem("onmytennis");
+    localStorage.getItem("onmytennis");
     // if (!pcode) {
     //   this.getcurrentcordinates();
     // }
@@ -103,73 +110,100 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
 
   getcoach() {
     this.spinner.show();
+    setTimeout(() => {
+      var ohmycoach_menu_type = localStorage.getItem("ohmycoach-menu-type");
+      if (ohmycoach_menu_type == "") {
+        var pcode = localStorage.getItem("onmytennis");
+        if (pcode) {
+          var postalCode = JSON.parse(JSON.parse(pcode));
+          this.search.ville = postalCode.postalCode;
+        } // End of pcode if it is present
+        this.search.course = "";
+      } else {
+        this.selectedOneCheckbox(ohmycoach_menu_type);
+        this.search.course = ohmycoach_menu_type;
+        localStorage.setItem("Course", ohmycoach_menu_type);
+      }
 
-    var pcode = localStorage.getItem("onmytennis");
-    if (pcode) {
-      var postalCode = JSON.parse(JSON.parse(pcode));
-      this.search.ville = postalCode.postalCode;
-    } // End of pcode if it is present
-
-    this.search.course = "";
-    this.appService
-      .getAll("/coach/searchByCoach", this.search)
-      .subscribe(data => {
-        if (data && data["data"]) {
-          this.allItems = (data as any).data.coach_list;
-          //console.log(this.respon)
-          this.spinner.hide();
-          this.setPage(1);
-        }
-      });
+      this.appService
+        .getAll("/coach/searchByCoach", this.search)
+        .subscribe(data => {
+          if (data && data["data"]) {
+            this.allItems = (data as any).data.coach_list;
+            //console.log(this.respon)
+            this.spinner.hide();
+            this.setPage(1);
+          }
+        });
+    }, 1000);
   }
 
   selectedOneCheckbox(id) {
-    if (id == "CoursIndividuel") {
-      this.search.course = "";
-      let individual = document.getElementById(
-        "check_CoursIndividuel"
-      ) as HTMLInputElement;
-      individual.checked = true;
-      let ondemand = document.getElementById(
-        "check_CoursCollectifOndemand"
-      ) as HTMLInputElement;
-      ondemand.checked = false;
-      let club = document.getElementById(
-        "check_CoursCollectifClub"
-      ) as HTMLInputElement;
-      club.checked = false;
-      this.search.course = "CoursIndividuel";
-    } else if (id == "CoursCollectifOndemand") {
-      this.search.course = "";
-      let individual = document.getElementById(
-        "check_CoursIndividuel"
-      ) as HTMLInputElement;
-      individual.checked = false;
-      let ondemand = document.getElementById(
-        "check_CoursCollectifOndemand"
-      ) as HTMLInputElement;
-      ondemand.checked = true;
-      let club = document.getElementById(
-        "check_CoursCollectifClub"
-      ) as HTMLInputElement;
-      club.checked = false;
-      this.search.course = "CoursCollectifOndemand";
-    } else if (id == "CoursCollectifClub") {
-      this.search.course = "";
-      let individual = document.getElementById(
-        "check_CoursIndividuel"
-      ) as HTMLInputElement;
-      individual.checked = false;
-      let ondemand = document.getElementById(
-        "check_CoursCollectifOndemand"
-      ) as HTMLInputElement;
-      ondemand.checked = false;
-      let club = document.getElementById(
-        "check_CoursCollectifClub"
-      ) as HTMLInputElement;
-      club.checked = true;
-      this.search.course = "CoursCollectifClub";
-    }
+    this.spinner.show();
+
+    setTimeout(() => {
+      if (id == "CoursIndividuel") {
+        this.search.course = "";
+        let individual = document.getElementById(
+          "check_CoursIndividuel"
+        ) as HTMLInputElement;
+        individual.checked = true;
+        let ondemand = document.getElementById(
+          "check_CoursCollectifOndemand"
+        ) as HTMLInputElement;
+        ondemand.checked = false;
+        let club = document.getElementById(
+          "check_CoursCollectifClub"
+        ) as HTMLInputElement;
+        club.checked = false;
+        this.search.course = "CoursIndividuel";
+      } else if (id == "CoursCollectifOndemand") {
+        this.search.course = "";
+        let individual = document.getElementById(
+          "check_CoursIndividuel"
+        ) as HTMLInputElement;
+        individual.checked = false;
+        let ondemand = document.getElementById(
+          "check_CoursCollectifOndemand"
+        ) as HTMLInputElement;
+        ondemand.checked = true;
+        let club = document.getElementById(
+          "check_CoursCollectifClub"
+        ) as HTMLInputElement;
+        club.checked = false;
+        this.search.course = "CoursCollectifOndemand";
+      } else if (id == "CoursCollectifClub") {
+        this.search.course = "";
+        let individual = document.getElementById(
+          "check_CoursIndividuel"
+        ) as HTMLInputElement;
+        individual.checked = false;
+        let ondemand = document.getElementById(
+          "check_CoursCollectifOndemand"
+        ) as HTMLInputElement;
+        ondemand.checked = false;
+        let club = document.getElementById(
+          "check_CoursCollectifClub"
+        ) as HTMLInputElement;
+        club.checked = true;
+        this.search.course = "CoursCollectifClub";
+      }
+
+      localStorage.setItem("ohmycoach-menu-type", id);
+      localStorage.setItem("Course", id);
+      this.location.replaceState(
+        this._const("PATH.OH_MY_COACH_NEW") + "?course=" + id
+      );
+      const search = {
+        course: id,
+        date: "",
+        ville: "",
+        rayon: "0"
+      };
+      this.searchByCoachClick(search);
+      this.setPage(1);
+      this.spinner.hide();
+    }, 1000);
   }
 
   findCoach(search) {
@@ -191,6 +225,38 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
   onFilterChange(eve: any) {
     //console.log(eve);
     this.search.individual = !this.search.individual;
+  }
+
+  searchByCoachClick(search) {
+    //event.preventDefault();
+    this.spinner.show();
+
+    let selectorVilleID = document.getElementById("ville") as HTMLInputElement;
+    selectorVilleID.style.border = "";
+
+    this.appService.getAll("/coach/searchByCoach", search).subscribe(data => {
+      if ((data as any).isSuccess == true) {
+        setTimeout(() => {
+          this.allItems = (data as any).data.coach_list;
+          console.log("ohmytennisnew -- searchByCoach 217", this.allItems);
+          this.spinner.hide();
+          if (this.allItems.length > 0) {
+            this.pager.totalPages = this.allItems.length;
+            //console.log(this.pager.totalPages);
+            this.setPage(1);
+          } else {
+            this.pager.totalPages = this.allItems.length;
+            this.pagedItems = [];
+            this.setPage(1);
+          }
+          window.scroll({
+            top: 850,
+            left: 0,
+            behavior: "smooth"
+          });
+        }, 1000);
+      }
+    });
   }
 
   searchByCoach(search) {
@@ -318,14 +384,23 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
     return [year, month, day].join("-");
   }
 
-  gotoCouch(ser, res) {
-    if (localStorage.getItem("onmytennis") !== null) {
-      var data = JSON.stringify(res);
-      localStorage.setItem("Coach", data);
-      localStorage.setItem("Course", ser);
-      this.router.navigate(["/coachdetail"]);
+  gotoCouch(res, id) {
+    if (localStorage.getItem("ohmycoach-menu-type") !== null) {
+      if (localStorage.getItem("onmytennis") !== null) {
+        var data = JSON.stringify(res);
+        localStorage.setItem("Coach", data);
+        //localStorage.setItem("Course", ser);
+        this.router.navigate(["/coachdetail"]);
+      } else {
+        this.router.navigate(["/login"]);
+      }
     } else {
-      this.router.navigate(["/login"]);
+      this.router.navigate(["ohmycoachdetail"], {
+        queryParams: {
+          id,
+          course: this.search.course
+        }
+      });
     }
   }
 
@@ -339,12 +414,12 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
   }
 
   //rechercherfun() {
-    //console.log("oh-my-coach-new.component.ts - line 342",this.rechercher)
-    //  const availableFilters = [{ status: 'done' }, { other: false }], // your filters
-    //   filters = Object.entries(Object.assign(availableFilters)), // returns an array of the filter's own enumerable property
-    //    result = this.allItems.filter(o => filters.every(([k, v]) => o[k] === v)); // .every returns true, when every item is fulfilling the condition
+  //console.log("oh-my-coach-new.component.ts - line 342",this.rechercher)
+  //  const availableFilters = [{ status: 'done' }, { other: false }], // your filters
+  //   filters = Object.entries(Object.assign(availableFilters)), // returns an array of the filter's own enumerable property
+  //    result = this.allItems.filter(o => filters.every(([k, v]) => o[k] === v)); // .every returns true, when every item is fulfilling the condition
 
-    // console.log(result);
+  // console.log(result);
 
   //}
 }

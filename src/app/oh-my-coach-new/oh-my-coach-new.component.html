@@ -87,8 +87,14 @@
             font-weight: bold;float: right;margin-right: -15px;"
               /> -->
 
-              <input style="outline:none;width: 220px;border-radius: 20px;padding: 8px 20px; border: 1px solid #9b9797; font-size: 15px; font-weight: bold; float: right; margin-right: -15px;" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                placeholder="Rechercher">
+              <input
+                style="outline:none;width: 220px;border-radius: 20px;padding: 8px 20px; border: 1px solid #9b9797; font-size: 15px; font-weight: bold; float: right; margin-right: -15px;"
+                type="text"
+                name="search"
+                [(ngModel)]="searchText"
+                autocomplete="off"
+                placeholder="Rechercher"
+              />
             </div>
             <div class="clearfix"></div>
           </div>
@@ -239,7 +245,7 @@
         >
           <div
             class="row ng-star-inserted"
-            *ngFor="let res of pagedItems | filter:searchText; let i = index"
+            *ngFor="let res of pagedItems | filter: searchText; let i = index"
           >
             <div class="set">
               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 px-0">
@@ -254,15 +260,17 @@
                   style="cursor: pointer;"
                   src="{{ res.Coach_Image }}"
                   #img
-                  (error)="img.src = '../../assets/images/profile_blackwhite.png'"
-                  (click)="goToCouchDetail(res.Coach_ID)"
+                  (error)="
+                    img.src = '../../assets/images/profile_blackwhite.png'
+                  "
+                  (click)="gotoCouch(res, res.Coach_ID)"
                 />
               </div>
               <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12 ml-2 pl-0">
                 <div class="~mx-minus10">
                   <h3
                     style="cursor: pointer;color: #000;"
-                    (click)="goToCouchDetail(res.Coach_ID)"
+                    (click)="gotoCouch(res, res.Coach_ID)"
                   >
                     {{ res.Coach_Fname }} {{ res.Coach_Lname }}
                   </h3>
