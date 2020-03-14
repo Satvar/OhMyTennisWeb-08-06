@@ -433,7 +433,7 @@ export class LeftpanelComponent extends CoachComponent implements OnInit {
           this._const("PATH.COACH.SELF") +
           "/" +
           this._const("PATH.COACH.DELETE_ACCOUNT.SELF"),
-        iclass: ".far .deleteacc",
+        iclass: "far far-deleteacc",
         style: false
       }
     ];

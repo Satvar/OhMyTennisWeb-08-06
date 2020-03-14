@@ -80,27 +80,40 @@
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14),
     0 7px 10px -5px rgba(156, 39, 176, 0.4);
 }
-.admin_tempstyle .sidebar .nav li.active .stage_submenu ul li a p {
+.admin_tempstyle .sidebar .nav li.active .stage_submenu11 ul li a p, 
+.admin_tempstyle .sidebar .nav li.active .tour_submenu11 ul li a p , .admin_tempstyle .sidebar .nav li.active .animation_submenu11 ul li a p{
   color: #4d4545 !important;
   padding: 0px !important;
 }
-body .admin_tempstyle .sidebar .nav li .stage_submenu ul li:hover a p , body .admin_tempstyle .sidebar .nav li .stage_submenu ul li a p:hover{
 
-}
 body .admin_tempstyle .stage_mainmenu.nav-item.active a:hover, body .admin_tempstyle .stage_mainmenu.nav-item.active a{  
   color: #ffffff !important;
   background-color: #e75b00;
 }
-body .admin_tempstyle .stage_mainmenu.nav-item.active a:hover p {
+body .admin_tempstyle .tour_mainmenu.nav-item.active a:hover, body .admin_tempstyle .tour_mainmenu.nav-item.active a{  
+  color: #ffffff !important;
+  background-color: #e75b00;
+}
+body .admin_tempstyle .stage_mainmenu.nav-item.active a:hover p , body .admin_tempstyle .animation_mainmenu.nav-item.active a:hover p, body .admin_tempstyle .tour_mainmenu.nav-item.active a:hover p{
   color: #ffffff !important;
 }
-body .admin_tempstyle .stage_mainmenu.nav-item.active a p {
+body .admin_tempstyle .animation_mainmenu.nav-item.active a:hover, body .admin_tempstyle .animation_mainmenu.nav-item.active a{  
+  color: #ffffff !important;
+  background-color: #e75b00;
+}
+body .admin_tempstyle .tour_mainmenu.nav-item.active a:hover p , body .admin_tempstyle .tour_mainmenu.nav-item.active a:hover p {
   color: #ffffff !important;
 }
-body .admin_tempstyle .sidebar .nav li.active .stage_submenu11 ul li:hover a p, body .admin_tempstyle .sidebar .nav li.active .stage_submenu ul li a:hover p {
+body .admin_tempstyle .stage_mainmenu.nav-item.active a p , body .admin_tempstyle .stage_mainmenu.nav-item.active a p{
   color: #ffffff !important;
 }
-body .admin_tempstyle .stage_submenu11 {
+body .admin_tempstyle .sidebar .nav li.active .stage_submenu11 ul li:hover a p, body .admin_tempstyle .sidebar .nav li.active .stage_submenu11 ul li a:hover p {
+  color: #ffffff !important;
+}
+body .admin_tempstyle .sidebar .nav li.active .tour_submenu11 ul li:hover a p, body .admin_tempstyle .sidebar .nav li.active .animation_submenu11 ul li a:hover p {
+  color: #ffffff !important;
+}
+body .admin_tempstyle .stage_submenu11 , body .admin_tempstyle .tour_submenu11 , body .admin_tempstyle .animation_submenu11{
   margin: -8px 10px 0px;
 }
 .admin_tempstyle .sidebar .nav li.active ul li a, .admin_tempstyle .sidebar .nav li ul li a {
@@ -117,11 +130,18 @@ body .admin_tempstyle .stage_submenu11 {
 .admin_tempstyle .sidebar .nav li.active .stage_submenu11 a p {
   color: #000000 !important;
 }
-.admin_tempstyle .sidebar .nav li .stage_submenu11 ul li a p{
+.admin_tempstyle .sidebar .nav li.active .tour_submenu11 a p, 
+.admin_tempstyle .sidebar .nav li.active .tour_submenu11 a p {
   color: #000000 !important;
 }
-
-.admin_tempstyle .sidebar .nav li .stage_submenu11 ul li a:hover {
+.admin_tempstyle .sidebar .nav li.active .animation_submenu11 a p, 
+.admin_tempstyle .sidebar .nav li.active .animation_submenu11 a p {
+  color: #000000 !important;
+}
+.admin_tempstyle .sidebar .nav li .stage_submenu11 ul li a p, .admin_tempstyle .sidebar .nav li .tour_submenu11 ul li a p, .admin_tempstyle .sidebar .nav li .animation_submenu11 ul li a p{
+  color: #000000 !important;
+}
+.admin_tempstyle .sidebar .nav li .stage_submenu11 ul li a:hover, .admin_tempstyle .sidebar .nav li .tour_submenu11 ul li a:hover, .admin_tempstyle .sidebar .nav li .animation_submenu11 ul li a:hover {
   color: #ffffff !important;
 }
 .admin_tempstyle .sidebar .nav li.active a:hover p,
@@ -136,6 +156,10 @@ body .admin_tempstyle .stage_submenu11 {
 }
 .admin_tempstyle .sidebar .nav li .stage_submenu11 a:hover p,
 .admin_tempstyle .sidebar .nav li .stage_submenu11 a p:hover {
+  color: #ffffff !important;
+}
+.admin_tempstyle .sidebar .nav li .tour_submenu11 a:hover p,
+.admin_tempstyle .sidebar .nav li .tour_submenu11 a p:hover {
   color: #ffffff !important;
 }
 .admin_tempstyle .sidebar .nav li .dropdown-menu a {
@@ -278,9 +302,9 @@ body .admin_tempstyle .stage_submenu11 {
     top left no-repeat;
 }
 
-.admin_tempstyle .sidebar .nav li a:hover .far.deleteacc
-.admin_tempstyle .sidebar .nav li.active a .far.deleteacc {
-  background: url(../../images/dashboard_icons/user/deleteacc_ichover.png)
+.admin_tempstyle .sidebar .nav li a:hover .far.far.deleteacc,
+.admin_tempstyle .sidebar .nav li.active a .far.far.deleteacc {
+  background: url(../../images/dashboard_icons/user/userlogout_ichover.png)
     top left no-repeat;
 }
 .text_box_search {

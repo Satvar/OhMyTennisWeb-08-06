@@ -77,7 +77,7 @@
       </a>
       <div
         [ngClass]="{
-          'tour_submenu ng-star-inserted activecl': tourClass === true,
+          'tour_submenu ng-star-inserted activecl tour_submenu11': tourClass === true,
           tour_submenu: tourClass === false
         }"
         *ngIf="l.path === '/coach/Tounament' && tournList.length > 0"
@@ -123,7 +123,7 @@
 
       <div
         [ngClass]="{
-          'animation_submenu ng-star-inserted activecl':
+          'animation_submenu ng-star-inserted activecl animation_submenu11':
             animationClass === true,
           animation_submenu: animationClass === false
         }"
