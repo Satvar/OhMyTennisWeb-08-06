@@ -201,7 +201,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
         rayon: "0"
       };
       this.searchByCoachClick(search);
-      this.setPage(1);
+      //this.setPage(1);
       this.spinner.hide();
     }, 1000);
   }
