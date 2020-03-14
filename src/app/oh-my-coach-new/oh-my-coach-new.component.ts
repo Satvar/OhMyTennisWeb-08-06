@@ -238,7 +238,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
       if ((data as any).isSuccess == true) {
         setTimeout(() => {
           this.allItems = (data as any).data.coach_list;
-          console.log("ohmytennisnew -- searchByCoach 217", this.allItems);
+          //console.log("ohmytennisnew -- searchByCoach 217", this.allItems);
           this.spinner.hide();
           if (this.allItems.length > 0) {
             this.pager.totalPages = this.allItems.length;
@@ -289,7 +289,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
     this.appService.getAll("/coach/searchByCoach", search).subscribe(data => {
       if ((data as any).isSuccess == true) {
         this.allItems = (data as any).data.coach_list;
-        console.log("ohmytennisnew -- searchByCoach 217", this.allItems);
+        //console.log("ohmytennisnew -- searchByCoach 217", this.allItems);
         this.spinner.hide();
         if (this.allItems.length > 0) {
           this.pager.totalPages = this.allItems.length;
@@ -355,7 +355,7 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
       return;
     }
 
-    console.log("ohmytennisnew -- setPage 284", page);
+    //console.log("ohmytennisnew -- setPage 284", page);
     // get pager object from service
     this.pager = this.getPager(this.allItems.length, page);
 
