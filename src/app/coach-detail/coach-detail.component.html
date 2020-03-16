@@ -226,12 +226,13 @@
                         <full-calendar (dateClick)="handleDateClick($event)" locale="fr" id="mycal" #mycal
                             [events]="calender" [plugins]="calendarPlugins"></full-calendar>
                     </div>
-                </div>
+                </div>                            
                 <div class="clearfix"></div>
             </div>
 
             <div class="clearfix"></div>
             <br><br>
+
             <div class="timeslot" *ngIf="course == 'CoursCollectifClub'" style="overflow: scroll;margin-bottom: 15px;">
                 <table class="table mytable">
                     <thead>
@@ -281,6 +282,7 @@
                     </div>
                 </div>
             </div>
+            
             <div *ngIf="timeslot.length>0 && course !== 'CoursCollectifClub'" class="timeslot row timeslotselect"
                 align="center">
                 <button class="btn btn-success" (click)="reserve()" id="reserve" [disabled]="bookArray.length==0">
@@ -612,6 +614,16 @@
                 </div>
             </div>
 
+        
+            <div class="col-md-12 col-sm-12 col-xs-12 coach_detailbtns" align="left" style="padding-left: 0px;">
+                <div class="col-md-4" *ngIf="course != 'CoursIndividuel' && isIndiv > 0"><a class="btn des_abt_btn" href="javascript:;"
+                      routerLink="{{ '/coachdetail' }}" (click)="gotoCouch('CoursIndividuel', coach_detail_data)">Cours Individuel</a></div>
+                <div class="col-md-4" *ngIf="course != 'CoursCollectifOndemand' && isOnDemand > 0"><a class="btn des_abt_btn" href="javascript:;"
+                      routerLink="{{ '/coachdetail' }}" (click)="gotoCouch('CoursCollectifOndemand', coach_detail_data)">Cours Collectif Ondemand</a></div>
+                <div class="col-md-4" *ngIf="course != 'CoursCollectifClub' && isClub > 0"><a  class="btn des_abt_btn" href="javascript:;"
+                      routerLink="{{ '/coachdetail' }}" (click)="gotoCouch('CoursCollectifClub', coach_detail_data)">Cours Collectif Club</a></div>        
+            </div>
+            <br><br>
             <br>
             <div class="col-md-12 col-sm-12 col-xs-12" align="left" style="padding-left: 0px;">
                 <h4 class="des_contents_cdetail_title" style="text-align: left;">Entraîneur associé

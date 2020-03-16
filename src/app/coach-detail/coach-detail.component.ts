@@ -153,6 +153,14 @@ export class CoachDetailComponent implements OnInit {
     Course: ""
   };
 
+  public isClub;
+  public isOnDemand;
+  public isIndiv;
+  private routedComponent: CoachDetailComponent;
+
+  public coach_detail_data = {};
+  searchQuery = "/coachdetail";
+  previousSearchQuery = "";
   constructor(
     public sanitizer: DomSanitizer,
     public activatedRoute: ActivatedRoute,
@@ -162,8 +170,15 @@ export class CoachDetailComponent implements OnInit {
     public spinner: NgxSpinnerService
   ) {
     this.slidecnt = 4;
+    // override the route reuse strategy
+    // this.router.routeReuseStrategy.shouldReuseRoute = function() {
+    //   return false;
+    // };
   }
 
+  public setRoutedComponent(componentRef: CoachDetailComponent): void {
+    this.routedComponent = componentRef;
+  }
   ngAfterViewInit(): void {
     var datas = this.UserAviablility;
     var today = document.getElementsByClassName("fc-today-button");
@@ -191,7 +206,8 @@ export class CoachDetailComponent implements OnInit {
 
     // Getting Max_Price of selected course for Summary
     var coach = JSON.parse(localStorage.getItem("Coach"));
-    //console.log(coach)
+    //console.log(coach);
+    this.coach_detail_data = coach;
     var Coach_ID = {
       coachId: coach.Id,
       Coach_ID: coach.Id
@@ -232,6 +248,16 @@ export class CoachDetailComponent implements OnInit {
         // this.spinner.hide();
       });
 
+    this.appService
+      .getAll("/course/courseIsIndivIsOnDemandIsClub", Coach_ID)
+      .subscribe(response => {
+        //console.log("coach-detail.component.ts - line 239", response);
+        const isIndiIsOnDemandIsClub = (response as any).data;
+        this.isIndiv = isIndiIsOnDemandIsClub.indivCount;
+        this.isOnDemand = isIndiIsOnDemandIsClub.onDemandCount;
+        this.isClub = isIndiIsOnDemandIsClub.clubCount;
+      });
+
     if (course == "CoursIndividuel") {
       this.appService
         .getAll("/course/getindividualcourse", Coach_ID)
@@ -239,6 +265,7 @@ export class CoachDetailComponent implements OnInit {
           if ((response as any).data.course.length > 0) {
             if (response && response["data"]) {
               var dat = (response as any).data.course[0];
+
               //console.log("[coach-detail.component.ts - line - 235]", dat);
               this.price = dat.Price_min;
               this.Indiv_1hr = dat.Price_min;
@@ -306,6 +333,7 @@ export class CoachDetailComponent implements OnInit {
             if (response && response["data"]) {
               this.availablity = (response as any).data.availablity;
               var dat = (response as any).data.course[0];
+
               this.price = dat.Price;
               this.Video = dat.Video;
               this.pincode = dat.Postalcode;
@@ -332,6 +360,24 @@ export class CoachDetailComponent implements OnInit {
     }
   }
 
+  gotoCouch(ser, res) {
+    //console.log(res);
+    this.previousSearchQuery = "/coachdetail";
+
+    // setTimeout(() => {
+    //   if (localStorage.getItem("onmytennis") !== null) {
+    var data = JSON.stringify(res);
+    localStorage.setItem("Coach", data);
+    localStorage.setItem("Course", ser);
+    this.doRefresh();
+    return false;
+    //this.router.navigate(["/coachdetail"]);
+    // } else {
+    //   this.router.navigate(["/login"]);
+    // }
+    //}, 1000);
+  }
+
   mapintigration(mappoint) {
     this.map = L.map("map", {
       center: mappoint,
@@ -353,6 +399,14 @@ export class CoachDetailComponent implements OnInit {
     L.marker(mappoint, { icon: greenIcon })
       .addTo(this.map)
       .openPopup();
+  }
+
+  private refresh(): boolean {
+    return this.searchQuery && this.searchQuery === this.previousSearchQuery;
+  }
+
+  public doRefresh(): void {
+    this.routedComponent.refresh();
   }
 
   async getcurrentcordinates() {
@@ -453,18 +507,18 @@ export class CoachDetailComponent implements OnInit {
         }
         this.spinner.hide();
       });
-      console.log(
-        "[coach-detail.component.ts - line 450]",
-        this.bookArray.length,
-        this.is10Hr
-      );
+      // console.log(
+      //   "[coach-detail.component.ts - line 450]",
+      //   this.bookArray.length,
+      //   this.is10Hr
+      // );
       if (this.bookArray.length == 10 && this.is10Hr == true) {
         //$("#hrtenmore").show();
         let formInputItem = document
           .querySelectorAll(".timeslotselect")[0]
           .querySelectorAll("input");
 
-        console.log("[coach-detail.component.ts - line 461]", formInputItem);
+        //console.log("[coach-detail.component.ts - line 461]", formInputItem);
 
         formInputItem.forEach(function(inputElement) {
           let mode = inputElement as HTMLInputElement;
