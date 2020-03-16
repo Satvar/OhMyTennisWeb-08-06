@@ -615,7 +615,7 @@
             </div>
 
         
-            <div class="col-md-12 col-sm-12 col-xs-12 coach_detailbtns" align="left" style="padding-left: 0px;">
+            <div class="col-md-12 col-sm-12 col-xs-12 coach_detailbtns" align="left" style="padding-left: 0px;" *ngIf="course == 'CoursIndividuel' || course == 'CoursCollectifOndemand' || course == 'CoursCollectifClub'">
                 <h4 class="des_contents_cdetail_title" style="text-align: left;">
                     Fournisseur de services
                 </h4>
@@ -640,10 +640,8 @@
         <div class="col-md-4 col-sm-4 col-xs-12" align="center">
             <div class="right_coachprofile">
             <img src="{{coach_detail.Coach_Image}}" #img
-                (error)="img.src = 'https://www.voanews.com/themes/custom/voa/images/Author__Placeholder.png'"
-                class="coachright_image img-responsive center-block">       
-
-
+                (error)="img.src = '../../assets/images/profile_blackwhite.png'"
+                class="coachright_image img-responsive center-block">
                 <div class="des_coach_abt_sec" style="float: none;">
                     <h1 class="des_coach_abt_heading">
                         {{ coach_detail.Coach_Fname.toUpperCase() }}
