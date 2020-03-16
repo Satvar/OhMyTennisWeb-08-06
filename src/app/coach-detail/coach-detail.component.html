@@ -616,6 +616,9 @@
 
         
             <div class="col-md-12 col-sm-12 col-xs-12 coach_detailbtns" align="left" style="padding-left: 0px;">
+                <h4 class="des_contents_cdetail_title" style="text-align: left;">
+                    Fournisseur de services
+                </h4>
                 <div class="col-md-4" *ngIf="course != 'CoursIndividuel' && isIndiv > 0"><a class="btn des_abt_btn" href="javascript:;"
                       routerLink="{{ '/coachdetail' }}" (click)="gotoCouch('CoursIndividuel', coach_detail_data)">Cours Individuel</a></div>
                 <div class="col-md-4" *ngIf="course != 'CoursCollectifOndemand' && isOnDemand > 0"><a class="btn des_abt_btn" href="javascript:;"
@@ -623,8 +626,8 @@
                 <div class="col-md-4" *ngIf="course != 'CoursCollectifClub' && isClub > 0"><a  class="btn des_abt_btn" href="javascript:;"
                       routerLink="{{ '/coachdetail' }}" (click)="gotoCouch('CoursCollectifClub', coach_detail_data)">Cours Collectif Club</a></div>        
             </div>
-            <br><br>
-            <br>
+            <br/>
+            <br/>
             <div class="col-md-12 col-sm-12 col-xs-12" align="left" style="padding-left: 0px;">
                 <h4 class="des_contents_cdetail_title" style="text-align: left;">Entraîneur associé
                 </h4>
@@ -632,7 +635,8 @@
 
             </div>
         </div>
-
+<br/>
+<br/>
         <div class="col-md-4 col-sm-4 col-xs-12" align="center">
             <div class="right_coachprofile">
             <img src="{{coach_detail.Coach_Image}}" #img
