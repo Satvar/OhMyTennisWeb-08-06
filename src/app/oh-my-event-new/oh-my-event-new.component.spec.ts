@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OhMyEventNewComponent } from "./oh-my-event-new.component";
+import { OhMyCoachNewComponent } from "./oh-my-coach-new.component";
 
-describe("OhMyEventNewComponent", () => {
-  let component: OhMyEventNewComponent;
-  let fixture: ComponentFixture<OhMyEventNewComponent>;
+describe("OhMyCoachNewComponent", () => {
+  let component: OhMyCoachNewComponent;
+  let fixture: ComponentFixture<OhMyCoachNewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OhMyEventNewComponent]
+      declarations: [OhMyCoachNewComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OhMyEventNewComponent);
+    fixture = TestBed.createComponent(OhMyCoachNewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
