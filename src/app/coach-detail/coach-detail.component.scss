@@ -260,6 +260,15 @@
   color: white;
 }
 
+.coach_detailbtns .des_abt_btn {
+  font-size: 10px;
+  padding: 9px 30px;
+}
+
+.coach_detailbtns .des_abt_btn:hover {
+  background-color: #e75a00 !important;
+  color: #fff;
+}
 @media (min-width: 768px) {
   .formwizardpopup .modal-dialog {
     width: 500px;

@@ -225,6 +225,7 @@ export class HomeComponent extends AppComponent implements OnInit {
   }
 
   gotoCouch(couch: any) {
+    //console.log(couch);
     localStorage.setItem("sendCoachDetails", couch.name);
     this.router.navigate(["/ohmycoachdetail"]);
   }
