@@ -131,7 +131,7 @@ import { HistoireThirdComponent } from "./pages/histoire/histoire-third/histoire
 import { HistoireSecondComponent } from "./pages/histoire/histoire-second/histoire-second.component";
 import { ConseilsMatrielTesterComponent } from "./pages/conseils/conseils-matriel-tester/conseils-matriel-tester.component";
 import { OffreDeServiceCoachTennisComponent } from "./pages/offre-de-service-coach-tennis/offre-de-service-coach-tennis.component";
-import { OhMyEventComponent } from "./oh-my-event/oh-my-event.component";
+import { OhMyEventNewComponent } from "./oh-my-event-new/oh-my-event-new.component";
 //import { CmsComponent } from "./pages/cms/cms.component";
 import { OhMyCoachNewComponent } from "./oh-my-coach-new/oh-my-coach-new.component";
 import { CguComponent } from "./cgu/cgu.component";
@@ -196,6 +196,10 @@ const routes: Routes = [
   {
     path: CONST.PATH.OH_MY_COACH_NEW,
     component: OhMyCoachNewComponent
+  },
+  {
+    path: CONST.PATH.OH_MY_EVENT_NEW,
+    component: OhMyEventNewComponent
   },
   {
     path: CONST.PATH.OH_MY_COACH_DETAIL,
@@ -527,7 +531,7 @@ export function getAuthServiceConfigs() {
     SetPasswordComponent,
     OhMyCoachComponent,
     OhMyCoachNewComponent,
-    OhMyEventComponent,
+    OhMyEventNewComponent,
     CoachDetailComponent,
     TopMenuComponent,
     FooterFirstComponent,

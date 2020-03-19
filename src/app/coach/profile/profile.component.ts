@@ -48,6 +48,8 @@ export class ProfileComponent extends CoachComponent implements OnInit {
   public submit_disabled = true;
   public response: any;
   public filename: string = "";
+  selectedFile: File;
+
   constructor(
     activatedRoute: ActivatedRoute,
     router: Router,
@@ -65,6 +67,18 @@ export class ProfileComponent extends CoachComponent implements OnInit {
     if (titile) titile[0].innerHTML = "MON COMPTE";
 
     this.profileUpdate();
+  }
+
+  onFileSelected(event) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
+    this.onUpload();
+  }
+
+  private onUpload() {
+    const fd = new FormData();
+    fd.append("myfile", this.selectedFile);
+    console.log(fd);
   }
 
   propagateChange = (result, file, type) => {

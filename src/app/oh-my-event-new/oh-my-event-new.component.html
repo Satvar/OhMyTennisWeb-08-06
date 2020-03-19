@@ -69,7 +69,7 @@
           <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12" style="padding-left: 0px;">
               <h1 class="page_title" style="font-size: 27px;">
-                Recherchez vos coachs
+                Recherchez vos événements
               </h1>
               <img
                 alt="title_border"
@@ -105,7 +105,7 @@
         <div class="col-md-3 col-sm-4 col-xs-12 px-30">
           <!-- <button class="viewmap_btn section_btn" (click)="showMyMap=!showMyMap">Voir la carte</button> -->
           <!-- <button class="viewmap_btn section_btn" (click)="toogleData()">Voir la carte </button> -->
-          <form (ngSubmit)="searchByCoach(search)">
+          <form (ngSubmit)="searchByEvent(search)">
             <div class="select_drop" style="margin-bottom: 10px;">
               <h2>Option de filtrage</h2>
               <h3 style="margin-top: 14px;">Code Postal</h3>
@@ -157,7 +157,7 @@
             </div>
             <!-- SDKAT END -->
             <div class="cours">
-              <h3>Selectionnez votre cours</h3>
+              <h3>Sélectionnez vos événements</h3>
               <img
                 alt="title_border"
                 src="./assets/images/title_border.png"
@@ -188,7 +188,7 @@
                       type="checkbox"
                       [(ngModel)]="course.Animation"
                       class="service"
-                      (change)="selectedOneCheckbox('Animations')"
+                      (change)="selectedOneCheckbox('Animation')"
                       id="check_Animations"
                       name="course"
                       value="Animation"
@@ -271,21 +271,21 @@
 
                 <img
                   style="cursor: pointer;"
-                  src="{{ res.Coach_Image }}"
+                  src="{{ res.Photo }}"
                   #img
                   (error)="
                     img.src = '../../assets/images/profile_blackwhite.png'
                   "
-                  (click)="gotoCouch(res, res.Coach_ID)"
+                  (click)="goToEvent(res, search.course)"
                 />
               </div>
               <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12 ml-2 pl-0">
                 <div class="~mx-minus10">
                   <h3
                     style="cursor: pointer;color: #000;"
-                    (click)="gotoCouch(res, res.Coach_ID)"
+                    (click)="goToEvent(res, search.course)"
                   >
-                    {{ res.Coach_Fname }} {{ res.Coach_Lname }}
+                    {{ res.Eventname }} {{ res.Tournamentname }}
                   </h3>
                   <div class="star-rating">
                     <input type="radio" id="5-stars" name="rating" value="5" />
@@ -300,58 +300,31 @@
                     <label for="1-star" class="star">&#9733;</label>
                   </div>
 
-                  <!-- <a href="#"
-                  ><span>Email: </span>{{ res.Coach_Email }} |
-                  <span>Phone: </span>{{ res.Coach_Phone }}</a
-                > -->
                   <div
                     style="margin-bottom:6px;font-weight: bold; font-size: 18px; color: #000;"
-                    *ngIf="res.Coach_Price > '0' && res.Coach_PriceX10 > '0'"
+                    *ngIf="res.Price > '0'"
                   >
-                    {{
-                      res.Coach_Price | currency: "EUR":"symbol":"2.2-2":"fr"
-                    }}
-                    /
-                    <span
-                      style="font-size: 15px; font-weight: normal !important; color: #000000;"
-                      >1 heure</span
-                    >
-                    &nbsp; | &nbsp;
-                    {{
-                      res.Coach_PriceX10 | currency: "EUR":"symbol":"2.2-2":"fr"
-                    }}
-                    /
-                    <span
-                      style="font-size: 15px; font-weight: normal !important; color: #000000;"
-                      >10 heures</span
-                    >
+                    {{ res.Price | currency: "EUR":"symbol":"2.2-2":"fr" }}
                   </div>
                   <p
                     style="max-height: 39px;overflow: hidden;font-size: 13px;line-height: 20px;"
                   >
-                    {{ res.Coach_Description }}
+                    {{ res.Description }}
+                  </p>
+                  <p
+                    style="max-height: 39px;overflow: hidden;font-size: 13px;line-height: 20px;"
+                  >
+                    {{ res.Location }}
                   </p>
                   <div class="tag social_tags">
-                    <a
-                      href="{{ res.FacebookURL }}"
-                      class="fa fa-facebook-f"
-                    ></a>
-                    <a href="{{ res.TwitterURL }}" class="fa fa-twitter"></a>
-                    <a
-                      href="{{ res.InstagramURL }}"
-                      class="fa fa-instagram"
-                    ></a>
+                    <span *ngIf="res.isFromDate == 'Yes'"
+                      >{{ res.from_date | date: "mediumDate":"+0530":"fr" }} to
+                      {{ res.to_date | date: "mediumDate":"+0530":"fr" }}</span
+                    >
                   </div>
                 </div>
               </div>
-              <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
-                <!-- <button
-                  (click)="goToCouchDetail(res.Coach_ID)"
-                  class="section1_btn"
-                >
-                   VUE
-                </button> -->
-              </div>
+
               <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>

@@ -56,6 +56,21 @@ export class TopMenuComponent extends AppComponent
     }, 100);
   }
 
+  ohmyeventclick(menutype) {
+    console.log(menutype);
+    this.spinner.show();
+    setTimeout(() => {
+      //this.spinner.hide();
+
+      localStorage.setItem("ohmycoach-menu-type", menutype);
+      this.router.navigate([this._const("PATH.OH_MY_EVENT_NEW")], {
+        queryParams: {
+          course: menutype
+        }
+      });
+    }, 100);
+  }
+
   getMenuTree() {
     this.spinner.show();
     this.appService.getAll("/admin/menu/toptree").subscribe(res => {
