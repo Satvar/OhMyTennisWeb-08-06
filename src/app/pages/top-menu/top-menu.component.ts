@@ -59,6 +59,7 @@ export class TopMenuComponent extends AppComponent
   ohmyeventclick(menutype) {
     console.log(menutype);
     this.spinner.show();
+
     setTimeout(() => {
       //this.spinner.hide();
 

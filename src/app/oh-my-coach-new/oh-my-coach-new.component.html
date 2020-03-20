@@ -319,12 +319,12 @@
                     {{ res.Coach_Description }}
                   </p>
                   <div class="tag social_tags">
-                    <a
+                    <a *ngIf="res.FacebookURL != ''"
                       href="{{ res.FacebookURL }}"
                       class="fa fa-facebook-f"
                     ></a>
-                    <a href="{{ res.TwitterURL }}" class="fa fa-twitter"></a>
-                    <a
+                    <a *ngIf="res.TwitterURL != ''" href="{{ res.TwitterURL }}" class="fa fa-twitter"></a>
+                    <a *ngIf="res.InstagramURL != ''"
                       href="{{ res.InstagramURL }}"
                       class="fa fa-instagram"
                     ></a>
