@@ -9,6 +9,7 @@ export const CONST = Object.freeze({
     OH_MY_COACH: "ohmycoach",
     OH_MY_COACH_NEW: "ohmycoachnew",
     OH_MY_EVENT_NEW: "ohmyeventnew",
+    OH_MY_EVENT: "ohmyevent",
     CGU: "cgu",
     CGV: "cgv",
     MENTIONS_LEGALES: "mentionslegales",
