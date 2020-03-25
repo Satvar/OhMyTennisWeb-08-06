@@ -286,27 +286,29 @@ export class OhMyCoachNewComponent extends AppComponent implements OnInit {
       return;
     }
 
-    this.appService.getAll("/coach/searchByCoach", search).subscribe(data => {
-      if ((data as any).isSuccess == true) {
-        this.allItems = (data as any).data.coach_list;
-        //console.log("ohmytennisnew -- searchByCoach 217", this.allItems);
-        this.spinner.hide();
-        if (this.allItems.length > 0) {
-          this.pager.totalPages = this.allItems.length;
-          //console.log(this.pager.totalPages);
-          this.setPage(1);
-        } else {
-          this.pager.totalPages = this.allItems.length;
-          this.pagedItems = [];
-          this.setPage(1);
+    this.appService
+      .getAll("/coach/searchByCoachList", search)
+      .subscribe(data => {
+        if ((data as any).isSuccess == true) {
+          this.allItems = (data as any).data.coach_list;
+          //console.log("ohmytennisnew -- searchByCoach 217", this.allItems);
+          this.spinner.hide();
+          if (this.allItems.length > 0) {
+            this.pager.totalPages = this.allItems.length;
+            //console.log(this.pager.totalPages);
+            this.setPage(1);
+          } else {
+            this.pager.totalPages = this.allItems.length;
+            this.pagedItems = [];
+            this.setPage(1);
+          }
+          window.scroll({
+            top: 850,
+            left: 0,
+            behavior: "smooth"
+          });
         }
-        window.scroll({
-          top: 850,
-          left: 0,
-          behavior: "smooth"
-        });
-      }
-    });
+      });
   }
 
   getPager(totalItems: number, currentPage: number = 1, pageSize: number = 4) {

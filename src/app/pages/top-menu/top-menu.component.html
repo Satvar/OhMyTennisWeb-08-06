@@ -182,7 +182,8 @@
               <li>
                 <a
                   href="javascript:;"
-                  routerLink="{{ '/' + this._const('PATH.OH_MY_COACH_NEW') }}"
+                  routerLink="{{ '/' + this._const('PATH.OH_MY_COACH') }}"
+                  (click)="ohmycoachclick('CoursIndividuel')"
                   >Oh My Coachs</a
                 >
                 <ul class="first_submenu">
@@ -218,33 +219,42 @@
                   routerLink="{{ '/' + this._const('PATH.OH_MY_EVENT') }}"
                   >Oh My Event</a
                 > -->
-                <a href="#">Oh My Event</a>
-                <ul class="first_submenu">
+                <a
+                  href="javascript:;"
+                  routerLink="{{ '/' + this._const('PATH.OH_MY_EVENT') }}"
+                  (click)="ohmyeventclick('Stage')"
+                  >Oh My Event</a
+                >
+                <ul class="first_submenu" >
                   <li>
                     <a
                       href="javascript:;"
-                      routerLink="{{ '/' + this._const('PATH.STAGE') }}"
+                      routerLink="{{ '/' + this._const('PATH.OH_MY_EVENT') }}"
+                      (click)="ohmyeventclick('Stage')"
                       >Stage</a
                     >
                   </li>
                   <li>
                     <a
                       href="javascript:;"
-                      routerLink="{{ '/' + this._const('PATH.TEAMBUILDING') }}"
+                      routerLink="{{ '/' + this._const('PATH.OH_MY_EVENT') }}"
+                      (click)="ohmyeventclick('TeamBuilding')"
                       >Team Building</a
                     >
                   </li>
                   <li>
                     <a
                       href="javascript:;"
-                      routerLink="{{ '/' + this._const('PATH.ANIMATION') }}"
+                      routerLink="{{ '/' + this._const('PATH.OH_MY_EVENT') }}"
+                      (click)="ohmyeventclick('Animation')"
                       >Animation</a
                     >
                   </li>
                   <li>
                     <a
                       href="javascript:;"
-                      routerLink="{{ '/' + this._const('PATH.TOUNAMENT') }}"
+                      routerLink="{{ '/' + this._const('PATH.OH_MY_EVENT') }}"
+                      (click)="ohmyeventclick('Tournament')"
                       >Tournament</a
                     >
                   </li>
