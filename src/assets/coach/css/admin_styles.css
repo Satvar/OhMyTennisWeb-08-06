@@ -462,6 +462,10 @@ span {
 .admin_tempstyle table .btn.btn-success {
   margin-right: 0px;
 }
+.admin_leftpanel .fa.fa-th-large {
+  background: url(../../../assets/images/dashboard_icons/admin/Dashboard.png)
+    top left no-repeat;
+}
 .admin_tempstyle .form_devarea .card-body {
   margin-top: 10px;
 }

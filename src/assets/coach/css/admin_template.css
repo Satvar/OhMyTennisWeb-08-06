@@ -74,6 +74,7 @@
     top left no-repeat;
 }
 
+
 .admin_tempstyle .sidebar .nav li a:hover {
   background-color: #e75b00;
   color: #ffffff !important;
@@ -306,6 +307,9 @@ body .admin_tempstyle .stage_submenu11 , body .admin_tempstyle .tour_submenu11 ,
 .admin_tempstyle .sidebar .nav li.active a .far.far.deleteacc {
   background: url(../../../images/dashboard_icons/user/deleteacc_ichover.png)
     top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li.active:hover a p, .admin_tempstyle .sidebar .nav li.active:hover a i {
+  color: #ffffff !important;
 }
 .text_box_search {
   display: none !important;
@@ -989,7 +993,7 @@ body.admin_tempstyle {
  .row.book_course_label {
   max-width: 690px;
   margin: 0px auto;
-  padding: 25px 15px 0px;
+  padding: 20px 15px 20px;
   border-radius: 6px;
   border-bottom: 3px solid #e75b00;
   box-shadow: 2px 0px 18px 0px rgba(0,0,0,0.66); 
