@@ -193,18 +193,12 @@ export class UserleftpanelcomponentComponent extends UserComponent
       },
       {
         title: "SUPPRIMER VOTRE <br> COMPTE",
-        path: "/",
-        iclass: "far far-sign-out-o",
-        style: false
-      },
-      {
-        title: "DELETE ACCOUNT",
         path:
           "/" +
           this._const("PATH.USERS.SELF") +
           "/" +
           this._const("PATH.USERS.DELETE_USER_ACCOUNT.SELF"),
-        iclass: "far far-sign-out-o",
+        iclass: "far far deleteacc",
         style: false
       }
     ];
