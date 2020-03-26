@@ -188,7 +188,7 @@ ul li a:focus {
     display: none;
   }
   .des_overlay_content {
-    top: 40px;
+    top: 50px;
   }
 }
 .menu-hide .panel-default > .panel-heading {
@@ -841,6 +841,7 @@ img {
 .flipover_div .front .avatar {
   display: block;
   width: 110px;
+  height: 110px;
   background-color: #fff !important;
   overflow: hidden;
   margin: -60px auto 0px;

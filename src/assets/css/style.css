@@ -58,7 +58,7 @@ ul li {
 @media (min-width:992px) { .haspadd { padding:55px 0px; } }
 /** Header Top starts here **/
 .header_top {
-	border: 1px solid #e8e8e8;
+	border: 0px solid #e8e8e8;
 	background:#000000;
 }
 .social_icons {
@@ -398,7 +398,7 @@ ul li {
 @media (min-width:1200px) {
 	.menuarea .navbar-nav > li > a {
 		font-size:14px;
-		margin-right:7px;
+		margin-right:10px;
 		line-height:45px;
 	}
 	.logo_icon img {
@@ -2511,7 +2511,7 @@ span.grey_mild {
 	text-align:center;
 	width: 100%;
 	margin: 0px;
-    margin-left: -20px;
+    margin-left: 0px;
 }
 .des_coach_bg:hover .des_grey_overlay {
 	display:block;

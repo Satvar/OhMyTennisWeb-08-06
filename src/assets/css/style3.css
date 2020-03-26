@@ -833,7 +833,7 @@ ul.second_submenu li a {
     padding: 0px;
   }
   .menuarea .right_menu .nav-item-img img {
-    max-width: 75px;
+    max-width: 85px;
     margin-top: -18px;
   }
 }
@@ -855,6 +855,11 @@ ul.image-gallery {
   display: block;
   height: auto;
   max-width: 100%;
+}
+.lexique_page p.lexique_section_title a{
+  margin-bottom: 20px;
+  margin-top: 12px;
+
 }
 .image-gallery .caption {
   background-color: rgba(0, 0, 0, 0.75);

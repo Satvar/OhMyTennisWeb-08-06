@@ -73,7 +73,9 @@
   background: url(../../../assets/images/dashboard_icons/user/deleteacc_ic.png)
     top left no-repeat;
 }
-
+.train_title {
+  font-weight: bold;
+}
 
 .admin_tempstyle .sidebar .nav li a:hover {
   background-color: #e75b00;
