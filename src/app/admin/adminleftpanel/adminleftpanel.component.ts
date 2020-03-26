@@ -34,7 +34,7 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
           this._const("PATH.ADMIN.SELF") +
           "/" +
           this._const("PATH.ADMIN.DASHBOARD.SELF"),
-        iclass: "fa fa-th-large",
+        iclass: "fas fas-th-large",
         style: false
       },
       {
@@ -44,7 +44,7 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
           this._const("PATH.ADMIN.SELF") +
           "/" +
           this._const("PATH.ADMIN.ADMINSERVICE.SELF"),
-        iclass: "fa fa-cogs",
+        iclass: "fas fas-cogs",
         style: false
       },
       {
@@ -54,7 +54,7 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
           this._const("PATH.ADMIN.SELF") +
           "/" +
           this._const("PATH.ADMIN.CLUBLIST.SELF"),
-        iclass: "fa fa-map-marker",
+        iclass: "fas fas-map-marker",
         style: false
       },
       {
@@ -64,7 +64,7 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
           this._const("PATH.ADMIN.SELF") +
           "/" +
           this._const("PATH.ADMIN.COACHLIST.SELF"),
-        iclass: "fa fa-users",
+        iclass: "fas fas-users",
         style: false
       },
       {
@@ -74,7 +74,7 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
           this._const("PATH.ADMIN.SELF") +
           "/" +
           this._const("PATH.ADMIN.PROSPECTUSLIST.SELF"),
-        iclass: "fa fa-file-pdf-o",
+        iclass: "fas fas-file-pdf-o",
         style: false
       },
       {
@@ -84,7 +84,7 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
           this._const("PATH.ADMIN.SELF") +
           "/" +
           this._const("PATH.ADMIN.ADIMLIST.SELF"),
-        iclass: "fa fa-users",
+        iclass: "fas fas-users",
         style: false
       },
       {
@@ -94,27 +94,27 @@ export class AdminleftpanelComponent extends AdminComponent implements OnInit {
           this._const("PATH.ADMIN.SELF") +
           "/" +
           this._const("PATH.ADMIN.PAYMENTS.SELF"),
-        iclass: "fa fa-money",
+        iclass: "fas fas-money",
         style: false
       },
       {
-        title: "Menu",
+        title: "MENU",
         path:
           "/" +
           this._const("PATH.ADMIN.SELF") +
           "/" +
           this._const("PATH.ADMIN.DYNAMICMENU.SELF"),
-        iclass: "fa fa-grav",
+        iclass: "fas fas-grav",
         style: false
       },
       {
-        title: "Content",
+        title: "CONTENT",
         path:
           "/" +
           this._const("PATH.ADMIN.SELF") +
           "/" +
           this._const("PATH.ADMIN.CMS.SELF"),
-        iclass: "fa fa-grav",
+        iclass: "fas fas-grav",
         style: false
       }
     ];

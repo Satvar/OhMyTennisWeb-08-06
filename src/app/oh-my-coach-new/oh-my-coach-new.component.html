@@ -144,13 +144,13 @@
                   name="rayon"
                   className="form-control"
                   id="rayon"
-                  placeholder="KM"
+                  placeholder="Kilomètre"
                 >
-                  <option value="">KM</option>
+                  <option value="">Kilomètre</option>
                   <option
                     *ngFor="let number of numbers; index as i"
                     [selected]="search.rayon === 0"
-                    >{{ number }} KM</option
+                    >{{ number }} Kilomètre</option
                   >
                 </select>
               </div>
@@ -314,10 +314,13 @@
                     >
                   </div>
                   <p
-                    style="max-height: 39px;overflow: hidden;font-size: 13px;line-height: 20px;"
+                    style="display:inline-block;max-height: 39px;overflow: hidden;font-size: 13px;line-height: 20px;"
                   >
                     {{ res.Coach_Description }}
-                  </p>
+                   </p>
+                    
+                   <!-- <span class="para_span" style="float: right;position: absolute;right: 73px; bottom: 13px;
+                  color: #333;">...</span> -->
                   <div class="tag social_tags">
                     <a *ngIf="res.FacebookURL != ''"
                       href="{{ res.FacebookURL }}"
@@ -353,7 +356,7 @@
               [ngClass]="{ disabled: pager.currentPage === 1 }"
             >
               <a
-                style="padding: 10px 34px; margin-right: 10px;"
+                style="padding: 10px 24px; min-width: 143px; max-width: 143px; margin-right: 10px;"
                 class="darkorange_btn btn"
                 (click)="setPage(pager.currentPage - 1)"
                 >Précédente</a
@@ -364,8 +367,8 @@
               [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"
             >
               <a
-                style="padding: 10px 34px;"
-                class="darkgrey_btn btn"
+                style="padding: 10px 24px; min-width: 143px; max-width: 143px;"
+                class="darkorange_btn btn"
                 (click)="setPage(pager.currentPage + 1)"
                 >Suivante</a
               >

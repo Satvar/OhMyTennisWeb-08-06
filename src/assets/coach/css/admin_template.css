@@ -69,9 +69,12 @@
     top left no-repeat;
 }
 
-.far.far-deleteacc {
+.far.far.deleteacc {
   background: url(../../../assets/images/dashboard_icons/user/deleteacc_ic.png)
     top left no-repeat;
+}
+.train_title {
+  font-weight: bold;
 }
 
 .admin_tempstyle .sidebar .nav li a:hover {
@@ -223,89 +226,92 @@ body .admin_tempstyle .stage_submenu11 , body .admin_tempstyle .tour_submenu11 ,
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-th-large,
 .admin_tempstyle .sidebar .nav li.active a .far.far-th-large {
-  background: url(../../../images/dashboard_icons/coach/dashboard_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/coach/dashboard_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-calendar,
 .admin_tempstyle .sidebar .nav li.active a .far.far-calendar {
-  background: url(../../../images/dashboard_icons/coach/moncalendar_hover.png)
+  background: url(../../../assets/images/dashboard_icons/coach/moncalendar_hover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-reser-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-reser-o {
-  background: url(../../../images/dashboard_icons/coach/mesreservation_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/coach/mesreservation_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-courindiv,
 .admin_tempstyle .sidebar .nav li.active a .far.far-courindiv {
-  background: url(../../../images/dashboard_icons/coach/coursindividual_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/coach/coursindividual_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-demand-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-demand-o {
-  background: url(../../../images/dashboard_icons/coach/coldemand_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/coach/coldemand_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-courcollect-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-courcollect-o {
-  background: url(../../../images/dashboard_icons/coach/collectiveclub_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/coach/collectiveclub_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-stage-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-stage-o {
-  background: url(../../../images/dashboard_icons/coach/stageic_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/coach/stageic_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-team-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-team-o {
-  background: url(../../../images/dashboard_icons/coach/teambuild_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/coach/teambuild_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-animation-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-animation-o {
-  background: url(../../../images/dashboard_icons/coach/animation_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/coach/animation_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-tour-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-tour-o {
-  background: url(../../../images/dashboard_icons/coach/tournament_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/coach/tournament_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-comments-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-comments-o {
-  background: url(../../../images/dashboard_icons/coach/comments_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/coach/comments_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-bell-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-bell-o {
-  background: url(../../../images/dashboard_icons/user/usernotify_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/user/usernotify_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-handshake-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-handshake-o {
-  background: url(../../../images/dashboard_icons/user/userpartner_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/user/userpartner_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-cogs-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-cogs-o {
-  background: url(../../../images/dashboard_icons/user/usersparring_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/user/usersparring_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-key-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-key-o {
-  background: url(../../../images/dashboard_icons/user/userchange_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/user/userchange_ichover.png)
     top left no-repeat;
 }
 .admin_tempstyle .sidebar .nav li a:hover .far.far-sign-out-o,
 .admin_tempstyle .sidebar .nav li.active a .far.far-sign-out-o {
-  background: url(../../../images/dashboard_icons/user/userlogout_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/user/userlogout_ichover.png)
     top left no-repeat;
 }
 
 .admin_tempstyle .sidebar .nav li a:hover .far.far.deleteacc,
 .admin_tempstyle .sidebar .nav li.active a .far.far.deleteacc {
-  background: url(../../../images/dashboard_icons/user/deleteacc_ichover.png)
+  background: url(../../../assets/images/dashboard_icons/user/deleteacc_ichover.png)
     top left no-repeat;
+}
+.admin_tempstyle .sidebar .nav li.active:hover a p, .admin_tempstyle .sidebar .nav li.active:hover a i {
+  color: #ffffff !important;
 }
 .text_box_search {
   display: none !important;
@@ -986,10 +992,10 @@ body.admin_tempstyle {
   .delete_bigimage {
     margin-top: 100px;
   }
- .row.book_course_label {
+ .delete.row.book_course_label {
   max-width: 690px;
   margin: 0px auto;
-  padding: 25px 15px 0px;
+  padding: 20px 15px 20px;
   border-radius: 6px;
   border-bottom: 3px solid #e75b00;
   box-shadow: 2px 0px 18px 0px rgba(0,0,0,0.66); 

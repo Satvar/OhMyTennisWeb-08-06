@@ -38,7 +38,7 @@
     </ul>
 </div>  -->
 
-<div class="sidebar-wrapper">
+<div class="sidebar-wrapper admin_leftpanel">
         <ul class="nav">
             <li *ngFor="let l of leftPanel(); let i = index" class="nav-item" [ngClass]="(navActiveIndex ===i) ? 'active': null">
                     <a (click)="navActiveIndex = i;" routerLink="{{l.path}}" class="nav-link" href="javascript:;">
