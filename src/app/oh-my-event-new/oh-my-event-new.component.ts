@@ -120,27 +120,29 @@ export class OhMyEventNewComponent extends AppComponent implements OnInit {
           this.search.ville = postalCode.postalCode;
         } // End of pcode if it is present
         this.search.course = "";
-        var course = {
-          P_course: "Stage"
-        };
-        this.selectedOneCheckbox("Stage");
-        this.search.course = "Stage";
-        localStorage.setItem("Course", "Stage");
-        // this.appService
-        //   .getAll("/coachdetail/getallcourse", course)
-        //   .subscribe(data => {
-        //     if (data && data["data"]) {
-        //       this.allItems = (data as any).data.event_list;
-        //       //console.log(this.respon)
-        //       this.spinner.hide();
-        //       this.setPage(1);
-        //     }
-        //   });
+        // var course = {
+        //   P_course: "Stage"
+        // };
+        // this.selectedOneCheckbox("Stage");
+        // this.search.course = "Stage";
+        // localStorage.setItem("Course", "Stage");
+
       } else {
         this.selectedOneCheckbox(ohmycoach_menu_type);
         this.search.course = ohmycoach_menu_type;
         localStorage.setItem("Course", ohmycoach_menu_type);
       }
+
+      this.appService
+        .getAll("/coach/searchByEvent", this.search)
+        .subscribe(data => {
+          if (data && data["data"]) {
+            this.allItems = (data as any).data.event_list;
+            //console.log(this.respon)
+            this.spinner.hide();
+            this.setPage(1);
+          }
+        });
     }, 1000);
   }
 
@@ -224,20 +226,13 @@ export class OhMyEventNewComponent extends AppComponent implements OnInit {
       this.location.replaceState(
         this._const("PATH.OH_MY_EVENT_NEW") + "?course=" + id
       );
-      // const search = {
-      //   course: id,
-      //   date: "",
-      //   ville: "",
-      //   rayon: "0"
-      // };
-      this.search.course = "";
-      this.search.date = "";
-      this.search.ville = "";
-      this.search.rayon = 0;
-      var course = {
-        P_course: id
+      const search = {
+        course: id,
+        date: "",
+        ville: "",
+        rayon: "0"
       };
-      this.searchByEventClick(course);
+      this.searchByEventClick(search);
       //this.setPage(1);
       this.spinner.hide();
     }, 1000);
@@ -268,11 +263,11 @@ export class OhMyEventNewComponent extends AppComponent implements OnInit {
     //event.preventDefault();
     this.spinner.show();
 
-    // let selectorVilleID = document.getElementById("ville") as HTMLInputElement;
-    // selectorVilleID.style.border = "";
-    var event = search.P_course;
+    let selectorVilleID = document.getElementById("ville") as HTMLInputElement;
+    selectorVilleID.style.border = "";
+    var event = search.course;
     this.appService
-      .getAll("/coachdetail/getallcourse", search)
+      .getAll("/coach/searchByEvent", search)
       .subscribe(data => {
         if ((data as any).isSuccess == true) {
           setTimeout(() => {
