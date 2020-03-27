@@ -2013,7 +2013,7 @@ des_contents_cdetail margimn
 		margin-top: 32px;
 	}
 	.reg_form .radio {
-		margin-top: 27px;
+		margin-top: 31px;
 		margin-left: 0px;
 	}
 	.ohevents_img {
@@ -5771,6 +5771,13 @@ body .right_coachprofile img.coachright_image{
 .disable_select  {
 	background-color: #bcb8b8;
 }
+@media (min-width:768px) {
+	.header_top .top_menu .open > .dropdown-menu {
+		max-width: 222px;
+		left: -50px;
+	}
+}
+
 @media (min-width:992px) {
 	.header_top .top_menu .open > .dropdown-menu {
 		max-width: 222px;

@@ -6,9 +6,10 @@
                     <div class="box-body">
                         <div class="row book_course_label">
                             <div class="col-md-4">
-                                <label for="filter" class="control-label"><b>Rechercher</b></label>
+                                <label for="filter" class="control-label"><b>Rechercher</b></label>                               
                                 <input (keyup)="filtersearch($event)" [(ngModel)]="filter" placeholder="Rechercher"
-                                    class="form-control" /> </div>
+                                    class="form-control" />  <i class="fa fa-search" style="position: absolute; right: 80px; bottom: 10px;"></i>
+                            </div>
 
                             <div class="col-md-4">
                                 <label for="" class="control-label"><b>Cours</b></label>
@@ -41,7 +42,7 @@
                                     <option value="B">Réservé</option>
                                     <option value="S">Reprogrammer</option>
                                     <option value="C">Annulé</option>
-                                    <option value="UC">Utilisatrice Annulé</option>
+                                    <option value="UC">Prestation Annulé</option>
                                 </select>
                             </div>
 
@@ -167,8 +168,8 @@
                                             <td scope="col">{{remaining_status}}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="col">DATE</th>
-                                            <th scope="col">HEURE</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Heure</th>
                                         </tr>
                                         <tr *ngFor="let slots of slotRowDatas">
                                             <td scope="col">{{slots.booking_date | date:'dd/MM/yyyy'}}</td>
